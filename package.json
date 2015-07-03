@@ -1,0 +1,16 @@
+{
+	"name": "voucherify",
+	"version": "0.1.0",
+
+	"description": "Voucherify SDK",
+	"author": "rspective",
+	"license": "",
+	"main": "voucherify.js",
+	"repository": "https://github.com/rspective/voucherify-nodejs-sdk",
+	"bugs": "",
+	"keywords": "voucherify,vouchers,voucher",
+
+	"dependencies": {
+		"request": "~2.54.0"
+	}
+}

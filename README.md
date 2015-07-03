@@ -58,4 +58,4 @@ voucherify.use("v1GiJYuuS", function(error, result) {
 
 ### Changelog ###
 
-0.1.0 first version (auth + get, usage, use)
+- **2015-07-02**, `0.1.0` - First version (authentication + get voucher, voucher usage, use voucher).

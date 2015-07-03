@@ -1,6 +1,6 @@
 {
     "name": "voucherify",
-    "version": "0.1.1",
+    "version": "0.2.0",
 
     "homepage": "http://www.voucherify.io",
     "description": "Node.js SDK for Voucherify.",
@@ -27,6 +27,7 @@
     ],
 
     "dependencies": {
-        "request": "~2.54.0"
+        "request": "~2.54.0",
+        "when": "~3.7.3"
     }
 }

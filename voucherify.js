@@ -42,7 +42,7 @@ module.exports = function(options) {
             request.get({ url: util.format("%s/vouchers/%s", backendUrl, code), headers: headers, json: true },
                         handler.callback);
 
-            return callback ? undefined : handler.promise;
+            return handler.promise;
         },
 
         usage: function (code, callback) {
@@ -51,7 +51,7 @@ module.exports = function(options) {
             request.get({ url: util.format("%s/vouchers/%s/usage", backendUrl, code), headers: headers, json: true },
                         handler.callback);
 
-            return callback ? undefined : handler.promise;
+            return handler.promise;
         },
 
         use: function (code, callback) {
@@ -60,7 +60,7 @@ module.exports = function(options) {
             request.post({ url: util.format("%s/vouchers/%s/usage", backendUrl, code), headers: headers, json: true },
                          handler.callback);
 
-            return callback ? undefined : handler.promise;
+            return handler.promise;
         }
     };
 };

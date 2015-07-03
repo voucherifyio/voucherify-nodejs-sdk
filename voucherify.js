@@ -13,17 +13,32 @@ module.exports = function(options) {
         "X-App-Token": options.clientSecretKey
     };
 
+    function errorMessage(statusCode, body) {
+        return util.format("Unexpected status code: %d - Details: %j", statusCode, body);
+    }
+
     function prepare(callback) {
         var deferred = when.defer();
 
         if (typeof(callback) === "function") {
-            return { callback: function (error, res, body) { callback(error, body); } };
+            return {
+                callback: function (error, res, body) {
+                    if (error || res.statusCode >= 400) {
+                        var message = errorMessage(res.statusCode, body);
+
+                        callback(error || new Error(message));
+                        return;
+                    }
+
+                    callback(null, body);
+                }
+            };
         } else {
             return {
                 promise: deferred.promise,
                 callback: function (error, res, body) {
                     if (error || res.statusCode >= 400) {
-                        var message = util.format("Unexpected status code: %d", res.statusCode);
+                        var message = errorMessage(res.statusCode, body);
 
                         deferred.reject(error || new Error(message));
                         return;

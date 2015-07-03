@@ -1,16 +1,32 @@
 {
-	"name": "voucherify",
-	"version": "0.1.0",
+	  "name": "voucherify",
+	  "version": "0.1.0",
 
-	"description": "Voucherify SDK",
-	"author": "rspective",
-	"license": "",
-	"main": "voucherify.js",
-	"repository": "https://github.com/rspective/voucherify-nodejs-sdk",
-	"bugs": "",
-	"keywords": "voucherify,vouchers,voucher",
+    "homepage": "http://www.voucherify.io",
+	  "description": "Node.js SDK for Voucherify.",
 
-	"dependencies": {
-		"request": "~2.54.0"
-	}
+	  "author": "rspective",
+	  "license": "MIT",
+    "main": "voucherify.js",
+
+	  "repository": {
+        "type": "git",
+        "url": "https://github.com/rspective/voucherify-nodejs-sdk.git",
+    },
+	  "bugs": {
+        "url": "https://github.com/rspective/voucherify-nodejs-sdk/issues",
+        "email": "dev@rspective.pl"
+    },
+
+    "keywords": [
+        "voucherify",
+        "vouchers",
+        "voucher",
+        "sdk",
+        "saas"
+    ],
+
+	  "dependencies": {
+		    "request": "~2.54.0"
+	  }
 }

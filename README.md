@@ -1,6 +1,6 @@
-## Voucherify SDK ##
+## Voucherify SDK
 
-### Usage ###
+### Usage
 
 ```javascript
 var voucherifyClient = require("voucherify");
@@ -56,8 +56,9 @@ voucherify.use("v1GiJYuuS", function(error, result) {
 });
 ```
 
-### Changelog ###
+### Changelog
 
+- **2015-07-03** - `0.1.1` - Publishing package in `npm`.
 - **2015-07-02** - `0.1.0` - First version:
   - Authentication
   - Voucher informations: *get*, *usage*

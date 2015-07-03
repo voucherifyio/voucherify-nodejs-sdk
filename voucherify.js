@@ -5,7 +5,7 @@ var util = require("util");
 var request = require("request");
 var when = require("when");
 
-var backendUrl = "https://voucherify-backend.herokuapp.com";
+var backendUrl = "https://api.voucherify.io/v1";
 
 module.exports = function(options) {
     var headers = {

@@ -35,17 +35,19 @@ voucherify.get("v1GiJYuuS")
 
 /*
 {
-    code: 'v1GiJYuuS',
-    campaign: 'vip',
-    discount: 10,
-    discountType: 'PERCENT',
-    startDate: '2015-06-31T23:59:59Z',
-    expirationDate: '2015-12-31T23:59:59Z',
-    usage: {
-        quantity: 3,
-        usedQuantity: 1
+    "code": "kEGAVB3",
+    "campaign": "vip",
+    "discount": 10.0,
+    "discountType": "PERCENT",
+    "expirationDate": "2015-12-31T23:59:59Z",
+    "usage": {
+        "quantity": 3,
+        "usedQuantity": 1,
+        "usageDates": [
+            "2015-07-04T06:03:35Z"
+        ]
     },
-    additionalInfo: null
+    "additionalInfo": ""
 }
 */
 ```
@@ -72,8 +74,11 @@ voucherify.usage("v1GiJYuuS")
         
 /*
 {
-    quantity: 3,
-    usedQuantity: 1
+    "quantity": 3,
+    "usedQuantity": 1,
+    "usageDates": [
+        "2015-07-04T06:03:35Z"
+    ]
 }
 */
 ```
@@ -100,8 +105,19 @@ voucherify.use("v1GiJYuuS")
 
 /*
 {
-    quantity: 3,
-    usedQuantity: 2
+    "code": "kEGAVB3",
+    "campaign": "vip",
+    "discount": 10.0,
+    "discountType": "PERCENT",
+    "expirationDate": "2015-12-31T23:59:59Z",
+    "usage": {
+        "quantity": 3,
+        "usedQuantity": 1,
+        "usageDates": [
+            "2015-07-04T06:03:35Z"
+        ]
+    },
+    "additionalInfo": ""
 }
 */
 ```

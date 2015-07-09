@@ -124,6 +124,7 @@ voucherify.use("v1GiJYuuS")
 
 ### Changelog
 
+- **2015-07-09** - `1.0.1` - Returning to old API URL.
 - **2015-07-03** - `1.0.0` - Switching API URL.
 - **2015-07-03** - `0.2.0` - Adding promises support.
   - You can either:

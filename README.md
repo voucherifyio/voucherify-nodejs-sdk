@@ -121,6 +121,8 @@ voucherify.use("v1GiJYuuS")
 }
 */
 
+// Or with tracking information provided to the request:
+
 voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID", function(error, result) {
     if (error) {
         console.error("Error: %s", error);
@@ -130,6 +132,14 @@ voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID", function(error,
     console.log(result);
 });
 
+voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID")
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+ 
 /*
 {
     "code": "kEGAVB3",

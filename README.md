@@ -44,7 +44,10 @@ voucherify.get("v1GiJYuuS")
         "quantity": 3,
         "usedQuantity": 1,
         "usageEntries": [
-            { "date": "2015-07-04T06:03:35Z", "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID" }
+            {
+                "date": "2015-07-04T06:03:35Z",
+                "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
+            }
         ]
     },
     "additionalInfo": ""
@@ -77,7 +80,10 @@ voucherify.usage("v1GiJYuuS")
     "quantity": 3,
     "usedQuantity": 1,
     "usageEntries": [
-        { "date": "2015-07-04T06:03:35Z", "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID" }
+        {
+            "date": "2015-07-04T06:03:35Z",
+            "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
+        }
     ]
 }
 */
@@ -114,7 +120,10 @@ voucherify.use("v1GiJYuuS")
         "quantity": 3,
         "usedQuantity": 1,
         "usageEntries": [
-            { "date": "2015-07-04T06:03:35Z", "tracking_id": "(tracking_id not set)" }
+            {
+                "date": "2015-07-04T06:03:35Z",
+                "tracking_id": "(tracking_id not set)"
+            }
         ]
     },
     "additionalInfo": ""
@@ -123,14 +132,15 @@ voucherify.use("v1GiJYuuS")
 
 // Or with tracking information provided to the request:
 
-voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID", function(error, result) {
-    if (error) {
-        console.error("Error: %s", error);
-        return;
-    }
+voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID",
+    function(error, result) {
+        if (error) {
+            console.error("Error: %s", error);
+            return;
+        }
 
-    console.log(result);
-});
+        console.log(result);
+    });
 
 voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID")
     .then(function (result) {
@@ -151,7 +161,10 @@ voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID")
         "quantity": 3,
         "usedQuantity": 1,
         "usageEntries": [
-            { "date": "2015-07-04T06:03:35Z", "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID" }
+            {
+                "date": "2015-07-04T06:03:35Z",
+                "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
+            }
         ]
     },
     "additionalInfo": ""

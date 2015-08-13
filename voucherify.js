@@ -52,28 +52,42 @@ module.exports = function(options) {
 
     return {
         get: function (code, callback) {
+            var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);
 
-            request.get({ url: util.format("%s/vouchers/%s", backendUrl, code), headers: headers, json: true },
-                        handler.callback);
+            request.get({ url: url, headers: headers, json: true }, handler.callback);
 
             return handler.promise;
         },
 
         usage: function (code, callback) {
+            var url = util.format("%s/vouchers/%s/usage", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);
 
-            request.get({ url: util.format("%s/vouchers/%s/usage", backendUrl, code), headers: headers, json: true },
-                        handler.callback);
+            request.get({ url: url, headers: headers, json: true }, handler.callback);
 
             return handler.promise;
         },
 
-        use: function (code, callback) {
-            var handler = prepare(callback);
+        use: function (code, trackingId, callback) {
+            // No `tracking_id` passed here,
+            // use callback from 2n argument.
+            if (typeof(trackingId) === "function") {
+                callback = trackingId;
+                trackingId = undefined;
+            }
 
-            request.post({ url: util.format("%s/vouchers/%s/usage", backendUrl, code), headers: headers, json: true },
-                         handler.callback);
+            var handler = prepare(callback);
+            var url = util.format("%s/vouchers/%s/usage", backendUrl, encodeURIComponent(code));
+
+            // If `tracking_id` passed, use it in query string.
+            if (typeof(trackingId) === "string" && trackingId) {
+                url += "?tracking_id=" + encodeURIComponent(trackingId);
+            }
+
+            console.log(url);
+
+            request.post({ url: url, headers: headers, json: true }, handler.callback);
 
             return handler.promise;
         }

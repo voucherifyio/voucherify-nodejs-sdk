@@ -43,8 +43,8 @@ voucherify.get("v1GiJYuuS")
     "usage": {
         "quantity": 3,
         "usedQuantity": 1,
-        "usageDates": [
-            "2015-07-04T06:03:35Z"
+        "usageEntries": [
+            { "date": "2015-07-04T06:03:35Z", "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID" }
         ]
     },
     "additionalInfo": ""
@@ -71,13 +71,13 @@ voucherify.usage("v1GiJYuuS")
     .catch(function (error) {
         console.error("Error: %s", error);
     });
-        
+
 /*
 {
     "quantity": 3,
     "usedQuantity": 1,
-    "usageDates": [
-        "2015-07-04T06:03:35Z"
+    "usageEntries": [
+        { "date": "2015-07-04T06:03:35Z", "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID" }
     ]
 }
 */
@@ -113,8 +113,35 @@ voucherify.use("v1GiJYuuS")
     "usage": {
         "quantity": 3,
         "usedQuantity": 1,
-        "usageDates": [
-            "2015-07-04T06:03:35Z"
+        "usageEntries": [
+            { "date": "2015-07-04T06:03:35Z", "tracking_id": "(tracking_id not set)" }
+        ]
+    },
+    "additionalInfo": ""
+}
+*/
+
+voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID", function(error, result) {
+    if (error) {
+        console.error("Error: %s", error);
+        return;
+    }
+
+    console.log(result);
+});
+
+/*
+{
+    "code": "kEGAVB3",
+    "campaign": "vip",
+    "discount": 10.0,
+    "discountType": "PERCENT",
+    "expirationDate": "2015-12-31T23:59:59Z",
+    "usage": {
+        "quantity": 3,
+        "usedQuantity": 1,
+        "usageEntries": [
+            { "date": "2015-07-04T06:03:35Z", "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID" }
         ]
     },
     "additionalInfo": ""
@@ -124,6 +151,8 @@ voucherify.use("v1GiJYuuS")
 
 ### Changelog
 
+- **2015-08-13** - `1.1.0` - Ability to track use voucher operation.
+  - Properly handling voucher codes with not URL-friendly characters.
 - **2015-07-09** - `1.0.1` - Returning to old API URL.
 - **2015-07-03** - `1.0.0` - Switching API URL.
 - **2015-07-03** - `0.2.0` - Adding promises support.

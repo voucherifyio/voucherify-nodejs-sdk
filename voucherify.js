@@ -22,7 +22,7 @@ module.exports = function(options) {
 
         if (typeof(callback) === "function") {
             return {
-                callback: function (error, res, body) {
+                callback: function(error, res, body) {
                     if (error || res.statusCode >= 400) {
                         var message = errorMessage(res.statusCode, body);
 
@@ -36,7 +36,7 @@ module.exports = function(options) {
         } else {
             return {
                 promise: deferred.promise,
-                callback: function (error, res, body) {
+                callback: function(error, res, body) {
                     if (error || res.statusCode >= 400) {
                         var message = errorMessage(res.statusCode, body);
 
@@ -51,7 +51,7 @@ module.exports = function(options) {
     }
 
     return {
-        get: function (code, callback) {
+        get: function(code, callback) {
             var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);
 
@@ -60,7 +60,7 @@ module.exports = function(options) {
             return handler.promise;
         },
 
-        usage: function (code, callback) {
+        usage: function(code, callback) {
             var url = util.format("%s/vouchers/%s/usage", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);
 
@@ -69,7 +69,7 @@ module.exports = function(options) {
             return handler.promise;
         },
 
-        use: function (code, trackingId, callback) {
+        use: function(code, trackingId, callback) {
             // No `tracking_id` passed here,
             // use callback from 2n argument.
             if (typeof(trackingId) === "function") {

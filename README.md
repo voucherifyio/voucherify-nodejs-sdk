@@ -174,6 +174,7 @@ voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID")
 
 ### Changelog
 
+- **2015-09-11** - `1.1.1` - Updated backend URL.
 - **2015-08-13** - `1.1.0` - Ability to track use voucher operation.
   - Properly handling voucher codes with not URL-friendly characters.
 - **2015-07-09** - `1.0.1` - Returning to old API URL.

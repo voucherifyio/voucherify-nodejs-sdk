@@ -70,6 +70,12 @@ module.exports = function(options) {
         },
 
         use: function(code, trackingId, callback) {
+            var context = {};
+            if (typeof(code) === "object") {
+                context = code;
+                code = context.voucher;
+                delete context.voucher;
+            }
             // No `tracking_id` passed here,
             // use callback from 2n argument.
             if (typeof(trackingId) === "function") {
@@ -87,7 +93,7 @@ module.exports = function(options) {
 
             console.log(url);
 
-            request.post({ url: url, headers: headers, json: true }, handler.callback);
+            request.post({ url: url, headers: headers, json: context }, handler.callback);
 
             return handler.promise;
         }

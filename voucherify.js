@@ -85,8 +85,6 @@ module.exports = function(options) {
                 url += "?tracking_id=" + encodeURIComponent(trackingId);
             }
 
-            console.log(url);
-
             request.post({ url: url, headers: headers, json: true }, handler.callback);
 
             return handler.promise;

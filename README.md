@@ -149,7 +149,7 @@ voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID")
     .catch(function (error) {
         console.error("Error: %s", error);
     });
- 
+
 /*
 {
     "code": "kEGAVB3",
@@ -174,6 +174,7 @@ voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID")
 
 ### Changelog
 
+- **2015-09-24** - `1.1.2` - Small fixes in logging.
 - **2015-09-11** - `1.1.1` - Updated backend URL.
 - **2015-08-13** - `1.1.0` - Ability to track use voucher operation.
   - Properly handling voucher codes with not URL-friendly characters.

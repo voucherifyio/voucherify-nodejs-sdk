@@ -13,8 +13,9 @@ var voucherify = voucherifyClient({
 });
 ```
 
-#### Getting voucher details.
+#### Getting voucher details
 
+In a callback:
 ```javascript
 voucherify.get("v1GiJYuuS", function(error, result) {
     if (error) {
@@ -24,7 +25,10 @@ voucherify.get("v1GiJYuuS", function(error, result) {
 
     console.log(result);
 });
+```
 
+As a promise:
+```javascript
 voucherify.get("v1GiJYuuS")
     .then(function (result) {
         console.log(result);
@@ -32,10 +36,12 @@ voucherify.get("v1GiJYuuS")
     .catch(function (error) {
         console.error("Error: %s", error);
     });
+```
 
-/*
+Result:
+```json
 {
-    "code": "kEGAVB3",
+    "code": "v1GiJYuuS",
     "campaign": "vip",
     "discount": 10.0,
     "discountType": "PERCENT",
@@ -45,18 +51,18 @@ voucherify.get("v1GiJYuuS")
         "usedQuantity": 1,
         "usageEntries": [
             {
-                "date": "2015-07-04T06:03:35Z",
+                "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
             }
         ]
     },
     "additionalInfo": ""
 }
-*/
 ```
 
 #### Getting voucher usage
 
+In a callback:
 ```javascript
 voucherify.usage("v1GiJYuuS", function(error, result) {
     if (error) {
@@ -66,7 +72,10 @@ voucherify.usage("v1GiJYuuS", function(error, result) {
 
     console.log(result);
 });
+```
 
+As a promise:
+```javascript
 voucherify.usage("v1GiJYuuS")
     .then(function (result) {
         console.log(result);
@@ -74,23 +83,27 @@ voucherify.usage("v1GiJYuuS")
     .catch(function (error) {
         console.error("Error: %s", error);
     });
+```
 
-/*
+Result:
+```json
 {
     "quantity": 3,
     "usedQuantity": 1,
     "usageEntries": [
         {
-            "date": "2015-07-04T06:03:35Z",
+            "date": "2015-09-24T06:03:35Z",
             "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
         }
     ]
 }
-*/
 ```
 
 #### Using voucher
 
+##### 1. Just by code
+
+In a callback:
 ```javascript
 voucherify.use("v1GiJYuuS", function(error, result) {
     if (error) {
@@ -100,7 +113,10 @@ voucherify.use("v1GiJYuuS", function(error, result) {
 
     console.log(result);
 });
+```
 
+As a promise:
+```javascript
 voucherify.use("v1GiJYuuS")
     .then(function (result) {
         console.log(result);
@@ -108,31 +124,50 @@ voucherify.use("v1GiJYuuS")
     .catch(function (error) {
         console.error("Error: %s", error);
     });
+```
 
-/*
+Result (voucher details after usage):
+
+```json
 {
-    "code": "kEGAVB3",
+    "code": "v1GiJYuuS",
     "campaign": "vip",
     "discount": 10.0,
     "discountType": "PERCENT",
     "expirationDate": "2015-12-31T23:59:59Z",
     "usage": {
         "quantity": 3,
-        "usedQuantity": 1,
+        "usedQuantity": 2,
         "usageEntries": [
             {
-                "date": "2015-07-04T06:03:35Z",
+                "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "(tracking_id not set)"
-            }
+            },
+            {
+                "date": "2015-09-25T10:34:57Z",
+                "tracking_id": "(tracking_id not set)"
+            },
         ]
     },
     "additionalInfo": ""
 }
-*/
+```
 
-// Or with tracking information provided to the request:
+Error:
+```json
+{
+  "code": 400,
+  "message": "voucher expired or quantity exceeded",
+  "details": "v1GiJYuuS"
+}
+```
 
-voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID",
+##### 2. With tracking id
+
+You can provide a tracking id (e.g. your customer's login or a generated id) to the voucher usage request.
+
+```javascript
+voucherify.use("v1GiJYuuS", "alice.morgan",
     function(error, result) {
         if (error) {
             console.error("Error: %s", error);
@@ -141,39 +176,77 @@ voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID",
 
         console.log(result);
     });
+```
 
-voucherify.use("v1GiJYuuS", "GENERATED-OR-PROVIDED-TRACKING-ID")
+```javascript
+voucherify.use("v1GiJYuuS", "alice.morgan")
     .then(function (result) {
         console.log(result);
     })
     .catch(function (error) {
         console.error("Error: %s", error);
     });
- 
-/*
+```
+
+Result: 
+```json
 {
-    "code": "kEGAVB3",
+    "code": "v1GiJYuuS",
     "campaign": "vip",
     "discount": 10.0,
     "discountType": "PERCENT",
     "expirationDate": "2015-12-31T23:59:59Z",
     "usage": {
         "quantity": 3,
-        "usedQuantity": 1,
+        "usedQuantity": 3,
         "usageEntries": [
             {
-                "date": "2015-07-04T06:03:35Z",
-                "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
-            }
+                "date": "2015-09-24T06:03:35Z",
+                "tracking_id": "(tracking_id not set)"
+            },
+            {
+                "date": "2015-09-25T10:34:57Z",
+                "tracking_id": "(tracking_id not set)"
+            },
+            {
+                "date": "2015-09-25T12:04:08Z",
+                "tracking_id": "alice.morgan"
+            },
         ]
     },
     "additionalInfo": ""
 }
-*/
+```
+
+##### 3. With customer profile
+
+You can record a detailed customer profile consiting of an `id` (obligatory), `name`, `email`, `description` and a `metadata` section that can include any data you wish.
+
+```javascript
+voucherify.use({
+        voucher: "v1GiJYuuS",
+        customer: {
+            id: "alice.morgan",
+            name: "Alice Morgan",
+            email: "alice@morgan.com",
+            description: "",
+            metadata: {
+                locale: "en-GB",
+                shoeSize: 5,
+                favouriteBrands: ["Armani", "L’Autre Chose", "Vicini"]
+            }
+        })
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
 ```
 
 ### Changelog
 
+- **2015-09-25** - `1.1.2` - Ability to track a detailed customer profile that uses a voucher.
 - **2015-09-11** - `1.1.1` - Updated backend URL.
 - **2015-08-13** - `1.1.0` - Ability to track use voucher operation.
   - Properly handling voucher codes with not URL-friendly characters.

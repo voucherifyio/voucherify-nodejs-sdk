@@ -60,11 +60,11 @@ Result:
 }
 ```
 
-#### Getting voucher usage
+#### Getting voucher redemption
 
 In a callback:
 ```javascript
-voucherify.usage("v1GiJYuuS", function(error, result) {
+voucherify.redemption("v1GiJYuuS", function(error, result) {
     if (error) {
         console.error("Error: %s", error);
         return;
@@ -76,7 +76,7 @@ voucherify.usage("v1GiJYuuS", function(error, result) {
 
 As a promise:
 ```javascript
-voucherify.usage("v1GiJYuuS")
+voucherify.redemption("v1GiJYuuS")
     .then(function (result) {
         console.log(result);
     })
@@ -99,13 +99,13 @@ Result:
 }
 ```
 
-#### Using voucher
+#### Redeeming voucher
 
 ##### 1. Just by code
 
 In a callback:
 ```javascript
-voucherify.use("v1GiJYuuS", function(error, result) {
+voucherify.redeem("v1GiJYuuS", function(error, result) {
     if (error) {
         console.error("Error: %s", error);
         return;
@@ -117,7 +117,7 @@ voucherify.use("v1GiJYuuS", function(error, result) {
 
 As a promise:
 ```javascript
-voucherify.use("v1GiJYuuS")
+voucherify.redeem("v1GiJYuuS")
     .then(function (result) {
         console.log(result);
     })
@@ -126,7 +126,7 @@ voucherify.use("v1GiJYuuS")
     });
 ```
 
-Result (voucher details after usage):
+Result (voucher details after redemption):
 
 ```json
 {
@@ -164,10 +164,10 @@ Error:
 
 ##### 2. With tracking id
 
-You can provide a tracking id (e.g. your customer's login or a generated id) to the voucher usage request.
+You can provide a tracking id (e.g. your customer's login or a generated id) to the voucher redemption request.
 
 ```javascript
-voucherify.use("v1GiJYuuS", "alice.morgan",
+voucherify.redeem("v1GiJYuuS", "alice.morgan",
     function(error, result) {
         if (error) {
             console.error("Error: %s", error);
@@ -179,7 +179,7 @@ voucherify.use("v1GiJYuuS", "alice.morgan",
 ```
 
 ```javascript
-voucherify.use("v1GiJYuuS", "alice.morgan")
+voucherify.redeem("v1GiJYuuS", "alice.morgan")
     .then(function (result) {
         console.log(result);
     })
@@ -220,10 +220,10 @@ Result:
 
 ##### 3. With customer profile
 
-You can record a detailed customer profile consiting of an `id` (obligatory), `name`, `email`, `description` and a `metadata` section that can include any data you wish.
+You can record a detailed customer profile consisting of an `id` (obligatory), `name`, `email`, `description` and a `metadata` section that can include any data you wish.
 
 ```javascript
-voucherify.use({
+voucherify.redeem({
         voucher: "v1GiJYuuS",
         customer: {
             id: "alice.morgan",
@@ -246,6 +246,9 @@ voucherify.use({
 
 ### Changelog
 
+- **2015-10-12** - `1.3.0` - Changed API after Voucherify's API change
+  - use --> redeem
+  - usage --> redemption
 - **2015-09-25** - `1.2.0` - Ability to track a detailed customer profile that uses a voucher.
 - **2015-09-24** - `1.1.2` - Small fixes in logging.
 - **2015-09-11** - `1.1.1` - Updated backend URL.

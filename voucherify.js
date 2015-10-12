@@ -60,8 +60,8 @@ module.exports = function(options) {
             return handler.promise;
         },
 
-        usage: function(code, callback) {
-            var url = util.format("%s/vouchers/%s/usage", backendUrl, encodeURIComponent(code));
+        redemption: function(code, callback) {
+            var url = util.format("%s/vouchers/%s/redemption", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);
 
             request.get({ url: url, headers: headers, json: true }, handler.callback);
@@ -69,7 +69,7 @@ module.exports = function(options) {
             return handler.promise;
         },
 
-        use: function(code, trackingId, callback) {
+        redeem: function(code, trackingId, callback) {
             var context = {};
             if (typeof(code) === "object") {
                 context = code;
@@ -84,7 +84,7 @@ module.exports = function(options) {
             }
 
             var handler = prepare(callback);
-            var url = util.format("%s/vouchers/%s/usage", backendUrl, encodeURIComponent(code));
+            var url = util.format("%s/vouchers/%s/redemption", backendUrl, encodeURIComponent(code));
 
             // If `tracking_id` passed, use it in query string.
             if (typeof(trackingId) === "string" && trackingId) {

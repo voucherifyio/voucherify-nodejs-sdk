@@ -46,10 +46,10 @@ Result:
     "discount": 10.0,
     "discountType": "PERCENT",
     "expirationDate": "2015-12-31T23:59:59Z",
-    "usage": {
+    "redemption": {
         "quantity": 3,
-        "usedQuantity": 1,
-        "usageEntries": [
+        "redeemedQuantity": 1,
+        "redemptionEntries": [
             {
                 "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
@@ -89,8 +89,8 @@ Result:
 ```json
 {
     "quantity": 3,
-    "usedQuantity": 1,
-    "usageEntries": [
+    "redeemedQuantity": 1,
+    "redemptionEntries": [
         {
             "date": "2015-09-24T06:03:35Z",
             "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
@@ -135,10 +135,10 @@ Result (voucher details after redemption):
     "discount": 10.0,
     "discountType": "PERCENT",
     "expirationDate": "2015-12-31T23:59:59Z",
-    "usage": {
+    "redemption": {
         "quantity": 3,
-        "usedQuantity": 2,
-        "usageEntries": [
+        "redeemedQuantity": 2,
+        "redemptionEntries": [
             {
                 "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "(tracking_id not set)"
@@ -196,10 +196,10 @@ Result:
     "discount": 10.0,
     "discountType": "PERCENT",
     "expirationDate": "2015-12-31T23:59:59Z",
-    "usage": {
+    "redemption": {
         "quantity": 3,
-        "usedQuantity": 3,
-        "usageEntries": [
+        "redeemedQuantity": 3,
+        "redemptionEntries": [
             {
                 "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "(tracking_id not set)"
@@ -246,6 +246,7 @@ voucherify.redeem({
 
 ### Changelog
 
+- **2015-10-13** - `1.3.1` - Fixed Readme
 - **2015-10-12** - `1.3.0` - Changed API after Voucherify's API change
   - use --> redeem
   - usage --> redemption

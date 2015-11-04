@@ -44,19 +44,19 @@ Result:
     "code": "v1GiJYuuS",
     "campaign": "vip",
     "discount": 10.0,
-    "discountType": "PERCENT",
-    "expirationDate": "2015-12-31T23:59:59Z",
+    "discount_type": "PERCENT",
+    "expiration_date": "2015-12-31T23:59:59Z",
     "redemption": {
         "quantity": 3,
-        "redeemedQuantity": 1,
-        "redemptionEntries": [
+        "redeemed_quantity": 1,
+        "redemption_entries": [
             {
                 "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
             }
         ]
     },
-    "additionalInfo": ""
+    "additional_info": ""
 }
 ```
 
@@ -89,8 +89,8 @@ Result:
 ```json
 {
     "quantity": 3,
-    "redeemedQuantity": 1,
-    "redemptionEntries": [
+    "redeemed_quantity": 1,
+    "redemption_entries": [
         {
             "date": "2015-09-24T06:03:35Z",
             "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
@@ -133,12 +133,12 @@ Result (voucher details after redemption):
     "code": "v1GiJYuuS",
     "campaign": "vip",
     "discount": 10.0,
-    "discountType": "PERCENT",
-    "expirationDate": "2015-12-31T23:59:59Z",
+    "discount_type": "PERCENT",
+    "expiration_date": "2015-12-31T23:59:59Z",
     "redemption": {
         "quantity": 3,
-        "redeemedQuantity": 2,
-        "redemptionEntries": [
+        "redeemed_quantity": 2,
+        "redemption_entries": [
             {
                 "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "(tracking_id not set)"
@@ -149,7 +149,7 @@ Result (voucher details after redemption):
             },
         ]
     },
-    "additionalInfo": ""
+    "additional_info": ""
 }
 ```
 
@@ -194,12 +194,12 @@ Result:
     "code": "v1GiJYuuS",
     "campaign": "vip",
     "discount": 10.0,
-    "discountType": "PERCENT",
-    "expirationDate": "2015-12-31T23:59:59Z",
+    "discount_type": "PERCENT",
+    "expiration_date": "2015-12-31T23:59:59Z",
     "redemption": {
         "quantity": 3,
-        "redeemedQuantity": 3,
-        "redemptionEntries": [
+        "redeemed_quantity": 3,
+        "redemption_entries": [
             {
                 "date": "2015-09-24T06:03:35Z",
                 "tracking_id": "(tracking_id not set)"
@@ -214,7 +214,7 @@ Result:
             },
         ]
     },
-    "additionalInfo": ""
+    "additional_info": ""
 }
 ```
 
@@ -233,7 +233,7 @@ voucherify.redeem({
             metadata: {
                 locale: "en-GB",
                 shoeSize: 5,
-                favouriteBrands: ["Armani", "L’Autre Chose", "Vicini"]
+                favourite_brands: ["Armani", "L’Autre Chose", "Vicini"]
             }
         })
     .then(function (result) {
@@ -246,6 +246,7 @@ voucherify.redeem({
 
 ### Changelog
 
+- **2015-11-05** - `1.3.2` - Updated Readme to snake case naming convention
 - **2015-10-13** - `1.3.1` - Fixed Readme
 - **2015-10-12** - `1.3.0` - Changed API after Voucherify's API change
   - use --> redeem

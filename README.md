@@ -244,8 +244,22 @@ voucherify.redeem({
     });
 ```
 
+### Utils
+
+#### Usage
+```
+var utils = require('voucherify/utils');
+```
+
+#### Available methods
+
+- `utils.calculatePrice(basePrice, voucher);`
+- `utils.calculateDiscount(basePrice, voucher);`
+
 ### Changelog
 
+- **2015-11-10** - `1.4.0` - Add `VoucherifyUtils` which includes `calculatePrice` for computing product/card price
+                             after discount and `calculateDiscount`.
 - **2015-11-05** - `1.3.2` - Updated Readme to snake case naming convention
 - **2015-10-13** - `1.3.1` - Fixed Readme
 - **2015-10-12** - `1.3.0` - Changed API after Voucherify's API change

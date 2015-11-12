@@ -188,7 +188,7 @@ voucherify.redeem("v1GiJYuuS", "alice.morgan")
     });
 ```
 
-Result: 
+Result:
 ```json
 {
     "code": "v1GiJYuuS",
@@ -258,7 +258,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
-- **2015-11-10** - `1.4.0` - Add `VoucherifyUtils` which includes `calculatePrice` for computing product/card price
+- **2015-11-10** - `1.4.0` - Add `VoucherifyUtils` which includes `calculatePrice` for computing product/cart price
                              after discount and `calculateDiscount`.
 - **2015-11-05** - `1.3.2` - Updated Readme to snake case naming convention
 - **2015-10-13** - `1.3.1` - Fixed Readme

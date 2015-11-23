@@ -10,7 +10,8 @@ var backendUrl = "https://voucherify-bouncer.herokuapp.com/v1";
 module.exports = function(options) {
     var headers = {
         "X-App-Id": options.applicationId,
-        "X-App-Token": options.clientSecretKey
+        "X-App-Token": options.clientSecretKey,
+        "X-Voucherify-Channel": "Node.js-SDK"
     };
 
     function errorMessage(statusCode, body) {

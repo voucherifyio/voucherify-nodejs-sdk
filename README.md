@@ -258,6 +258,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
+- **2015-11-23** - `1.4.1` - Added `X-Voucherify-Channel` header.
 - **2015-11-10** - `1.4.0` - Add `VoucherifyUtils` which includes `calculatePrice` for computing product/cart price
                              after discount and `calculateDiscount`.
 - **2015-11-05** - `1.3.2` - Updated Readme to snake case naming convention

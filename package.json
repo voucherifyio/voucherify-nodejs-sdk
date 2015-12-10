@@ -29,5 +29,13 @@
     "dependencies": {
         "request": "~2.54.0",
         "when": "~3.7.3"
+    },
+
+    "devDependencies": {
+        "jasmine-node": "~1.14.5"
+    },
+
+    "scripts": {
+        "test": "./node_modules/.bin/jasmine-node ./test"
     }
 }

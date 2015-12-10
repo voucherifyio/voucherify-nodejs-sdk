@@ -43,8 +43,10 @@ Result:
 {
     "code": "v1GiJYuuS",
     "campaign": "vip",
-    "discount": 10.0,
-    "discount_type": "PERCENT",
+    "discount": {
+        "percent_off": 10.0,
+        "type": "PERCENT"
+    },
     "expiration_date": "2015-12-31T23:59:59Z",
     "redemption": {
         "quantity": 3,
@@ -132,8 +134,10 @@ Result (voucher details after redemption):
 {
     "code": "v1GiJYuuS",
     "campaign": "vip",
-    "discount": 10.0,
-    "discount_type": "PERCENT",
+    "discount": {
+        "percent_off": 10.0,
+        "type": "PERCENT"
+    },
     "expiration_date": "2015-12-31T23:59:59Z",
     "redemption": {
         "quantity": 3,
@@ -193,8 +197,10 @@ Result:
 {
     "code": "v1GiJYuuS",
     "campaign": "vip",
-    "discount": 10.0,
-    "discount_type": "PERCENT",
+    "discount": {
+        "percent_off": 10.0,
+        "type": "PERCENT"
+    },
     "expiration_date": "2015-12-31T23:59:59Z",
     "redemption": {
         "quantity": 3,
@@ -258,6 +264,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
+- **2015-12-10** - `1.5.0` - New discount model. Added UNIT - a new discount type.
 - **2015-11-23** - `1.4.1` - Added `X-Voucherify-Channel` header.
 - **2015-11-10** - `1.4.0` - Add `VoucherifyUtils` which includes `calculatePrice` for computing product/cart price
                              after discount and `calculateDiscount`.

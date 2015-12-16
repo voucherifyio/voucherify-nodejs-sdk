@@ -1,8 +1,18 @@
-## Voucherify SDK
+## Voucherify Node.js SDK
+
+[Voucherify](http://voucherify.io) is an API-first voucher managment solution. 
+
+Here you can find a library that makes it easier to integrate Voucherify with your Node.js server.
+
+Full documentation is located at [voucherify.readme.io](https://voucherify.readme.io).
 
 ### Usage
 
 #### Authentication
+
+[Log-in](http://app.voucherify.io/#/login) to Voucherify web interace and obtain your Application Keys from [Configuration](https://app.voucherify.io/#/app/configuration):
+
+![](https://www.filepicker.io/api/file/WKYkl2bSAWKHccEN9tEG)
 
 ```javascript
 var voucherifyClient = require("voucherify");

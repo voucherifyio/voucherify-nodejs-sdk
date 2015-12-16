@@ -1,6 +1,10 @@
 ## Voucherify Node.js SDK
 
-[Voucherify](http://voucherify.io) is an API-first voucher managment solution. 
+[Voucherify](http://voucherify.io) has a new platform that will help your team  to automate voucher campaigns. It does this by providing composable API and the marketer-friendly interface that let growth teams:
+
+- **roll-out thousands** of vouchers **in minutes** instead of weeks,
+- **check status** or disable **every single** promo code in real time, 
+- **track redemption** history and build reports on the fly.
 
 Here you can find a library that makes it easier to integrate Voucherify with your Node.js server.
 

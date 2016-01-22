@@ -95,6 +95,15 @@ module.exports = function(options) {
             request.post({ url: url, headers: headers, json: context }, handler.callback);
 
             return handler.promise;
+        },
+
+        publish: function(campaignName, callback) {
+            var url = util.format("%s/vouchers/publish?campaign=%s", backendUrl, encodeURIComponent(campaignName));
+            var handler = prepare(callback);
+
+            request.post({ url: url, headers: headers, json: true }, handler.callback);
+
+            return handler.promise;
         }
     };
 };

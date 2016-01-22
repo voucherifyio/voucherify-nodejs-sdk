@@ -115,6 +115,59 @@ Result:
 }
 ```
 
+#### Publishing voucher
+
+This method selects active, unpublished voucher from the specific campaign and returns it to client. 
+In result this voucher is marked as published and it will not be announced once again to customer. 
+
+Example:
+
+```javascript
+voucherify.publish("First Ride", function(error, result) {
+    if (error) {
+        console.error("Error: %s", error);
+        return;
+    }
+
+    console.log(JSON.stringify(result, null, "   "));
+});
+```
+
+Positive result:
+
+```json
+{
+   "code": "FR-zT-u9I7zG",
+   "campaign": "First Ride",
+   "category": null,
+   "discount": {
+      "type": "PERCENT",
+      "amount_off": 50
+   },
+   "start_date": "2015-01-01T00:00:00Z",
+   "expiration_date": "2016-12-31T23:59:59Z",
+   "redemption": {
+      "quantity": 1,
+      "redeemed_quantity": 0,
+      "redemption_entries": []
+   },
+   "active": true,
+   "additional_info": null,
+   "metadata": {
+      "published": "2016-01-22T09:25:07Z"
+   }
+}
+```
+
+Possible error:
+
+```json
+{
+  "code": 400,
+  "message": "Couldn't find any voucher suitable for publication."
+}
+```
+
 #### Redeeming voucher
 
 ##### 1. Just by code
@@ -278,6 +331,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
+- **2016-01-22** - `1.6.0` - Added publish voucher method. 
 - **2015-12-10** - `1.5.0` - New discount model. Added UNIT - a new discount type.
 - **2015-11-23** - `1.4.1` - Added `X-Voucherify-Channel` header.
 - **2015-11-10** - `1.4.0` - Add `VoucherifyUtils` which includes `calculatePrice` for computing product/cart price

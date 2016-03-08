@@ -52,6 +52,18 @@ module.exports = function(options) {
     }
 
     return {
+        /*
+         *  List vouchers. Sample query: { limit: 100, skip: 200, category: "Loyalty" }
+         */
+        list: function(query, callback) {
+            var url = util.format("%s/vouchers/", backendUrl);
+            var handler = prepare(callback);
+
+            request.get({ url: url, qs: query, headers: headers, json: true }, handler.callback);
+
+            return handler.promise;
+        },
+
         get: function(code, callback) {
             var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);

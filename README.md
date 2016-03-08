@@ -27,6 +27,75 @@ var voucherify = voucherifyClient({
 });
 ```
 
+#### Listing vouchers
+
+In a callback:
+```javascript
+voucherify.list({limit: 10, skip: 20, category: "API Test"}, function(error, vouchers) {
+    if (error) {
+        console.error("Error: %s", error);
+        return;
+    }
+
+    console.log(vouchers);
+});
+```
+
+As a promise:
+```javascript
+voucherify.list({limit: 10, skip: 20, category: "API Test"})
+    .then(function(vouchers) {
+        console.log(vouchers);
+    })
+    .catch(function(error) {
+        console.error("Error: %s", error);
+    });
+```
+
+Result:
+```json
+[{
+     "code": "9mYBpIk",
+     "campaign": null,
+     "category": "API Test",
+     "discount": {
+       "type": "AMOUNT",
+       "amount_off": 400
+     },
+     "start_date": "2016-03-01T12:00:00Z",
+     "expiration_date": null,
+     "redemption": {
+       "quantity": 1,
+       "redeemed_quantity": 0,
+       "redemption_entries": []
+     },
+     "active": true,
+     "additional_info": null,
+     "metadata": null
+   },
+   {
+       "code": "AzTsIH",
+       "campaign": null,
+       "category": "API Test",
+       "discount": {
+        "type": "AMOUNT",
+        "amount_off": 400
+       },
+       "start_date": "2016-03-01T10:00:00Z",
+       "expiration_date": null,
+       "redemption": {
+        "quantity": 1,
+        "redeemed_quantity": 0,
+        "redemption_entries": []
+       },
+       "active": true,
+       "additional_info": null,
+       "metadata": null
+   },
+   ...
+]  
+```
+
 #### Getting voucher details
 
 In a callback:
@@ -331,6 +400,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
+- **2016-03-08** - `1.7.0` - List vouchers with filtering.
 - **2016-01-22** - `1.6.0` - Added publish voucher method. 
 - **2015-12-10** - `1.5.0` - New discount model. Added UNIT - a new discount type.
 - **2015-11-23** - `1.4.1` - Added `X-Voucherify-Channel` header.

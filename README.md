@@ -400,6 +400,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
+- **2016-04-04** - `1.7.1` - Updated API URL.
 - **2016-03-08** - `1.7.0` - List vouchers with filtering.
 - **2016-01-22** - `1.6.0` - Added publish voucher method. 
 - **2015-12-10** - `1.5.0` - New discount model. Added UNIT - a new discount type.

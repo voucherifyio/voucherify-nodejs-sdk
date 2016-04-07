@@ -386,6 +386,29 @@ voucherify.redeem({
     });
 ```
 
+### Listing redemptions
+
+Use `voucherify.redemptions(filter)` to get a filtered list of redemptions.
+
+Example - 1000 successful redemptions from April 2016:
+
+```
+var filter = {
+    limit: 1000,
+    page: 0,
+    start_date: "2016-04-01T00:00:00",
+    end_date: "2016-04-30T23:59:59",
+    result: "Success"
+};
+
+voucherify.redemptions(filter)
+       .then(function (result) {
+           console.log(result);
+       })
+       .catch(function (error) {
+           console.error("Error: %s", error);
+       });
+
 ### Utils
 
 #### Usage
@@ -400,6 +423,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
+- **2016-04-07** - `1.8.0` - List redemptions with filtering.
 - **2016-04-04** - `1.7.1` - Updated API URL.
 - **2016-03-08** - `1.7.0` - List vouchers with filtering.
 - **2016-01-22** - `1.6.0` - Added publish voucher method. 

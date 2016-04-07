@@ -82,6 +82,25 @@ module.exports = function(options) {
             return handler.promise;
         },
 
+        /*
+         *  List redemptions. Sample query (1000 successful redemptions from April 2016):
+         *  {
+         *      limit: 1000,
+         *      page: 0,
+         *      start_date: "2016-04-01T00:00:00",
+         *      end_date: "2016-04-30T23:59:59",
+         *      result: "Success"
+         *  }
+         */
+        redemptions: function(query, callback) {
+            var url = util.format("%s/redemptions/", backendUrl);
+            var handler = prepare(callback);
+
+            request.get({ url: url, qs: query, headers: headers, json: true }, handler.callback);
+
+            return handler.promise;
+        },
+
         redeem: function(code, trackingId, callback) {
             var context = {};
             if (typeof(code) === "object") {

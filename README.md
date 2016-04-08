@@ -242,7 +242,7 @@ Result:
 
 #### Publishing voucher
 
-`voucherify.publish(voucher_code, callback*)`
+`voucherify.publish(campaign_name, callback*)`
 
 This method selects active, unpublished voucher from the specific campaign and returns it to client. 
 In result this voucher is marked as published and it will not be announced once again to customer. 

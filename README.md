@@ -197,7 +197,7 @@ Example:
 
 #### Enabling a voucher
 
-`voucherify.enabled(voucher_code, callback*)`
+`voucherify.enable(voucher_code, callback*)`
 
 Example: 
 

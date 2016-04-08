@@ -155,6 +155,61 @@ Result:
     "additional_info": ""
 }
 ```
+#### Creating a voucher
+
+`voucherify.create(voucher, callback*)`
+
+Example: 
+
+```javascript
+    voucherify.create({
+        discount: {
+            type: "AMOUNT",
+            amount_off: 1000 // 10.00
+        },
+        category: "Test",
+        start_date: "2016-01-01T00:00:00Z"
+        expiration_date: "2016-12-31T23:59:59Z"
+    })    
+    .then(function (result) {
+         console.log(result);
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+#### Disabling a voucher
+
+`voucherify.disable(voucher_code, callback*)`
+
+Example: 
+
+```javascript
+    voucherify.disable("v1GiJYuuS")    
+    .then(function (result) {
+         console.log("Voucher disabled.");
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+#### Enabling a voucher
+
+`voucherify.enabled(voucher_code, callback*)`
+
+Example: 
+
+```javascript
+    voucherify.enable("v1GiJYuuS")    
+    .then(function (result) {
+         console.log("Voucher enabled.");
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
 
 #### Getting voucher redemption
 
@@ -407,6 +462,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-04-08** - `1.9.0` - Added methods to create, disable and enable a voucher.
 - **2016-04-07** - `1.8.0` - List redemptions with filtering.
 - **2016-04-04** - `1.7.1` - Updated API URL.
 - **2016-03-08** - `1.7.0` - List vouchers with filtering.

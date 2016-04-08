@@ -77,7 +77,7 @@ module.exports = function(options) {
             var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(voucher.code || ""));
             var handler = prepare(callback);
 
-            request.post({ url: url, headers: headers, json: true }, handler.callback);
+            request.post({ url: url, headers: headers, json: voucher }, handler.callback);
 
             return handler.promise;
         },

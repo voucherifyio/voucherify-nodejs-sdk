@@ -408,6 +408,7 @@ voucherify.redemptions(filter)
        .catch(function (error) {
            console.error("Error: %s", error);
        });
+```
 
 ### Utils
 

@@ -428,7 +428,7 @@ Use `voucherify.redemptions(filter, callback*)` to get a filtered list of redemp
 
 Example - 1000 successful redemptions from April 2016:
 
-```
+```javascript
 var filter = {
     limit: 1000,
     page: 0,
@@ -444,6 +444,7 @@ voucherify.redemptions(filter)
        .catch(function (error) {
            console.error("Error: %s", error);
        });
+```
 
 ### Utils
 

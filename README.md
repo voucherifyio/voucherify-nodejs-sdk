@@ -14,7 +14,7 @@ Full documentation is located at [voucherify.readme.io](https://voucherify.readm
 
 #### Authentication
 
-[Log-in](http://app.voucherify.io/#/login) to Voucherify web interace and obtain your Application Keys from [Configuration](https://app.voucherify.io/#/app/configuration):
+[Log-in](http://app.voucherify.io/#/login) to Voucherify web interface and obtain your Application Keys from [Configuration](https://app.voucherify.io/#/app/configuration):
 
 ![](https://www.filepicker.io/api/file/WKYkl2bSAWKHccEN9tEG)
 

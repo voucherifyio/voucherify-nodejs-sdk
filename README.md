@@ -27,21 +27,42 @@ var voucherify = voucherifyClient({
 });
 ```
 
-#### Listing vouchers
+#### Callback or Promise?
 
-In a callback:
+All methods in the SDK provide both callback based as well as promise based interactions.
+If you want to use callbacks just pass them as a last parameter. For example:
+
 ```javascript
-voucherify.list({limit: 10, skip: 20, category: "API Test"}, function(error, vouchers) {
+voucherify.get("v1GiJYuuS", function(error, result) {
     if (error) {
-        console.error("Error: %s", error);
+        // handle error
         return;
     }
 
-    console.log(vouchers);
+    // do the work
 });
+
 ```
 
-As a promise:
+If you prefer to use promises then the code goes like this:
+ 
+```javascript
+voucherify.get("v1GiJYuuS")
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+All other examples in the readme use promises but they could be as well written with callbacks.
+
+#### Listing vouchers
+
+`voucherify.list(filter, callback*)`
+
+Example:
 ```javascript
 voucherify.list({limit: 10, skip: 20, category: "API Test"})
     .then(function(vouchers) {
@@ -98,19 +119,9 @@ Result:
 
 #### Getting voucher details
 
-In a callback:
-```javascript
-voucherify.get("v1GiJYuuS", function(error, result) {
-    if (error) {
-        console.error("Error: %s", error);
-        return;
-    }
+`voucherify.get(voucher_code, callback*)`
 
-    console.log(result);
-});
-```
-
-As a promise:
+Example:
 ```javascript
 voucherify.get("v1GiJYuuS")
     .then(function (result) {
@@ -144,22 +155,67 @@ Result:
     "additional_info": ""
 }
 ```
+#### Creating a voucher
+
+`voucherify.create(voucher, callback*)`
+
+Example: 
+
+```javascript
+    voucherify.create({
+        discount: {
+            type: "AMOUNT",
+            amount_off: 1000 // 10.00
+        },
+        category: "Test",
+        start_date: "2016-01-01T00:00:00Z"
+        expiration_date: "2016-12-31T23:59:59Z"
+    })    
+    .then(function (result) {
+         console.log(result);
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+#### Disabling a voucher
+
+`voucherify.disable(voucher_code, callback*)`
+
+Example: 
+
+```javascript
+    voucherify.disable("v1GiJYuuS")    
+    .then(function (result) {
+         console.log("Voucher disabled.");
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+#### Enabling a voucher
+
+`voucherify.enable(voucher_code, callback*)`
+
+Example: 
+
+```javascript
+    voucherify.enable("v1GiJYuuS")    
+    .then(function (result) {
+         console.log("Voucher enabled.");
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
 
 #### Getting voucher redemption
 
-In a callback:
-```javascript
-voucherify.redemption("v1GiJYuuS", function(error, result) {
-    if (error) {
-        console.error("Error: %s", error);
-        return;
-    }
+`voucherify.redemption(voucher_code, callback*)`
 
-    console.log(result);
-});
-```
-
-As a promise:
+Example:
 ```javascript
 voucherify.redemption("v1GiJYuuS")
     .then(function (result) {
@@ -185,6 +241,8 @@ Result:
 ```
 
 #### Publishing voucher
+
+`voucherify.publish(campaign_name, callback*)`
 
 This method selects active, unpublished voucher from the specific campaign and returns it to client. 
 In result this voucher is marked as published and it will not be announced once again to customer. 
@@ -239,21 +297,11 @@ Possible error:
 
 #### Redeeming voucher
 
+`voucherify.redeem(voucher_code, tracking_id|customer_profile*, callback*)`
+
 ##### 1. Just by code
 
-In a callback:
-```javascript
-voucherify.redeem("v1GiJYuuS", function(error, result) {
-    if (error) {
-        console.error("Error: %s", error);
-        return;
-    }
-
-    console.log(result);
-});
-```
-
-As a promise:
+Example:
 ```javascript
 voucherify.redeem("v1GiJYuuS")
     .then(function (result) {
@@ -305,18 +353,6 @@ Error:
 ##### 2. With tracking id
 
 You can provide a tracking id (e.g. your customer's login or a generated id) to the voucher redemption request.
-
-```javascript
-voucherify.redeem("v1GiJYuuS", "alice.morgan",
-    function(error, result) {
-        if (error) {
-            console.error("Error: %s", error);
-            return;
-        }
-
-        console.log(result);
-    });
-```
 
 ```javascript
 voucherify.redeem("v1GiJYuuS", "alice.morgan")
@@ -388,11 +424,11 @@ voucherify.redeem({
 
 ### Listing redemptions
 
-Use `voucherify.redemptions(filter)` to get a filtered list of redemptions.
+Use `voucherify.redemptions(filter, callback*)` to get a filtered list of redemptions.
 
 Example - 1000 successful redemptions from April 2016:
 
-```
+```javascript
 var filter = {
     limit: 1000,
     page: 0,
@@ -413,9 +449,12 @@ voucherify.redemptions(filter)
 ### Utils
 
 #### Usage
+
 ```
 var utils = require('voucherify/utils');
 ```
+
+Utils don't need callbacks or promises. They return results immediately. 
 
 #### Available methods
 
@@ -424,6 +463,7 @@ var utils = require('voucherify/utils');
 
 ### Changelog
 
+- **2016-04-08** - `1.9.0` - Added methods to create, disable and enable a voucher.
 - **2016-04-07** - `1.8.0` - List redemptions with filtering.
 - **2016-04-04** - `1.7.1` - Updated API URL.
 - **2016-03-08** - `1.7.0` - List vouchers with filtering.

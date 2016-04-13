@@ -73,6 +73,33 @@ module.exports = function(options) {
             return handler.promise;
         },
 
+        create: function(voucher, callback) {
+            var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(voucher.code || ""));
+            var handler = prepare(callback);
+
+            request.post({ url: url, headers: headers, json: voucher }, handler.callback);
+
+            return handler.promise;
+        },
+
+        enable: function(code, callback) {
+            var url = util.format("%s/vouchers/%s/enable", backendUrl, encodeURIComponent(code));
+            var handler = prepare(callback);
+
+            request.post({ url: url, headers: headers, json: true }, handler.callback);
+
+            return handler.promise;
+        },
+
+        disable: function(code, callback) {
+            var url = util.format("%s/vouchers/%s/disable", backendUrl, encodeURIComponent(code));
+            var handler = prepare(callback);
+
+            request.post({ url: url, headers: headers, json: true }, handler.callback);
+
+            return handler.promise;
+        },
+
         redemption: function(code, callback) {
             var url = util.format("%s/vouchers/%s/redemption", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);

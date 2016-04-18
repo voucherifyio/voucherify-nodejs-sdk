@@ -62,6 +62,15 @@ All other examples in the readme use promises but they could be as well written 
 
 `voucherify.list(filter, callback*)`
 
+Filter parameters:
+
+- code_query
+- limit (default 10)
+- skip (default 0)
+- category
+- campaign
+- customer_id
+
 Example:
 ```javascript
 voucherify.list({limit: 10, skip: 20, category: "API Test"})
@@ -425,6 +434,14 @@ voucherify.redeem({
 ### Listing redemptions
 
 Use `voucherify.redemptions(filter, callback*)` to get a filtered list of redemptions.
+Filter parameters:
+
+- limit (default: 100)
+- page (default: 0)
+- start_date (default: beginning of current month) 
+- end_date (default: end of current month)
+- result - Success | Failure-NotExist | Failure-Inactive
+- customer_id
 
 Example - 1000 successful redemptions from April 2016:
 

@@ -480,6 +480,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-04-08** - `1.9.1` - Filter vouchers and redemptions by customer.
 - **2016-04-08** - `1.9.0` - Added methods to create, disable and enable a voucher.
 - **2016-04-07** - `1.8.0` - List redemptions with filtering.
 - **2016-04-04** - `1.7.1` - Updated API URL.

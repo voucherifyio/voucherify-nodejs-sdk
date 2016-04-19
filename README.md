@@ -69,7 +69,7 @@ Filter parameters:
 - skip (default 0)
 - category
 - campaign
-- customer_id
+- customer
 
 Example:
 ```javascript
@@ -441,7 +441,7 @@ Filter parameters:
 - start_date (default: beginning of current month) 
 - end_date (default: end of current month)
 - result - Success | Failure-NotExist | Failure-Inactive
-- customer_id
+- customer
 
 Example - 1000 successful redemptions from April 2016:
 

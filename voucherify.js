@@ -155,6 +155,34 @@ module.exports = function(options) {
             return handler.promise;
         },
 
+        rollback: function(code, redemptionId, trackingId, reason, callback) {
+            if (typeof(trackingId) === "function") {
+                callback = trackingId;
+                trackingId = undefined;
+            }
+
+            if (typeof(reason) === "function") {
+                callback = reason;
+                reason = undefined;
+            }
+
+            var handler = prepare(callback);
+            var url = util.format("%s/vouchers/%s/redemption/%s/rollback", backendUrl, encodeURIComponent(code), encodeURIComponent(redemptionId));
+
+            // If `tracking_id` passed, use it in query string.
+            if (typeof(trackingId) === "string" && trackingId) {
+                url += "?tracking_id=" + encodeURIComponent(trackingId);
+            }
+
+            if (typeof(reason) === "string" && reason) {
+                url += "?reason=" + encodeURIComponent(reason);
+            }
+
+            request.post({ url: url, headers: headers, json: true }, handler.callback);
+
+            return handler.promise;
+        },
+
         publish: function(campaignName, callback) {
             var url = util.format("%s/vouchers/publish?campaign=%s", backendUrl, encodeURIComponent(campaignName));
             var handler = prepare(callback);

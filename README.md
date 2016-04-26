@@ -493,7 +493,7 @@ voucherify.redemptions(filter)
 
 #### Rollback a redemption
 
-Use `voucherify.rollback(code, redemption_id, tracking_id*, reason*, callback*)` to revert a redemption.
+Use `voucherify.rollback(redemption_id, tracking_id*, reason*, callback*)` to revert a redemption.
 It will create a rollback entry in `redemption.redemption_entries` and give 1 redemption back to the pool 
 (decrease `redeemed_quantity` by 1).
  
@@ -506,7 +506,7 @@ Possible errors are:
 Example:
 
 ```javascript
-voucherify.rollback("v1GiJYuuS", "r_irOQWUTAjthQwnkn5JQM1V6N", "alice.morgan")
+voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "alice.morgan")
        .then(function (result) {
            console.log(result);
        })

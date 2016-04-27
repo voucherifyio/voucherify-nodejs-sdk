@@ -498,8 +498,7 @@ It will create a rollback entry in `redemption.redemption_entries` and give 1 re
 (decrease `redeemed_quantity` by 1).
  
 Possible errors are:
-- 404 - Resource not found - if voucher with given `code` doesn't exist
-- 404 - Resource not found - if redemption with given `redemption_id` doesn't exist within the voucher
+- 404 - Resource not found - if voucher with given `redemption_id` doesn't exist
 - 400 - Already rolled back - if redemption with given `redemption_id` has been rolled back already
 - 400 - Invalid redemption id - when trying to rollback a rollback.
 

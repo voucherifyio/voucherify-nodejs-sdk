@@ -150,13 +150,15 @@ Result:
         "percent_off": 10.0,
         "type": "PERCENT"
     },
-    "expiration_date": "2015-12-31T23:59:59Z",
+    "expiration_date": "2016-12-31T23:59:59Z",
     "redemption": {
         "quantity": 3,
         "redeemed_quantity": 1,
         "redemption_entries": [
             {
-                "date": "2015-09-24T06:03:35Z",
+                "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
+                "object": "redemption",
+                "date": "2016-04-24T06:03:35Z",
                 "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
             }
         ]
@@ -242,7 +244,9 @@ Result:
     "redeemed_quantity": 1,
     "redemption_entries": [
         {
-            "date": "2015-09-24T06:03:35Z",
+            "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
+            "object": "redemption",
+            "date": "2016-04-24T06:03:35Z",
             "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
         }
     ]
@@ -280,7 +284,7 @@ Positive result:
       "type": "PERCENT",
       "amount_off": 50
    },
-   "start_date": "2015-01-01T00:00:00Z",
+   "start_date": "2016-01-01T00:00:00Z",
    "expiration_date": "2016-12-31T23:59:59Z",
    "redemption": {
       "quantity": 1,
@@ -325,28 +329,39 @@ Result (voucher details after redemption):
 
 ```json
 {
-    "code": "v1GiJYuuS",
-    "campaign": "vip",
-    "discount": {
-        "percent_off": 10.0,
-        "type": "PERCENT"
-    },
-    "expiration_date": "2015-12-31T23:59:59Z",
-    "redemption": {
-        "quantity": 3,
-        "redeemed_quantity": 2,
-        "redemption_entries": [
-            {
-                "date": "2015-09-24T06:03:35Z",
-                "tracking_id": "(tracking_id not set)"
-            },
-            {
-                "date": "2015-09-25T10:34:57Z",
-                "tracking_id": "(tracking_id not set)"
-            },
-        ]
-    },
-    "additional_info": ""
+    "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
+    "object": "redemption",
+    "date": "2016-04-25T10:34:57Z",
+    "tracking_id": "(tracking_id not set)",
+    "voucher": {
+        "code": "v1GiJYuuS",
+        "campaign": "vip",
+        "discount": {
+            "percent_off": 10.0,
+            "type": "PERCENT"
+        },
+        "expiration_date": "2016-12-31T23:59:59Z",
+        "redemption": {
+            "quantity": 3,
+            "redeemed_quantity": 2,
+            "redemption_entries": [
+                {
+                    "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
+                    "object": "redemption",
+                    "date": "2016-04-24T06:03:35Z",
+                    "tracking_id": "(tracking_id not set)"
+                },
+                {
+                    "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
+                    "object": "redemption",
+                    "date": "2016-04-25T10:34:57Z",
+                    "tracking_id": "(tracking_id not set)"
+                }
+            ]
+        },
+        "active": true,
+        "additional_info": ""
+    }
 }
 ```
 
@@ -376,32 +391,45 @@ voucherify.redeem("v1GiJYuuS", "alice.morgan")
 Result:
 ```json
 {
-    "code": "v1GiJYuuS",
-    "campaign": "vip",
-    "discount": {
-        "percent_off": 10.0,
-        "type": "PERCENT"
-    },
-    "expiration_date": "2015-12-31T23:59:59Z",
-    "redemption": {
-        "quantity": 3,
-        "redeemed_quantity": 3,
-        "redemption_entries": [
-            {
-                "date": "2015-09-24T06:03:35Z",
-                "tracking_id": "(tracking_id not set)"
-            },
-            {
-                "date": "2015-09-25T10:34:57Z",
-                "tracking_id": "(tracking_id not set)"
-            },
-            {
-                "date": "2015-09-25T12:04:08Z",
-                "tracking_id": "alice.morgan"
-            },
-        ]
-    },
-    "additional_info": ""
+    "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
+    "object": "redemption",
+    "date": "2016-04-25T10:34:57Z",
+    "tracking_id": "(tracking_id not set)",
+    "voucher": {
+        "code": "v1GiJYuuS",
+        "campaign": "vip",
+        "discount": {
+            "percent_off": 10.0,
+            "type": "PERCENT"
+        },
+        "expiration_date": "2016-12-31T23:59:59Z",
+        "redemption": {
+            "quantity": 3,
+            "redeemed_quantity": 3,
+            "redemption_entries": [
+                {
+                    "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
+                    "object": "redemption",
+                    "date": "2016-04-24T06:03:35Z",
+                    "tracking_id": "(tracking_id not set)"
+                },
+                {
+                    "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
+                    "object": "redemption",
+                    "date": "2016-04-25T10:34:57Z",
+                    "tracking_id": "(tracking_id not set)"
+                },
+                {
+                    "id": "r_irOQWUTAjthQwnkn5JQM1V6N",
+                    "object": "redemption",
+                    "date": "2016-04-25T12:04:08Z",
+                    "tracking_id": "alice.morgan"
+                }
+            ]
+        },
+        "active": true,
+        "additional_info": ""
+    }
 }
 ```
 
@@ -463,6 +491,83 @@ voucherify.redemptions(filter)
        });
 ```
 
+#### Rollback a redemption
+
+Use `voucherify.rollback(redemption_id, tracking_id*, reason*, callback*)` to revert a redemption.
+It will create a rollback entry in `redemption.redemption_entries` and give 1 redemption back to the pool 
+(decrease `redeemed_quantity` by 1).
+ 
+Possible errors are:
+- 404 - Resource not found - if voucher with given `redemption_id` doesn't exist
+- 400 - Already rolled back - if redemption with given `redemption_id` has been rolled back already
+- 400 - Invalid redemption id - when trying to rollback a rollback.
+
+Example:
+
+```javascript
+voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "alice.morgan")
+       .then(function (result) {
+           console.log(result);
+       })
+       .catch(function (error) {
+           console.error("Error: %s", error);
+       });
+```
+
+Result:
+```
+{
+    "id": "rr_1634wLkb8glgRXrTmsxRzDBd",
+    "object": "redemption_rollback",
+    "date": "2016-04-25T10:35:02Z",
+    "tracking_id": "alice.morgan",
+    "redemption": "r_irOQWUTAjthQwnkn5JQM1V6N",
+    "voucher": {
+        "code": "v1GiJYuuS",
+        "campaign": "vip",
+        "discount": {
+            "percent_off": 10.0,
+            "type": "PERCENT"
+        },
+        "expiration_date": "2016-12-31T23:59:59Z",
+        "redemption": {
+            "quantity": 3,
+            "redeemed_quantity": 2,
+            "redemption_entries": [
+                {
+                    "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
+                    "object": "redemption",
+                    "date": "2016-04-24T06:03:35Z",
+                    "tracking_id": "(tracking_id not set)"
+                },
+                {
+                    "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
+                    "object": "redemption",
+                    "date": "2016-04-25T10:34:57Z",
+                    "tracking_id": "(tracking_id not set)"
+                },
+                {
+                    "id": "r_irOQWUTAjthQwnkn5JQM1V6N",
+                    "object": "redemption",
+                    "date": "2016-04-25T12:04:08Z",
+                    "tracking_id": "alice.morgan"
+                },
+                {
+                    "id": "rr_1634wLkb8glgRXrTmsxRzDBd",
+                    "object": "redemption_rollback",
+                    "date": "2016-04-25T10:35:02Z",
+                    "tracking_id": "alice.morgan",
+                    "redemption": "r_irOQWUTAjthQwnkn5JQM1V6N"
+                }
+            ]
+        },
+        "active": true,
+        "additional_info": ""
+    }
+}
+```
+
+
 ### Utils
 
 #### Usage
@@ -480,6 +585,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-04-26** - `1.10.0` - Rollback redemption.
 - **2016-04-19** - `1.9.1` - Filter vouchers and redemptions by customer.
 - **2016-04-08** - `1.9.0` - Added methods to create, disable and enable a voucher.
 - **2016-04-07** - `1.8.0` - List redemptions with filtering.

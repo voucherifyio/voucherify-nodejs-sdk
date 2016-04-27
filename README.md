@@ -519,7 +519,7 @@ Result:
 ```
 {
     "id": "rr_1634wLkb8glgRXrTmsxRzDBd",
-    "object": "rollback",
+    "object": "redemption_rollback",
     "date": "2016-04-25T10:35:02Z",
     "tracking_id": "alice.morgan",
     "redemption": "r_irOQWUTAjthQwnkn5JQM1V6N",
@@ -555,7 +555,7 @@ Result:
                 },
                 {
                     "id": "rr_1634wLkb8glgRXrTmsxRzDBd",
-                    "object": "rollback",
+                    "object": "redemption_rollback",
                     "date": "2016-04-25T10:35:02Z",
                     "tracking_id": "alice.morgan",
                     "redemption": "r_irOQWUTAjthQwnkn5JQM1V6N"

@@ -418,13 +418,13 @@ Result:
                     "object": "redemption",
                     "date": "2016-04-25T10:34:57Z",
                     "tracking_id": "(tracking_id not set)"
-                }
+                },
                 {
                     "id": "r_irOQWUTAjthQwnkn5JQM1V6N",
                     "object": "redemption",
                     "date": "2016-04-25T12:04:08Z",
                     "tracking_id": "alice.morgan"
-                },
+                }
             ]
         },
         "active": true,
@@ -546,7 +546,7 @@ Result:
                     "object": "redemption",
                     "date": "2016-04-25T10:34:57Z",
                     "tracking_id": "(tracking_id not set)"
-                }
+                },
                 {
                     "id": "r_irOQWUTAjthQwnkn5JQM1V6N",
                     "object": "redemption",

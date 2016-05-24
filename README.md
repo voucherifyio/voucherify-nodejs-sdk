@@ -256,6 +256,7 @@ Result:
 #### Publishing voucher
 
 `voucherify.publish(campaign_name, callback*)`
+
 `voucherify.publish(params, callback*)`
 
 This method selects a voucher that is suitable for publication, adds a publish entry and returns the voucher.
@@ -264,14 +265,13 @@ A voucher is suitable for publication when it's active and hasn't been published
 Example:
 
 ```javascript
-voucherify.publish({campaign: "First Ride", channel: "Email", customer: "donny.roll@mail.com"}, function(error, result) {
-    if (error) {
+voucherify.publish({campaign: "First Ride", channel: "Email", customer: "donny.roll@mail.com"})
+    .then(function (result) {
+        console.log(JSON.stringify(result, null, "   "));
+    })
+    .catch(function (error) {
         console.error("Error: %s", error);
-        return;
-    }
-
-    console.log(JSON.stringify(result, null, "   "));
-});
+    });
 ```
 
 Positive result:

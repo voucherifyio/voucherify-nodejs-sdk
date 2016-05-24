@@ -185,10 +185,17 @@ module.exports = function(options) {
         },
 
         publish: function(campaignName, callback) {
-            var url = util.format("%s/vouchers/publish?campaign=%s", backendUrl, encodeURIComponent(campaignName));
+            var url = util.format("%s/vouchers/publish", backendUrl);
+            var payload = {};
+            if (typeof(campaignName) === "string") {
+                url += "?campaign=" + encodeURIComponent(campaignName);
+            }
+            if (typeof(campaignName) === "object") {
+                payload = campaignName;
+            }
             var handler = prepare(callback);
 
-            request.post({ url: url, headers: headers, json: true }, handler.callback);
+            request.post({ url: url, headers: headers, json: payload }, handler.callback);
 
             return handler.promise;
         }

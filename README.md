@@ -256,14 +256,15 @@ Result:
 #### Publishing voucher
 
 `voucherify.publish(campaign_name, callback*)`
+`voucherify.publish(params, callback*)`
 
-This method selects active, unpublished voucher from the specific campaign and returns it to client. 
-In result this voucher is marked as published and it will not be announced once again to customer. 
+This method selects a voucher that is suitable for publication, adds a publish entry and returns the voucher.
+A voucher is suitable for publication when it's active and hasn't been published more times than the redemption limit.
 
 Example:
 
 ```javascript
-voucherify.publish("First Ride", function(error, result) {
+voucherify.publish({campaign: "First Ride", channel: "Email", customer: "donny.roll@mail.com"}, function(error, result) {
     if (error) {
         console.error("Error: %s", error);
         return;
@@ -284,18 +285,23 @@ Positive result:
       "type": "PERCENT",
       "amount_off": 50
    },
-   "start_date": "2016-01-01T00:00:00Z",
+   "start_date": "2015-01-01T00:00:00Z",
    "expiration_date": "2016-12-31T23:59:59Z",
+   "publish": {
+        "count": 1,
+        "entries": [{
+            "channel": "Email",
+            "customer": "donny.roll@mail.com",
+            "published_at": "2016-01-22T09:25:07Z"
+        }]
+   },
    "redemption": {
       "quantity": 1,
       "redeemed_quantity": 0,
       "redemption_entries": []
    },
    "active": true,
-   "additional_info": null,
-   "metadata": {
-      "published": "2016-01-22T09:25:07Z"
-   }
+   "additional_info": null
 }
 ```
 
@@ -585,6 +591,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-05-24** - `1.11.0` - New publish structure.
 - **2016-04-26** - `1.10.0` - Rollback redemption.
 - **2016-04-19** - `1.9.1` - Filter vouchers and redemptions by customer.
 - **2016-04-08** - `1.9.0` - Added methods to create, disable and enable a voucher.

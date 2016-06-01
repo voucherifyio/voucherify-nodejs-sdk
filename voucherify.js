@@ -155,12 +155,7 @@ module.exports = function(options) {
             return handler.promise;
         },
 
-        rollback: function(redemptionId, trackingId, reason, callback) {
-            if (typeof(trackingId) === "function") {
-                callback = trackingId;
-                trackingId = undefined;
-            }
-
+        rollback: function(redemptionId, reason, callback) {
             if (typeof(reason) === "function") {
                 callback = reason;
                 reason = undefined;
@@ -168,11 +163,6 @@ module.exports = function(options) {
 
             var handler = prepare(callback);
             var url = util.format("%s/redemptions/%s/rollback", backendUrl, encodeURIComponent(redemptionId));
-
-            // If `tracking_id` passed, use it in query string.
-            if (typeof(trackingId) === "string" && trackingId) {
-                url += "?tracking_id=" + encodeURIComponent(trackingId);
-            }
 
             // If `reason` passed, use it in query string.
             if (typeof(reason) === "string" && reason) {

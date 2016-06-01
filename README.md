@@ -591,6 +591,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-06-01** - `1.12.0` - tracking_id param removed from redemption rollback method.
 - **2016-05-24** - `1.11.0` - New publish structure.
 - **2016-04-26** - `1.10.0` - Rollback redemption.
 - **2016-04-19** - `1.9.1` - Filter vouchers and redemptions by customer.

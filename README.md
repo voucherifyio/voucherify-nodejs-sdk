@@ -159,6 +159,7 @@ Result:
                 "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
                 "object": "redemption",
                 "date": "2016-04-24T06:03:35Z",
+                "customer_id": null,
                 "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
             }
         ]
@@ -247,6 +248,7 @@ Result:
             "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
             "object": "redemption",
             "date": "2016-04-24T06:03:35Z",
+            "customer_id": null,
             "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
         }
     ]
@@ -338,6 +340,7 @@ Result (voucher details after redemption):
     "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
     "object": "redemption",
     "date": "2016-04-25T10:34:57Z",
+    "customer_id": null,
     "tracking_id": "(tracking_id not set)",
     "voucher": {
         "code": "v1GiJYuuS",
@@ -355,12 +358,14 @@ Result (voucher details after redemption):
                     "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
                     "object": "redemption",
                     "date": "2016-04-24T06:03:35Z",
+                    "customer_id": null,
                     "tracking_id": "(tracking_id not set)"
                 },
                 {
                     "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
                     "object": "redemption",
                     "date": "2016-04-25T10:34:57Z",
+                    "customer_id": null,
                     "tracking_id": "(tracking_id not set)"
                 }
             ]
@@ -400,6 +405,7 @@ Result:
     "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
     "object": "redemption",
     "date": "2016-04-25T10:34:57Z",
+    "customer_id": "cust_C9qJ3xKgZFqkpMw7b21MF2ow",
     "tracking_id": "(tracking_id not set)",
     "voucher": {
         "code": "v1GiJYuuS",
@@ -417,18 +423,21 @@ Result:
                     "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
                     "object": "redemption",
                     "date": "2016-04-24T06:03:35Z",
+                    "customer_id": null,
                     "tracking_id": "(tracking_id not set)"
                 },
                 {
                     "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
                     "object": "redemption",
                     "date": "2016-04-25T10:34:57Z",
+                    "customer_id": null,
                     "tracking_id": "(tracking_id not set)"
                 },
                 {
                     "id": "r_irOQWUTAjthQwnkn5JQM1V6N",
                     "object": "redemption",
                     "date": "2016-04-25T12:04:08Z",
+                    "customer_id": "cust_C9qJ3xKgZFqkpMw7b21MF2ow"
                     "tracking_id": "alice.morgan"
                 }
             ]
@@ -441,13 +450,14 @@ Result:
 
 ##### 3. With customer profile
 
-You can record a detailed customer profile consisting of an `id` (obligatory), `name`, `email`, `description` and a `metadata` section that can include any data you wish.
+You can record a detailed customer profile consisting of a `source_id`, `name`, `email`, `description` and a `metadata` section that can include any data you wish. 
+Voucherify will create (or update) provided customer profile in its database.
 
 ```javascript
 voucherify.redeem({
         voucher: "v1GiJYuuS",
         customer: {
-            id: "alice.morgan",
+            soruce_id: "alice.morgan",
             name: "Alice Morgan",
             email: "alice@morgan.com",
             description: "",
@@ -511,7 +521,7 @@ Possible errors are:
 Example:
 
 ```javascript
-voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "Wrong user")
+voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "wrong user")
        .then(function (result) {
            console.log(result);
        })
@@ -527,7 +537,9 @@ Result:
     "object": "redemption_rollback",
     "date": "2016-04-25T10:35:02Z",
     "tracking_id": "alice.morgan",
+    "customer_id": null,
     "redemption": "r_irOQWUTAjthQwnkn5JQM1V6N",
+    "reason": "wrong user"
     "voucher": {
         "code": "v1GiJYuuS",
         "campaign": "vip",
@@ -544,17 +556,20 @@ Result:
                     "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
                     "object": "redemption",
                     "date": "2016-04-24T06:03:35Z",
+                    "customer_id": null,
                     "tracking_id": "(tracking_id not set)"
                 },
                 {
                     "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
                     "object": "redemption",
                     "date": "2016-04-25T10:34:57Z",
+                    "customer_id": null,
                     "tracking_id": "(tracking_id not set)"
                 },
                 {
                     "id": "r_irOQWUTAjthQwnkn5JQM1V6N",
                     "object": "redemption",
+                    "customer_id": "cust_C9qJ3xKgZFqkpMw7b21MF2ow"
                     "date": "2016-04-25T12:04:08Z",
                     "tracking_id": "alice.morgan"
                 },
@@ -562,6 +577,7 @@ Result:
                     "id": "rr_1634wLkb8glgRXrTmsxRzDBd",
                     "object": "redemption_rollback",
                     "date": "2016-04-25T10:35:02Z",
+                    "customer_id": null,
                     "tracking_id": "alice.morgan",
                     "redemption": "r_irOQWUTAjthQwnkn5JQM1V6N"
                 }

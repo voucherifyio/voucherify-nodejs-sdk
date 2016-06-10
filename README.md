@@ -590,6 +590,164 @@ Result:
 ```
 
 
+#### Create Customer
+
+
+Example:
+
+```javascript
+var payload = {
+    "source_id": "your-tracking-id",
+    "name": "John Doe",
+    "email": "email@example.com",
+    "description": "Premium user, ACME Inc.",
+    "metadata": {
+      "lang":"en"
+    }
+}
+
+voucherify.customer.create(payload)
+       .then(function (result) {
+           console.log(result);
+       })
+       .catch(function (error) {
+           console.error("Error: %s", error);
+       });
+```
+
+Result:
+
+```
+{
+    "id": "cust_dJRcBf3P9HvmHK5TOrhRUHzL",
+    "object": "customer",
+    "source_id": "your-tracking-id",
+    "name": "John Doe",
+    "email": "email@example.com",
+    "description": "Premium user, ACME Inc.",
+    "metadata": {
+        "lang": "en"
+    },
+    "created_at": "2016-06-06T17:14:55Z"
+}
+```
+
+
+#### Read Customer
+
+
+Example:
+
+```javascript
+var customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
+
+voucherify.customer.read(customerId)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+```json
+{
+  "id": "cust_c2SlN2rKajDdMycd3BmVawJk",
+  "object": "customer",
+  "source_id": "your-tracking-id",
+  "name": "John Doe",
+  "email": "email@example.com",
+  "description": "Premium user, ACME Inc.",
+  "metadata": {
+    "lang": "en"
+  },
+  "created_at": "2016-06-07T07:35:59Z"
+}
+```
+
+
+#### Update Customer
+
+
+Example:
+
+```javascript
+var payload = {
+  "name": "John Doe",
+  "email": "email@example.com",
+  "description":"Premium user, ACME Inc.",
+  "metadata": {
+    "lang":"en",
+    "type":"premium"
+  }
+}
+
+voucherify.customer.update(payload)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+```json
+{
+  "id": "cust_c2SlN2rKajDdMycd3BmVawJk",
+  "object": "customer",
+  "source_id": "your-tracking-id",
+  "name": "John Doe",
+  "email": "email@example.com",
+  "description": "Premium user, ACME Inc.",
+  "metadata": {
+    "lang": "en",
+    "type": "premium"
+  },
+  "created_at": "2016-06-06T17:14:55Z"
+}
+```
+
+
+#### Delete Customer
+
+
+Example:
+
+```javascript
+var customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
+
+voucherify.customer.remove(customerId)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+```json
+{
+  "id": "cust_c2SlN2rKajDdMycd3BmVawJk",
+  "object": "customer",
+  "source_id": "your-tracking-id",
+  "name": "John Doe",
+  "email": "email@example.com",
+  "description": "Premium user, ACME Inc.",
+  "metadata": {
+    "lang": "en",
+    "type": "premium"
+  },
+  "created_at": "2016-06-06T17:14:55Z"
+}
+```
+
+
 ### Utils
 
 #### Usage
@@ -607,6 +765,12 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-06-08** - `1.13.0` - Implemented new API methods
+  - Customer
+    - Create
+    - Read
+    - Update
+    - Remove
 - **2016-06-01** - `1.12.0` - tracking_id param removed from redemption rollback method.
 - **2016-05-24** - `1.11.0` - New publish structure.
 - **2016-04-26** - `1.10.0` - Rollback redemption.

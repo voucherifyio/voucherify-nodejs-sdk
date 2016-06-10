@@ -188,6 +188,44 @@ module.exports = function(options) {
             request.post({ url: url, headers: headers, json: payload }, handler.callback);
 
             return handler.promise;
+        },
+
+        customer: {
+            create: function(customer, callback) {
+                var url = util.format("%s/customers", backendUrl);
+                var handler = prepare(callback);
+
+                request.post({ url: url, headers: headers, json: customer }, handler.callback);
+
+                return handler.promise;
+            },
+
+            read: function(customerId, callback) {
+                var url = util.format("%s/customers/%s", backendUrl, encodeURIComponent(customerId || ""));
+                var handler = prepare(callback);
+
+                request.get({ url: url, headers: headers }, handler.callback);
+
+                return handler.promise;
+            },
+
+            update: function(customer, callback) {
+                var url = util.format("%s/customers/%s", backendUrl, encodeURIComponent(customer.id || ""));
+                var handler = prepare(callback);
+
+                request.put({ url: url, headers: headers, json: customer }, handler.callback);
+
+                return handler.promise;
+            },
+
+            remove: function(customerId, callback) {
+                var url = util.format("%s/customers/%s", backendUrl, encodeURIComponent(customerId || ""));
+                var handler = prepare(callback);
+
+                request.del({ url: url, headers: headers }, handler.callback);
+
+                return handler.promise;
+            }
         }
     };
 };

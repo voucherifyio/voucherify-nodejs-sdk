@@ -633,17 +633,6 @@ Result:
 ```
 
 
-Errors:
-
-```
-{
-  "code": 400,
-  "message": "",
-  "details": ""
-}
-```
-
-
 #### Read Customer
 
 
@@ -675,16 +664,6 @@ Result:
     "lang": "en"
   },
   "created_at": "2016-06-07T07:35:59Z"
-}
-```
-
-Errors:
-
-```json
-{
-  "code": 404,
-  "message": "Resource not found",
-  "details": "Cannot find customer with id cust_dJRcBf3P9HvmHK5TOrhRUHzL"
 }
 ```
 
@@ -732,16 +711,6 @@ Result:
 }
 ```
 
-Errors:
-
-```json
-{
-  "code": 404,
-  "message": "Resource not found",
-  "details": "Cannot find customer with id cust_dJRcBf3P9HvmHK5TOrhRUHzL"
-}
-```
-
 
 #### Delete Customer
 
@@ -775,16 +744,6 @@ Result:
     "type": "premium"
   },
   "created_at": "2016-06-06T17:14:55Z"
-}
-```
-
-Errors:
-
-```json
-{
-  "code": 404,
-  "message": "Resource not found",
-  "details": "Cannot find customer with id cust_dJRcBf3P9HvmHK5TOrhRUHzL"
 }
 ```
 

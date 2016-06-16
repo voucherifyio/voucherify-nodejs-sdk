@@ -406,7 +406,7 @@ Result:
     "object": "redemption",
     "date": "2016-04-25T10:34:57Z",
     "customer_id": "cust_C9qJ3xKgZFqkpMw7b21MF2ow",
-    "tracking_id": "(tracking_id not set)",
+    "tracking_id": "alice.morgan",
     "voucher": {
         "code": "v1GiJYuuS",
         "campaign": "vip",
@@ -466,6 +466,25 @@ voucherify.redeem({
                 shoeSize: 5,
                 favourite_brands: ["Armani", "L’Autre Chose", "Vicini"]
             }
+        })
+    .then(function (result) {
+        console.log(result);
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+
+##### 4. With customer id
+
+If you already created a customer profile in Voucherify's database, whether it was implicitly by providing it to the `redeem` function or explicitly by invoking the [`customer.create`](#create-customer) method, you can identify your customer in following redemptions by a generated id (starting with `cust_`). 
+
+```javascript
+voucherify.redeem({
+        voucher: "v1GiJYuuS",
+        customer: {
+            id: "cust_C9qJ3xKgZFqkpMw7b21MF2ow"
         })
     .then(function (result) {
         console.log(result);

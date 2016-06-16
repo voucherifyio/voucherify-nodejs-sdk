@@ -200,7 +200,7 @@ module.exports = function(options) {
                 return handler.promise;
             },
 
-            read: function(customerId, callback) {
+            get: function(customerId, callback) {
                 var url = util.format("%s/customers/%s", backendUrl, encodeURIComponent(customerId || ""));
                 var handler = prepare(callback);
 
@@ -218,7 +218,7 @@ module.exports = function(options) {
                 return handler.promise;
             },
 
-            remove: function(customerId, callback) {
+            delete: function(customerId, callback) {
                 var url = util.format("%s/customers/%s", backendUrl, encodeURIComponent(customerId || ""));
                 var handler = prepare(callback);
 

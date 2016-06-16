@@ -22,7 +22,7 @@ voucherify.customer.create(payload)
     console.log("New Customer: ", customer)
 
     console.log("==== READ ====")
-    return voucherify.customer.read(customer.id)
+    return voucherify.customer.get(customer.id)
       .then((result) => {
         console.log("Result: ", result)
         return customer
@@ -41,10 +41,10 @@ voucherify.customer.create(payload)
   })
   .then((customer) => {
     console.log("==== DELETE ====")
-    return voucherify.customer.remove(customer.id)
+    return voucherify.customer.delete(customer.id)
       .then(() => {
         console.log("Checking...")
-        return voucherify.customer.read(customer.id)
+        return voucherify.customer.get(customer.id)
           .catch((err) => {
             console.log("Result:", err)
           })

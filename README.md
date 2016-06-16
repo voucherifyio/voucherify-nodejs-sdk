@@ -10,6 +10,7 @@ Here you can find a library that makes it easier to integrate Voucherify with yo
 
 Full documentation is located at [voucherify.readme.io](https://voucherify.readme.io).
 
+
 ### Usage
 
 #### Authentication
@@ -27,6 +28,7 @@ var voucherify = voucherifyClient({
 });
 ```
 
+
 #### Callback or Promise?
 
 All methods in the SDK provide both callback based as well as promise based interactions.
@@ -41,7 +43,6 @@ voucherify.get("v1GiJYuuS", function(error, result) {
 
     // do the work
 });
-
 ```
 
 If you prefer to use promises then the code goes like this:
@@ -58,6 +59,7 @@ voucherify.get("v1GiJYuuS")
 
 All other examples in the readme use promises but they could be as well written with callbacks.
 
+
 #### Listing vouchers
 
 `voucherify.list(filter, callback*)`
@@ -72,6 +74,7 @@ Filter parameters:
 - customer
 
 Example:
+
 ```javascript
 voucherify.list({limit: 10, skip: 20, category: "API Test"})
     .then(function(vouchers) {
@@ -83,6 +86,7 @@ voucherify.list({limit: 10, skip: 20, category: "API Test"})
 ```
 
 Result:
+
 ```json
 [{
      "code": "9mYBpIk",
@@ -126,11 +130,13 @@ Result:
 ]  
 ```
 
+
 #### Getting voucher details
 
 `voucherify.get(voucher_code, callback*)`
 
 Example:
+
 ```javascript
 voucherify.get("v1GiJYuuS")
     .then(function (result) {
@@ -142,6 +148,7 @@ voucherify.get("v1GiJYuuS")
 ```
 
 Result:
+
 ```json
 {
     "code": "v1GiJYuuS",
@@ -167,6 +174,8 @@ Result:
     "additional_info": ""
 }
 ```
+
+
 #### Creating a voucher
 
 `voucherify.create(voucher, callback*)`
@@ -191,6 +200,7 @@ Example:
     });
 ```
 
+
 #### Disabling a voucher
 
 `voucherify.disable(voucher_code, callback*)`
@@ -206,6 +216,11 @@ Example:
         console.error("Error: %s", error);
     });
 ```
+
+Result:
+
+`Result is an empty body`
+
 
 #### Enabling a voucher
 
@@ -223,11 +238,17 @@ Example:
     });
 ```
 
+Result:
+
+`Result is an empty body`
+
+
 #### Getting voucher redemption
 
 `voucherify.redemption(voucher_code, callback*)`
 
 Example:
+
 ```javascript
 voucherify.redemption("v1GiJYuuS")
     .then(function (result) {
@@ -239,6 +260,7 @@ voucherify.redemption("v1GiJYuuS")
 ```
 
 Result:
+
 ```json
 {
     "quantity": 3,
@@ -254,6 +276,7 @@ Result:
     ]
 }
 ```
+
 
 #### Publishing voucher
 
@@ -276,7 +299,7 @@ voucherify.publish({campaign: "First Ride", channel: "Email", customer: "donny.r
     });
 ```
 
-Positive result:
+Result:
 
 ```json
 {
@@ -307,7 +330,7 @@ Positive result:
 }
 ```
 
-Possible error:
+Error:
 
 ```json
 {
@@ -316,6 +339,7 @@ Possible error:
 }
 ```
 
+
 #### Redeeming voucher
 
 `voucherify.redeem(voucher_code, tracking_id|customer_profile*, callback*)`
@@ -323,6 +347,7 @@ Possible error:
 ##### 1. Just by code
 
 Example:
+
 ```javascript
 voucherify.redeem("v1GiJYuuS")
     .then(function (result) {
@@ -377,6 +402,7 @@ Result (voucher details after redemption):
 ```
 
 Error:
+
 ```json
 {
   "code": 400,
@@ -384,6 +410,7 @@ Error:
   "details": "v1GiJYuuS"
 }
 ```
+
 
 ##### 2. With tracking id
 
@@ -400,6 +427,7 @@ voucherify.redeem("v1GiJYuuS", "alice.morgan")
 ```
 
 Result:
+
 ```json
 {
     "id": "r_yRmanaA6EgSE9uDYvMQ5Evfp",
@@ -526,6 +554,7 @@ voucherify.redemptions(filter)
        });
 ```
 
+
 #### Rollback a redemption
 
 Use `voucherify.rollback(redemption_id, reason*, callback*)` to revert a redemption.
@@ -550,6 +579,7 @@ voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "wrong user")
 ```
 
 Result:
+
 ```
 {
     "id": "rr_1634wLkb8glgRXrTmsxRzDBd",
@@ -611,7 +641,6 @@ Result:
 
 #### Create Customer
 
-
 Example:
 
 ```javascript
@@ -636,7 +665,7 @@ voucherify.customer.create(payload)
 
 Result:
 
-```
+```json
 {
     "id": "cust_dJRcBf3P9HvmHK5TOrhRUHzL",
     "object": "customer",
@@ -652,15 +681,14 @@ Result:
 ```
 
 
-#### Read Customer
-
+#### Get Customer
 
 Example:
 
 ```javascript
 var customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
 
-voucherify.customer.read(customerId)
+voucherify.customer.get(customerId)
    .then(function (result) {
        console.log(result);
    })
@@ -688,7 +716,6 @@ Result:
 
 
 #### Update Customer
-
 
 Example:
 
@@ -733,13 +760,12 @@ Result:
 
 #### Delete Customer
 
-
 Example:
 
 ```javascript
 var customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
 
-voucherify.customer.remove(customerId)
+voucherify.customer.delete(customerId)
    .then(function (result) {
        console.log(result);
    })
@@ -750,21 +776,7 @@ voucherify.customer.remove(customerId)
 
 Result:
 
-```json
-{
-  "id": "cust_c2SlN2rKajDdMycd3BmVawJk",
-  "object": "customer",
-  "source_id": "your-tracking-id",
-  "name": "John Doe",
-  "email": "email@example.com",
-  "description": "Premium user, ACME Inc.",
-  "metadata": {
-    "lang": "en",
-    "type": "premium"
-  },
-  "created_at": "2016-06-06T17:14:55Z"
-}
-```
+`Result is an empty body`
 
 
 ### Utils
@@ -784,6 +796,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-06-16** - `1.14.0` - Unified naming convention
 - **2016-06-08** - `1.13.0` - Implemented new API methods
   - Customer
     - Create

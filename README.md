@@ -189,7 +189,7 @@ Example:
             amount_off: 1000 // 10.00
         },
         category: "Test",
-        start_date: "2016-01-01T00:00:00Z"
+        start_date: "2016-01-01T00:00:00Z",
         expiration_date: "2016-12-31T23:59:59Z"
     })    
     .then(function (result) {

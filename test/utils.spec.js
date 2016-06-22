@@ -44,6 +44,20 @@ describe('utils', function(){
         expect(discount).toBe(20.00);
     });
 
+    it('should fail to calculate discount for gift voucher', function(){
+        var basePrice = 50;
+        var unitPrice = 20;
+        var voucher = {
+            gift: {
+                amount: 1000
+            }
+        };
+
+        expect(function() {
+            utils.calculateDiscount(basePrice, voucher)
+        }).toThrow(new Error("Unsupported voucher type."));
+    });
+
     // ------ calculatePrice ------ //
 
     it('should calculate new price with amount discount', function(){
@@ -84,6 +98,20 @@ describe('utils', function(){
         var discount = utils.calculatePrice(basePrice, voucher, unitPrice);
 
         expect(discount).toBe(30.00);
+    });
+
+
+    it('should fail to calculate price for gift voucher', function(){
+        var basePrice = 50;
+        var voucher = {
+            gift: {
+                amount: 1000
+            }
+        };
+
+        expect(function() {
+            utils.calculatePrice(basePrice, voucher)
+        }).toThrow(new Error("Unsupported voucher type."));
     });
 
 

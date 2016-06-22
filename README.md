@@ -522,6 +522,19 @@ voucherify.redeem({
     });
 ```
 
+##### 5. With order amount
+
+Redeeming a gift voucher requires to pass an amount that you wish to withdraw from the voucher.
+Order amount have to be expressed in cents, as an integer. For example $22.50 should be provided as 2250:    
+
+```javascript
+voucherify.redeem({
+        voucher: "91Ft4U",
+        order: {
+            amount: 2250
+        })
+```javascript
+
 ### Listing redemptions
 
 Use `voucherify.redemptions(filter, callback*)` to get a filtered list of redemptions.
@@ -796,6 +809,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-06-22** - `1.14.1` - Gift vouchers. 
 - **2016-06-16** - `1.14.0` - Unified naming convention
 - **2016-06-08** - `1.13.0` - Implemented new API methods
   - Customer

@@ -27,6 +27,10 @@ module.exports = {
     var e = 100; // Number of digits after the decimal separator.
     var discount;
 
+    if (!voucher.discount) {
+      throw new Error("Unsupported voucher type.");
+    }
+
     if (voucher.discount.type === 'PERCENT') {
       discount = voucher.discount.percent_off;
       validatePercentDiscount(discount);
@@ -46,13 +50,17 @@ module.exports = {
       return roundMoney(newPrice > 0 ? newPrice : 0);
 
     } else {
-      throw new Error("Unsupported voucher type.");
+      throw new Error("Unsupported discount type.");
     }
   },
 
   calculateDiscount: function(basePrice, voucher, unitPrice) {
     var e = 100; // Number of digits after the decimal separator.
     var discount;
+
+    if (!voucher.discount) {
+      throw new Error("Unsupported voucher type.");
+    }
 
     if (voucher.discount.type === 'PERCENT') {
       discount = voucher.discount.percent_off;
@@ -72,7 +80,7 @@ module.exports = {
       return roundMoney(priceDiscount > basePrice ? basePrice : priceDiscount);
 
     } else {
-      throw new Error("Unsupported voucher type.");
+      throw new Error("Unsupported discount type.");
     }
   }
 };

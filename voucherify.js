@@ -82,6 +82,15 @@ module.exports = function(options) {
             return handler.promise;
         },
 
+        update: function(voucher, callback) {
+            var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(voucher.code));
+            var handler = prepare(callback);
+
+            request.put({ url: url, headers: headers, json: voucher }, handler.callback);
+
+            return handler.promise;
+        },
+
         enable: function(code, callback) {
             var url = util.format("%s/vouchers/%s/enable", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);

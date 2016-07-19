@@ -180,10 +180,24 @@ Result:
 
 `voucherify.create(voucher, callback*)`
 
+You can create a voucher with a specified code or let Voucherify generate one.
+You can define how to generate the code in `code_config` including following properties:
+- `length` - Number of characters in a generated code (excluding prefix and postfix)
+- `charset` - Characters that can appear in the code.
+- `prefix` - A text appended before the code.
+- `postfix` - A text appended after the code.
+- `pattern` - A pattern for codes where hashes (#) will be replaced with random characters. Overrides `length`.
+  
 Example: 
 
 ```javascript
     voucherify.create({
+        code_config: {
+           length: 5,
+           charset: "01234567890",
+           prefix: "PROMO-",
+           postfix: "-2016"
+        },
         discount: {
             type: "AMOUNT",
             amount_off: 1000 // 10.00

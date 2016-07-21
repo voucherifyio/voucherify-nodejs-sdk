@@ -200,6 +200,36 @@ Example:
     });
 ```
 
+#### Updating a voucher
+
+`voucherify.update(voucher, callback*)`
+
+You can modify following fields:
+- category
+- start_date
+- expiration_date
+- active
+- additional_info
+- metadata
+
+Other fields than listed above won't be modified. Even if provided they will be silently skipped.
+
+Example: 
+
+```javascript
+    voucherify.update({
+        code: "v1GiJYuuS"
+        category: "Updated",
+        start_date: "2016-08-01T00:00:00Z",
+        expiration_date: "2017-07-31T23:59:59Z"
+    })    
+    .then(function (result) {
+         console.log(result);
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
 
 #### Disabling a voucher
 
@@ -809,7 +839,8 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
-- **2016-06-22** - `1.14.1` - Gift vouchers. 
+- **2016-07-18** - `1.15.0` - Voucher update method.
+- **2016-06-22** - `1.14.1` - Gift vouchers.
 - **2016-06-16** - `1.14.0` - Unified naming convention
 - **2016-06-08** - `1.13.0` - Implemented new API methods
   - Customer

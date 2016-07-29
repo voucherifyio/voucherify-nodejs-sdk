@@ -852,7 +852,12 @@ Utils don't need callbacks or promises. They return results immediately.
 - `utils.calculateDiscount(basePrice, voucher);`
 
 ### Changelog
-
+- **2016-07-29** - `1.16.0` - Implemented new API methods
+  - Product
+    - Create
+    - Get
+    - Update
+    - Delete
 - **2016-07-18** - `1.15.0` - Voucher update method.
 - **2016-06-22** - `1.14.1` - Gift vouchers.
 - **2016-06-16** - `1.14.0` - Unified naming convention

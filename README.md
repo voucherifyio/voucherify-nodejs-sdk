@@ -843,9 +843,12 @@ Example:
 ```javascript
 var payload = {
     "name": "Apple iPhone 6",
-    "attributes": [],
+    "attributes": [
+        "attr_one",
+        "attr_two"
+    ],
     "metadata": { 
-        "type": "premium"
+        "type": "normal"
     }
 }
 
@@ -865,9 +868,12 @@ Result:
   "id": "prod_YWnt2mNigm76oA",
   "object": "product",
   "name": "Apple iPhone 6",
-  "attributes": [],
+  "attributes": [
+    "attr_one",
+    "attr_two"
+  ],
   "metadata": { 
-    "type": "premium"
+    "type": "normal"
   },
   "created_at": "2016-07-29T13:15:24Z",
   "skus": { 
@@ -902,16 +908,19 @@ Result:
   "id": "prod_YWnt2mNigm76oA",
   "object": "product",
   "name": "Apple iPhone 6",
-  "attributes": [],
+  "attributes": [
+    "attr_one",
+    "attr_two"
+  ],
   "metadata": { 
-    "type": "premium"
+    "type": "normal"
   },
   "created_at": "2016-07-29T13:15:24Z",
   "skus": { 
     "object": "list", 
     "total": 0, 
     "data": [] 
-  } 
+  }  
 }
 ```
 
@@ -925,7 +934,10 @@ var payload = {
     "id": "prod_YWnt2mNigm76oA",
     "object": "product",
     "name": "Apple iPhone 6",
-    "attributes": [],
+    "attributes": [
+        "attr_one",
+        "attr_two"
+    ],
     "metadata": { 
         "type": "ultra premium"
     },
@@ -953,7 +965,10 @@ Result:
     "id": "prod_YWnt2mNigm76oA",
     "object": "product",
     "name": "Apple iPhone 6",
-    "attributes": [],
+    "attributes": [
+        "attr_one",
+        "attr_two"
+    ],
     "metadata": { 
         "type": "ultra premium"
     },

@@ -1,6 +1,6 @@
 'use strict'
 
-const voucherifyClient = require('../voucherify')
+const voucherifyClient = require('../voucherify');
 
 const voucherify = voucherifyClient({
     applicationId: "c70a6f00-cf91-4756-9df5-47628850002b",
@@ -8,12 +8,14 @@ const voucherify = voucherifyClient({
 })
 
 const payload = {
-    attributes: [],
     name: "Apple iPhone 6",
     metadata: {
-        type: "premium"
+        type: "normal"
     },
-    skus: []
+    attributes: [
+        "attr_one",
+        "attr_two"
+    ]
 }
 
 console.log("==== CREATE ====")
@@ -31,7 +33,8 @@ voucherify.product.create(payload)
     .then((product) => {
         console.log("==== UPDATE ====")
 
-        product.metadata.type = "premium"
+        product.metadata = product.metadata || {};
+        product.metadata.type = "premium";
 
         return voucherify.product.update(product)
             .then((result) => {

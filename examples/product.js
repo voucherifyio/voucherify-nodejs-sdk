@@ -3,8 +3,8 @@
 const voucherifyClient = require('../voucherify');
 
 const voucherify = voucherifyClient({
-    applicationId: "c70a6f00-cf91-4756-9df5-47628850002b",
-    clientSecretKey: "3266b9f8-e246-4f79-bdf0-833929b1380c"
+    applicationId: "d556c347-bf50-4cbc-bef9-b1009f3eef4f",
+    clientSecretKey: "f373df80-2536-4bb4-82f6-8b2b9be471ec"
 })
 
 const payload = {
@@ -27,7 +27,35 @@ voucherify.product.create(payload)
         return voucherify.product.get(product.id)
             .then((result) => {
                 console.log("Result: ", result)
-                return product
+                return ;
+            })
+            .then(() => {
+                console.log("==== CREATE - SKU ====")
+
+                var sku = {
+                    sku: "APPLE_IPHONE_6_BLACK"
+                }
+
+                return voucherify.product.sku.create(product.id, sku)
+                    .then((sku) => {
+                        console.log("Result: ", sku)
+                        console.log("==== GET - SKU ====")
+
+                        return voucherify.product.sku.get(product.id, sku.id)
+                            .then((sku) => {
+                                console.log("Result: ", sku)
+                                console.log("==== UPDATE - SKU ====")
+
+                                sku.sku = "eur";
+                                sku.price = 1000;
+
+                                return voucherify.product.sku.update(product.id, sku)
+                            })
+                    })
+                    .then((sku) => {
+                        console.log("Result: ", sku)
+                        return product;
+                    });
             })
     })
     .then((product) => {
@@ -38,7 +66,7 @@ voucherify.product.create(payload)
 
         return voucherify.product.update(product)
             .then((result) => {
-                console.log("Result: ", result)
+                console.log("Result: ", JSON.stringify(result, null, 2))
                 return product
             })
     })

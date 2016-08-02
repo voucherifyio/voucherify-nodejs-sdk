@@ -5,7 +5,8 @@ var util = require("util");
 var request = require("request");
 var when = require("when");
 
-var backendUrl = "https://api.voucherify.io/v1";
+//var backendUrl = "https://api.voucherify.io/v1";
+var backendUrl = "http://localhost:8089/v1";
 
 module.exports = function(options) {
     var headers = {
@@ -231,7 +232,7 @@ module.exports = function(options) {
                 var url = util.format("%s/customers/%s", backendUrl, encodeURIComponent(customerId || ""));
                 var handler = prepare(callback);
 
-                request.get({ url: url, headers: headers }, handler.callback);
+                request.get({ url: url, headers: headers, json: true }, handler.callback);
 
                 return handler.promise;
             },
@@ -290,6 +291,48 @@ module.exports = function(options) {
                 request.del({ url: url, headers: headers }, handler.callback);
 
                 return handler.promise;
+            },
+
+            sku: {
+                create: function (productId, sku, callback) {
+                    var url = util.format("%s/products/%s/skus", backendUrl,
+                        encodeURIComponent(productId || ""));
+                    var handler = prepare(callback);
+
+                    request.post({ url: url, headers: headers, json: sku }, handler.callback);
+
+                    return handler.promise;
+                },
+
+                get: function (productId, skuId, callback) {
+                    var url = util.format("%s/products/%s/skus/%s", backendUrl,
+                        encodeURIComponent(productId || ""), encodeURIComponent(skuId || ""));
+                    var handler = prepare(callback);
+
+                    request.get({ url: url, headers: headers }, handler.callback);
+
+                    return handler.promise;
+                },
+
+                update: function (productId, sku, callback) {
+                    var url = util.format("%s/products/%s/skus/%s", backendUrl,
+                        encodeURIComponent(productId || ""), encodeURIComponent(sku.id || ""));
+                    var handler = prepare(callback);
+
+                    request.put({ url: url, headers: headers, json: sku }, handler.callback);
+
+                    return handler.promise;
+                },
+
+                delete: function (productId, skuId, callback) {
+                    var url = util.format("%s/products/%s/skus/%s", backendUrl,
+                        encodeURIComponent(productId || ""), encodeURIComponent(skuId || ""));
+                    var handler = prepare(callback);
+
+                    request.del({ url: url, headers: headers }, handler.callback);
+
+                    return handler.promise;
+                }
             }
         }
     };

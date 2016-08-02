@@ -109,6 +109,24 @@ module.exports = function(options) {
             return handler.promise;
         },
 
+        validate: function(code, context, callback) {
+            if (typeof(context) === "undefined") {
+                context = {};
+            }
+
+            if (typeof(context) === "function") {
+                callback = context;
+                context = {};
+            }
+
+            var handler = prepare(callback);
+            var url = util.format("%s/vouchers/%s/validate", backendUrl, encodeURIComponent(code));
+
+            request.post({ url: url, headers: headers, json: context }, handler.callback);
+
+            return handler.promise;
+        },
+
         redemption: function(code, callback) {
             var url = util.format("%s/vouchers/%s/redemption", backendUrl, encodeURIComponent(code));
             var handler = prepare(callback);

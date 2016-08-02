@@ -18,6 +18,8 @@ const payload = {
     ]
 }
 
+let skuId = null;
+
 console.log("==== CREATE ====")
 voucherify.product.create(payload)
     .then((product) => {
@@ -54,6 +56,9 @@ voucherify.product.create(payload)
                     })
                     .then((sku) => {
                         console.log("Result: ", sku)
+
+                        skuId = sku.id;
+
                         return product;
                     });
             })
@@ -68,6 +73,27 @@ voucherify.product.create(payload)
             .then((result) => {
                 console.log("Result: ", JSON.stringify(result, null, 2))
                 return product
+            })
+    })
+    .then((product) => {
+        if (!skuId) {
+            return product;
+        }
+
+        console.log("==== DELETE - SKU ====")
+
+        return voucherify.product.sku.delete(product.id, skuId)
+            .then(() => {
+                console.log("Checking...")
+                return voucherify.product.sku.get(product.id, skuId)
+                    .catch((err) => {
+                        console.log("Result:", err)
+                        return product
+                    })
+                    .then((product) => {
+                        skuId = null;
+                        return product;
+                    })
             })
     })
     .then((product) => {

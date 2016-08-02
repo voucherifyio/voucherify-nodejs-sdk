@@ -3,8 +3,8 @@
 const voucherifyClient = require('../voucherify');
 
 const voucherify = voucherifyClient({
-    applicationId: "d556c347-bf50-4cbc-bef9-b1009f3eef4f",
-    clientSecretKey: "f373df80-2536-4bb4-82f6-8b2b9be471ec"
+    applicationId: "c70a6f00-cf91-4756-9df5-47628850002b",
+    clientSecretKey: "3266b9f8-e246-4f79-bdf0-833929b1380c"
 })
 
 const payload = {

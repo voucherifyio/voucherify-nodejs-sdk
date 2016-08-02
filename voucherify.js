@@ -5,8 +5,7 @@ var util = require("util");
 var request = require("request");
 var when = require("when");
 
-//var backendUrl = "https://api.voucherify.io/v1";
-var backendUrl = "http://localhost:8089/v1";
+var backendUrl = "https://api.voucherify.io/v1";
 
 module.exports = function(options) {
     var headers = {

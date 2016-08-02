@@ -886,7 +886,7 @@ Example:
 ```javascript
 var productId = "prod_YWnt2mNigm76oA"
 
-voucherify.customer.get(productId)
+voucherify.product.get(productId)
    .then(function (result) {
        console.log(result);
    })

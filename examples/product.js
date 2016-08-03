@@ -18,6 +18,8 @@ const payload = {
     ]
 }
 
+let skuId = null;
+
 console.log("==== CREATE ====")
 voucherify.product.create(payload)
     .then((product) => {
@@ -27,7 +29,38 @@ voucherify.product.create(payload)
         return voucherify.product.get(product.id)
             .then((result) => {
                 console.log("Result: ", result)
-                return product
+                return ;
+            })
+            .then(() => {
+                console.log("==== CREATE - SKU ====")
+
+                var sku = {
+                    sku: "APPLE_IPHONE_6_BLACK"
+                }
+
+                return voucherify.product.sku.create(product.id, sku)
+                    .then((sku) => {
+                        console.log("Result: ", sku)
+                        console.log("==== GET - SKU ====")
+
+                        return voucherify.product.sku.get(product.id, sku.id)
+                            .then((sku) => {
+                                console.log("Result: ", sku)
+                                console.log("==== UPDATE - SKU ====")
+
+                                sku.sku = "eur";
+                                sku.price = 1000;
+
+                                return voucherify.product.sku.update(product.id, sku)
+                            })
+                    })
+                    .then((sku) => {
+                        console.log("Result: ", sku)
+
+                        skuId = sku.id;
+
+                        return product;
+                    });
             })
     })
     .then((product) => {
@@ -38,8 +71,29 @@ voucherify.product.create(payload)
 
         return voucherify.product.update(product)
             .then((result) => {
-                console.log("Result: ", result)
+                console.log("Result: ", JSON.stringify(result, null, 2))
                 return product
+            })
+    })
+    .then((product) => {
+        if (!skuId) {
+            return product;
+        }
+
+        console.log("==== DELETE - SKU ====")
+
+        return voucherify.product.sku.delete(product.id, skuId)
+            .then(() => {
+                console.log("Checking...")
+                return voucherify.product.sku.get(product.id, skuId)
+                    .catch((err) => {
+                        console.log("Result:", err)
+                        return product
+                    })
+                    .then((product) => {
+                        skuId = null;
+                        return product;
+                    })
             })
     })
     .then((product) => {

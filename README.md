@@ -1058,6 +1058,138 @@ Result:
 `Result is an empty body`
 
 
+
+#### Create Sku
+
+Example:
+
+```javascript
+var productId = "prod_e8uLMegXZJ4GGS";
+
+var sku = {
+    sku: "APPLE_IPHONE_6_BLACK"
+};
+
+voucherify.product.sku.create(productId, payload)
+       .then(function (result) {
+           console.log(result);
+       })
+       .catch(function (error) {
+           console.error("Error: %s", error);
+       });
+```
+
+Result:
+
+```json
+{
+    "id": "sku_JXYGfsGbpvsfjv",
+    "product_id": "prod_e8uLMegXZJ4GGS",
+    "sku": "APPLE_IPHONE_6_BLACK",
+    "created_at": "2016-08-02T16:43:47Z",
+    "object": "sku"
+}
+```
+
+
+#### Get Sku
+
+Example:
+
+```javascript
+var productId = "prod_YWnt2mNigm76oA";
+
+var skuId = "sku_JXYGfsGbpvsfjv";
+
+voucherify.product.sku.get(productId, skuId)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+```json
+{
+    "id": "sku_JXYGfsGbpvsfjv",
+    "product_id": "prod_e8uLMegXZJ4GGS",
+    "sku": "APPLE_IPHONE_6_BLACK",
+    "created_at": "2016-08-02T16:43:47Z",
+    "object": "sku"
+}
+```
+
+
+#### Update Sku
+
+Example:
+
+```javascript
+var sku = {
+    "id": "sku_JXYGfsGbpvsfjv",
+    "product_id": "prod_e8uLMegXZJ4GGS",
+    "sku": "APPLE_IPHONE_6_BLACK",
+    "created_at": "2016-08-02T16:43:47Z",
+    "object": "sku"
+};
+
+sku.currency    = "eur";
+sku.price       = 1000;
+
+var productId = sku.product_id;
+
+voucherify.product.sku.update(productId, sku)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+```json
+{
+    "id": "sku_JXYGfsGbpvsfjv",
+    "product_id": "prod_e8uLMegXZJ4GGS",
+    "sku": "APPLE_IPHONE_6_BLACK",
+    "currency": "eur",
+    "price": 1000,
+    "created_at": "2016-08-02T16:43:47Z",
+    "object": "sku"
+}
+```
+
+
+#### Delete Sku
+
+Example:
+
+```javascript
+
+var productId = "prod_e8uLMegXZJ4GGS";
+
+var skuId = "sku_JXYGfsGbpvsfjv";
+
+voucherify.product.sku.delete(productId, skuId)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+`Result is an empty body`
+
+
+
 ### Utils
 
 #### Usage
@@ -1074,8 +1206,13 @@ Utils don't need callbacks or promises. They return results immediately.
 - `utils.calculateDiscount(basePrice, voucher);`
 
 ### Changelog
-<<<<<<< HEAD
 
+- **2016-08-02** - `1.18.0` - Implemented new API methods
+  - SKU
+    - Create
+    - Get
+    - Update
+    - Delete
 - **2016-08-02** - `1.17.0` - Validate voucher
 - **2016-07-29** - `1.16.0` - Implemented new API methods
   - Product

@@ -844,8 +844,8 @@ Example:
 var payload = {
     "name": "Apple iPhone 6",
     "attributes": [
-        "attr_one",
-        "attr_two"
+      "color",
+      "memory"
     ],
     "metadata": { 
         "type": "normal"
@@ -869,8 +869,8 @@ Result:
   "object": "product",
   "name": "Apple iPhone 6",
   "attributes": [
-    "attr_one",
-    "attr_two"
+    "color",
+    "memory"
   ],
   "metadata": { 
     "type": "normal"
@@ -909,8 +909,8 @@ Result:
   "object": "product",
   "name": "Apple iPhone 6",
   "attributes": [
-    "attr_one",
-    "attr_two"
+    "color",
+    "memory"
   ],
   "metadata": { 
     "type": "normal"
@@ -935,17 +935,17 @@ var payload = {
     "object": "product",
     "name": "Apple iPhone 6",
     "attributes": [
-        "attr_one",
-        "attr_two"
+      "color",
+      "memory"
     ],
     "metadata": { 
-        "type": "ultra premium"
+      "type": "ultra premium"
     },
     "created_at": "2016-07-29T13:15:24Z",
     "skus": { 
-        "object": "list", 
-        "total": 0, 
-        "data": [] 
+      "object": "list", 
+      "total": 0, 
+      "data": [] 
     } 
 }
 
@@ -966,17 +966,17 @@ Result:
     "object": "product",
     "name": "Apple iPhone 6",
     "attributes": [
-        "attr_one",
-        "attr_two"
+      "color",
+      "memory"
     ],
     "metadata": { 
         "type": "ultra premium"
     },
     "created_at": "2016-07-29T13:15:24Z",
     "skus": { 
-        "object": "list", 
-        "total": 0, 
-        "data": [] 
+      "object": "list", 
+      "total": 0, 
+      "data": [] 
     } 
 }
 ```

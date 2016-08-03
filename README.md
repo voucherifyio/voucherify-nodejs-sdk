@@ -1067,7 +1067,13 @@ Example:
 var productId = "prod_e8uLMegXZJ4GGS";
 
 var sku = {
-    sku: "APPLE_IPHONE_6_BLACK"
+    sku: "APPLE_IPHONE_6_BLACK",
+    currency: "EUR",
+    price: 12000,
+    attributes: {
+      color: "BLACK",
+      memory: "16GB"
+    }
 };
 
 voucherify.product.sku.create(productId, payload)
@@ -1136,7 +1142,7 @@ var sku = {
     "object": "sku"
 };
 
-sku.currency    = "eur";
+sku.currency    = "EUR";
 sku.price       = 1000;
 
 var productId = sku.product_id;
@@ -1157,7 +1163,7 @@ Result:
     "id": "sku_JXYGfsGbpvsfjv",
     "product_id": "prod_e8uLMegXZJ4GGS",
     "sku": "APPLE_IPHONE_6_BLACK",
-    "currency": "eur",
+    "currency": "EUR",
     "price": 1000,
     "created_at": "2016-08-02T16:43:47Z",
     "object": "sku"
@@ -1207,6 +1213,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-08-03** - `1.18.1` - Improvements in documentation of SKU API
 - **2016-08-02** - `1.18.0` - Implemented new API methods
   - SKU
     - Create

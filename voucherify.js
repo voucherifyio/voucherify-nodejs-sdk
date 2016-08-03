@@ -253,6 +253,44 @@ module.exports = function(options) {
 
                 return handler.promise;
             }
+        },
+
+        product: {
+            create: function (product, callback) {
+                var url = util.format("%s/products", backendUrl);
+                var handler = prepare(callback);
+
+                request.post({ url: url, headers: headers, json: product }, handler.callback);
+
+                return handler.promise;
+            },
+
+            get: function (productId, callback) {
+                var url = util.format("%s/products/%s", backendUrl, encodeURIComponent(productId || ""));
+                var handler = prepare(callback);
+
+                request.get({ url: url, headers: headers }, handler.callback);
+
+                return handler.promise;
+            },
+
+            update: function (product, callback) {
+                var url = util.format("%s/products/%s", backendUrl, encodeURIComponent(product.id || ""));
+                var handler = prepare(callback);
+
+                request.put({ url: url, headers: headers, json: product }, handler.callback);
+
+                return handler.promise;
+            },
+
+            delete: function (productId, callback) {
+                var url = util.format("%s/products/%s", backendUrl, encodeURIComponent(productId || ""));
+                var handler = prepare(callback);
+
+                request.del({ url: url, headers: headers }, handler.callback);
+
+                return handler.promise;
+            }
         }
     };
 };

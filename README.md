@@ -232,7 +232,7 @@ Example:
 
 ```javascript
     voucherify.update({
-        code: "v1GiJYuuS"
+        code: "v1GiJYuuS",
         category: "Updated",
         start_date: "2016-08-01T00:00:00Z",
         expiration_date: "2017-07-31T23:59:59Z"
@@ -564,7 +564,7 @@ Result:
                     "id": "r_irOQWUTAjthQwnkn5JQM1V6N",
                     "object": "redemption",
                     "date": "2016-04-25T12:04:08Z",
-                    "customer_id": "cust_C9qJ3xKgZFqkpMw7b21MF2ow"
+                    "customer_id": "cust_C9qJ3xKgZFqkpMw7b21MF2ow",
                     "tracking_id": "alice.morgan"
                 }
             ]
@@ -582,18 +582,18 @@ Voucherify will create (or update) provided customer profile in its database.
 
 ```javascript
 voucherify.redeem({
-        voucher: "v1GiJYuuS",
-        customer: {
-            soruce_id: "alice.morgan",
-            name: "Alice Morgan",
-            email: "alice@morgan.com",
-            description: "",
-            metadata: {
-                locale: "en-GB",
-                shoeSize: 5,
-                favourite_brands: ["Armani", "L’Autre Chose", "Vicini"]
-            }
-        })
+    voucher: "v1GiJYuuS",
+    customer: {
+        soruce_id: "alice.morgan",
+        name: "Alice Morgan",
+        email: "alice@morgan.com",
+        description: "",
+        metadata: {
+            locale: "en-GB",
+            shoeSize: 5,
+            favourite_brands: ["Armani", "L’Autre Chose", "Vicini"]
+        }
+    })
     .then(function (result) {
         console.log(result);
     })
@@ -609,10 +609,10 @@ If you already created a customer profile in Voucherify's database, whether it w
 
 ```javascript
 voucherify.redeem({
-        voucher: "v1GiJYuuS",
-        customer: {
-            id: "cust_C9qJ3xKgZFqkpMw7b21MF2ow"
-        })
+    voucher: "v1GiJYuuS",
+    customer: {
+        id: "cust_C9qJ3xKgZFqkpMw7b21MF2ow"
+    })
     .then(function (result) {
         console.log(result);
     })
@@ -891,6 +891,173 @@ Result:
 `Result is an empty body`
 
 
+#### Create Product
+
+Example:
+
+```javascript
+var payload = {
+    "name": "Apple iPhone 6",
+    "attributes": [
+      "color",
+      "memory"
+    ],
+    "metadata": { 
+        "type": "normal"
+    }
+}
+
+voucherify.product.create(payload)
+       .then(function (result) {
+           console.log(result);
+       })
+       .catch(function (error) {
+           console.error("Error: %s", error);
+       });
+```
+
+Result:
+
+```json
+{ 
+  "id": "prod_YWnt2mNigm76oA",
+  "object": "product",
+  "name": "Apple iPhone 6",
+  "attributes": [
+    "color",
+    "memory"
+  ],
+  "metadata": { 
+    "type": "normal"
+  },
+  "created_at": "2016-07-29T13:15:24Z",
+  "skus": { 
+    "object": "list", 
+    "total": 0, 
+    "data": [] 
+  } 
+}
+```
+
+
+#### Get Product
+
+Example:
+
+```javascript
+var productId = "prod_YWnt2mNigm76oA"
+
+voucherify.product.get(productId)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+```json
+{ 
+  "id": "prod_YWnt2mNigm76oA",
+  "object": "product",
+  "name": "Apple iPhone 6",
+  "attributes": [
+    "color",
+    "memory"
+  ],
+  "metadata": { 
+    "type": "normal"
+  },
+  "created_at": "2016-07-29T13:15:24Z",
+  "skus": { 
+    "object": "list", 
+    "total": 0, 
+    "data": [] 
+  }  
+}
+```
+
+
+#### Update Product
+
+Example:
+
+```javascript
+var payload = { 
+    "id": "prod_YWnt2mNigm76oA",
+    "object": "product",
+    "name": "Apple iPhone 6",
+    "attributes": [
+      "color",
+      "memory"
+    ],
+    "metadata": { 
+      "type": "ultra premium"
+    },
+    "created_at": "2016-07-29T13:15:24Z",
+    "skus": { 
+      "object": "list", 
+      "total": 0, 
+      "data": [] 
+    } 
+}
+
+voucherify.product.update(payload)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+```json
+{ 
+    "id": "prod_YWnt2mNigm76oA",
+    "object": "product",
+    "name": "Apple iPhone 6",
+    "attributes": [
+      "color",
+      "memory"
+    ],
+    "metadata": { 
+        "type": "ultra premium"
+    },
+    "created_at": "2016-07-29T13:15:24Z",
+    "skus": { 
+      "object": "list", 
+      "total": 0, 
+      "data": [] 
+    } 
+}
+```
+
+
+#### Delete Product
+
+Example:
+
+```javascript
+var productId = "prod_YWnt2mNigm76oA"
+
+voucherify.product.delete(productId)
+   .then(function (result) {
+       console.log(result);
+   })
+   .catch(function (error) {
+       console.error("Error: %s", error);
+   });
+```
+
+Result:
+
+`Result is an empty body`
+
+
 ### Utils
 
 #### Usage
@@ -907,17 +1074,24 @@ Utils don't need callbacks or promises. They return results immediately.
 - `utils.calculateDiscount(basePrice, voucher);`
 
 ### Changelog
+<<<<<<< HEAD
 
-- **2016-07-18** - `1.16.0` - Validate voucher
+- **2016-08-02** - `1.17.0` - Validate voucher
+- **2016-07-29** - `1.16.0` - Implemented new API methods
+  - Product
+    - Create
+    - Get
+    - Update
+    - Delete
 - **2016-07-18** - `1.15.0` - Voucher update method.
 - **2016-06-22** - `1.14.1` - Gift vouchers.
 - **2016-06-16** - `1.14.0` - Unified naming convention
 - **2016-06-08** - `1.13.0` - Implemented new API methods
   - Customer
     - Create
-    - Read
+    - Get
     - Update
-    - Remove
+    - Delete
 - **2016-06-01** - `1.12.0` - tracking_id param removed from redemption rollback method.
 - **2016-05-24** - `1.11.0` - New publish structure.
 - **2016-04-26** - `1.10.0` - Rollback redemption.

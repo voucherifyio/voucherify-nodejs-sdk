@@ -383,8 +383,63 @@ Error:
 }
 ```
 
+#### Validating vouchers
 
-#### Redeeming voucher
+Validation lets you check if given voucher code can be successfully redeemed.
+
+`voucherify.validate(code, context)`
+
+The `context` param is generally optional unless you are validating a gift voucher. 
+Then you have to pass `order.amount` expressed in cents (e.g. $10 is 1000).
+
+Example:
+
+```
+validation_result = voucherify.validate("91Ft4U", {
+   tracking_id: "john@lemon.com",
+    customer: {
+         id: "cust_07sVjVsr71Ewot9lVZSrIVLH",
+         source_id: "john@lemon.com",
+         name: "John Lemon"
+     },
+     order: {
+        amount: 1000
+    }
+})
+```
+
+Successful validation result:
+```
+{
+    code: "91Ft4U",
+    valid: true,
+    gift: {
+        amount: 10000
+    }, 
+    tracking_id: "john@lemon.com"
+}
+```
+
+Failed validation result:
+```
+{
+    code: "91Ft4U",
+    valid: false,
+    reason: "gift amount exceeded",
+    tracking_id: "john@lemon.com"
+}
+```
+
+There are several reasons why validation may fail (`valid: false` response). You can find the actual cause in the `reason` field:
+
+- `voucher not found`
+- `voucher is disabled`
+- `voucher not active yet`
+- `voucher expired`
+- `quantity exceeded`
+- `gift amount exceeded`
+
+#### Redeeming vouchers
 
 `voucherify.redeem(voucher_code, tracking_id|customer_profile*, callback*)`
 
@@ -1019,6 +1074,9 @@ Utils don't need callbacks or promises. They return results immediately.
 - `utils.calculateDiscount(basePrice, voucher);`
 
 ### Changelog
+<<<<<<< HEAD
+
+- **2016-08-02** - `1.17.0` - Validate voucher
 - **2016-07-29** - `1.16.0` - Implemented new API methods
   - Product
     - Create

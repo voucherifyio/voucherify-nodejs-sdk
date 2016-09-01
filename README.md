@@ -1237,6 +1237,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-09-01** - `1.19.0` - Documentation for evaluating validation rules based on order details
 - **2016-08-03** - `1.18.1` - Improvements in documentation of SKU API
 - **2016-08-02** - `1.18.0` - Implemented new API methods
   - SKU

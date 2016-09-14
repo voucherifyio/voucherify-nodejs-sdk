@@ -245,6 +245,28 @@ Example:
     });
 ```
 
+#### Deleting a voucher
+
+`voucherify.delete(voucher_code, params*, callback*)`
+
+In param object you can pass `force` flag which tells whether voucher will be removed permanently. It means that afterwards user will be able to create next voucher with the same code.
+
+Example: 
+
+```javascript
+    voucherify.delete("v1GiJYuuS", { force: true })    
+    .then(function (result) {
+         console.log("Voucher deleted.");
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+Result:
+
+`Result is an empty body`
+
 #### Disabling a voucher
 
 `voucherify.disable(voucher_code, callback*)`
@@ -1237,6 +1259,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-09-01** - `1.20.0` - Added method for deleting vouchers by code
 - **2016-09-01** - `1.19.0` - Documentation for evaluating validation rules based on order details
 - **2016-08-03** - `1.18.1` - Improvements in documentation of SKU API
 - **2016-08-02** - `1.18.0` - Implemented new API methods

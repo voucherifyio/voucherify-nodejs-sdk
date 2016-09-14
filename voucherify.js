@@ -82,6 +82,26 @@ module.exports = function(options) {
             return handler.promise;
         },
 
+        delete: function(voucher_code, params, callback) {
+            if (typeof(params) === "undefined") {
+                params = {};
+            }
+
+            if (typeof(params) === "function") {
+                callback = params;
+                params = {};
+            }
+
+            var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(voucher_code || ""));
+            if (params.force) { url += "?force=true"; }
+
+            var handler = prepare(callback);
+
+            request.del({ url: url, headers: headers }, handler.callback);
+
+            return handler.promise;
+        },
+
         update: function(voucher, callback) {
             var url = util.format("%s/vouchers/%s", backendUrl, encodeURIComponent(voucher.code));
             var handler = prepare(callback);

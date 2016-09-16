@@ -1309,7 +1309,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
-- **2016-09-01** - `1.20.0` - Added method for adding new vouchers to existing campaign
+- **2016-09-01** - `1.21.0` - Added method for adding new vouchers to existing campaign
 - **2016-09-01** - `1.20.0` - Added method for deleting vouchers by code
 - **2016-09-01** - `1.19.0` - Documentation for evaluating validation rules based on order details
 - **2016-08-03** - `1.18.1` - Improvements in documentation of SKU API

@@ -245,6 +245,66 @@ Example:
     });
 ```
 
+#### Add voucher to existing Campaign
+
+This method is responsible for adding new voucher to campaign based on voucher definition inherited from campaign. You can give custom values for following fields:
+- category
+- additional_info
+- metadata
+- redemption.quantity
+
+
+Example:
+
+```javascript
+var payload = {
+    "additional_info": "New voucher",
+    "metadata": {
+        "test": true
+    },
+    "redemption": {
+        "quantity": 5
+    }
+}
+
+voucherify.campaign.voucher.create("Campaign-Name", payload)
+       .then(function (result) {
+           console.log(result);
+       })
+       .catch(function (error) {
+           console.error("Error: %s", error);
+       });
+```
+
+Result:
+
+```json
+{
+    "code": "pK0ZSfaB",
+    "campaign": "Campaign-Name",
+    "category": null,
+    "type": "DISCOUNT_VOUCHER",
+    "discount": { "type": "AMOUNT", "amount_off": 1000 },
+    "gift": null,
+    "start_date": "2016-09-14T22:00:00Z",
+    "expiration_date": "2016-09-30T21:59:59Z",
+    "publish": {
+      "count": 0,
+      "entries": []
+    },
+    "redemption": {
+      "quantity": 5,
+      "redeemed_quantity": 0,
+      "redemption_entries": [] 
+    },
+    "active": true,
+    "additional_info": "New voucher",
+    "metadata": {
+      "test": true
+    }
+}
+```
+
 #### Deleting a voucher
 
 `voucherify.delete(voucher_code, params*, callback*)`
@@ -1259,7 +1319,8 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
-- **2016-09-01** - `1.20.0` - Added method for deleting vouchers by code
+- **2016-09-16** - `1.21.0` - Added method for adding new vouchers to existing campaign
+- **2016-09-15** - `1.20.0` - Added method for deleting vouchers by code
 - **2016-09-01** - `1.19.0` - Documentation for evaluating validation rules based on order details
 - **2016-08-03** - `1.18.1` - Improvements in documentation of SKU API
 - **2016-08-02** - `1.18.0` - Implemented new API methods

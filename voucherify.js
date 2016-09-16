@@ -237,6 +237,19 @@ module.exports = function(options) {
             return handler.promise;
         },
 
+        campaign: {
+            voucher: {
+                create: function(campaignName, voucher, callback) {
+                    var url = util.format("%s/campaigns/%s/vouchers", backendUrl, encodeURIComponent(campaignName || ""));
+                    var handler = prepare(callback);
+
+                    request.post({ url: url, headers: headers, json: voucher || {} }, handler.callback);
+
+                    return handler.promise;
+                }
+            }
+        },
+
         customer: {
             create: function(customer, callback) {
                 var url = util.format("%s/customers", backendUrl);

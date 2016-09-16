@@ -267,7 +267,7 @@ var payload = {
     }
 }
 
-voucherify.campaign.vocuher.create("Campaign-Name", payload)
+voucherify.campaign.voucher.create("Campaign-Name", payload)
        .then(function (result) {
            console.log(result);
        })
@@ -288,11 +288,21 @@ Result:
     "gift": null,
     "start_date": "2016-09-14T22:00:00Z",
     "expiration_date": "2016-09-30T21:59:59Z",
-    "publish": { "count": 0, "entries": [] },
-    "redemption": { "quantity": 5, "redeemed_quantity": 0, "redemption_entries": [] },
+    "publish": {
+      "count": 0,
+      "entries": []
+    },
+    "redemption": {
+      "quantity": 5,
+      "redeemed_quantity": 0,
+      "redemption_entries": [] 
+    },
     "active": true,
     "additional_info": "New voucher",
-    "metadata": { "test": true } }
+    "metadata": {
+      "test": true
+    }
+}
 ```
 
 #### Deleting a voucher
@@ -1309,8 +1319,8 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
-- **2016-09-01** - `1.21.0` - Added method for adding new vouchers to existing campaign
-- **2016-09-01** - `1.20.0` - Added method for deleting vouchers by code
+- **2016-09-16** - `1.21.0` - Added method for adding new vouchers to existing campaign
+- **2016-09-15** - `1.20.0` - Added method for deleting vouchers by code
 - **2016-09-01** - `1.19.0` - Documentation for evaluating validation rules based on order details
 - **2016-08-03** - `1.18.1` - Improvements in documentation of SKU API
 - **2016-08-02** - `1.18.0` - Implemented new API methods

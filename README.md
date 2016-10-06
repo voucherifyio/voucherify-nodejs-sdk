@@ -89,45 +89,59 @@ Result:
 
 ```json
 [{
-     "code": "9mYBpIk",
-     "campaign": null,
-     "category": "API Test",
-     "discount": {
-       "type": "AMOUNT",
-       "amount_off": 400
-     },
-     "start_date": "2016-03-01T12:00:00Z",
-     "expiration_date": null,
-     "redemption": {
-       "quantity": 1,
-       "redeemed_quantity": 0,
-       "redemption_entries": []
-     },
-     "active": true,
-     "additional_info": null,
-     "metadata": null
-   },
-   {
-       "code": "AzTsIH",
-       "campaign": null,
-       "category": "API Test",
-       "discount": {
+    "code": "9mYBpIk",
+    "campaign": null,
+    "category": "API Test",
+    "discount": {
         "type": "AMOUNT",
         "amount_off": 400
-       },
-       "start_date": "2016-03-01T10:00:00Z",
-       "expiration_date": null,
-       "redemption": {
+    },
+    "start_date": "2016-03-01T12:00:00Z",
+    "expiration_date": null,
+    "publish": {
+        "object": "list",
+        "count": 0,
+        "data_ref": "entries",
+        "entries": []
+    },
+    "redemption": {
+        "object": "list",
         "quantity": 1,
+        "data_ref": "redemption_entries",
         "redeemed_quantity": 0,
         "redemption_entries": []
-       },
-       "active": true,
-       "additional_info": null,
-       "metadata": null
-   },
-   ...
-]  
+    },
+    "active": true,
+    "additional_info": null,
+    "metadata": null
+}, {
+    "code": "AzTsIH",
+    "campaign": null,
+    "category": "API Test",
+    "discount": {
+        "type": "AMOUNT",
+        "amount_off": 400
+    },
+    "start_date": "2016-03-01T10:00:00Z",
+    "expiration_date": null,
+    "publish": {
+        "object": "list",
+        "count": 0,
+        "data_ref": "entries",
+        "entries": []
+    },
+    "redemption": {
+        "object": "list",
+        "quantity": 1,
+        "data_ref": "redemption_entries",
+        "redeemed_quantity": 0,
+        "redeemed_amount": 0,
+        "redemption_entries": []
+    },
+    "active": true,
+    "additional_info": null,
+    "metadata": null
+}]  
 ```
 
 
@@ -158,18 +172,24 @@ Result:
         "type": "PERCENT"
     },
     "expiration_date": "2016-12-31T23:59:59Z",
+    "publish": {
+        "object": "list",
+        "count": 0,
+        "data_ref": "entries",
+        "entries": []
+    },
     "redemption": {
-        "quantity": 3,
-        "redeemed_quantity": 1,
-        "redemption_entries": [
-            {
-                "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
-                "object": "redemption",
-                "date": "2016-04-24T06:03:35Z",
-                "customer_id": null,
-                "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
-            }
-        ]
+        "object": "list",
+        "quantity": 1,
+        "data_ref": "redemption_entries",
+        "redeemed_quantity": 0,
+        "redemption_entries": [{
+            "id": "r_gQzOnTwmhn2nTLwW4sZslNKY",
+            "object": "redemption",
+            "date": "2016-04-24T06:03:35Z",
+            "customer_id": null,
+            "tracking_id": "GENERATED-OR-PROVIDED-TRACKING-ID"
+        }]
     },
     "additional_info": ""
 }
@@ -289,18 +309,22 @@ Result:
     "start_date": "2016-09-14T22:00:00Z",
     "expiration_date": "2016-09-30T21:59:59Z",
     "publish": {
-      "count": 0,
-      "entries": []
+        "object": "list",
+        "count": 0,
+        "data_ref": "entries",
+        "entries": []
     },
     "redemption": {
-      "quantity": 5,
-      "redeemed_quantity": 0,
-      "redemption_entries": [] 
+        "object": "list",
+        "quantity": 0,
+        "data_ref": "redemption_entries",
+        "redeemed_quantity": 0,
+        "redemption_entries": [] 
     },
     "active": true,
     "additional_info": "New voucher",
     "metadata": {
-      "test": true
+        "test": true
     }
 }
 ```
@@ -415,8 +439,34 @@ A voucher is suitable for publication when it's active and hasn't been published
 
 Example:
 
+By campaign name:
+
+```javascript
+voucherify.publish("First Ride")
+    .then(function (result) {
+        console.log(JSON.stringify(result, null, "   "));
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+By object with campaign name:
+
 ```javascript
 voucherify.publish({campaign: "First Ride", channel: "Email", customer: "donny.roll@mail.com"})
+    .then(function (result) {
+        console.log(JSON.stringify(result, null, "   "));
+    })
+    .catch(function (error) {
+        console.error("Error: %s", error);
+    });
+```
+
+By object with voucher code:
+
+```javascript
+voucherify.publish({voucher: "FR-zT-u9I7zG", channel: "Email", customer: "donny.roll@mail.com"})
     .then(function (result) {
         console.log(JSON.stringify(result, null, "   "));
     })
@@ -439,17 +489,22 @@ Result:
    "start_date": "2015-01-01T00:00:00Z",
    "expiration_date": "2016-12-31T23:59:59Z",
    "publish": {
+        "object": "list",
         "count": 1,
+        "data_ref": "entries",
         "entries": [{
             "channel": "Email",
             "customer": "donny.roll@mail.com",
+            "customer_id": "cust_1fnSUBno3iimKTPNDCkjg4xV",
             "published_at": "2016-01-22T09:25:07Z"
         }]
    },
    "redemption": {
-      "quantity": 1,
-      "redeemed_quantity": 0,
-      "redemption_entries": []
+        "object": "list",
+        "quantity": 0,
+        "data_ref": "redemption_entries",
+        "redeemed_quantity": 0,
+        "redemption_entries": []
    },
    "active": true,
    "additional_info": null
@@ -1319,6 +1374,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-10-03** - `1.21.1` - Updated documentation according to changes in Publish API method
 - **2016-09-16** - `1.21.0` - Added method for adding new vouchers to existing campaign
 - **2016-09-15** - `1.20.0` - Added method for deleting vouchers by code
 - **2016-09-01** - `1.19.0` - Documentation for evaluating validation rules based on order details

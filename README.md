@@ -830,9 +830,13 @@ voucherify.redemptions(filter)
 
 #### Rollback a redemption
 
-Use `voucherify.rollback(redemption_id, reason*, callback*)` to revert a redemption.
+Use `voucherify.rollback(redemption_id, options*, callback*)` to revert a redemption.
 It will create a rollback entry in `redemption.redemption_entries` and give 1 redemption back to the pool 
 (decrease `redeemed_quantity` by 1).
+Parameter `options` passed as object supports following attributes:
+- `reason` - reason why rollback is perform
+- `tracking_id` - attribute for tracking customer
+- `customer` - customer id or customer object
  
 Possible errors are:
 - 404 - Resource not found - if voucher with given `redemption_id` doesn't exist
@@ -840,6 +844,50 @@ Possible errors are:
 - 400 - Invalid redemption id - when trying to rollback a rollback.
 
 Example:
+
+Option is a `reason`:
+```javascript
+voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "Wrong user")
+       .then(function (result) {
+           console.log(result);
+       })
+       .catch(function (error) {
+           console.error("Error: %s", error);
+       });
+```
+
+Object which contains following options of `reason`, _customer id_ as `customer`:
+```javascript
+voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", {
+            "reason":       "Wrong user ID",
+            "customer":     "cust_1V6NirOQWUwnkn5JQMTAjthQ",
+        })
+        .then(function (result) {
+           console.log(result);
+        })
+        .catch(function (error) {
+           console.error("Error: %s", error);
+        });
+```
+
+Object which contains customer data:
+* Object customer will upsert customer data if exists or will create new if not.
+```javascript
+voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", {
+            "customer":     {
+                "name": "Alice Morgan",
+                "source_id": "alice.morgan",
+                "email": "alice.morgan@mail.com"
+            },
+        })
+        .then(function (result) {
+           console.log(result);
+        })
+        .catch(function (error) {
+           console.error("Error: %s", error);
+        });
+```
+
 
 ```javascript
 voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "wrong user")
@@ -859,7 +907,7 @@ Result:
     "object": "redemption_rollback",
     "date": "2016-04-25T10:35:02Z",
     "tracking_id": "alice.morgan",
-    "customer_id": null,
+    "customer_id": "cust_1V6NirOQWUwnkn5JQMTAjthQ",
     "redemption": "r_irOQWUTAjthQwnkn5JQM1V6N",
     "reason": "wrong user"
     "voucher": {
@@ -1374,6 +1422,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-10-03** - `1.22.0` - Added customer parameter to the rollback method
 - **2016-10-03** - `1.21.1` - Updated documentation according to changes in Publish API method
 - **2016-09-16** - `1.21.0` - Added method for adding new vouchers to existing campaign
 - **2016-09-15** - `1.20.0` - Added method for deleting vouchers by code

@@ -202,21 +202,30 @@ module.exports = function(options) {
             return handler.promise;
         },
 
-        rollback: function(redemptionId, reason, callback) {
-            if (typeof(reason) === "function") {
-                callback = reason;
-                reason = undefined;
+        rollback: function(redemptionId, data, callback) {
+            if (typeof(data) === "function") {
+                callback = data;
+                data = undefined;
+            }
+
+            var qs = {};
+            var payload = {};
+
+            // If `reason` passed, use it in query string.
+            if (typeof(data) === "string") {
+                qs["reason"] = encodeURIComponent(data);
+            }
+
+            if (typeof(data) === "object") {
+                qs["reason"] = data["reason"] || undefined;
+                qs["tracking_id"] = data["tracking_id"] || undefined;
+                payload["customer"] = data["customer"] || undefined;
             }
 
             var handler = prepare(callback);
             var url = util.format("%s/redemptions/%s/rollback", backendUrl, encodeURIComponent(redemptionId));
 
-            // If `reason` passed, use it in query string.
-            if (typeof(reason) === "string" && reason) {
-                url += "?reason=" + encodeURIComponent(reason);
-            }
-
-            request.post({ url: url, headers: headers, json: true }, handler.callback);
+            request.post({ url: url, headers: headers, qs: qs, body: payload, json: true }, handler.callback);
 
             return handler.promise;
         },

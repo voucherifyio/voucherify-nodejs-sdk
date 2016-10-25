@@ -15,7 +15,11 @@ module.exports = function(options) {
     };
 
     function errorMessage(statusCode, body) {
-        return util.format("Unexpected status code: %d - Details: %j", statusCode, body);
+        body = body || {};
+        body.toString = function() {
+            return util.format("Unexpected status code: %d - Details: %j", statusCode, body);
+        };
+        return body;
     }
 
     function prepare(callback) {
@@ -25,9 +29,7 @@ module.exports = function(options) {
             return {
                 callback: function(error, res, body) {
                     if (error || res.statusCode >= 400) {
-                        var message = errorMessage(res.statusCode, body);
-
-                        callback(error || new Error(message));
+                        callback(error || errorMessage(res.statusCode, body));
                         return;
                     }
 
@@ -39,9 +41,7 @@ module.exports = function(options) {
                 promise: deferred.promise,
                 callback: function(error, res, body) {
                     if (error || res.statusCode >= 400) {
-                        var message = errorMessage(res.statusCode, body);
-
-                        deferred.reject(error || new Error(message));
+                        deferred.reject(error || errorMessage(res.statusCode, body));
                         return;
                     }
 

@@ -1422,6 +1422,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-10-26** - `1.23.0` - Error handling improved - passing error object in response to rejected request
 - **2016-10-03** - `1.22.0` - Added customer parameter to the rollback method
 - **2016-10-03** - `1.21.1` - Updated documentation according to changes in Publish API method
 - **2016-09-16** - `1.21.0` - Added method for adding new vouchers to existing campaign

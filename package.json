@@ -1,6 +1,6 @@
 {
     "name": "voucherify",
-    "version": "1.22.0",
+    "version": "1.23.0",
 
     "homepage": "http://www.voucherify.io",
     "description": "Node.js SDK for Voucherify.",
@@ -20,8 +20,10 @@
 
     "keywords": [
         "voucherify",
-        "vouchers",
         "voucher",
+        "coupon",
+        "gift card",
+        "referral program",
         "sdk",
         "saas"
     ],

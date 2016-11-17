@@ -9,10 +9,17 @@ var backendUrl = "https://api.voucherify.io/v1";
 
 module.exports = function(options) {
     var headers = {
-        "X-App-Id": options.applicationId,
-        "X-App-Token": options.clientSecretKey,
+        "X-App-Id": requiredOption("applicationId"),
+        "X-App-Token": requiredOption("clientSecretKey"),
         "X-Voucherify-Channel": "Node.js-SDK"
     };
+
+    function requiredOption(name) {
+        if (!options[name]) {
+            throw new Error("Missing required option '" + name + "'");
+        }
+        return options[name];
+    }
 
     function errorMessage(statusCode, body) {
         body = body || {};

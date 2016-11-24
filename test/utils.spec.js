@@ -1,5 +1,5 @@
 /* global describe, it, expect */
-var utils = require('../utils.js')
+var utils = require('../src/utils.js')
 
 describe('utils', function () {
   // ------ calculateDiscount ------ //

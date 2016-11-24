@@ -5,7 +5,7 @@
   "description": "Node.js SDK for Voucherify.",
   "author": "rspective",
   "license": "MIT",
-  "main": "voucherify.js",
+  "main": "./src/voucherify.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/rspective/voucherify-nodejs-sdk.git"

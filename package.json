@@ -32,7 +32,7 @@
     "standard": "^8.6.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node ./test",
+    "test": "jasmine-node ./test",
     "lint": "standard"
   }
 }

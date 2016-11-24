@@ -22,12 +22,12 @@ Full documentation is located at [voucherify.readme.io](https://voucherify.readm
 ![](https://www.filepicker.io/api/file/WKYkl2bSAWKHccEN9tEG)
 
 ```javascript
-const voucherifyClient = require("voucherify");
+const voucherifyClient = require("voucherify")
 
 const voucherify = voucherifyClient({
     applicationId: "YOUR-APPLICATION-ID-OBTAINED-FROM-CONFIGURATION",
     clientSecretKey: "YOUR-CLIENT-SECRET-KEY-OBTAINED-FROM-CONFIGURATION"
-});
+})
 ```
 
 
@@ -40,11 +40,11 @@ If you want to use callbacks just pass them as a last parameter. For example:
 voucherify.get("v1GiJYuuS", function(error, result) {
     if (error) {
         // handle error
-        return;
+        return
     }
 
     // do the work
-});
+})
 ```
 
 If you prefer to use promises then the code goes like this:
@@ -52,11 +52,11 @@ If you prefer to use promises then the code goes like this:
 ```javascript
 voucherify.get("v1GiJYuuS")
     .then(function (result) {
-        console.log(result);
+        console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 All other examples in the readme use promises but they could be as well written with callbacks.
@@ -80,11 +80,11 @@ Example:
 ```javascript
 voucherify.list({limit: 10, skip: 20, category: "API Test"})
     .then(function(vouchers) {
-        console.log(vouchers);
+        console.log(vouchers)
     })
     .catch(function(error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -156,11 +156,11 @@ Example:
 ```javascript
 voucherify.get("v1GiJYuuS")
     .then(function (result) {
-        console.log(result);
+        console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -229,11 +229,11 @@ Example:
         expiration_date: "2016-12-31T23:59:59Z"
     })    
     .then(function (result) {
-         console.log(result);
+         console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 #### Updating a voucher
@@ -260,11 +260,11 @@ Example:
         expiration_date: "2017-07-31T23:59:59Z"
     })    
     .then(function (result) {
-         console.log(result);
+         console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 #### Add voucher to existing Campaign
@@ -291,11 +291,11 @@ const payload = {
 
 voucherify.campaign.voucher.create("Campaign-Name", payload)
        .then(function (result) {
-           console.log(result);
+           console.log(result)
        })
        .catch(function (error) {
-           console.error("Error: %s", error);
-       });
+           console.error("Error: %s", error)
+       })
 ```
 
 Result:
@@ -342,11 +342,11 @@ Example:
 ```javascript
     voucherify.delete("v1GiJYuuS", { force: true })    
     .then(function (result) {
-         console.log("Voucher deleted.");
+         console.log("Voucher deleted.")
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -362,11 +362,11 @@ Example:
 ```javascript
     voucherify.disable("v1GiJYuuS")    
     .then(function (result) {
-         console.log("Voucher disabled.");
+         console.log("Voucher disabled.")
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -383,11 +383,11 @@ Example:
 ```javascript
     voucherify.enable("v1GiJYuuS")    
     .then(function (result) {
-         console.log("Voucher enabled.");
+         console.log("Voucher enabled.")
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -404,11 +404,11 @@ Example:
 ```javascript
 voucherify.redemption("v1GiJYuuS")
     .then(function (result) {
-        console.log(result);
+        console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -446,11 +446,11 @@ By campaign name:
 ```javascript
 voucherify.publish("First Ride")
     .then(function (result) {
-        console.log(JSON.stringify(result, null, "   "));
+        console.log(JSON.stringify(result, null, "   "))
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 By object with campaign name:
@@ -458,11 +458,11 @@ By object with campaign name:
 ```javascript
 voucherify.publish({campaign: "First Ride", channel: "Email", customer: "donny.roll@mail.com"})
     .then(function (result) {
-        console.log(JSON.stringify(result, null, "   "));
+        console.log(JSON.stringify(result, null, "   "))
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 By object with voucher code:
@@ -470,11 +470,11 @@ By object with voucher code:
 ```javascript
 voucherify.publish({voucher: "FR-zT-u9I7zG", channel: "Email", customer: "donny.roll@mail.com"})
     .then(function (result) {
-        console.log(JSON.stringify(result, null, "   "));
+        console.log(JSON.stringify(result, null, "   "))
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -596,11 +596,11 @@ Example:
 ```javascript
 voucherify.redeem("v1GiJYuuS")
     .then(function (result) {
-        console.log(result);
+        console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result (voucher details after redemption):
@@ -664,11 +664,11 @@ You can provide a tracking id (e.g. your customer's login or a generated id) to 
 ```javascript
 voucherify.redeem("v1GiJYuuS", "alice.morgan")
     .then(function (result) {
-        console.log(result);
+        console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 Result:
@@ -741,11 +741,11 @@ voucherify.redeem({
         }
     })
     .then(function (result) {
-        console.log(result);
+        console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 
@@ -760,11 +760,11 @@ voucherify.redeem({
         id: "cust_C9qJ3xKgZFqkpMw7b21MF2ow"
     })
     .then(function (result) {
-        console.log(result);
+        console.log(result)
     })
     .catch(function (error) {
-        console.error("Error: %s", error);
-    });
+        console.error("Error: %s", error)
+    })
 ```
 
 ##### 5. With order amount
@@ -818,15 +818,15 @@ const filter = {
     start_date: "2016-04-01T00:00:00",
     end_date: "2016-04-30T23:59:59",
     result: "Success"
-};
+}
 
 voucherify.redemptions(filter)
        .then(function (result) {
-           console.log(result);
+           console.log(result)
        })
        .catch(function (error) {
-           console.error("Error: %s", error);
-       });
+           console.error("Error: %s", error)
+       })
 ```
 
 
@@ -851,11 +851,11 @@ Option is a `reason`:
 ```javascript
 voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "Wrong user")
        .then(function (result) {
-           console.log(result);
+           console.log(result)
        })
        .catch(function (error) {
-           console.error("Error: %s", error);
-       });
+           console.error("Error: %s", error)
+       })
 ```
 
 Object which contains following options of `reason`, _customer id_ as `customer`:
@@ -865,11 +865,11 @@ voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", {
             "customer":     "cust_1V6NirOQWUwnkn5JQMTAjthQ",
         })
         .then(function (result) {
-           console.log(result);
+           console.log(result)
         })
         .catch(function (error) {
-           console.error("Error: %s", error);
-        });
+           console.error("Error: %s", error)
+        })
 ```
 
 Object which contains customer data:
@@ -883,22 +883,22 @@ voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", {
             },
         })
         .then(function (result) {
-           console.log(result);
+           console.log(result)
         })
         .catch(function (error) {
-           console.error("Error: %s", error);
-        });
+           console.error("Error: %s", error)
+        })
 ```
 
 
 ```javascript
 voucherify.rollback("r_irOQWUTAjthQwnkn5JQM1V6N", "wrong user")
        .then(function (result) {
-           console.log(result);
+           console.log(result)
        })
        .catch(function (error) {
-           console.error("Error: %s", error);
-       });
+           console.error("Error: %s", error)
+       })
 ```
 
 Result:
@@ -979,11 +979,11 @@ const payload = {
 
 voucherify.customer.create(payload)
        .then(function (result) {
-           console.log(result);
+           console.log(result)
        })
        .catch(function (error) {
-           console.error("Error: %s", error);
-       });
+           console.error("Error: %s", error)
+       })
 ```
 
 Result:
@@ -1013,11 +1013,11 @@ const customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
 
 voucherify.customer.get(customerId)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1055,11 +1055,11 @@ const payload = {
 
 voucherify.customer.update(payload)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1090,11 +1090,11 @@ const customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
 
 voucherify.customer.delete(customerId)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1120,11 +1120,11 @@ const payload = {
 
 voucherify.product.create(payload)
        .then(function (result) {
-           console.log(result);
+           console.log(result)
        })
        .catch(function (error) {
-           console.error("Error: %s", error);
-       });
+           console.error("Error: %s", error)
+       })
 ```
 
 Result:
@@ -1160,11 +1160,11 @@ const productId = "prod_YWnt2mNigm76oA"
 
 voucherify.product.get(productId)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1217,11 +1217,11 @@ const payload = {
 
 voucherify.product.update(payload)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1257,11 +1257,11 @@ const productId = "prod_YWnt2mNigm76oA"
 
 voucherify.product.delete(productId)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1275,7 +1275,7 @@ Result:
 Example:
 
 ```javascript
-const productId = "prod_e8uLMegXZJ4GGS";
+const productId = "prod_e8uLMegXZJ4GGS"
 
 const sku = {
     sku: "APPLE_IPHONE_6_BLACK",
@@ -1285,15 +1285,15 @@ const sku = {
       color: "BLACK",
       memory: "16GB"
     }
-};
+}
 
 voucherify.product.sku.create(productId, payload)
        .then(function (result) {
-           console.log(result);
+           console.log(result)
        })
        .catch(function (error) {
-           console.error("Error: %s", error);
-       });
+           console.error("Error: %s", error)
+       })
 ```
 
 Result:
@@ -1314,17 +1314,17 @@ Result:
 Example:
 
 ```javascript
-const productId = "prod_YWnt2mNigm76oA";
+const productId = "prod_YWnt2mNigm76oA"
 
-const skuId = "sku_JXYGfsGbpvsfjv";
+const skuId = "sku_JXYGfsGbpvsfjv"
 
 voucherify.product.sku.get(productId, skuId)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1351,20 +1351,20 @@ const sku = {
     "sku": "APPLE_IPHONE_6_BLACK",
     "created_at": "2016-08-02T16:43:47Z",
     "object": "sku"
-};
+}
 
-sku.currency    = "EUR";
-sku.price       = 1000;
+sku.currency    = "EUR"
+sku.price       = 1000
 
-const productId = sku.product_id;
+const productId = sku.product_id
 
 voucherify.product.sku.update(productId, sku)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1388,17 +1388,17 @@ Example:
 
 ```javascript
 
-const productId = "prod_e8uLMegXZJ4GGS";
+const productId = "prod_e8uLMegXZJ4GGS"
 
-const skuId = "sku_JXYGfsGbpvsfjv";
+const skuId = "sku_JXYGfsGbpvsfjv"
 
 voucherify.product.sku.delete(productId, skuId)
    .then(function (result) {
-       console.log(result);
+       console.log(result)
    })
    .catch(function (error) {
-       console.error("Error: %s", error);
-   });
+       console.error("Error: %s", error)
+   })
 ```
 
 Result:
@@ -1412,15 +1412,15 @@ Result:
 #### Usage
 
 ```
-const utils = require('voucherify/utils');
+const utils = require('voucherify/utils')
 ```
 
 Utils don't need callbacks or promises. They return results immediately.
 
 #### Available methods
 
-- `utils.calculatePrice(basePrice, voucher);`
-- `utils.calculateDiscount(basePrice, voucher);`
+- `utils.calculatePrice(basePrice, voucher)`
+- `utils.calculateDiscount(basePrice, voucher)`
 
 ### Changelog
 

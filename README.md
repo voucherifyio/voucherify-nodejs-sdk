@@ -1,5 +1,7 @@
 ## Voucherify Node.js SDK
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 [Voucherify](http://voucherify.io?utm_source=github&utm_medium=sdk&utm_campaign=acq) is an API-first platform for software developers who are dissatisfied with high-maintenance custom coupon software. Our product is a coupon infrastructure through API that provides a quicker way to build coupon generation, distribution and tracking. Unlike legacy coupon software we have:
 
 * an API-first SaaS platform that enables customisation of every aspect of coupon campaigns
@@ -46,7 +48,7 @@ voucherify.get("v1GiJYuuS", function(error, result) {
 ```
 
 If you prefer to use promises then the code goes like this:
- 
+
 ```javascript
 voucherify.get("v1GiJYuuS")
     .then(function (result) {
@@ -207,8 +209,8 @@ You can define how to generate the code in `code_config` including following pro
 - `prefix` - A text appended before the code.
 - `postfix` - A text appended after the code.
 - `pattern` - A pattern for codes where hashes (#) will be replaced with random characters. Overrides `length`.
-  
-Example: 
+
+Example:
 
 ```javascript
     voucherify.create({
@@ -248,7 +250,7 @@ You can modify following fields:
 
 Other fields than listed above won't be modified. Even if provided they will be silently skipped.
 
-Example: 
+Example:
 
 ```javascript
     voucherify.update({
@@ -319,7 +321,7 @@ Result:
         "quantity": 0,
         "data_ref": "redemption_entries",
         "redeemed_quantity": 0,
-        "redemption_entries": [] 
+        "redemption_entries": []
     },
     "active": true,
     "additional_info": "New voucher",
@@ -335,7 +337,7 @@ Result:
 
 In param object you can pass `force` flag which tells whether voucher will be removed permanently. It means that afterwards user will be able to create next voucher with the same code.
 
-Example: 
+Example:
 
 ```javascript
     voucherify.delete("v1GiJYuuS", { force: true })    
@@ -355,7 +357,7 @@ Result:
 
 `voucherify.disable(voucher_code, callback*)`
 
-Example: 
+Example:
 
 ```javascript
     voucherify.disable("v1GiJYuuS")    
@@ -376,7 +378,7 @@ Result:
 
 `voucherify.enable(voucher_code, callback*)`
 
-Example: 
+Example:
 
 ```javascript
     voucherify.enable("v1GiJYuuS")    
@@ -526,9 +528,9 @@ Validation lets you check if given voucher code can be successfully redeemed.
 
 `voucherify.validate(code, context)`
 
-The `context` param is generally optional unless you are validating a gift voucher or a voucher with order validation rules. 
+The `context` param is generally optional unless you are validating a gift voucher or a voucher with order validation rules.
 For gift voucher you have to pass `order.amount` expressed in cents (e.g. $10 is 1000).
-Validation rules also require to pass `order.items` as a list of objects including `product_id`, `sku_id` and `quantity`. 
+Validation rules also require to pass `order.items` as a list of objects including `product_id`, `sku_id` and `quantity`.
 
 Example:
 
@@ -557,7 +559,7 @@ Successful validation result:
     valid: true,
     gift: {
         amount: 10000
-    }, 
+    },
     tracking_id: "john@lemon.com"
 }
 ```
@@ -721,7 +723,7 @@ Result:
 
 ##### 3. With customer profile
 
-You can record a detailed customer profile consisting of a `source_id`, `name`, `email`, `description` and a `metadata` section that can include any data you wish. 
+You can record a detailed customer profile consisting of a `source_id`, `name`, `email`, `description` and a `metadata` section that can include any data you wish.
 Voucherify will create (or update) provided customer profile in its database.
 
 ```javascript
@@ -749,7 +751,7 @@ voucherify.redeem({
 
 ##### 4. With customer id
 
-If you already created a customer profile in Voucherify's database, whether it was implicitly by providing it to the `redeem` function or explicitly by invoking the [`customer.create`](#create-customer) method, you can identify your customer in following redemptions by a generated id (starting with `cust_`). 
+If you already created a customer profile in Voucherify's database, whether it was implicitly by providing it to the `redeem` function or explicitly by invoking the [`customer.create`](#create-customer) method, you can identify your customer in following redemptions by a generated id (starting with `cust_`).
 
 ```javascript
 voucherify.redeem({
@@ -802,7 +804,7 @@ Filter parameters:
 
 - limit (default: 100)
 - page (default: 0)
-- start_date (default: beginning of current month) 
+- start_date (default: beginning of current month)
 - end_date (default: end of current month)
 - result - Success | Failure-NotExist | Failure-Inactive
 - customer
@@ -831,13 +833,13 @@ voucherify.redemptions(filter)
 #### Rollback a redemption
 
 Use `voucherify.rollback(redemption_id, options*, callback*)` to revert a redemption.
-It will create a rollback entry in `redemption.redemption_entries` and give 1 redemption back to the pool 
+It will create a rollback entry in `redemption.redemption_entries` and give 1 redemption back to the pool
 (decrease `redeemed_quantity` by 1).
 Parameter `options` passed as object supports following attributes:
 - `reason` - reason why rollback is perform
 - `tracking_id` - attribute for tracking customer
 - `customer` - customer id or customer object
- 
+
 Possible errors are:
 - 404 - Resource not found - if voucher with given `redemption_id` doesn't exist
 - 400 - Already rolled back - if redemption with given `redemption_id` has been rolled back already
@@ -1111,7 +1113,7 @@ var payload = {
       "color",
       "memory"
     ],
-    "metadata": { 
+    "metadata": {
         "type": "normal"
     }
 }
@@ -1128,7 +1130,7 @@ voucherify.product.create(payload)
 Result:
 
 ```json
-{ 
+{
   "id": "prod_YWnt2mNigm76oA",
   "object": "product",
   "name": "Apple iPhone 6",
@@ -1136,15 +1138,15 @@ Result:
     "color",
     "memory"
   ],
-  "metadata": { 
+  "metadata": {
     "type": "normal"
   },
   "created_at": "2016-07-29T13:15:24Z",
-  "skus": { 
-    "object": "list", 
-    "total": 0, 
-    "data": [] 
-  } 
+  "skus": {
+    "object": "list",
+    "total": 0,
+    "data": []
+  }
 }
 ```
 
@@ -1168,7 +1170,7 @@ voucherify.product.get(productId)
 Result:
 
 ```json
-{ 
+{
   "id": "prod_YWnt2mNigm76oA",
   "object": "product",
   "name": "Apple iPhone 6",
@@ -1176,14 +1178,14 @@ Result:
     "color",
     "memory"
   ],
-  "metadata": { 
+  "metadata": {
     "type": "normal"
   },
   "created_at": "2016-07-29T13:15:24Z",
-  "skus": { 
-    "object": "list", 
-    "total": 0, 
-    "data": [] 
+  "skus": {
+    "object": "list",
+    "total": 0,
+    "data": []
   }  
 }
 ```
@@ -1194,7 +1196,7 @@ Result:
 Example:
 
 ```javascript
-var payload = { 
+var payload = {
     "id": "prod_YWnt2mNigm76oA",
     "object": "product",
     "name": "Apple iPhone 6",
@@ -1202,15 +1204,15 @@ var payload = {
       "color",
       "memory"
     ],
-    "metadata": { 
+    "metadata": {
       "type": "ultra premium"
     },
     "created_at": "2016-07-29T13:15:24Z",
-    "skus": { 
-      "object": "list", 
-      "total": 0, 
-      "data": [] 
-    } 
+    "skus": {
+      "object": "list",
+      "total": 0,
+      "data": []
+    }
 }
 
 voucherify.product.update(payload)
@@ -1225,7 +1227,7 @@ voucherify.product.update(payload)
 Result:
 
 ```json
-{ 
+{
     "id": "prod_YWnt2mNigm76oA",
     "object": "product",
     "name": "Apple iPhone 6",
@@ -1233,15 +1235,15 @@ Result:
       "color",
       "memory"
     ],
-    "metadata": { 
+    "metadata": {
         "type": "ultra premium"
     },
     "created_at": "2016-07-29T13:15:24Z",
-    "skus": { 
-      "object": "list", 
-      "total": 0, 
-      "data": [] 
-    } 
+    "skus": {
+      "object": "list",
+      "total": 0,
+      "data": []
+    }
 }
 ```
 
@@ -1413,7 +1415,7 @@ Result:
 var utils = require('voucherify/utils');
 ```
 
-Utils don't need callbacks or promises. They return results immediately. 
+Utils don't need callbacks or promises. They return results immediately.
 
 #### Available methods
 
@@ -1460,7 +1462,7 @@ Utils don't need callbacks or promises. They return results immediately.
 - **2016-04-07** - `1.8.0` - List redemptions with filtering.
 - **2016-04-04** - `1.7.1` - Updated API URL.
 - **2016-03-08** - `1.7.0` - List vouchers with filtering.
-- **2016-01-22** - `1.6.0` - Added publish voucher method. 
+- **2016-01-22** - `1.6.0` - Added publish voucher method.
 - **2015-12-10** - `1.5.0` - New discount model. Added UNIT - a new discount type.
 - **2015-11-23** - `1.4.1` - Added `X-Voucherify-Channel` header.
 - **2015-11-10** - `1.4.0` - Add `VoucherifyUtils` which includes `calculatePrice` for computing product/cart price

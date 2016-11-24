@@ -5,7 +5,7 @@
   "description": "Node.js SDK for Voucherify.",
   "author": "rspective",
   "license": "MIT",
-  "main": "./src/voucherify.js",
+  "main": "./lib/voucherify.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/rspective/voucherify-nodejs-sdk.git"
@@ -28,11 +28,15 @@
     "when": "~3.7.3"
   },
   "devDependencies": {
+    "babel-preset-es2016": "^6.16.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "jasmine-node": "~1.14.5",
     "standard": "^8.6.0"
   },
   "scripts": {
     "test": "jasmine-node ./test",
-    "lint": "standard"
+    "lint": "standard",
+    "prepublish": "gulp release"
   }
 }

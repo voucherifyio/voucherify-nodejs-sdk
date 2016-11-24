@@ -1,95 +1,28 @@
 'use strict'
 
-const util = require('util')
-
-const request = require('request')
-const when = require('when')
-
-const backendUrl = 'https://api.voucherify.io/v1'
+const ApiClient = require('./ApiClient')
 
 module.exports = function (options) {
-  const headers = {
-    'X-App-Id': requiredOption('applicationId'),
-    'X-App-Token': requiredOption('clientSecretKey'),
-    'X-Voucherify-Channel': 'Node.js-SDK'
-  }
-
-  function requiredOption (name) {
-    if (!options[name]) {
-      throw new Error(`Missing required option '${name}'`)
-    }
-    return options[name]
-  }
-
-  function errorMessage (statusCode, body) {
-    body = body || {}
-    body.toString = function () {
-      return util.format('Unexpected status code: %d - Details: %j', statusCode, body)
-    }
-    return body
-  }
-
-  function prepare (callback) {
-    const deferred = when.defer()
-
-    if (typeof (callback) === 'function') {
-      return {
-        callback: function (error, res, body) {
-          if (error || res.statusCode >= 400) {
-            callback(error || errorMessage(res.statusCode, body))
-            return
-          }
-
-          callback(null, body)
-        }
-      }
-    } else {
-      return {
-        promise: deferred.promise,
-        callback: function (error, res, body) {
-          if (error || res.statusCode >= 400) {
-            deferred.reject(error || errorMessage(res.statusCode, body))
-            return
-          }
-
-          deferred.resolve(body)
-        }
-      }
-    }
-  }
+  const client = new ApiClient(options)
 
   return {
     /*
     *  List vouchers. Sample query: { limit: 100, skip: 200, category: 'Loyalty' }
     */
-    list: function (query, callback) {
-      const url = util.format('%s/vouchers/', backendUrl)
-      const handler = prepare(callback)
-
-      request.get({ url: url, qs: query, headers: headers, json: true }, handler.callback)
-
-      return handler.promise
+    list: (query, callback) => {
+      return client.get('/vouchers/', query, callback)
     },
 
-    get: function (code, callback) {
-      const url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(code))
-      const handler = prepare(callback)
-
-      request.get({ url: url, headers: headers, json: true }, handler.callback)
-
-      return handler.promise
+    get: (code, callback) => {
+      return client.get(`/vouchers/${encodeURIComponent(code)}`, null, callback)
     },
 
-    create: function (voucher, callback) {
-      const url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucher.code || ''))
-      const handler = prepare(callback)
-
-      request.post({ url: url, headers: headers, json: voucher }, handler.callback)
-
-      return handler.promise
+    create: (voucher, callback) => {
+      const code = voucher.code || ''
+      return client.post(`/vouchers/${encodeURIComponent(code)}`, voucher, callback)
     },
 
-    delete: function (voucherCode, params, callback) {
+    delete: (voucherCode, params, callback) => {
       if (typeof (params) === 'undefined') {
         params = {}
       }
@@ -99,44 +32,29 @@ module.exports = function (options) {
         params = {}
       }
 
-      let url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucherCode || ''))
-      if (params.force) { url += '?force=true' }
+      const code = voucherCode || ''
+      let path = `/vouchers/${encodeURIComponent(code)}`
+      if (params.force) {
+        path += '?force=true'
+      }
 
-      const handler = prepare(callback)
-
-      request.del({ url: url, headers: headers }, handler.callback)
-
-      return handler.promise
+      return client.delete(path, callback)
     },
 
-    update: function (voucher, callback) {
-      const url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucher.code))
-      const handler = prepare(callback)
-
-      request.put({ url: url, headers: headers, json: voucher }, handler.callback)
-
-      return handler.promise
+    update: (voucher, callback) => {
+      const code = voucher.code || ''
+      return client.put(`/vouchers/${encodeURIComponent(code)}`, voucher, callback)
     },
 
-    enable: function (code, callback) {
-      const url = util.format('%s/vouchers/%s/enable', backendUrl, encodeURIComponent(code))
-      const handler = prepare(callback)
-
-      request.post({ url: url, headers: headers, json: true }, handler.callback)
-
-      return handler.promise
+    enable: (code, callback) => {
+      return client.post(`/vouchers/${encodeURIComponent(code)}/enable`, null, callback)
     },
 
-    disable: function (code, callback) {
-      const url = util.format('%s/vouchers/%s/disable', backendUrl, encodeURIComponent(code))
-      const handler = prepare(callback)
-
-      request.post({ url: url, headers: headers, json: true }, handler.callback)
-
-      return handler.promise
+    disable: (code, callback) => {
+      return client.post(`/vouchers/${encodeURIComponent(code)}/disable`, null, callback)
     },
 
-    validate: function (code, context, callback) {
+    validate: (code, context, callback) => {
       if (typeof (context) === 'undefined') {
         context = {}
       }
@@ -146,21 +64,11 @@ module.exports = function (options) {
         context = {}
       }
 
-      const handler = prepare(callback)
-      const url = util.format('%s/vouchers/%s/validate', backendUrl, encodeURIComponent(code))
-
-      request.post({ url: url, headers: headers, json: context }, handler.callback)
-
-      return handler.promise
+      return client.post(`/vouchers/${encodeURIComponent(code)}/validate`, context, callback)
     },
 
-    redemption: function (code, callback) {
-      const url = util.format('%s/vouchers/%s/redemption', backendUrl, encodeURIComponent(code))
-      const handler = prepare(callback)
-
-      request.get({ url: url, headers: headers, json: true }, handler.callback)
-
-      return handler.promise
+    redemption: (code, callback) => {
+      return client.get(`/vouchers/${encodeURIComponent(code)}/redemption`, null, callback)
     },
 
     /*
@@ -173,16 +81,11 @@ module.exports = function (options) {
     *      result: 'Success'
     *  }
     */
-    redemptions: function (query, callback) {
-      const url = util.format('%s/redemptions/', backendUrl)
-      const handler = prepare(callback)
-
-      request.get({ url: url, qs: query, headers: headers, json: true }, handler.callback)
-
-      return handler.promise
+    redemptions: (query, callback) => {
+      return client.get('/redemptions/', query, callback)
     },
 
-    redeem: function (code, trackingId, callback) {
+    redeem: (code, trackingId, callback) => {
       let context = {}
       if (typeof (code) === 'object') {
         context = code
@@ -196,20 +99,16 @@ module.exports = function (options) {
         trackingId = undefined
       }
 
-      const handler = prepare(callback)
-      let url = util.format('%s/vouchers/%s/redemption', backendUrl, encodeURIComponent(code))
-
+      let url = `/vouchers/${encodeURIComponent(code)}/redemption`
       // If `tracking_id` passed, use it in query string.
       if (typeof (trackingId) === 'string' && trackingId) {
-        url += '?tracking_id=' + encodeURIComponent(trackingId)
+        url += `?tracking_id=${encodeURIComponent(trackingId)}`
       }
 
-      request.post({ url: url, headers: headers, json: context }, handler.callback)
-
-      return handler.promise
+      return client.post(url, context, callback)
     },
 
-    rollback: function (redemptionId, data, callback) {
+    rollback: (redemptionId, data, callback) => {
       if (typeof (data) === 'function') {
         callback = data
         data = undefined
@@ -229,157 +128,98 @@ module.exports = function (options) {
         payload['customer'] = data['customer'] || undefined
       }
 
-      const handler = prepare(callback)
-      const url = util.format('%s/redemptions/%s/rollback', backendUrl, encodeURIComponent(redemptionId))
-
-      request.post({ url: url, headers: headers, qs: qs, body: payload, json: true }, handler.callback)
-
-      return handler.promise
+      return client.post(
+        `/redemptions/${encodeURIComponent(redemptionId)}/rollback`,
+        payload, callback, {qs}
+      )
     },
 
     publish: function (campaignName, callback) {
-      let url = util.format('%s/vouchers/publish', backendUrl)
+      let path = '/vouchers/publish'
       let payload = {}
       if (typeof (campaignName) === 'string') {
-        url += '?campaign=' + encodeURIComponent(campaignName)
+        path += '?campaign=' + encodeURIComponent(campaignName)
       }
       if (typeof (campaignName) === 'object') {
         payload = campaignName
       }
-      const handler = prepare(callback)
 
-      request.post({ url: url, headers: headers, json: payload }, handler.callback)
-
-      return handler.promise
+      return client.post(path, payload, callback)
     },
 
     campaign: {
       voucher: {
-        create: function (campaignName, voucher, callback) {
-          const url = util.format('%s/campaigns/%s/vouchers', backendUrl, encodeURIComponent(campaignName || ''))
-          const handler = prepare(callback)
-
-          request.post({ url: url, headers: headers, json: voucher || {} }, handler.callback)
-
-          return handler.promise
+        create: (campaignName, voucher, callback) => {
+          return client.post(
+            `/campaigns/${encodeURIComponent(campaignName || '')}/vouchers`,
+            // TODO if voucher is optional, secure against callback version
+            voucher || {},
+            callback
+          )
         }
       }
     },
 
     customer: {
-      create: function (customer, callback) {
-        const url = util.format('%s/customers', backendUrl)
-        const handler = prepare(callback)
-
-        request.post({ url: url, headers: headers, json: customer }, handler.callback)
-
-        return handler.promise
+      create: (customer, callback) => {
+        return client.post('/customers', customer, callback)
       },
 
-      get: function (customerId, callback) {
-        const url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customerId || ''))
-        const handler = prepare(callback)
-
-        request.get({ url: url, headers: headers, json: true }, handler.callback)
-
-        return handler.promise
+      get: (customerId, callback) => {
+        // TODO why fallback to empty string ?! shall we rather throw an error? print warning?
+        return client.get(`/customers/${encodeURIComponent(customerId || '')}`, null, callback)
       },
 
       update: function (customer, callback) {
-        const url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customer.id || ''))
-        const handler = prepare(callback)
-
-        request.put({ url: url, headers: headers, json: customer }, handler.callback)
-
-        return handler.promise
+        return client.put(`/customers/${encodeURIComponent(customer.id || '')}`, customer, callback)
       },
 
       delete: function (customerId, callback) {
-        const url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customerId || ''))
-        const handler = prepare(callback)
-
-        request.del({ url: url, headers: headers }, handler.callback)
-
-        return handler.promise
+        return client.delete(`/customers/${encodeURIComponent(customerId || '')}`, callback)
       }
     },
 
     product: {
       create: function (product, callback) {
-        const url = util.format('%s/products', backendUrl)
-        const handler = prepare(callback)
-
-        request.post({ url: url, headers: headers, json: product }, handler.callback)
-
-        return handler.promise
+        return client.post('/products', product, callback)
       },
 
       get: function (productId, callback) {
-        const url = util.format('%s/products/%s', backendUrl, encodeURIComponent(productId || ''))
-        const handler = prepare(callback)
-
-        request.get({ url: url, headers: headers }, handler.callback)
-
-        return handler.promise
+        return client.get(`/products/${encodeURIComponent(productId || '')}`, null, callback)
       },
 
       update: function (product, callback) {
-        const url = util.format('%s/products/%s', backendUrl, encodeURIComponent(product.id || ''))
-        const handler = prepare(callback)
-
-        request.put({ url: url, headers: headers, json: product }, handler.callback)
-
-        return handler.promise
+        return client.put(`/products/${encodeURIComponent(product.id || '')}`, product, callback)
       },
 
       delete: function (productId, callback) {
-        const url = util.format('%s/products/%s', backendUrl, encodeURIComponent(productId || ''))
-        const handler = prepare(callback)
-
-        request.del({ url: url, headers: headers }, handler.callback)
-
-        return handler.promise
+        return client.delete(`/products/${encodeURIComponent(productId || '')}`, callback)
       },
 
       sku: {
         create: function (productId, sku, callback) {
-          const url = util.format('%s/products/%s/skus', backendUrl,
-          encodeURIComponent(productId || ''))
-          const handler = prepare(callback)
-
-          request.post({ url: url, headers: headers, json: sku }, handler.callback)
-
-          return handler.promise
+          return client.post(`/products/${encodeURIComponent(productId || '')}/skus`, sku, callback)
         },
 
         get: function (productId, skuId, callback) {
-          const url = util.format('%s/products/%s/skus/%s', backendUrl,
-          encodeURIComponent(productId || ''), encodeURIComponent(skuId || ''))
-          const handler = prepare(callback)
-
-          request.get({ url: url, headers: headers }, handler.callback)
-
-          return handler.promise
+          return client.get(
+            `/products/${encodeURIComponent(productId || '')}/skus/${encodeURIComponent(skuId || '')}`,
+            null, callback
+          )
         },
 
         update: function (productId, sku, callback) {
-          const url = util.format('%s/products/%s/skus/%s', backendUrl,
-          encodeURIComponent(productId || ''), encodeURIComponent(sku.id || ''))
-          const handler = prepare(callback)
-
-          request.put({ url: url, headers: headers, json: sku }, handler.callback)
-
-          return handler.promise
+          return client.put(
+            `/products/${encodeURIComponent(productId || '')}/skus/${encodeURIComponent(sku.id || '')}`,
+            sku, callback
+          )
         },
 
         delete: function (productId, skuId, callback) {
-          const url = util.format('%s/products/%s/skus/%s', backendUrl,
-          encodeURIComponent(productId || ''), encodeURIComponent(skuId || ''))
-          const handler = prepare(callback)
-
-          request.del({ url: url, headers: headers }, handler.callback)
-
-          return handler.promise
+          return client.delete(
+            `/products/${encodeURIComponent(productId || '')}/skus/${encodeURIComponent(skuId || '')}`,
+            callback
+          )
         }
       }
     }

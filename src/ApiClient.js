@@ -60,29 +60,31 @@ module.exports = class ApiClient {
       url: this.prepareUrl(path),
       qs,
       headers: this.headers,
-      json: true // TODO check that !!!!
+      json: true
     }, handler.callback)
 
     return handler.promise
   }
 
-  post (path, json, callback, options = {}) {
+  post (path, body, callback, options = {}) {
     const handler = prepare(callback)
     request.get(Object.assign({
       url: this.prepareUrl(path),
       headers: this.headers,
-      json: json || true
+      body,
+      json: true
     }, options), handler.callback)
 
     return handler.promise
   }
 
-  put (path, json, callback) {
+  put (path, body, callback) {
     const handler = prepare(callback)
     request.put({
       url: this.prepareUrl(path),
       headers: this.headers,
-      json
+      body,
+      json: true
     }, handler.callback)
 
     return handler.promise

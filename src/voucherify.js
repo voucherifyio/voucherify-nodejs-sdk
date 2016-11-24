@@ -8,6 +8,10 @@ const assertOption = (options, name) => {
   }
 }
 
+const encode = (value = '') => {
+  return encodeURIComponent(value)
+}
+
 module.exports = function (options) {
   assertOption(options, 'applicationId')
   assertOption(options, 'clientSecretKey')
@@ -23,12 +27,11 @@ module.exports = function (options) {
     },
 
     get: (code, callback) => {
-      return client.get(`/vouchers/${encodeURIComponent(code)}`, null, callback)
+      return client.get(`/vouchers/${encode(code)}`, null, callback)
     },
 
     create: (voucher, callback) => {
-      const code = voucher.code || ''
-      return client.post(`/vouchers/${encodeURIComponent(code)}`, voucher, callback)
+      return client.post(`/vouchers/${encode(voucher.code)}`, voucher, callback)
     },
 
     delete: (voucherCode, params, callback) => {
@@ -41,8 +44,7 @@ module.exports = function (options) {
         params = {}
       }
 
-      const code = voucherCode || ''
-      let path = `/vouchers/${encodeURIComponent(code)}`
+      let path = `/vouchers/${encode(voucherCode)}`
       if (params.force) {
         path += '?force=true'
       }
@@ -51,16 +53,15 @@ module.exports = function (options) {
     },
 
     update: (voucher, callback) => {
-      const code = voucher.code || ''
-      return client.put(`/vouchers/${encodeURIComponent(code)}`, voucher, callback)
+      return client.put(`/vouchers/${encode(voucher.code)}`, voucher, callback)
     },
 
     enable: (code, callback) => {
-      return client.post(`/vouchers/${encodeURIComponent(code)}/enable`, null, callback)
+      return client.post(`/vouchers/${encode(code)}/enable`, null, callback)
     },
 
     disable: (code, callback) => {
-      return client.post(`/vouchers/${encodeURIComponent(code)}/disable`, null, callback)
+      return client.post(`/vouchers/${encode(code)}/disable`, null, callback)
     },
 
     validate: (code, context, callback) => {
@@ -73,11 +74,11 @@ module.exports = function (options) {
         context = {}
       }
 
-      return client.post(`/vouchers/${encodeURIComponent(code)}/validate`, context, callback)
+      return client.post(`/vouchers/${encode(code)}/validate`, context, callback)
     },
 
     redemption: (code, callback) => {
-      return client.get(`/vouchers/${encodeURIComponent(code)}/redemption`, null, callback)
+      return client.get(`/vouchers/${encode(code)}/redemption`, null, callback)
     },
 
     /*
@@ -108,10 +109,10 @@ module.exports = function (options) {
         trackingId = undefined
       }
 
-      let url = `/vouchers/${encodeURIComponent(code)}/redemption`
+      let url = `/vouchers/${encode(code)}/redemption`
       // If `tracking_id` passed, use it in query string.
       if (typeof (trackingId) === 'string' && trackingId) {
-        url += `?tracking_id=${encodeURIComponent(trackingId)}`
+        url += `?tracking_id=${encode(trackingId)}`
       }
 
       return client.post(url, context, callback)
@@ -128,7 +129,7 @@ module.exports = function (options) {
 
       // If `reason` passed, use it in query string.
       if (typeof (data) === 'string') {
-        qs['reason'] = encodeURIComponent(data)
+        qs['reason'] = encode(data)
       }
 
       if (typeof (data) === 'object') {
@@ -138,7 +139,7 @@ module.exports = function (options) {
       }
 
       return client.post(
-        `/redemptions/${encodeURIComponent(redemptionId)}/rollback`,
+        `/redemptions/${encode(redemptionId)}/rollback`,
         payload, callback, {qs}
       )
     },
@@ -147,7 +148,7 @@ module.exports = function (options) {
       let path = '/vouchers/publish'
       let payload = {}
       if (typeof (campaignName) === 'string') {
-        path += '?campaign=' + encodeURIComponent(campaignName)
+        path += '?campaign=' + encode(campaignName)
       }
       if (typeof (campaignName) === 'object') {
         payload = campaignName
@@ -160,7 +161,7 @@ module.exports = function (options) {
       voucher: {
         create: (campaignName, voucher, callback) => {
           return client.post(
-            `/campaigns/${encodeURIComponent(campaignName || '')}/vouchers`,
+            `/campaigns/${encode(campaignName)}/vouchers`,
             // TODO if voucher is optional, secure against callback version
             voucher || {},
             callback
@@ -176,15 +177,15 @@ module.exports = function (options) {
 
       get: (customerId, callback) => {
         // TODO why fallback to empty string ?! shall we rather throw an error? print warning?
-        return client.get(`/customers/${encodeURIComponent(customerId || '')}`, null, callback)
+        return client.get(`/customers/${encode(customerId)}`, null, callback)
       },
 
       update: function (customer, callback) {
-        return client.put(`/customers/${encodeURIComponent(customer.id || '')}`, customer, callback)
+        return client.put(`/customers/${encode(customer.id)}`, customer, callback)
       },
 
       delete: function (customerId, callback) {
-        return client.delete(`/customers/${encodeURIComponent(customerId || '')}`, callback)
+        return client.delete(`/customers/${encode(customerId)}`, callback)
       }
     },
 
@@ -194,39 +195,39 @@ module.exports = function (options) {
       },
 
       get: function (productId, callback) {
-        return client.get(`/products/${encodeURIComponent(productId || '')}`, null, callback)
+        return client.get(`/products/${encode(productId)}`, null, callback)
       },
 
       update: function (product, callback) {
-        return client.put(`/products/${encodeURIComponent(product.id || '')}`, product, callback)
+        return client.put(`/products/${encode(product.id)}`, product, callback)
       },
 
       delete: function (productId, callback) {
-        return client.delete(`/products/${encodeURIComponent(productId || '')}`, callback)
+        return client.delete(`/products/${encode(productId)}`, callback)
       },
 
       sku: {
         create: function (productId, sku, callback) {
-          return client.post(`/products/${encodeURIComponent(productId || '')}/skus`, sku, callback)
+          return client.post(`/products/${encode(productId)}/skus`, sku, callback)
         },
 
         get: function (productId, skuId, callback) {
           return client.get(
-            `/products/${encodeURIComponent(productId || '')}/skus/${encodeURIComponent(skuId || '')}`,
+            `/products/${encode(productId)}/skus/${encode(skuId)}`,
             null, callback
           )
         },
 
         update: function (productId, sku, callback) {
           return client.put(
-            `/products/${encodeURIComponent(productId || '')}/skus/${encodeURIComponent(sku.id || '')}`,
+            `/products/${encode(productId)}/skus/${encode(sku.id)}`,
             sku, callback
           )
         },
 
         delete: function (productId, skuId, callback) {
           return client.delete(
-            `/products/${encodeURIComponent(productId || '')}/skus/${encodeURIComponent(skuId || '')}`,
+            `/products/${encode(productId)}/skus/${encode(skuId)}`,
             callback
           )
         }

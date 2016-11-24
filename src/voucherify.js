@@ -2,7 +2,16 @@
 
 const ApiClient = require('./ApiClient')
 
+const assertOption = (options, name) => {
+  if (!options[name]) {
+    throw new Error(`Missing required option '${name}'`)
+  }
+}
+
 module.exports = function (options) {
+  assertOption(options, 'applicationId')
+  assertOption(options, 'clientSecretKey')
+
   const client = new ApiClient(options)
 
   return {

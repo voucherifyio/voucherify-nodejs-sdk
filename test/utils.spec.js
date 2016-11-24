@@ -46,7 +46,6 @@ describe('utils', function () {
 
   it('should fail to calculate discount for gift voucher', function () {
     var basePrice = 50
-    var unitPrice = 20
     var voucher = {
       gift: {
         amount: 1000

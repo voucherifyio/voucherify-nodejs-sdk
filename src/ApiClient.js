@@ -66,13 +66,13 @@ module.exports = class ApiClient {
     return handler.promise
   }
 
-  post (path, json, callback) {
+  post (path, json, callback, options = {}) {
     const handler = prepare(callback)
-    request.get({
+    request.get(Object.assign({
       url: this.prepareUrl(path),
       headers: this.headers,
-      json
-    }, handler.callback)
+      json: json || true
+    }, options), handler.callback)
 
     return handler.promise
   }

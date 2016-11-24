@@ -34,11 +34,7 @@ module.exports = function (options) {
       return client.post(`/vouchers/${encode(voucher.code)}`, voucher, callback)
     },
 
-    delete: (voucherCode, params, callback) => {
-      if (typeof (params) === 'undefined') {
-        params = {}
-      }
-
+    delete: (voucherCode, params = {}, callback = null) => {
       if (typeof (params) === 'function') {
         callback = params
         params = {}
@@ -64,11 +60,7 @@ module.exports = function (options) {
       return client.post(`/vouchers/${encode(code)}/disable`, null, callback)
     },
 
-    validate: (code, context, callback) => {
-      if (typeof (context) === 'undefined') {
-        context = {}
-      }
-
+    validate: (code, context = {}, callback = null) => {
       if (typeof (context) === 'function') {
         callback = context
         context = {}

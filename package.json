@@ -1,43 +1,36 @@
 {
-    "name": "voucherify",
-    "version": "1.23.1",
-
-    "homepage": "http://www.voucherify.io",
-    "description": "Node.js SDK for Voucherify.",
-
-    "author": "rspective",
-    "license": "MIT",
-    "main": "voucherify.js",
-
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/rspective/voucherify-nodejs-sdk.git"
-    },
-    "bugs": {
-        "url": "https://github.com/rspective/voucherify-nodejs-sdk/issues",
-        "email": "dev@rspective.pl"
-    },
-
-    "keywords": [
-        "voucherify",
-        "voucher",
-        "coupon",
-        "gift card",
-        "referral program",
-        "sdk",
-        "saas"
-    ],
-
-    "dependencies": {
-        "request": "~2.54.0",
-        "when": "~3.7.3"
-    },
-
-    "devDependencies": {
-        "jasmine-node": "~1.14.5"
-    },
-
-    "scripts": {
-        "test": "./node_modules/.bin/jasmine-node ./test"
-    }
+  "name": "voucherify",
+  "version": "1.23.1",
+  "homepage": "http://www.voucherify.io",
+  "description": "Node.js SDK for Voucherify.",
+  "author": "rspective",
+  "license": "MIT",
+  "main": "voucherify.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rspective/voucherify-nodejs-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rspective/voucherify-nodejs-sdk/issues",
+    "email": "dev@rspective.pl"
+  },
+  "keywords": [
+    "voucherify",
+    "voucher",
+    "coupon",
+    "gift card",
+    "referral program",
+    "sdk",
+    "saas"
+  ],
+  "dependencies": {
+    "request": "~2.54.0",
+    "when": "~3.7.3"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.14.5",
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine-node ./test"
+  }
 }

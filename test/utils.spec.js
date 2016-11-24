@@ -8,7 +8,7 @@ describe('utils', function(){
         var basePrice = 50
         var voucher = {
             discount: {
-                type: "AMOUNT",
+                type: 'AMOUNT',
                 amount_off: 1000 // 10.00
             }
         }
@@ -21,7 +21,7 @@ describe('utils', function(){
         var basePrice = 50
         var voucher = {
             discount: {
-                type: "PERCENT",
+                type: 'PERCENT',
                 percent_off: 10.00
             }
         }
@@ -35,7 +35,7 @@ describe('utils', function(){
         var unitPrice = 20
         var voucher = {
             discount: {
-                type: "UNIT",
+                type: 'UNIT',
                 unit_off: 1.00
             }
         }
@@ -55,7 +55,7 @@ describe('utils', function(){
 
         expect(function() {
             utils.calculateDiscount(basePrice, voucher)
-        }).toThrow(new Error("Unsupported voucher type."))
+        }).toThrow(new Error('Unsupported voucher type.'))
     })
 
     // ------ calculatePrice ------ //
@@ -64,7 +64,7 @@ describe('utils', function(){
         var basePrice = 50
         var voucher = {
             discount: {
-                type: "AMOUNT",
+                type: 'AMOUNT',
                 amount_off: 1000 // 10.00
             }
         }
@@ -77,7 +77,7 @@ describe('utils', function(){
         var basePrice = 50
         var voucher = {
             discount: {
-                type: "PERCENT",
+                type: 'PERCENT',
                 percent_off: 10.00
             }
         }
@@ -91,7 +91,7 @@ describe('utils', function(){
         var unitPrice = 20
         var voucher = {
             discount: {
-                type: "UNIT",
+                type: 'UNIT',
                 unit_off: 1.00
             }
         }
@@ -111,7 +111,7 @@ describe('utils', function(){
 
         expect(function() {
             utils.calculatePrice(basePrice, voucher)
-        }).toThrow(new Error("Unsupported voucher type."))
+        }).toThrow(new Error('Unsupported voucher type.'))
     })
 
 

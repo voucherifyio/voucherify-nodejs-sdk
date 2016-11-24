@@ -5,7 +5,7 @@ describe('voucherify', function() {
     it('should detect missing applicationId', function () {
         expect(function () {
             voucherifyClient({
-                clientSecretKey: "CLIENT-SECRET-KEY"
+                clientSecretKey: 'CLIENT-SECRET-KEY'
             })
         }).toThrow(new Error("Missing required option 'applicationId'"))
     })
@@ -13,7 +13,7 @@ describe('voucherify', function() {
     it('should detect missing clientSecretKey', function () {
         expect(function () {
             voucherifyClient({
-                applicationId: "APPLICATION-ID"
+                applicationId: 'APPLICATION-ID'
             })
         }).toThrow(new Error("Missing required option 'clientSecretKey'"))
     })

@@ -12,13 +12,13 @@ function validatePercentDiscount(discount) {
 
 function validateAmountDiscount(discount) {
   if (!discount || discount < 0) {
-    throw new Error("Invalid voucher, amount discount must be higher than zero.")
+    throw new Error('Invalid voucher, amount discount must be higher than zero.')
   }
 }
 
 function validateUnitDiscount(discount) {
   if (!discount || discount < 0) {
-    throw new Error("Invalid voucher, unit discount must be higher than zero.")
+    throw new Error('Invalid voucher, unit discount must be higher than zero.')
   }
 }
 
@@ -28,7 +28,7 @@ module.exports = {
     var discount
 
     if (!voucher.discount) {
-      throw new Error("Unsupported voucher type.")
+      throw new Error('Unsupported voucher type.')
     }
 
     if (voucher.discount.type === 'PERCENT') {
@@ -50,7 +50,7 @@ module.exports = {
       return roundMoney(newPrice > 0 ? newPrice : 0)
 
     } else {
-      throw new Error("Unsupported discount type.")
+      throw new Error('Unsupported discount type.')
     }
   },
 
@@ -59,7 +59,7 @@ module.exports = {
     var discount
 
     if (!voucher.discount) {
-      throw new Error("Unsupported voucher type.")
+      throw new Error('Unsupported voucher type.')
     }
 
     if (voucher.discount.type === 'PERCENT') {
@@ -80,7 +80,7 @@ module.exports = {
       return roundMoney(priceDiscount > basePrice ? basePrice : priceDiscount)
 
     } else {
-      throw new Error("Unsupported discount type.")
+      throw new Error('Unsupported discount type.')
     }
   }
 }

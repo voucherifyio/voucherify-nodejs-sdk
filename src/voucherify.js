@@ -180,52 +180,52 @@ module.exports = function (options) {
         return client.get(`/customers/${encode(customerId)}`, null, callback)
       },
 
-      update: function (customer, callback) {
+      update: (customer, callback) => {
         return client.put(`/customers/${encode(customer.id)}`, customer, callback)
       },
 
-      delete: function (customerId, callback) {
+      delete: (customerId, callback) => {
         return client.delete(`/customers/${encode(customerId)}`, callback)
       }
     },
 
     product: {
-      create: function (product, callback) {
+      create: (product, callback) => {
         return client.post('/products', product, callback)
       },
 
-      get: function (productId, callback) {
+      get: (productId, callback) => {
         return client.get(`/products/${encode(productId)}`, null, callback)
       },
 
-      update: function (product, callback) {
+      update: (product, callback) => {
         return client.put(`/products/${encode(product.id)}`, product, callback)
       },
 
-      delete: function (productId, callback) {
+      delete: (productId, callback) => {
         return client.delete(`/products/${encode(productId)}`, callback)
       },
 
       sku: {
-        create: function (productId, sku, callback) {
+        create: (productId, sku, callback) => {
           return client.post(`/products/${encode(productId)}/skus`, sku, callback)
         },
 
-        get: function (productId, skuId, callback) {
+        get: (productId, skuId, callback) => {
           return client.get(
             `/products/${encode(productId)}/skus/${encode(skuId)}`,
             null, callback
           )
         },
 
-        update: function (productId, sku, callback) {
+        update: (productId, sku, callback) => {
           return client.put(
             `/products/${encode(productId)}/skus/${encode(sku.id)}`,
             sku, callback
           )
         },
 
-        delete: function (productId, skuId, callback) {
+        delete: (productId, skuId, callback) => {
           return client.delete(
             `/products/${encode(productId)}/skus/${encode(skuId)}`,
             callback

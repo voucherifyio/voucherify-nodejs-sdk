@@ -1415,7 +1415,7 @@ Result:
 const utils = require('voucherify/utils')
 ```
 
-Utils don't need callbacks or promises. They return results immediately.
+Utils don't need callbacks nor promises. They return results immediately.
 
 #### Available methods
 

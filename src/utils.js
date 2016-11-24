@@ -24,8 +24,8 @@ function validateUnitDiscount (discount) {
 
 module.exports = {
   calculatePrice: function (basePrice, voucher, unitPrice) {
-    var e = 100 // Number of digits after the decimal separator.
-    var discount
+    const e = 100 // Number of digits after the decimal separator.
+    let discount
 
     if (!voucher.discount) {
       throw new Error('Unsupported voucher type.')
@@ -34,19 +34,19 @@ module.exports = {
     if (voucher.discount.type === 'PERCENT') {
       discount = voucher.discount.percent_off
       validatePercentDiscount(discount)
-      var priceDiscount = basePrice * (discount / 100)
+      const priceDiscount = basePrice * (discount / 100)
 
       return roundMoney(basePrice - priceDiscount)
     } else if (voucher.discount.type === 'AMOUNT') {
       discount = voucher.discount.amount_off / e
       validateAmountDiscount(discount)
-      var newPrice = basePrice - discount
+      const newPrice = basePrice - discount
 
       return roundMoney(newPrice > 0 ? newPrice : 0)
     } else if (voucher.discount.type === 'UNIT') {
       discount = voucher.discount.unit_off
       validateUnitDiscount(discount)
-      var newPrice = basePrice - unitPrice * discount
+      const newPrice = basePrice - unitPrice * discount
 
       return roundMoney(newPrice > 0 ? newPrice : 0)
     } else {
@@ -55,8 +55,8 @@ module.exports = {
   },
 
   calculateDiscount: function (basePrice, voucher, unitPrice) {
-    var e = 100 // Number of digits after the decimal separator.
-    var discount
+    const e = 100 // Number of digits after the decimal separator.
+    let discount
 
     if (!voucher.discount) {
       throw new Error('Unsupported voucher type.')
@@ -70,13 +70,13 @@ module.exports = {
     } else if (voucher.discount.type === 'AMOUNT') {
       discount = voucher.discount.amount_off / e
       validateAmountDiscount(discount)
-      var newPrice = basePrice - discount
+      const newPrice = basePrice - discount
 
       return roundMoney(newPrice > 0 ? discount : basePrice)
     } else if (voucher.discount.type === 'UNIT') {
       discount = voucher.discount.unit_off
       validateUnitDiscount(discount)
-      var priceDiscount = unitPrice * discount
+      const priceDiscount = unitPrice * discount
 
       return roundMoney(priceDiscount > basePrice ? basePrice : priceDiscount)
     } else {

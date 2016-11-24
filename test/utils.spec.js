@@ -1,52 +1,52 @@
 /* global describe, it, expect */
-var utils = require('../src/utils.js')
+const utils = require('../src/utils.js')
 
 describe('utils', function () {
   // ------ calculateDiscount ------ //
 
   it('should calculate amount discount', function () {
-    var basePrice = 50
-    var voucher = {
+    const basePrice = 50
+    const voucher = {
       discount: {
         type: 'AMOUNT',
         amount_off: 1000 // 10.00
       }
     }
-    var discount = utils.calculateDiscount(basePrice, voucher)
+    const discount = utils.calculateDiscount(basePrice, voucher)
 
     expect(discount).toBe(10.00)
   })
 
   it('should calculate percent discount', function () {
-    var basePrice = 50
-    var voucher = {
+    const basePrice = 50
+    const voucher = {
       discount: {
         type: 'PERCENT',
         percent_off: 10.00
       }
     }
-    var discount = utils.calculateDiscount(basePrice, voucher)
+    const discount = utils.calculateDiscount(basePrice, voucher)
 
     expect(discount).toBe(5.00)
   })
 
   it('should calculate unit discount', function () {
-    var basePrice = 50
-    var unitPrice = 20
-    var voucher = {
+    const basePrice = 50
+    const unitPrice = 20
+    const voucher = {
       discount: {
         type: 'UNIT',
         unit_off: 1.00
       }
     }
-    var discount = utils.calculateDiscount(basePrice, voucher, unitPrice)
+    const discount = utils.calculateDiscount(basePrice, voucher, unitPrice)
 
     expect(discount).toBe(20.00)
   })
 
   it('should fail to calculate discount for gift voucher', function () {
-    var basePrice = 50
-    var voucher = {
+    const basePrice = 50
+    const voucher = {
       gift: {
         amount: 1000
       }
@@ -60,48 +60,48 @@ describe('utils', function () {
   // ------ calculatePrice ------ //
 
   it('should calculate new price with amount discount', function () {
-    var basePrice = 50
-    var voucher = {
+    const basePrice = 50
+    const voucher = {
       discount: {
         type: 'AMOUNT',
         amount_off: 1000 // 10.00
       }
     }
-    var discount = utils.calculatePrice(basePrice, voucher)
+    const discount = utils.calculatePrice(basePrice, voucher)
 
     expect(discount).toBe(40.00)
   })
 
   it('should calculate new price with percent discount', function () {
-    var basePrice = 50
-    var voucher = {
+    const basePrice = 50
+    const voucher = {
       discount: {
         type: 'PERCENT',
         percent_off: 10.00
       }
     }
-    var discount = utils.calculatePrice(basePrice, voucher)
+    const discount = utils.calculatePrice(basePrice, voucher)
 
     expect(discount).toBe(45.00)
   })
 
   it('should calculate new price with unit discount', function () {
-    var basePrice = 50
-    var unitPrice = 20
-    var voucher = {
+    const basePrice = 50
+    const unitPrice = 20
+    const voucher = {
       discount: {
         type: 'UNIT',
         unit_off: 1.00
       }
     }
-    var discount = utils.calculatePrice(basePrice, voucher, unitPrice)
+    const discount = utils.calculatePrice(basePrice, voucher, unitPrice)
 
     expect(discount).toBe(30.00)
   })
 
   it('should fail to calculate price for gift voucher', function () {
-    var basePrice = 50
-    var voucher = {
+    const basePrice = 50
+    const voucher = {
       gift: {
         amount: 1000
       }

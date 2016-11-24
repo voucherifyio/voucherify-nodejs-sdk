@@ -34,7 +34,7 @@ voucherify.product.create(payload)
   .then(() => {
     console.log('==== CREATE - SKU ====')
 
-    var sku = {
+    const sku = {
       sku: 'APPLE_IPHONE_6_BLACK'
     }
 

@@ -1,14 +1,14 @@
 'use strict'
 
-var util = require('util')
+const util = require('util')
 
-var request = require('request')
-var when = require('when')
+const request = require('request')
+const when = require('when')
 
-var backendUrl = 'https://api.voucherify.io/v1'
+const backendUrl = 'https://api.voucherify.io/v1'
 
 module.exports = function (options) {
-  var headers = {
+  const headers = {
     'X-App-Id': requiredOption('applicationId'),
     'X-App-Token': requiredOption('clientSecretKey'),
     'X-Voucherify-Channel': 'Node.js-SDK'
@@ -30,7 +30,7 @@ module.exports = function (options) {
   }
 
   function prepare (callback) {
-    var deferred = when.defer()
+    const deferred = when.defer()
 
     if (typeof (callback) === 'function') {
       return {
@@ -63,8 +63,8 @@ module.exports = function (options) {
     *  List vouchers. Sample query: { limit: 100, skip: 200, category: 'Loyalty' }
     */
     list: function (query, callback) {
-      var url = util.format('%s/vouchers/', backendUrl)
-      var handler = prepare(callback)
+      const url = util.format('%s/vouchers/', backendUrl)
+      const handler = prepare(callback)
 
       request.get({ url: url, qs: query, headers: headers, json: true }, handler.callback)
 
@@ -72,8 +72,8 @@ module.exports = function (options) {
     },
 
     get: function (code, callback) {
-      var url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(code))
-      var handler = prepare(callback)
+      const url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(code))
+      const handler = prepare(callback)
 
       request.get({ url: url, headers: headers, json: true }, handler.callback)
 
@@ -81,8 +81,8 @@ module.exports = function (options) {
     },
 
     create: function (voucher, callback) {
-      var url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucher.code || ''))
-      var handler = prepare(callback)
+      const url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucher.code || ''))
+      const handler = prepare(callback)
 
       request.post({ url: url, headers: headers, json: voucher }, handler.callback)
 
@@ -99,10 +99,10 @@ module.exports = function (options) {
         params = {}
       }
 
-      var url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucherCode || ''))
+      let url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucherCode || ''))
       if (params.force) { url += '?force=true' }
 
-      var handler = prepare(callback)
+      const handler = prepare(callback)
 
       request.del({ url: url, headers: headers }, handler.callback)
 
@@ -110,8 +110,8 @@ module.exports = function (options) {
     },
 
     update: function (voucher, callback) {
-      var url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucher.code))
-      var handler = prepare(callback)
+      const url = util.format('%s/vouchers/%s', backendUrl, encodeURIComponent(voucher.code))
+      const handler = prepare(callback)
 
       request.put({ url: url, headers: headers, json: voucher }, handler.callback)
 
@@ -119,8 +119,8 @@ module.exports = function (options) {
     },
 
     enable: function (code, callback) {
-      var url = util.format('%s/vouchers/%s/enable', backendUrl, encodeURIComponent(code))
-      var handler = prepare(callback)
+      const url = util.format('%s/vouchers/%s/enable', backendUrl, encodeURIComponent(code))
+      const handler = prepare(callback)
 
       request.post({ url: url, headers: headers, json: true }, handler.callback)
 
@@ -128,8 +128,8 @@ module.exports = function (options) {
     },
 
     disable: function (code, callback) {
-      var url = util.format('%s/vouchers/%s/disable', backendUrl, encodeURIComponent(code))
-      var handler = prepare(callback)
+      const url = util.format('%s/vouchers/%s/disable', backendUrl, encodeURIComponent(code))
+      const handler = prepare(callback)
 
       request.post({ url: url, headers: headers, json: true }, handler.callback)
 
@@ -146,8 +146,8 @@ module.exports = function (options) {
         context = {}
       }
 
-      var handler = prepare(callback)
-      var url = util.format('%s/vouchers/%s/validate', backendUrl, encodeURIComponent(code))
+      const handler = prepare(callback)
+      const url = util.format('%s/vouchers/%s/validate', backendUrl, encodeURIComponent(code))
 
       request.post({ url: url, headers: headers, json: context }, handler.callback)
 
@@ -155,8 +155,8 @@ module.exports = function (options) {
     },
 
     redemption: function (code, callback) {
-      var url = util.format('%s/vouchers/%s/redemption', backendUrl, encodeURIComponent(code))
-      var handler = prepare(callback)
+      const url = util.format('%s/vouchers/%s/redemption', backendUrl, encodeURIComponent(code))
+      const handler = prepare(callback)
 
       request.get({ url: url, headers: headers, json: true }, handler.callback)
 
@@ -174,8 +174,8 @@ module.exports = function (options) {
     *  }
     */
     redemptions: function (query, callback) {
-      var url = util.format('%s/redemptions/', backendUrl)
-      var handler = prepare(callback)
+      const url = util.format('%s/redemptions/', backendUrl)
+      const handler = prepare(callback)
 
       request.get({ url: url, qs: query, headers: headers, json: true }, handler.callback)
 
@@ -183,7 +183,7 @@ module.exports = function (options) {
     },
 
     redeem: function (code, trackingId, callback) {
-      var context = {}
+      let context = {}
       if (typeof (code) === 'object') {
         context = code
         code = context.voucher
@@ -196,8 +196,8 @@ module.exports = function (options) {
         trackingId = undefined
       }
 
-      var handler = prepare(callback)
-      var url = util.format('%s/vouchers/%s/redemption', backendUrl, encodeURIComponent(code))
+      const handler = prepare(callback)
+      let url = util.format('%s/vouchers/%s/redemption', backendUrl, encodeURIComponent(code))
 
       // If `tracking_id` passed, use it in query string.
       if (typeof (trackingId) === 'string' && trackingId) {
@@ -215,8 +215,8 @@ module.exports = function (options) {
         data = undefined
       }
 
-      var qs = {}
-      var payload = {}
+      const qs = {}
+      const payload = {}
 
       // If `reason` passed, use it in query string.
       if (typeof (data) === 'string') {
@@ -229,8 +229,8 @@ module.exports = function (options) {
         payload['customer'] = data['customer'] || undefined
       }
 
-      var handler = prepare(callback)
-      var url = util.format('%s/redemptions/%s/rollback', backendUrl, encodeURIComponent(redemptionId))
+      const handler = prepare(callback)
+      const url = util.format('%s/redemptions/%s/rollback', backendUrl, encodeURIComponent(redemptionId))
 
       request.post({ url: url, headers: headers, qs: qs, body: payload, json: true }, handler.callback)
 
@@ -238,15 +238,15 @@ module.exports = function (options) {
     },
 
     publish: function (campaignName, callback) {
-      var url = util.format('%s/vouchers/publish', backendUrl)
-      var payload = {}
+      let url = util.format('%s/vouchers/publish', backendUrl)
+      let payload = {}
       if (typeof (campaignName) === 'string') {
         url += '?campaign=' + encodeURIComponent(campaignName)
       }
       if (typeof (campaignName) === 'object') {
         payload = campaignName
       }
-      var handler = prepare(callback)
+      const handler = prepare(callback)
 
       request.post({ url: url, headers: headers, json: payload }, handler.callback)
 
@@ -256,8 +256,8 @@ module.exports = function (options) {
     campaign: {
       voucher: {
         create: function (campaignName, voucher, callback) {
-          var url = util.format('%s/campaigns/%s/vouchers', backendUrl, encodeURIComponent(campaignName || ''))
-          var handler = prepare(callback)
+          const url = util.format('%s/campaigns/%s/vouchers', backendUrl, encodeURIComponent(campaignName || ''))
+          const handler = prepare(callback)
 
           request.post({ url: url, headers: headers, json: voucher || {} }, handler.callback)
 
@@ -268,8 +268,8 @@ module.exports = function (options) {
 
     customer: {
       create: function (customer, callback) {
-        var url = util.format('%s/customers', backendUrl)
-        var handler = prepare(callback)
+        const url = util.format('%s/customers', backendUrl)
+        const handler = prepare(callback)
 
         request.post({ url: url, headers: headers, json: customer }, handler.callback)
 
@@ -277,8 +277,8 @@ module.exports = function (options) {
       },
 
       get: function (customerId, callback) {
-        var url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customerId || ''))
-        var handler = prepare(callback)
+        const url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customerId || ''))
+        const handler = prepare(callback)
 
         request.get({ url: url, headers: headers, json: true }, handler.callback)
 
@@ -286,8 +286,8 @@ module.exports = function (options) {
       },
 
       update: function (customer, callback) {
-        var url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customer.id || ''))
-        var handler = prepare(callback)
+        const url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customer.id || ''))
+        const handler = prepare(callback)
 
         request.put({ url: url, headers: headers, json: customer }, handler.callback)
 
@@ -295,8 +295,8 @@ module.exports = function (options) {
       },
 
       delete: function (customerId, callback) {
-        var url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customerId || ''))
-        var handler = prepare(callback)
+        const url = util.format('%s/customers/%s', backendUrl, encodeURIComponent(customerId || ''))
+        const handler = prepare(callback)
 
         request.del({ url: url, headers: headers }, handler.callback)
 
@@ -306,8 +306,8 @@ module.exports = function (options) {
 
     product: {
       create: function (product, callback) {
-        var url = util.format('%s/products', backendUrl)
-        var handler = prepare(callback)
+        const url = util.format('%s/products', backendUrl)
+        const handler = prepare(callback)
 
         request.post({ url: url, headers: headers, json: product }, handler.callback)
 
@@ -315,8 +315,8 @@ module.exports = function (options) {
       },
 
       get: function (productId, callback) {
-        var url = util.format('%s/products/%s', backendUrl, encodeURIComponent(productId || ''))
-        var handler = prepare(callback)
+        const url = util.format('%s/products/%s', backendUrl, encodeURIComponent(productId || ''))
+        const handler = prepare(callback)
 
         request.get({ url: url, headers: headers }, handler.callback)
 
@@ -324,8 +324,8 @@ module.exports = function (options) {
       },
 
       update: function (product, callback) {
-        var url = util.format('%s/products/%s', backendUrl, encodeURIComponent(product.id || ''))
-        var handler = prepare(callback)
+        const url = util.format('%s/products/%s', backendUrl, encodeURIComponent(product.id || ''))
+        const handler = prepare(callback)
 
         request.put({ url: url, headers: headers, json: product }, handler.callback)
 
@@ -333,8 +333,8 @@ module.exports = function (options) {
       },
 
       delete: function (productId, callback) {
-        var url = util.format('%s/products/%s', backendUrl, encodeURIComponent(productId || ''))
-        var handler = prepare(callback)
+        const url = util.format('%s/products/%s', backendUrl, encodeURIComponent(productId || ''))
+        const handler = prepare(callback)
 
         request.del({ url: url, headers: headers }, handler.callback)
 
@@ -343,9 +343,9 @@ module.exports = function (options) {
 
       sku: {
         create: function (productId, sku, callback) {
-          var url = util.format('%s/products/%s/skus', backendUrl,
+          const url = util.format('%s/products/%s/skus', backendUrl,
           encodeURIComponent(productId || ''))
-          var handler = prepare(callback)
+          const handler = prepare(callback)
 
           request.post({ url: url, headers: headers, json: sku }, handler.callback)
 
@@ -353,9 +353,9 @@ module.exports = function (options) {
         },
 
         get: function (productId, skuId, callback) {
-          var url = util.format('%s/products/%s/skus/%s', backendUrl,
+          const url = util.format('%s/products/%s/skus/%s', backendUrl,
           encodeURIComponent(productId || ''), encodeURIComponent(skuId || ''))
-          var handler = prepare(callback)
+          const handler = prepare(callback)
 
           request.get({ url: url, headers: headers }, handler.callback)
 
@@ -363,9 +363,9 @@ module.exports = function (options) {
         },
 
         update: function (productId, sku, callback) {
-          var url = util.format('%s/products/%s/skus/%s', backendUrl,
+          const url = util.format('%s/products/%s/skus/%s', backendUrl,
           encodeURIComponent(productId || ''), encodeURIComponent(sku.id || ''))
-          var handler = prepare(callback)
+          const handler = prepare(callback)
 
           request.put({ url: url, headers: headers, json: sku }, handler.callback)
 
@@ -373,9 +373,9 @@ module.exports = function (options) {
         },
 
         delete: function (productId, skuId, callback) {
-          var url = util.format('%s/products/%s/skus/%s', backendUrl,
+          const url = util.format('%s/products/%s/skus/%s', backendUrl,
           encodeURIComponent(productId || ''), encodeURIComponent(skuId || ''))
-          var handler = prepare(callback)
+          const handler = prepare(callback)
 
           request.del({ url: url, headers: headers }, handler.callback)
 

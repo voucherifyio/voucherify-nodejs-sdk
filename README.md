@@ -22,9 +22,9 @@ Full documentation is located at [voucherify.readme.io](https://voucherify.readm
 ![](https://www.filepicker.io/api/file/WKYkl2bSAWKHccEN9tEG)
 
 ```javascript
-var voucherifyClient = require("voucherify");
+const voucherifyClient = require("voucherify");
 
-var voucherify = voucherifyClient({
+const voucherify = voucherifyClient({
     applicationId: "YOUR-APPLICATION-ID-OBTAINED-FROM-CONFIGURATION",
     clientSecretKey: "YOUR-CLIENT-SECRET-KEY-OBTAINED-FROM-CONFIGURATION"
 });
@@ -279,7 +279,7 @@ This method is responsible for adding new voucher to campaign based on voucher d
 Example:
 
 ```javascript
-var payload = {
+const payload = {
     "additional_info": "New voucher",
     "metadata": {
         "test": true
@@ -812,7 +812,7 @@ Filter parameters:
 Example - 1000 successful redemptions from April 2016:
 
 ```javascript
-var filter = {
+const filter = {
     limit: 1000,
     page: 0,
     start_date: "2016-04-01T00:00:00",
@@ -967,7 +967,7 @@ Result:
 Example:
 
 ```javascript
-var payload = {
+const payload = {
     "source_id": "your-tracking-id",
     "name": "John Doe",
     "email": "email@example.com",
@@ -1009,7 +1009,7 @@ Result:
 Example:
 
 ```javascript
-var customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
+const customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
 
 voucherify.customer.get(customerId)
    .then(function (result) {
@@ -1043,7 +1043,7 @@ Result:
 Example:
 
 ```javascript
-var payload = {
+const payload = {
   "name": "John Doe",
   "email": "email@example.com",
   "description":"Premium user, ACME Inc.",
@@ -1086,7 +1086,7 @@ Result:
 Example:
 
 ```javascript
-var customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
+const customerId = "cust_c2SlN2rKajDdMycd3BmVawJk"
 
 voucherify.customer.delete(customerId)
    .then(function (result) {
@@ -1107,7 +1107,7 @@ Result:
 Example:
 
 ```javascript
-var payload = {
+const payload = {
     "name": "Apple iPhone 6",
     "attributes": [
       "color",
@@ -1156,7 +1156,7 @@ Result:
 Example:
 
 ```javascript
-var productId = "prod_YWnt2mNigm76oA"
+const productId = "prod_YWnt2mNigm76oA"
 
 voucherify.product.get(productId)
    .then(function (result) {
@@ -1196,7 +1196,7 @@ Result:
 Example:
 
 ```javascript
-var payload = {
+const payload = {
     "id": "prod_YWnt2mNigm76oA",
     "object": "product",
     "name": "Apple iPhone 6",
@@ -1253,7 +1253,7 @@ Result:
 Example:
 
 ```javascript
-var productId = "prod_YWnt2mNigm76oA"
+const productId = "prod_YWnt2mNigm76oA"
 
 voucherify.product.delete(productId)
    .then(function (result) {
@@ -1275,9 +1275,9 @@ Result:
 Example:
 
 ```javascript
-var productId = "prod_e8uLMegXZJ4GGS";
+const productId = "prod_e8uLMegXZJ4GGS";
 
-var sku = {
+const sku = {
     sku: "APPLE_IPHONE_6_BLACK",
     currency: "EUR",
     price: 12000,
@@ -1314,9 +1314,9 @@ Result:
 Example:
 
 ```javascript
-var productId = "prod_YWnt2mNigm76oA";
+const productId = "prod_YWnt2mNigm76oA";
 
-var skuId = "sku_JXYGfsGbpvsfjv";
+const skuId = "sku_JXYGfsGbpvsfjv";
 
 voucherify.product.sku.get(productId, skuId)
    .then(function (result) {
@@ -1345,7 +1345,7 @@ Result:
 Example:
 
 ```javascript
-var sku = {
+const sku = {
     "id": "sku_JXYGfsGbpvsfjv",
     "product_id": "prod_e8uLMegXZJ4GGS",
     "sku": "APPLE_IPHONE_6_BLACK",
@@ -1356,7 +1356,7 @@ var sku = {
 sku.currency    = "EUR";
 sku.price       = 1000;
 
-var productId = sku.product_id;
+const productId = sku.product_id;
 
 voucherify.product.sku.update(productId, sku)
    .then(function (result) {
@@ -1388,9 +1388,9 @@ Example:
 
 ```javascript
 
-var productId = "prod_e8uLMegXZJ4GGS";
+const productId = "prod_e8uLMegXZJ4GGS";
 
-var skuId = "sku_JXYGfsGbpvsfjv";
+const skuId = "sku_JXYGfsGbpvsfjv";
 
 voucherify.product.sku.delete(productId, skuId)
    .then(function (result) {
@@ -1412,7 +1412,7 @@ Result:
 #### Usage
 
 ```
-var utils = require('voucherify/utils');
+const utils = require('voucherify/utils');
 ```
 
 Utils don't need callbacks or promises. They return results immediately.

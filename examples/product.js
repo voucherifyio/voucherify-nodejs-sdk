@@ -1,6 +1,6 @@
 'use strict'
 
-const voucherifyClient = require('../voucherify');
+const voucherifyClient = require('../voucherify')
 
 const voucherify = voucherifyClient({
     applicationId: "c70a6f00-cf91-4756-9df5-47628850002b",
@@ -18,7 +18,7 @@ const payload = {
     ]
 }
 
-let skuId = null;
+let skuId = null
 
 console.log("==== CREATE ====")
 voucherify.product.create(payload)
@@ -29,7 +29,7 @@ voucherify.product.create(payload)
         return voucherify.product.get(product.id)
             .then((result) => {
                 console.log("Result: ", result)
-                return ;
+                return 
             })
             .then(() => {
                 console.log("==== CREATE - SKU ====")
@@ -48,8 +48,8 @@ voucherify.product.create(payload)
                                 console.log("Result: ", sku)
                                 console.log("==== UPDATE - SKU ====")
 
-                                sku.sku = "eur";
-                                sku.price = 1000;
+                                sku.sku = "eur"
+                                sku.price = 1000
 
                                 return voucherify.product.sku.update(product.id, sku)
                             })
@@ -57,17 +57,17 @@ voucherify.product.create(payload)
                     .then((sku) => {
                         console.log("Result: ", sku)
 
-                        skuId = sku.id;
+                        skuId = sku.id
 
-                        return product;
-                    });
+                        return product
+                    })
             })
     })
     .then((product) => {
         console.log("==== UPDATE ====")
 
-        product.metadata = product.metadata || {};
-        product.metadata.type = "premium";
+        product.metadata = product.metadata || {}
+        product.metadata.type = "premium"
 
         return voucherify.product.update(product)
             .then((result) => {
@@ -77,7 +77,7 @@ voucherify.product.create(payload)
     })
     .then((product) => {
         if (!skuId) {
-            return product;
+            return product
         }
 
         console.log("==== DELETE - SKU ====")
@@ -91,8 +91,8 @@ voucherify.product.create(payload)
                         return product
                     })
                     .then((product) => {
-                        skuId = null;
-                        return product;
+                        skuId = null
+                        return product
                     })
             })
     })

@@ -1,4 +1,4 @@
-var voucherifyClient = require('../voucherify.js');
+var voucherifyClient = require('../voucherify.js')
 
 describe('voucherify', function() {
 
@@ -7,15 +7,15 @@ describe('voucherify', function() {
             voucherifyClient({
                 clientSecretKey: "CLIENT-SECRET-KEY"
             })
-        }).toThrow(new Error("Missing required option 'applicationId'"));
-    });
+        }).toThrow(new Error("Missing required option 'applicationId'"))
+    })
 
     it('should detect missing clientSecretKey', function () {
         expect(function () {
             voucherifyClient({
                 applicationId: "APPLICATION-ID"
             })
-        }).toThrow(new Error("Missing required option 'clientSecretKey'"));
-    });
+        }).toThrow(new Error("Missing required option 'clientSecretKey'"))
+    })
 
-});
+})

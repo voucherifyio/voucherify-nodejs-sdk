@@ -1,5 +1,5 @@
 /* global describe, it, expect */
-const voucherifyClient = require('../src/voucherify.js')
+const voucherifyClient = require('../src/index.js')
 
 describe('voucherify', function () {
   it('should detect missing applicationId', function () {

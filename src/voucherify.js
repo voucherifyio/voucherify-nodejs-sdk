@@ -4,12 +4,11 @@ const ApiClient = require('./ApiClient')
 const Campaigns = require('./Campaigns')
 const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
+const Redemptions = require('./Redemptions')
+
 const {
   assertOption,
-  encode,
-  isString,
-  isObject,
-  isFunction
+  encode
 } = require('./helpers')
 
 module.exports = function (options) {
@@ -20,11 +19,13 @@ module.exports = function (options) {
   const vouchers = new Vouchers(client)
   const campaigns = new Campaigns(client)
   const validations = new Validations(client)
+  const redemptions = new Redemptions(client)
 
   return {
     vouchers,
     campaigns,
     validations,
+    redemptions,
 
     // leaving for backward compatibility
     list: (query, callback) => vouchers.list(query, callback),
@@ -38,70 +39,11 @@ module.exports = function (options) {
 
     validate: (code, context, callback) => validations.validateVoucher(code, context, callback),
 
-    redemption: (code, callback) => {
-      return client.get(`/vouchers/${encode(code)}/redemption`, null, callback)
-    },
-
-    /*
-    *  List redemptions. Sample query (1000 successful redemptions from April 2016):
-    *  {
-    *      limit: 1000,
-    *      page: 0,
-    *      start_date: '2016-04-01T00:00:00',
-    *      end_date: '2016-04-30T23:59:59',
-    *      result: 'Success'
-    *  }
-    */
-    redemptions: (query, callback) => {
-      return client.get('/redemptions/', query, callback)
-    },
-
-    redeem: (code, trackingId, callback) => {
-      let context = {}
-      if (isObject(code)) {
-        context = code
-        code = context.voucher
-        delete context.voucher
-      }
-      if (isFunction(trackingId)) {
-        callback = trackingId
-        trackingId = null
-      }
-
-      let url = `/vouchers/${encode(code)}/redemption`
-
-      if (isString(trackingId) && trackingId) {
-        url += `?tracking_id=${encode(trackingId)}`
-      }
-
-      return client.post(url, context, callback)
-    },
-
-    rollback: (redemptionId, data, callback) => {
-      if (isFunction(data)) {
-        callback = data
-        data = null
-      }
-
-      let qs = {}
-      let payload = {}
-
-      // If `reason` passed, use it in query string.
-      if (isString(data)) {
-        qs.reason = encode(data)
-      }
-
-      if (isObject(data)) {
-        const {reason, tracking_id, customer} = data
-        qs = {reason, tracking_id}
-        payload = {customer}
-      }
-
-      return client.post(
-        `/redemptions/${encode(redemptionId)}/rollback`,
-        payload, callback, {qs}
-      )
-    },
+    redemption: (code, callback) => redemptions.getForVoucher(code, callback),
+    // FIXME handle previous methods, copy and extend `list` function prototype
+    // redemptions: (query, callback) => redemptions.list(query, callback),
+    redeem: (code, trackingId, callback) => redemptions.redeem(code, trackingId, callback),
+    rollback: (redemptionId, data, callback) => redemptions.rollback(redemptionId, data, callback),
 
     campaign: {
       voucher: {

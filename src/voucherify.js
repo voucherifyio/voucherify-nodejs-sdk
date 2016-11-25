@@ -1,6 +1,7 @@
 'use strict'
 
 const ApiClient = require('./ApiClient')
+const Campaigns = require('./Campaigns')
 const Vouchers = require('./Vouchers')
 const {
   assertOption,
@@ -16,9 +17,11 @@ module.exports = function (options) {
 
   const client = new ApiClient(options)
   const vouchers = new Vouchers(client)
+  const campaigns = new Campaigns(client)
 
   return {
     vouchers,
+    campaigns,
 
     // leaving for backward compatibility
     list: (query, callback) => vouchers.list(query, callback),
@@ -106,14 +109,7 @@ module.exports = function (options) {
 
     campaign: {
       voucher: {
-        create: (campaignName, voucher, callback) => {
-          return client.post(
-            `/campaigns/${encode(campaignName)}/vouchers`,
-            // TODO if voucher is optional, secure against callback version
-            voucher || {},
-            callback
-          )
-        }
+        create: (campaignName, voucher, callback) => campaigns.addVoucher(campaignName, voucher, callback)
       }
     },
 

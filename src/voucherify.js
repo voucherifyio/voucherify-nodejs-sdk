@@ -95,15 +95,13 @@ module.exports = function (options) {
         code = context.voucher
         delete context.voucher
       }
-      // No `tracking_id` passed here,
-      // use callback from 2n argument.
       if (isFunction(trackingId)) {
         callback = trackingId
-        trackingId = undefined
+        trackingId = null
       }
 
       let url = `/vouchers/${encode(code)}/redemption`
-      // If `tracking_id` passed, use it in query string.
+
       if (isString(trackingId) && trackingId) {
         url += `?tracking_id=${encode(trackingId)}`
       }
@@ -114,7 +112,7 @@ module.exports = function (options) {
     rollback: (redemptionId, data, callback) => {
       if (isFunction(data)) {
         callback = data
-        data = undefined
+        data = null
       }
 
       let qs = {}

@@ -8,9 +8,8 @@ const assertOption = (options, name) => {
   }
 }
 
-const encode = (value = '') => {
-  return encodeURIComponent(value)
-}
+const encode = (value = '') => encodeURIComponent(value)
+
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')

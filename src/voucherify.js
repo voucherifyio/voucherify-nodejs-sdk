@@ -3,6 +3,7 @@
 const ApiClient = require('./ApiClient')
 const Campaigns = require('./Campaigns')
 const Vouchers = require('./Vouchers')
+const Validations = require('./Validations')
 const {
   assertOption,
   encode,
@@ -18,10 +19,12 @@ module.exports = function (options) {
   const client = new ApiClient(options)
   const vouchers = new Vouchers(client)
   const campaigns = new Campaigns(client)
+  const validations = new Validations(client)
 
   return {
     vouchers,
     campaigns,
+    validations,
 
     // leaving for backward compatibility
     list: (query, callback) => vouchers.list(query, callback),
@@ -33,14 +36,7 @@ module.exports = function (options) {
     disable: (code, callback) => vouchers.disable(code, callback),
     publish: (campaignName, callback) => vouchers.publish(campaignName, callback),
 
-    validate: (code, context = {}, callback = null) => {
-      if (isFunction(context)) {
-        callback = context
-        context = {}
-      }
-
-      return client.post(`/vouchers/${encode(code)}/validate`, context, callback)
-    },
+    validate: (code, context, callback) => validations.validateVoucher(code, context, callback),
 
     redemption: (code, callback) => {
       return client.get(`/vouchers/${encode(code)}/redemption`, null, callback)

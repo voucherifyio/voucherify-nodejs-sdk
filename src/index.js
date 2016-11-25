@@ -21,15 +21,36 @@ module.exports = function (options) {
   const customers = new Customers(client)
   const products = new Products(client)
 
+  /**
+   * Copy redemptions.list method and extend it so we can run:
+   *
+   *   // deprecated
+   *   api.redemptions(query, callback)
+   *
+   *   // new
+   *   api.redemptions.list(query, callback)
+   *   api.redemptions.redeem(code, trackingId, callback)
+   *   // ...
+   */
+  const backwardCompatibleRedemptions = redemptions.list.bind(redemptions)
+  // add to func object all redemption functions bound to it's context
+  for (const i in redemptions) {
+    if (typeof (redemptions[i]) === 'function') {
+      backwardCompatibleRedemptions[i].redemptions[i].bind(redemptions)
+    }
+  }
+
   return {
     vouchers,
     campaigns,
     validations,
-    redemptions,
+    redemptions: backwardCompatibleRedemptions,
     customers,
     products,
 
     // leaving for backward compatibility
+
+    // vouchers
     list: (query, callback) => vouchers.list(query, callback),
     get: (code, callback) => vouchers.get(code, callback),
     create: (voucher, callback) => vouchers.create(voucher, callback),
@@ -38,23 +59,21 @@ module.exports = function (options) {
     enable: (code, callback) => vouchers.enable(code, callback),
     disable: (code, callback) => vouchers.disable(code, callback),
     publish: (campaignName, callback) => vouchers.publish(campaignName, callback),
-
+    // validations
     validate: (code, context, callback) => validations.validateVoucher(code, context, callback),
-
+    // redemptions
     redemption: (code, callback) => redemptions.getForVoucher(code, callback),
-    // FIXME handle previous methods, copy and extend `list` function prototype
-    // redemptions: (query, callback) => redemptions.list(query, callback),
     redeem: (code, trackingId, callback) => redemptions.redeem(code, trackingId, callback),
     rollback: (redemptionId, data, callback) => redemptions.rollback(redemptionId, data, callback),
-
+    // campaigns
     campaign: {
       voucher: {
         create: (campaignName, voucher, callback) => campaigns.addVoucher(campaignName, voucher, callback)
       }
     },
-
+    // customers
     customer: customers,
-
+    // products
     product: {
       create: (product, callback) => products.create(product, callback),
       get: (productId, callback) => products.get(productId, callback),

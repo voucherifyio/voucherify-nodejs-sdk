@@ -10,6 +10,7 @@ const assertOption = (options, name) => {
 
 const encode = (value = '') => encodeURIComponent(value)
 const isString = (value) => typeof (value) === 'string'
+const isObject = (value) => typeof (value) === 'object' && !Array.isArray(value)
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')
@@ -88,7 +89,7 @@ module.exports = function (options) {
 
     redeem: (code, trackingId, callback) => {
       let context = {}
-      if (typeof (code) === 'object') {
+      if (isObject(code)) {
         context = code
         code = context.voucher
         delete context.voucher
@@ -123,10 +124,10 @@ module.exports = function (options) {
         qs['reason'] = encode(data)
       }
 
-      if (typeof (data) === 'object') {
         qs['reason'] = data['reason'] || undefined
         qs['tracking_id'] = data['tracking_id'] || undefined
         payload['customer'] = data['customer'] || undefined
+      if (isObject(data)) {
       }
 
       return client.post(
@@ -141,7 +142,7 @@ module.exports = function (options) {
       if (isString(campaignName)) {
         qs = {campaign: encode(campaignName)}
       }
-      if (typeof (campaignName) === 'object') {
+      if (isObject(campaignName)) {
         payload = campaignName
       }
 

@@ -9,7 +9,7 @@ const assertOption = (options, name) => {
 }
 
 const encode = (value = '') => encodeURIComponent(value)
-
+const isString = (value) => typeof (value) === 'string'
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')
@@ -119,7 +119,7 @@ module.exports = function (options) {
       const payload = {}
 
       // If `reason` passed, use it in query string.
-      if (typeof (data) === 'string') {
+      if (isString(data)) {
         qs['reason'] = encode(data)
       }
 
@@ -138,8 +138,8 @@ module.exports = function (options) {
     publish: function (campaignName, callback) {
       let path = '/vouchers/publish'
       let payload = {}
-      if (typeof (campaignName) === 'string') {
-        path += '?campaign=' + encode(campaignName)
+      if (isString(campaignName)) {
+        qs = {campaign: encode(campaignName)}
       }
       if (typeof (campaignName) === 'object') {
         payload = campaignName

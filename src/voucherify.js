@@ -117,18 +117,18 @@ module.exports = function (options) {
         data = undefined
       }
 
-      const qs = {}
-      const payload = {}
+      let qs = {}
+      let payload = {}
 
       // If `reason` passed, use it in query string.
       if (isString(data)) {
-        qs['reason'] = encode(data)
+        qs.reason = encode(data)
       }
 
-        qs['reason'] = data['reason'] || undefined
-        qs['tracking_id'] = data['tracking_id'] || undefined
-        payload['customer'] = data['customer'] || undefined
       if (isObject(data)) {
+        const {reason, tracking_id, customer} = data
+        qs = {reason, tracking_id}
+        payload = {customer}
       }
 
       return client.post(
@@ -137,17 +137,18 @@ module.exports = function (options) {
       )
     },
 
-    publish: function (campaignName, callback) {
-      let path = '/vouchers/publish'
+    publish: (campaignName, callback) => {
+      let qs = {}
       let payload = {}
+
       if (isString(campaignName)) {
-        qs = {campaign: encode(campaignName)}
+        qs.campaign = encode(campaignName)
       }
       if (isObject(campaignName)) {
         payload = campaignName
       }
 
-      return client.post(path, payload, callback)
+      return client.post('/vouchers/publish', payload, callback, {qs})
     },
 
     campaign: {

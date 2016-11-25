@@ -1,17 +1,14 @@
 'use strict'
 
 const ApiClient = require('./ApiClient')
-
-const assertOption = (options, name) => {
-  if (!options[name]) {
-    throw new Error(`Missing required option '${name}'`)
-  }
-}
-
-const encode = (value = '') => encodeURIComponent(value)
-const isString = (value) => typeof (value) === 'string'
-const isObject = (value) => typeof (value) === 'object' && !Array.isArray(value) && value !== null
-const isFunction = (value) => typeof (value) === 'function'
+const Vouchers = require('./Vouchers')
+const {
+  assertOption,
+  encode,
+  isString,
+  isObject,
+  isFunction
+} = require('./helpers')
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')

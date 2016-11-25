@@ -5,6 +5,7 @@ const Campaigns = require('./Campaigns')
 const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
+const Customers = require('./Customers')
 
 const {
   assertOption,
@@ -20,12 +21,14 @@ module.exports = function (options) {
   const campaigns = new Campaigns(client)
   const validations = new Validations(client)
   const redemptions = new Redemptions(client)
+  const customers = new Customers(client)
 
   return {
     vouchers,
     campaigns,
     validations,
     redemptions,
+    customers,
 
     // leaving for backward compatibility
     list: (query, callback) => vouchers.list(query, callback),
@@ -51,24 +54,7 @@ module.exports = function (options) {
       }
     },
 
-    customer: {
-      create: (customer, callback) => {
-        return client.post('/customers', customer, callback)
-      },
-
-      get: (customerId, callback) => {
-        // TODO why fallback to empty string ?! shall we rather throw an error? print warning?
-        return client.get(`/customers/${encode(customerId)}`, null, callback)
-      },
-
-      update: (customer, callback) => {
-        return client.put(`/customers/${encode(customer.id)}`, customer, callback)
-      },
-
-      delete: (customerId, callback) => {
-        return client.delete(`/customers/${encode(customerId)}`, callback)
-      }
-    },
+    customer: customers,
 
     product: {
       create: (product, callback) => {

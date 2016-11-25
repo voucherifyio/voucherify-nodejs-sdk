@@ -6,11 +6,8 @@ const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
 const Customers = require('./Customers')
-
-const {
-  assertOption,
-  encode
-} = require('./helpers')
+const Products = require('./Products')
+const {assertOption} = require('./helpers')
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')
@@ -22,6 +19,7 @@ module.exports = function (options) {
   const validations = new Validations(client)
   const redemptions = new Redemptions(client)
   const customers = new Customers(client)
+  const products = new Products(client)
 
   return {
     vouchers,
@@ -29,6 +27,7 @@ module.exports = function (options) {
     validations,
     redemptions,
     customers,
+    products,
 
     // leaving for backward compatibility
     list: (query, callback) => vouchers.list(query, callback),
@@ -57,47 +56,15 @@ module.exports = function (options) {
     customer: customers,
 
     product: {
-      create: (product, callback) => {
-        return client.post('/products', product, callback)
-      },
-
-      get: (productId, callback) => {
-        return client.get(`/products/${encode(productId)}`, null, callback)
-      },
-
-      update: (product, callback) => {
-        return client.put(`/products/${encode(product.id)}`, product, callback)
-      },
-
-      delete: (productId, callback) => {
-        return client.delete(`/products/${encode(productId)}`, callback)
-      },
-
+      create: (product, callback) => products.create(product, callback),
+      get: (productId, callback) => products.get(productId, callback),
+      update: (product, callback) => products.update(product, callback),
+      delete: (productId, callback) => products.delete(productId),
       sku: {
-        create: (productId, sku, callback) => {
-          return client.post(`/products/${encode(productId)}/skus`, sku, callback)
-        },
-
-        get: (productId, skuId, callback) => {
-          return client.get(
-            `/products/${encode(productId)}/skus/${encode(skuId)}`,
-            null, callback
-          )
-        },
-
-        update: (productId, sku, callback) => {
-          return client.put(
-            `/products/${encode(productId)}/skus/${encode(sku.id)}`,
-            sku, callback
-          )
-        },
-
-        delete: (productId, skuId, callback) => {
-          return client.delete(
-            `/products/${encode(productId)}/skus/${encode(skuId)}`,
-            callback
-          )
-        }
+        create: (productId, sku, callback) => products.createSku(productId, sku, callback),
+        get: (productId, skuId, callback) => products.getSku(productId, skuId, callback),
+        update: (productId, sku, callback) => products.updateSku(productId, sku, callback),
+        delete: (productId, skuId, callback) => products.deleteSku(productId, skuId, callback)
       }
     }
   }

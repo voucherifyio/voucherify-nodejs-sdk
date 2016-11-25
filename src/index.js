@@ -7,7 +7,7 @@ const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
 const Customers = require('./Customers')
 const Products = require('./Products')
-const {assertOption} = require('./helpers')
+const {assertOption, isFunction} = require('./helpers')
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')
@@ -33,9 +33,9 @@ module.exports = function (options) {
    *   // ...
    */
   const backwardCompatibleRedemptions = redemptions.list.bind(redemptions)
-  // add to func object all redemption functions bound to it's context
+  // copy to func object all redemption methods bound to it's context
   for (const i in redemptions) {
-    if (typeof (redemptions[i]) === 'function') {
+    if (isFunction(redemptions[i])) {
       backwardCompatibleRedemptions[i].redemptions[i].bind(redemptions)
     }
   }

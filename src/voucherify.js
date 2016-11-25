@@ -15,48 +15,20 @@ module.exports = function (options) {
   assertOption(options, 'clientSecretKey')
 
   const client = new ApiClient(options)
+  const vouchers = new Vouchers(client)
 
   return {
-    /*
-    *  List vouchers. Sample query: { limit: 100, skip: 200, category: 'Loyalty' }
-    */
-    list: (query, callback) => {
-      return client.get('/vouchers/', query, callback)
-    },
+    vouchers,
 
-    get: (code, callback) => {
-      return client.get(`/vouchers/${encode(code)}`, null, callback)
-    },
-
-    create: (voucher, callback) => {
-      return client.post(`/vouchers/${encode(voucher.code)}`, voucher, callback)
-    },
-
-    delete: (voucherCode, params = {}, callback = null) => {
-      if (isFunction(params)) {
-        callback = params
-        params = {}
-      }
-
-      let path = `/vouchers/${encode(voucherCode)}`
-      if (params.force) {
-        path += '?force=true'
-      }
-
-      return client.delete(path, callback)
-    },
-
-    update: (voucher, callback) => {
-      return client.put(`/vouchers/${encode(voucher.code)}`, voucher, callback)
-    },
-
-    enable: (code, callback) => {
-      return client.post(`/vouchers/${encode(code)}/enable`, null, callback)
-    },
-
-    disable: (code, callback) => {
-      return client.post(`/vouchers/${encode(code)}/disable`, null, callback)
-    },
+    // leaving for backward compatibility
+    list: (query, callback) => vouchers.list(query, callback),
+    get: (code, callback) => vouchers.get(code, callback),
+    create: (voucher, callback) => vouchers.create(voucher, callback),
+    delete: (code, params, callback) => vouchers.delete(code, params, callback),
+    update: (voucher, callback) => vouchers.update(voucher, callback),
+    enable: (code, callback) => vouchers.enable(code, callback),
+    disable: (code, callback) => vouchers.disable(code, callback),
+    publish: (campaignName, callback) => vouchers.publish(campaignName, callback),
 
     validate: (code, context = {}, callback = null) => {
       if (isFunction(context)) {
@@ -130,20 +102,6 @@ module.exports = function (options) {
         `/redemptions/${encode(redemptionId)}/rollback`,
         payload, callback, {qs}
       )
-    },
-
-    publish: (campaignName, callback) => {
-      let qs = {}
-      let payload = {}
-
-      if (isString(campaignName)) {
-        qs.campaign = encode(campaignName)
-      }
-      if (isObject(campaignName)) {
-        payload = campaignName
-      }
-
-      return client.post('/vouchers/publish', payload, callback, {qs})
     },
 
     campaign: {

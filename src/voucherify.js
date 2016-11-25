@@ -104,7 +104,7 @@ module.exports = function (options) {
 
       let url = `/vouchers/${encode(code)}/redemption`
       // If `tracking_id` passed, use it in query string.
-      if (typeof (trackingId) === 'string' && trackingId) {
+      if (isString(trackingId) && trackingId) {
         url += `?tracking_id=${encode(trackingId)}`
       }
 

@@ -11,6 +11,7 @@ const assertOption = (options, name) => {
 const encode = (value = '') => encodeURIComponent(value)
 const isString = (value) => typeof (value) === 'string'
 const isObject = (value) => typeof (value) === 'object' && !Array.isArray(value)
+const isFunction = (value) => typeof (value) === 'function'
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')
@@ -35,7 +36,7 @@ module.exports = function (options) {
     },
 
     delete: (voucherCode, params = {}, callback = null) => {
-      if (typeof (params) === 'function') {
+      if (isFunction(params)) {
         callback = params
         params = {}
       }
@@ -61,7 +62,7 @@ module.exports = function (options) {
     },
 
     validate: (code, context = {}, callback = null) => {
-      if (typeof (context) === 'function') {
+      if (isFunction(context)) {
         callback = context
         context = {}
       }
@@ -96,7 +97,7 @@ module.exports = function (options) {
       }
       // No `tracking_id` passed here,
       // use callback from 2n argument.
-      if (typeof (trackingId) === 'function') {
+      if (isFunction(trackingId)) {
         callback = trackingId
         trackingId = undefined
       }
@@ -111,7 +112,7 @@ module.exports = function (options) {
     },
 
     rollback: (redemptionId, data, callback) => {
-      if (typeof (data) === 'function') {
+      if (isFunction(data)) {
         callback = data
         data = undefined
       }

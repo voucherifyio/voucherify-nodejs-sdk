@@ -19,13 +19,13 @@ module.exports = class Vouchers {
     return this.client.put(`/vouchers/${encode(voucher.code)}`, voucher, callback)
   }
 
-  delete (voucherCode, params = {}, callback = null) {
+  delete (code, params = {}, callback = null) {
     if (isFunction(params)) {
       callback = params
       params = {}
     }
 
-    return this.client.delete(`/vouchers/${encode(voucherCode)}`, callback, {
+    return this.client.delete(`/vouchers/${encode(code)}`, callback, {
       qs: {force: !!params.force}
     })
   }

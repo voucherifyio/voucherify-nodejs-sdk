@@ -31,7 +31,7 @@ module.exports = class Vouchers {
   }
 
   list (query, callback) {
-    return this.client.get('/vouchers/', query, callback)
+    return this.client.get('/vouchers', query, callback)
   }
 
   publish (campaignName, callback) {

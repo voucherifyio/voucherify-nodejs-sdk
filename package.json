@@ -37,7 +37,7 @@
     "standard": "^8.6.0"
   },
   "scripts": {
-    "test": "jasmine-node ./test",
+    "test": "jasmine-node --verbose --captureExceptions ./test",
     "lint": "standard",
     "prepublish": "gulp release"
   }

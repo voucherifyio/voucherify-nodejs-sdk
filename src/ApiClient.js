@@ -50,53 +50,35 @@ module.exports = class ApiClient {
     }
   }
 
-  prepareUrl (path) {
-    return `${this.basePath}/${path}`
+  prepareOptions (path, options) {
+    return Object.assign({
+      url: `${this.basePath}${path}`,
+      headers: this.headers,
+      json: true
+    }, options)
   }
 
   get (path, qs, callback) {
     const handler = prepare(callback)
-    request.get({
-      url: this.prepareUrl(path),
-      qs,
-      headers: this.headers,
-      json: true
-    }, handler.callback)
-
+    request.get(this.prepareOptions(path, {qs}), handler.callback)
     return handler.promise
   }
 
   post (path, body, callback, options = {}) {
     const handler = prepare(callback)
-    request.get(Object.assign({
-      url: this.prepareUrl(path),
-      headers: this.headers,
-      body,
-      json: true
-    }, options), handler.callback)
-
+    request.post(this.prepareOptions(path, {body, ...options}), handler.callback)
     return handler.promise
   }
 
   put (path, body, callback, options = {}) {
     const handler = prepare(callback)
-    request.put(Object.assign({
-      url: this.prepareUrl(path),
-      headers: this.headers,
-      body,
-      json: true
-    }, options), handler.callback)
-
+    request.put(this.prepareOptions(path, {body, ...options}), handler.callback)
     return handler.promise
   }
 
-  delete (path, json, callback, options = {}) {
+  delete (path, callback, options = {}) {
     const handler = prepare(callback)
-    request.del(Object.assign({
-      url: this.prepareUrl(path),
-      headers: this.headers
-    }, options), handler.callback)
-
+    request.del(this.prepareOptions(path, options), handler.callback)
     return handler.promise
   }
 }

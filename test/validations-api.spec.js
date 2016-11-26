@@ -1,7 +1,7 @@
 /* eslint-env jasmine */
 const nock = require('nock')
 const VoucherifyClient = require('../src/index')
-const {reqheaders} = require('./fixtures')
+const {reqWithoutBody, reqWithBody} = require('./fixtures')
 nock.disableNetConnect()
 
 describe('Validations API', function () {
@@ -12,7 +12,7 @@ describe('Validations API', function () {
 
   describe('validate voucher', function () {
     it('should validate without additional context', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test%20code/validate')
         .reply(200, {})
 
@@ -24,7 +24,7 @@ describe('Validations API', function () {
     })
 
     it('should validate without additional context (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test%20code/validate')
         .reply(200, {})
 
@@ -36,7 +36,7 @@ describe('Validations API', function () {
     })
 
     it('should validate with additional context', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test%20code/validate', {
           tracking_id: 'tracking-id'
         })

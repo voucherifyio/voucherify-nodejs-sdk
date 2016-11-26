@@ -1,7 +1,7 @@
 /* eslint-env jasmine */
 const nock = require('nock')
 const VoucherifyClient = require('../src/index')
-const {reqheaders} = require('./fixtures')
+const {reqWithoutBody, reqWithBody} = require('./fixtures')
 nock.disableNetConnect()
 
 describe('Redemptions API', function () {
@@ -12,7 +12,7 @@ describe('Redemptions API', function () {
 
   describe('redeem', function () {
     it('should redeem by code', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test-code/redemption')
         .reply(200, {})
 
@@ -24,7 +24,7 @@ describe('Redemptions API', function () {
     })
 
     it('should redeem by code (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test-code/redemption')
         .reply(200, {})
 
@@ -36,7 +36,7 @@ describe('Redemptions API', function () {
     })
 
     it('should redeem by voucher', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test-code/redemption', {
           customer: {
             id: 'test-customer-id'
@@ -57,7 +57,7 @@ describe('Redemptions API', function () {
     })
 
     it('should redeem with tracking ID', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test-code/redemption')
         .query({tracking_id: 'test-tracking-id'})
         .reply(200, {})
@@ -72,7 +72,7 @@ describe('Redemptions API', function () {
 
   describe('list', function () {
     it('should list by query', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/redemptions')
         .query({limit: 100})
         .reply(200, {})
@@ -87,7 +87,7 @@ describe('Redemptions API', function () {
     })
 
     it('should list all', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/redemptions')
       .reply(200, {})
 
@@ -99,7 +99,7 @@ describe('Redemptions API', function () {
     })
 
     it('should list all (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/redemptions')
         .reply(200, {})
 
@@ -112,7 +112,7 @@ describe('Redemptions API', function () {
   })
 
   it('should get voucher redemptions', function (done) {
-    const server = nock('https://api.voucherify.io', {reqheaders})
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/vouchers/test-code/redemption')
       .reply(200, {})
 
@@ -125,7 +125,7 @@ describe('Redemptions API', function () {
 
   describe('rollback', function () {
     it('should rollback without customer details', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/redemptions/test-redemption-id/rollback')
         .reply(200, {})
 
@@ -137,7 +137,7 @@ describe('Redemptions API', function () {
     })
 
     it('should rollback without customer details (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/redemptions/test-redemption-id/rollback')
         .reply(200, {})
 
@@ -149,7 +149,7 @@ describe('Redemptions API', function () {
     })
 
     it('should rollback with customer details', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/redemptions/test-redemption-id/rollback', {
           customer: {
             id: 'test-customer-id'
@@ -169,7 +169,7 @@ describe('Redemptions API', function () {
     })
 
     it('should rollback with customer details, reason and tracking_id', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/redemptions/test-redemption-id/rollback', {
           customer: {
             id: 'test-customer-id'
@@ -195,7 +195,7 @@ describe('Redemptions API', function () {
     })
 
     it('should rollback with a reason', function (done) {
-      const server = nock('https://api.voucherify.io', {reqheaders})
+      const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/redemptions/test-redemption-id/rollback')
         .query({
           reason: 'test%20reason'

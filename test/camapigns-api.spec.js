@@ -1,7 +1,7 @@
 /* eslint-env jasmine */
 const nock = require('nock')
 const VoucherifyClient = require('../src/index')
-const {reqheaders} = require('./fixtures')
+const {reqWithoutBody, reqWithBody} = require('./fixtures')
 nock.disableNetConnect()
 
 describe('Campaigns API', function () {
@@ -11,7 +11,7 @@ describe('Campaigns API', function () {
   })
 
   it('should create campaign', function (done) {
-    const server = nock('https://api.voucherify.io', {reqheaders})
+    const server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns', {
         name: 'test campaign'
       })
@@ -27,7 +27,7 @@ describe('Campaigns API', function () {
   })
 
   it('should get camaign', function (done) {
-    const server = nock('https://api.voucherify.io', {reqheaders})
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/campaigns/test%20campaign')
       .reply(200, {})
 
@@ -39,7 +39,7 @@ describe('Campaigns API', function () {
   })
 
   it('should add voucher', function (done) {
-    const server = nock('https://api.voucherify.io', {reqheaders})
+    const server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns/test%20campaign/vouchers', {
         code: 'test voucher'
       })
@@ -55,7 +55,7 @@ describe('Campaigns API', function () {
   })
 
   it('should add voucher', function (done) {
-    const server = nock('https://api.voucherify.io', {reqheaders})
+    const server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns/test%20campaign/import', [{
         code: 'test voucher'
       }])

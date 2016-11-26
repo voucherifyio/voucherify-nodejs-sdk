@@ -1,6 +1,7 @@
 /* eslint-env jasmine */
 const nock = require('nock')
 const VoucherifyClient = require('../src/index')
+const {reqheaders} = require('./fixtures')
 nock.disableNetConnect()
 
 describe('Vouchers API', function () {
@@ -10,7 +11,7 @@ describe('Vouchers API', function () {
   })
 
   it('should create voucher', function (done) {
-    const server = nock('https://api.voucherify.io')
+    const server = nock('https://api.voucherify.io', {reqheaders})
       .post('/v1/vouchers/test-code', {
         code: 'test-code',
         type: 'DISCOUNT_VOUCHER'
@@ -28,7 +29,7 @@ describe('Vouchers API', function () {
   })
 
   it('should get voucher', function (done) {
-    const server = nock('https://api.voucherify.io')
+    const server = nock('https://api.voucherify.io', {reqheaders})
       .get('/v1/vouchers/test-code')
       .reply(200, {})
 
@@ -40,7 +41,7 @@ describe('Vouchers API', function () {
   })
 
   it('should update voucher', function (done) {
-    const server = nock('https://api.voucherify.io')
+    const server = nock('https://api.voucherify.io', {reqheaders})
       .put('/v1/vouchers/test-code', {
         code: 'test-code',
         type: 'DISCOUNT_VOUCHER'
@@ -59,7 +60,7 @@ describe('Vouchers API', function () {
 
   describe('delete voucher', function () {
     it('should delete, but not permanently', function (done) {
-      const server = nock('https://api.voucherify.io')
+      const server = nock('https://api.voucherify.io', {reqheaders})
         .delete('/v1/vouchers/test-code')
         .query({force: false})
         .reply(200, {})
@@ -72,7 +73,7 @@ describe('Vouchers API', function () {
     })
 
     it('should delete, but not permanently (callback)', function (done) {
-      const server = nock('https://api.voucherify.io')
+      const server = nock('https://api.voucherify.io', {reqheaders})
         .delete('/v1/vouchers/test-code')
         .query({force: false})
         .reply(200, {})
@@ -85,7 +86,7 @@ describe('Vouchers API', function () {
     })
 
     it('should delete permanently', function (done) {
-      const server = nock('https://api.voucherify.io')
+      const server = nock('https://api.voucherify.io', {reqheaders})
         .delete('/v1/vouchers/test-code')
         .query({force: true})
         .reply(200, {})
@@ -99,7 +100,7 @@ describe('Vouchers API', function () {
   })
 
   it('should list vouchers by query', function (done) {
-    const server = nock('https://api.voucherify.io')
+    const server = nock('https://api.voucherify.io', {reqheaders})
       .get('/v1/vouchers')
       .query({campaign: 'test-campaign'})
       .reply(200, {})
@@ -113,7 +114,7 @@ describe('Vouchers API', function () {
 
   describe('publish voucher', function () {
     it('should publish by camaign name', function (done) {
-      const server = nock('https://api.voucherify.io')
+      const server = nock('https://api.voucherify.io', {reqheaders})
         .post('/v1/vouchers/publish')
         .query({campaign: 'test-campaign'})
         .reply(200, {})
@@ -126,7 +127,7 @@ describe('Vouchers API', function () {
     })
 
     it('should publish by voucher', function (done) {
-      const server = nock('https://api.voucherify.io')
+      const server = nock('https://api.voucherify.io', {reqheaders})
         .post('/v1/vouchers/publish', {
           campaign: 'test-campaign',
           voucher: 'test-voucher'
@@ -145,7 +146,7 @@ describe('Vouchers API', function () {
   })
 
   it('should enable voucher', function (done) {
-    const server = nock('https://api.voucherify.io')
+    const server = nock('https://api.voucherify.io', {reqheaders})
       .post('/v1/vouchers/test-voucher/enable')
       .reply(200, {})
 
@@ -157,7 +158,7 @@ describe('Vouchers API', function () {
   })
 
   it('should disable voucher', function (done) {
-    const server = nock('https://api.voucherify.io')
+    const server = nock('https://api.voucherify.io', {reqheaders})
       .post('/v1/vouchers/test-voucher/disable')
       .reply(200, {})
 
@@ -169,7 +170,7 @@ describe('Vouchers API', function () {
   })
 
   it('should import vouchers', function (done) {
-    const server = nock('https://api.voucherify.io')
+    const server = nock('https://api.voucherify.io', {reqheaders})
       .post('/v1/vouchers/import', [
         {code: 'test-voucher1'},
         {code: 'test-voucher2'}

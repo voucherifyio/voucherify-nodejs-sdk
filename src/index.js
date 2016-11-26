@@ -34,9 +34,11 @@ module.exports = function (options) {
    */
   const backwardCompatibleRedemptions = redemptions.list.bind(redemptions)
   // copy to func object all redemption methods bound to it's context
-  for (const i in redemptions) {
-    if (isFunction(redemptions[i])) {
-      backwardCompatibleRedemptions[i].redemptions[i].bind(redemptions)
+  const exposedFunctions = Object.getOwnPropertyNames(Object.getPrototypeOf(redemptions))
+
+  for (const name of exposedFunctions) {
+    if (name !== 'constructor' && isFunction(redemptions[name])) {
+      backwardCompatibleRedemptions[name] = redemptions[name].bind(redemptions)
     }
   }
 

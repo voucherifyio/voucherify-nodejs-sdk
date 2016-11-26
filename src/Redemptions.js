@@ -39,6 +39,11 @@ module.exports = class Redemptions {
   *  }
   */
   list (query, callback) {
+    if (isFunction(query)) {
+      callback = query
+      query = null
+    }
+
     return this.client.get('/redemptions', query, callback)
   }
 

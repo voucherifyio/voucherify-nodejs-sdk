@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* eslint-env jasmine */
 const utils = require('../src/utils.js')
 
 describe('utils', function () {

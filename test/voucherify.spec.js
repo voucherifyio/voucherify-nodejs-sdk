@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* eslint-env jasmine */
 const voucherifyClient = require('../src/index.js')
 
 describe('voucherify', function () {

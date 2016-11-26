@@ -34,6 +34,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "jasmine-node": "~1.14.5",
+    "nock": "^9.0.2",
     "standard": "^8.6.0"
   },
   "scripts": {

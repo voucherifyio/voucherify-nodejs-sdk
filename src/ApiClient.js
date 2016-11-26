@@ -66,13 +66,13 @@ module.exports = class ApiClient {
 
   post (path, body, callback, options = {}) {
     const handler = prepare(callback)
-    request.post(this.prepareOptions(path, Object.assign({}, body, {options})), handler.callback)
+    request.post(this.prepareOptions(path, Object.assign({}, {body}, options)), handler.callback)
     return handler.promise
   }
 
   put (path, body, callback, options = {}) {
     const handler = prepare(callback)
-    request.put(this.prepareOptions(path, Object.assign({}, body, {options})), handler.callback)
+    request.put(this.prepareOptions(path, Object.assign({}, {body}, options)), handler.callback)
     return handler.promise
   }
 

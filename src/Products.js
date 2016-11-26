@@ -23,6 +23,10 @@ module.exports = class Products {
     return this.client.delete(`/products/${encode(productId)}`, callback)
   }
 
+  list (callback) {
+    return this.client.get('/products', null, callback)
+  }
+
   createSku (productId, sku, callback) {
     return this.client.post(`/products/${encode(productId)}/skus`, sku, callback)
   }
@@ -46,5 +50,9 @@ module.exports = class Products {
       `/products/${encode(productId)}/skus/${encode(skuId)}`,
       callback
     )
+  }
+
+  listSkus (productId, callback) {
+    return this.client.get(`/products/${encode(productId)}/skus`, null, callback)
   }
 }

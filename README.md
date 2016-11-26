@@ -2,6 +2,9 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Build Status](https://travis-ci.org/rspective/voucherify-nodejs-sdk.svg?branch=refactor-and-new-methods)](https://travis-ci.org/rspective/voucherify-nodejs-sdk)
+[![NPM Version](https://img.shields.io/npm/v/voucherify.svg)](https://www.npmjs.com/package/voucherify)
+[![NPM Downloads](https://img.shields.io/npm/dm/voucherify.svg)](https://www.npmjs.com/package/voucherify)
+[![Dependencies](https://david-dm.org/rspective/voucherify-nodejs-sdk.svg)](https://www.npmjs.com/package/voucherify)
 
 [Voucherify](http://voucherify.io?utm_source=github&utm_medium=sdk&utm_campaign=acq) is an API-first platform for software developers who are dissatisfied with high-maintenance custom coupon software. Our product is a coupon infrastructure through API that provides a quicker way to build coupon generation, distribution and tracking. Unlike legacy coupon software we have:
 

@@ -78,24 +78,24 @@ module.exports = class ApiClient {
     return handler.promise
   }
 
-  put (path, body, callback) {
+  put (path, body, callback, options = {}) {
     const handler = prepare(callback)
-    request.put({
+    request.put(Object.assign({
       url: this.prepareUrl(path),
       headers: this.headers,
       body,
       json: true
-    }, handler.callback)
+    }, options), handler.callback)
 
     return handler.promise
   }
 
-  delete (path, json, callback) {
+  delete (path, json, callback, options = {}) {
     const handler = prepare(callback)
-    request.del({
+    request.del(Object.assign({
       url: this.prepareUrl(path),
       headers: this.headers
-    }, handler.callback)
+    }, options), handler.callback)
 
     return handler.promise
   }

@@ -67,7 +67,11 @@ module.exports = class Redemptions {
 
     if (isObject(data)) {
       const {reason, tracking_id, customer} = data
-      qs = {reason, tracking_id}
+
+      qs = {
+        reason: reason ? encode(reason) : undefined,
+        tracking_id: tracking_id ? encode(tracking_id) : undefined // eslint-disable-line camelcase
+      }
       payload = {customer}
     }
 

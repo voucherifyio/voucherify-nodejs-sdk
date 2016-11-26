@@ -39,7 +39,7 @@ module.exports = class Redemptions {
   *  }
   */
   list (query, callback) {
-    return this.client.get('/redemptions/', query, callback)
+    return this.client.get('/redemptions', query, callback)
   }
 
   getForVoucher (code, callback) {

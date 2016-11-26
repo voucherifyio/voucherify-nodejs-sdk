@@ -7,6 +7,14 @@ module.exports = class Campaigns {
     this.client = client
   }
 
+  create (campaign, callback) {
+    return this.client.post('/campaigns', campaign, callback)
+  }
+
+  get (name, callback) {
+    return this.client.get(`/campaigns/${encode(name)}`, null, callback)
+  }
+
   addVoucher (campaignName, voucher, callback) {
     return this.client.post(
       `/campaigns/${encode(campaignName)}/vouchers`,
@@ -14,5 +22,9 @@ module.exports = class Campaigns {
       voucher || {},
       callback
     )
+  }
+
+  importVouchers (campaignName, vouchers, callback) {
+    return this.client.post(`/campaigns/${encode(campaignName)}/import`, vouchers, callback)
   }
 }

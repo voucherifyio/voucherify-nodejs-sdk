@@ -54,6 +54,7 @@ module.exports = class Vouchers {
     return this.client.post(`/vouchers/${encode(code)}/disable`, null, callback)
   }
 
-  // TODO implement
-  ipmort () {}
+  import (vouchers, callback) {
+    return this.client.post(`/vouchers/import`, vouchers, callback)
+  }
 }

@@ -3,6 +3,10 @@
 const {encode} = require('./helpers')
 
 module.exports = class Customers {
+  constructor (client) {
+    this.client = client
+  }
+
   create (customer, callback) {
     return this.client.post('/customers', customer, callback)
   }

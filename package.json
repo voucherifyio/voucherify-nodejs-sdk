@@ -24,8 +24,8 @@
     "saas"
   ],
   "dependencies": {
-    "request": "~2.54.0",
-    "when": "~3.7.3"
+    "request": "~2.79.0",
+    "when": "~3.7.7"
   },
   "devDependencies": {
     "babel-plugin-add-header-comment": "^1.0.3",

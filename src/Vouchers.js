@@ -25,12 +25,9 @@ module.exports = class Vouchers {
       params = {}
     }
 
-    let path = `/vouchers/${encode(voucherCode)}`
-    if (params.force) {
-      path += '?force=true'
-    }
-
-    return this.client.delete(path, callback)
+    return this.client.delete(`/vouchers/${encode(voucherCode)}`, callback, {
+      qs: {force: !!params.force}
+    })
   }
 
   list (query, callback) {
@@ -38,17 +35,15 @@ module.exports = class Vouchers {
   }
 
   publish (campaignName, callback) {
-    let qs = {}
-    let payload = {}
-
     if (isString(campaignName)) {
-      qs.campaign = encode(campaignName)
-    }
-    if (isObject(campaignName)) {
-      payload = campaignName
+      return this.client.post('/vouchers/publish', null, callback, {
+        qs: {campaign: encode(campaignName)}
+      })
     }
 
-    return this.client.post('/vouchers/publish', payload, callback, {qs})
+    if (isObject(campaignName)) {
+      return this.client.post('/vouchers/publish', campaignName, callback)
+    }
   }
 
   enable (code, callback) {

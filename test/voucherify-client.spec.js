@@ -1,20 +1,22 @@
 /* eslint-env jasmine */
 const voucherifyClient = require('../src/index.js')
 
-describe('voucherify', function () {
-  it('should detect missing applicationId', function () {
-    expect(function () {
-      voucherifyClient({
-        clientSecretKey: 'CLIENT-SECRET-KEY'
-      })
-    }).toThrow(new Error("Missing required option 'applicationId'"))
-  })
+describe('VocherifyClient', function () {
+  describe('Initialization', function () {
+    it('should detect missing applicationId', function () {
+      expect(function () {
+        voucherifyClient({
+          clientSecretKey: 'CLIENT-SECRET-KEY'
+        })
+      }).toThrow(new Error("Missing required option 'applicationId'"))
+    })
 
-  it('should detect missing clientSecretKey', function () {
-    expect(function () {
-      voucherifyClient({
-        applicationId: 'APPLICATION-ID'
-      })
-    }).toThrow(new Error("Missing required option 'clientSecretKey'"))
+    it('should detect missing clientSecretKey', function () {
+      expect(function () {
+        voucherifyClient({
+          applicationId: 'APPLICATION-ID'
+        })
+      }).toThrow(new Error("Missing required option 'clientSecretKey'"))
+    })
   })
 })

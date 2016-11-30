@@ -35,7 +35,7 @@ describe('Redemptions API', function () {
       })
     })
 
-    it('should redeem by voucher', function (done) {
+    it('should redeem by voucher (DEPRECATED!)', function (done) {
       const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test-code/redemption', {
           customer: {
@@ -46,6 +46,26 @@ describe('Redemptions API', function () {
 
       client.redemptions.redeem({
         voucher: 'test-code',
+        customer: {
+          id: 'test-customer-id'
+        }
+      })
+      .then(() => {
+        server.done()
+        done()
+      })
+    })
+
+    it('should redeem by voucher', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/vouchers/test-code/redemption', {
+          customer: {
+            id: 'test-customer-id'
+          }
+        })
+        .reply(200, {})
+
+      client.redemptions.redeem('test-code', {
         customer: {
           id: 'test-customer-id'
         }

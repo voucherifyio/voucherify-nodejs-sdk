@@ -7,25 +7,35 @@ module.exports = class Redemptions {
     this.client = client
   }
 
-  redeem (code, trackingId, callback) {
+  redeem (code, params, callback) {
     let context = {}
+    let qs = {}
+    let isDeprecated = false
     if (isObject(code)) {
+      isDeprecated = true
+      console.warn('This redeem method invocation is deprecated. First argument should be always a code, check docs for more details.')
+      if (isObject(params)) {
+        console.warn('This redeem method invocation is deprecated. Params being an object will be ingored.')
+      }
+
       context = code
       code = context.voucher
       delete context.voucher
-    }
-    if (isFunction(trackingId)) {
-      callback = trackingId
-      trackingId = null
+    } else {
+      context = params || {}
     }
 
-    let url = `/vouchers/${encode(code)}/redemption`
-
-    if (isString(trackingId) && trackingId) {
-      url += `?tracking_id=${encode(trackingId)}`
+    if (isFunction(params)) {
+      callback = params
+      context = isDeprecated ? context : null
+    } else if (isString(params) && params.length > 0) {
+      // FIXME put  to body: {customer: tracking_id}, test it with working API
+      qs = {
+        tracking_id: encode(params)
+      }
     }
 
-    return this.client.post(url, context, callback)
+    return this.client.post(`/vouchers/${encode(code)}/redemption`, context, callback, {qs})
   }
 
   /*

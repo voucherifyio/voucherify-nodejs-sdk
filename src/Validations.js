@@ -7,12 +7,12 @@ module.exports = class Validations {
     this.client = client
   }
 
-  validateVoucher (code, context = {}, callback = null) {
-    if (isFunction(context)) {
-      callback = context
-      context = {}
+  validateVoucher (code, params = {}, callback = null) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
     }
 
-    return this.client.post(`/vouchers/${encode(code)}/validate`, context, callback)
+    return this.client.post(`/vouchers/${encode(code)}/validate`, params, callback)
   }
 }

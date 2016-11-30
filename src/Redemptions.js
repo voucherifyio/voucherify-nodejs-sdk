@@ -30,24 +30,12 @@ module.exports = class Redemptions {
       context = isDeprecated ? context : null
     } else if (isString(params) && params.length > 0) {
       // FIXME put  to body: {customer: tracking_id}, test it with working API
-      qs = {
-        tracking_id: encode(params)
-      }
+      qs.tracking_id = encode(params)
     }
 
     return this.client.post(`/vouchers/${encode(code)}/redemption`, context, callback, {qs})
   }
 
-  /*
-  *  List redemptions. Sample query (1000 successful redemptions from April 2016):
-  *  {
-  *      limit: 1000,
-  *      page: 0,
-  *      start_date: '2016-04-01T00:00:00',
-  *      end_date: '2016-04-30T23:59:59',
-  *      result: 'Success'
-  *  }
-  */
   list (query, callback) {
     if (isFunction(query)) {
       callback = query
@@ -70,12 +58,9 @@ module.exports = class Redemptions {
     let qs = {}
     let payload = {}
 
-    // If `reason` passed, use it in query string.
     if (isString(data)) {
       qs.reason = encode(data)
-    }
-
-    if (isObject(data)) {
+    } else if (isObject(data)) {
       const {reason, tracking_id, customer} = data
 
       qs = {

@@ -34,15 +34,13 @@ module.exports = class Vouchers {
     return this.client.get('/vouchers', query, callback)
   }
 
-  publish (campaignName, callback) {
-    if (isString(campaignName)) {
-      return this.client.post('/vouchers/publish', null, callback, {
-        qs: {campaign: encode(campaignName)}
-      })
+  publish (params, callback) {
+    if (isString(params)) {
+      return this.client.post('/vouchers/publish', {campaign: encode(params)}, callback)
     }
 
-    if (isObject(campaignName)) {
-      return this.client.post('/vouchers/publish', campaignName, callback)
+    if (isObject(params)) {
+      return this.client.post('/vouchers/publish', params, callback)
     }
   }
 

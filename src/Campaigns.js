@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode} = require('./helpers')
+const {encode, isFunction} = require('./helpers')
 
 module.exports = class Campaigns {
   constructor (client) {
@@ -15,11 +15,15 @@ module.exports = class Campaigns {
     return this.client.get(`/campaigns/${encode(name)}`, null, callback)
   }
 
-  addVoucher (campaignName, voucher, callback) {
+  addVoucher (campaignName, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
     return this.client.post(
       `/campaigns/${encode(campaignName)}/vouchers`,
-      // TODO if voucher is optional, secure against callback version
-      voucher || {},
+      params || {},
       callback
     )
   }

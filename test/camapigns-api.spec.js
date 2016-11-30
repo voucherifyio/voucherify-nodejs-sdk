@@ -38,23 +38,45 @@ describe('Campaigns API', function () {
       })
   })
 
-  it('should add voucher', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
-      .post('/v1/campaigns/test%20campaign/vouchers', {
-        code: 'test voucher'
-      })
+  describe('add voucher', function () {
+    it('should add voucher with concrete code', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/campaigns/test%20campaign/vouchers', {code: 'test voucher'})
       .reply(200, {})
 
-    client.campaigns.addVoucher('test campaign', {
-      code: 'test voucher'
+      client.campaigns.addVoucher('test campaign', {code: 'test voucher'})
+      .then(() => {
+        server.done()
+        done()
+      })
     })
-    .then(() => {
-      server.done()
-      done()
+
+    it('should add voucher without params', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/campaigns/test%20campaign/vouchers', {})
+      .reply(200, {})
+
+      client.campaigns.addVoucher('test campaign')
+      .then(() => {
+        server.done()
+        done()
+      })
+    })
+
+    it('should add voucher without params (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/campaigns/test%20campaign/vouchers', {})
+      .reply(200, {})
+
+      client.campaigns.addVoucher('test campaign', (err) => {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
     })
   })
 
-  it('should add voucher', function (done) {
+  it('should import vouchers', function (done) {
     const server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns/test%20campaign/import', [{
         code: 'test voucher'

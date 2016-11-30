@@ -67,15 +67,42 @@ describe('Products API', function () {
     })
   })
 
-  it('should list products', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+  describe('list products', function () {
+    it('should list all', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/products')
       .reply(200, {})
 
-    client.products.list()
-    .then(() => {
-      server.done()
-      done()
+      client.products.list()
+      .then(() => {
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/products')
+      .reply(200, [])
+
+      client.products.list((err) => {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list by query', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/products')
+      .query({limit: 100})
+      .reply(200, {})
+
+      client.products.list({limit: 100})
+      .then(() => {
+        server.done()
+        done()
+      })
     })
   })
 

@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode} = require('./helpers')
+const {encode, isFunction} = require('./helpers')
 
 module.exports = class Products {
   constructor (client) {
@@ -23,8 +23,12 @@ module.exports = class Products {
     return this.client.delete(`/products/${encode(productId)}`, callback)
   }
 
-  list (callback) {
-    return this.client.get('/products', null, callback)
+  list (query, callback) {
+    if (isFunction(query)) {
+      callback = query
+      query = {}
+    }
+    return this.client.get('/products', query, callback)
   }
 
   createSku (productId, sku, callback) {

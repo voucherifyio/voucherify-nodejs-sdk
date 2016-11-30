@@ -30,8 +30,13 @@ module.exports = class Vouchers {
     })
   }
 
-  list (query, callback) {
-    return this.client.get('/vouchers', query, callback)
+  list (params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get('/vouchers', params, callback)
   }
 
   publish (params, callback) {

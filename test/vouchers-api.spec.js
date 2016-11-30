@@ -99,16 +99,42 @@ describe('Vouchers API', function () {
     })
   })
 
-  it('should list vouchers by query', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+  describe('list', function () {
+    it('should list all vouchers', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/vouchers')
+      .reply(200, [])
+
+      client.vouchers.list()
+      .then(() => {
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all vouchers (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/vouchers')
+      .reply(200, [])
+
+      client.vouchers.list((err) => {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list vouchers by query', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/vouchers')
       .query({campaign: 'test-campaign'})
-      .reply(200, {})
+      .reply(200, [])
 
-    client.vouchers.list({campaign: 'test-campaign'})
-    .then(() => {
-      server.done()
-      done()
+      client.vouchers.list({campaign: 'test-campaign'})
+      .then(() => {
+        server.done()
+        done()
+      })
     })
   })
 

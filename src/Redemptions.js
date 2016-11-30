@@ -36,32 +36,32 @@ module.exports = class Redemptions {
     return this.client.post(`/vouchers/${encode(code)}/redemption`, context, callback, {qs})
   }
 
-  list (query, callback) {
-    if (isFunction(query)) {
-      callback = query
-      query = null
+  list (params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
     }
 
-    return this.client.get('/redemptions', query, callback)
+    return this.client.get('/redemptions', params, callback)
   }
 
   getForVoucher (code, callback) {
     return this.client.get(`/vouchers/${encode(code)}/redemption`, null, callback)
   }
 
-  rollback (redemptionId, data, callback) {
-    if (isFunction(data)) {
-      callback = data
-      data = null
+  rollback (redemptionId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = null
     }
 
     let qs = {}
     let payload = {}
 
-    if (isString(data)) {
-      qs.reason = encode(data)
-    } else if (isObject(data)) {
-      const {reason, tracking_id, customer} = data
+    if (isString(params)) {
+      qs.reason = encode(params)
+    } else if (isObject(params)) {
+      const {reason, tracking_id, customer} = params
 
       qs = {
         reason: reason ? encode(reason) : undefined,

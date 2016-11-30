@@ -23,12 +23,12 @@ module.exports = class Products {
     return this.client.delete(`/products/${encode(productId)}`, callback)
   }
 
-  list (query, callback) {
-    if (isFunction(query)) {
-      callback = query
-      query = {}
+  list (params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
     }
-    return this.client.get('/products', query, callback)
+    return this.client.get('/products', params, callback)
   }
 
   createSku (productId, sku, callback) {

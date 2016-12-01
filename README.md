@@ -15,6 +15,8 @@
 
 
 <p align="center">
+<b><a href="#migration-from-1.x">Migration from 1.x</a></b>
+|
 <b><a href="#setup">Setup</a></b>
 |
 <b><a href="#callback-or-promise">Callback or Promise?</a></b>
@@ -41,8 +43,6 @@ API:
 <a href="#customers-api">Customers</a>
 |
 <a href="#products-api">Products</a>
-|
-<a href="#deprecated-methods" color="red">Deprecated Methods</a>
 |
 <a href="#utils">Utils</a>
 </p>
@@ -204,11 +204,12 @@ Methods are provided within `client.redemptions.*` namespace.
 #### [Redeem Voucher]
 ```javascript
 client.redemptions.redeem(code)
-client.redemptions.redeem(code, {object} params)
+client.redemptions.redeem(code, params)
+
 // Deprecated!
 client.redemptions.redeem({code, ...params})
-client.redemptions.redeem({code, ...params}, {string} tracking_id)
-client.redemptions.redeem(code, {string} tracking_id)
+client.redemptions.redeem({code, ...params}, tracking_id)
+client.redemptions.redeem(code, tracking_id) // use: client.redemptions.redeem(code, {customer: {source_id}})
 ```
 #### [List Redemptions]
 ```javascript
@@ -222,8 +223,8 @@ client.redemptions.getForVoucher(code)
 #### [Rollback Redemption]
 ```javascript
 client.redemptions.rollback(redemptionId)
-client.redemptions.rollback(redemptionId, {object} params)
-client.redemptions.rollback(redemptionId, {string} reason)
+client.redemptions.rollback(redemptionId, params)
+client.redemptions.rollback(redemptionId, reason)
 ```
 Check [redemption rollback object](https://docs.voucherify.io/reference#the-redemption-rollback-object).
 <hr />
@@ -311,11 +312,16 @@ client.products.deleteSku(productId, skuId)
 client.products.listSkus(productId)
 ```
 <hr />
-### Deprecated methods
+### Migration from 1.x
 
-We strongly encourage you to update your code with new methods.
-Each deprecated method has corresponding new namespaced one with the same params,
-so migration will go smooth.
+Version 2.x of the SDK is fully backward compatible with version 1.x.
+Changes made in version 2.x mostly relate to grouping methods within namespaces.
+So all you need to do is to follow the list bellow and just replace deprecated methods
+with their namespaced equivalent.
+
+We also recommend to adopt [voucher redemption](#redeem-voucher) method, and don't use deprecated invocation.
+
+#### Deprecated methods
 
 - `client.list(params)` - [client.vouchers.list](#list-vouchers)
 - `client.get(voucherCode)` - [client.vouchers.get](#get-voucher)
@@ -338,7 +344,7 @@ so migration will go smooth.
 <hr />
 ### Utils
 
-```
+```javascript
 const utils = require('voucherify/utils')
 ```
 
@@ -360,7 +366,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
-- **2016-11-15** - `2.0.0` - Rewritten SDK, added missing API methods, updated README. Backward capability is provided but we strongly recommend to migrate [deprecated methods](#deprecated-methods) to new namespaces
+- **2016-11-15** - `2.0.0` - Rewritten SDK, added missing API methods, updated README. Backward capability is provided but we strongly recommend to follow the [migration from version 1.x](#migration-from-1.x)
 - **2016-12-01** - `1.23.2` - Support gift vouchers in utils
 - **2016-11-15** - `1.23.1` - Validate init options
 - **2016-10-26** - `1.23.0` - Error handling improved - passing error object in response to rejected request

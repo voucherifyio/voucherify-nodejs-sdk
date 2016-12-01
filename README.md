@@ -1,6 +1,5 @@
 <p align="center" >
-  <img src="http://static1.squarespace.com/static/556460c9e4b0e65363ecdd12/t/56c71302b654f948aee0856e/1479111030413/?format=1000w" style="width:400px;background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/2000px-Node.js_logo_2015.svg.png);background-size:60px;background-repeat:no-repeat;background-position:310px 100%"
-  />
+  <img src="./voucherify-nodejs-sdk.png" />
 </p>
 
 <h3 align="center">Official <a href="http://voucherify.io?utm_source=github&utm_medium=sdk&utm_campaign=acq" target="blank">Voucherify</a> Node.js SDK</h3>

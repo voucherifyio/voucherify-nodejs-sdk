@@ -42,7 +42,7 @@ API:
 |
 <a href="#products-api">Products</a>
 |
-<a href="#deprecated-api">Deprecated Methods</a>
+<a href="#deprecated-methods">Deprecated Methods</a>
 </p>
 
 <hr>

@@ -361,6 +361,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
+- **2016-11-15** - `2.0.0` - Rewritten SDK, added missing API methods, updated README. Backward capability is provided but we strongly recommend to migrate [deprecated methods](#deprecated-methods) to new namespaces
 - **2016-12-01** - `1.23.2` - Support gift vouchers in utils
 - **2016-11-15** - `1.23.1` - Validate init options
 - **2016-10-26** - `1.23.0` - Error handling improved - passing error object in response to rejected request

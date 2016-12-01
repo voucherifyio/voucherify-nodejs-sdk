@@ -2,7 +2,7 @@
   <img src="./voucherify-nodejs-sdk.png" />
 </p>
 
-<h3 align="center">Official <a href="http://voucherify.io?utm_source=github&utm_medium=sdk&utm_campaign=acq" target="blank">Voucherify</a> Node.js SDK</h3>
+<h3 align="center">Official <a href="http://voucherify.io?utm_source=github&utm_medium=sdk&utm_campaign=acq">Voucherify</a> Node.js SDK</h3>
 
 <p align="center">
   <a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a>
@@ -100,47 +100,212 @@ Method headers point to more detalied params description you can use.
 
 ### Vouchers API
 Methods are provided within `client.vouchers.*` namespace.
+- [Create Voucher](#create-voucher)
+- [Get Voucher](#get-voucher)
+- [Update Voucher](#update-voucher)
+- [Delete Voucher](#delete-voucher)
+- [List Vouchers](#list-vouchers)
+- [Enable Voucher](#enable-voucher)
+- [Disable Voucher](#disable-voucher)
+- [Import Vouchers](#import-vouchers)
 
-<h4 id="user-content-create-voucher">
-<a target="_blank" href="https://docs.voucherify.io/reference#create-voucher">Create Voucher</a></h4>
-
-`client.vouchers.create(voucher)`
-
-See [full voucher oject](https://docs.voucherify.io/reference#the-voucher-object).
+#### [Create Voucher]
+```javascript
+client.vouchers.create(voucher)
+```
+Check [voucher oject](https://docs.voucherify.io/reference#the-voucher-object).
 
 #### [Get Voucher]
-`client.vouchers.get(code)`
-
-#### [Update Voucher]
-`client.vouchers.update(voucher)`
-
-#### [Delete Voucher]
+```javascript
+client.vouchers.get(code)
 ```
+#### [Update Voucher]
+```javascript
+client.vouchers.update(voucher)
+```
+#### [Delete Voucher]
+```javascript
 client.vouchers.delete(code)
 client.vouchers.delete(code, {force: true})
 ```
-
 #### [List Vouchers]
-`client.vouchers.list(params)`
-
+```javascript
+client.vouchers.list()
+client.vouchers.list(params)
+```
 #### [Enable Voucher]
-`client.vouchers.enable(code)`
-
+```javascript
+client.vouchers.enable()
+client.vouchers.enable(code)
+```
 #### [Disable Voucher]
-`client.vouchers.disable(code)`
-
+```javascript
+client.vouchers.disable()
+client.vouchers.disable(code)
+```
 #### [Import Vouchers]
-`client.vouchers.import(vouchers)`
+```javascript
+client.vouchers.import(vouchers)
+```
 
+### Campaigns API
+Methods are provided within `client.campaigns.*` namespace.
+- [Create Campaign](#create-campaign)
+- [Get Campaign](#get-campaign)
+- [Add Voucher to Campaign](#add-voucher-to-campaign)
+- [Import Vouchers to Campaign](#import-vouchers-to-campaign)
+
+#### [Create Campaign]
+```javascript
+client.campaigns.create(campaign)
+```
+#### [Get Campaign]
+```javascript
+client.campaigns.get(name)
+```
+#### [Add Voucher to Campaign]
+```javascript
+client.campaigns.addVoucher(campaignName)
+client.campaigns.addVoucher(campaignName, params)
+```
+#### [Import Vouchers to Campaign]
+```javascript
+client.campaigns.importVouchers(campaignName, vouchers, callback)
+```
 
 ### Distributions API
-
 Methods are provided within `client.distributions.*` namespace.
 
 #### [Publish Voucher]
-```
+```javascript
 client.distributions.publish(campaignName)
 client.distributions.publish(params)
+```
+
+### Validations API
+Methods are provided within `client.validations.*` namespace.
+
+#### [Validate Voucher]
+```javascript
+client.validations.validateVoucher(code)
+client.validations.validateVoucher(code, params)
+```
+
+### Redemptions API
+Methods are provided within `client.redemptions.*` namespace.
+
+- [Redeem Voucher](#redeem-voucher)
+- [List Redemptions](#list-redemptions)
+- [Get Voucher's Redemptions](#get-voucher's-redemptions)
+- [Rollback Redemption](#rollback-redemption)
+
+#### [Redeem Voucher]
+```javascript
+client.redemptions.redeem(code)
+client.redemptions.redeem(code, {object} params)
+// Deprecated!
+client.redemptions.redeem({code, ...params})
+client.redemptions.redeem({code, ...params}, {string} tracking_id)
+client.redemptions.redeem(code, {string} tracking_id)
+```
+#### [List Redemptions]
+```javascript
+client.redemptions.list()
+client.redemptions.list(params)
+```
+#### [Get Voucher's Redemptions]
+```javascript
+client.redemptions.getForVoucher(code)
+```
+#### [Rollback Redemption]
+```javascript
+client.redemptions.rollback(redemptionId)
+client.redemptions.rollback(redemptionId, {object} params)
+client.redemptions.rollback(redemptionId, {string} reason)
+```
+Check [redemption rollback object](https://docs.voucherify.io/reference#the-redemption-rollback-object).
+
+### Customers API
+Methods are provided within `client.customers.*` namespace.
+
+- [Create Customer](#create-customer)
+- [Get Customer](#get-customer)
+- [Update Customer](#update-customer)
+- [Delete Customer](#delete-customer)
+
+#### [Create Customer]
+```javascript
+client.customers.create(customer)
+```
+Check [customer object](https://docs.voucherify.io/reference#the-customer-object).
+#### [Get Customer]
+```javascript
+client.customers.get(customerId)
+```
+#### [Update Customer]
+```javascript
+client.customers.update(customer)
+```
+#### [Delete Customer]
+```javascript
+client.customers.delete(customerId)
+```
+### Products API
+Methods are provided within `client.products.*` namespace.
+
+- [Create Product](#create-product)
+- [Get Product](#get-product)
+- [Update Product](#update-product)
+- [Delete Product](#delete-product)
+- [List Products](#list-products)
+- [Create SKU](#create-sku)
+- [Get SKU](#get-sku)
+- [Update SKU](#update-sku)
+- [Delete SKU](#delete-sku)
+- [List all product SKUs](#list-all-product-skus)
+
+#### [Create Product]
+```javascript
+client.products.create(product)
+```
+Check [product object](https://docs.voucherify.io/reference#the-product-object).
+#### [Get Product]
+```javascript
+client.products.get(productId)
+```
+#### [Update Product]
+```javascript
+client.products.update(product)
+```
+#### [Delete Product]
+```javascript
+client.products.delete(productId)
+```
+#### [List Products]
+```javascript
+client.products.list()
+client.products.list(params)
+```
+#### [Create SKU]
+```javascript
+client.products.createSku(productId, sku)
+```
+Check [SKU object](https://docs.voucherify.io/reference#the-sku-object).
+#### [Get SKU]
+```javascript
+client.products.getSku(productId, skuId)
+```
+#### [Update SKU]
+```javascript
+client.products.updateSku(productId, sku)
+```
+#### [Delete SKU]
+```javascript
+client.products.deleteSku(productId, skuId)
+```
+#### [List all product SKUs]
+```javascript
+client.products.listSkus(productId)
 ```
 
 ### Deprecated methods
@@ -149,38 +314,23 @@ We strongly encourage you to update your code with new methods.
 Each deprecated method has corresponding new namespaced one with the same params,
 so migration will go smooth.
 
-- `client.list(filter)` - see [client.vouchers.list](#list-vouchers)
-- `client.get(voucher_code)`- see [client.vouchers.get](#get-voucher)
-- `client.create(voucher)` - see [client.vouchers.create](#create-voucher)
-- `client.update(voucher)` - see [client.vouchers.update](#update-voucher)
-- `client.delete(voucher_code, [params])` - see [client.vouchers.delete](#delete-voucher)
+- `client.list(filter)` - [client.vouchers.list](#list-vouchers)
+- `client.get(voucher_code)`- [client.vouchers.get](#get-voucher)
+- `client.create(voucher)` - [client.vouchers.create](#create-voucher)
+- `client.update(voucher)` - [client.vouchers.update](#update-voucher)
+- `client.delete(voucher_code, [params])` - [client.vouchers.delete](#delete-voucher)
+- `client.disable(voucher_code)` - [client.vouchers.disable](#disable-voucher)
+- `client.enable(voucher_code)`- [client.vouchers.enable](#enable-voucher)
 - `client.campaign.voucher.create(campaignName, payload)` - see [client.campaigns.addVoucher](#add-voucher-to-campaign)
-
-
-- `voucherify.disable(voucher_code)`
-- `voucherify.enable(voucher_code)`
-
-
-- `voucherify.redemption(voucher_code)`
-
-- `voucherify.publish(campaign_name)`
-
-- `voucherify.publish(params)`
-
-- `voucherify.validate(code, context)`
-
-- `voucherify.redeem(voucher_code, tracking_id|customer_profile*)`
-
-
-- `voucherify.redemptions(filter)`
-
-- `voucherify.rollback(redemption_id, options*)`
-
-
+- `client.redemption(voucher_code)` -
+- `client.publish(campaign_name)`
+- `client.publish(params)`
+- `client.validate(code, context)`
+- `client.redeem(voucher_code, tracking_id|customer_profile*)`
+- `client.redemptions(filter)`
+- `client.rollback(redemption_id, options*)`
 
 ### Utils
-
-#### Usage
 
 ```
 const utils = require('voucherify/utils')
@@ -269,4 +419,32 @@ Utils don't need callbacks nor promises. They return results immediately.
 [Disable Voucher]: https://docs.voucherify.io/reference#disable-voucher
 [Import Vouchers]: https://docs.voucherify.io/reference#import-vouchers-1
 
+[Create Campaign]: https://docs.voucherify.io/reference#create-campaign
+[Get Campaign]: https://docs.voucherify.io/reference#get-campaign
+[Add Voucher to Campaign]: https://docs.voucherify.io/reference#add-voucher-to-campaign
+[Import Vouchers to Campaign]: https://docs.voucherify.io/reference#import-vouchers
+
 [Publish Voucher]: https://docs.voucherify.io/reference#publish-voucher
+
+[Validate Voucher]: https://docs.voucherify.io/reference#validate-voucher
+
+[Redeem Voucher]: https://docs.voucherify.io/reference#redeem-voucher
+[List Redemptions]: https://docs.voucherify.io/reference#list-redemptions
+[Get Voucher's Redemptions]: https://docs.voucherify.io/reference#vouchers-redemptions
+[Rollback Redemption]: https://docs.voucherify.io/reference#rollback-redemption
+
+[Create Customer]: https://docs.voucherify.io/reference#create-customer
+[Get Customer]: https://docs.voucherify.io/reference#read-customer
+[Update Customer]: https://docs.voucherify.io/reference#update-customer
+[Delete Customer]: https://docs.voucherify.io/reference#delete-customer
+
+[Create Product]: https://docs.voucherify.io/reference#create-product
+[Get Product]: https://docs.voucherify.io/reference#get-product
+[Update Product]: https://docs.voucherify.io/reference#update-product
+[Delete Product]: https://docs.voucherify.io/reference#delete-product
+[List Products]: https://docs.voucherify.io/reference#list-products
+[Create SKU]: https://docs.voucherify.io/reference#create-sku
+[Get SKU]: https://docs.voucherify.io/reference#get-sku
+[Update SKU]: https://docs.voucherify.io/reference#update-sku
+[Delete SKU]: https://docs.voucherify.io/reference#delete-sku
+[List all product SKUs]: https://docs.voucherify.io/reference#list-skus

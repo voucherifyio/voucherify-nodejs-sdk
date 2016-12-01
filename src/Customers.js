@@ -12,7 +12,6 @@ module.exports = class Customers {
   }
 
   get (customerId, callback) {
-    // TODO why fallback to empty string ?! shall we rather throw an error? print warning?
     return this.client.get(`/customers/${encode(customerId)}`, null, callback)
   }
 

@@ -147,7 +147,7 @@ client.vouchers.disable(code)
 ```javascript
 client.vouchers.import(vouchers)
 ```
-
+<hr />
 ### Campaigns API
 Methods are provided within `client.campaigns.*` namespace.
 - [Create Campaign](#create-campaign)
@@ -172,7 +172,7 @@ client.campaigns.addVoucher(campaignName, params)
 ```javascript
 client.campaigns.importVouchers(campaignName, vouchers, callback)
 ```
-
+<hr />
 ### Distributions API
 Methods are provided within `client.distributions.*` namespace.
 
@@ -181,7 +181,7 @@ Methods are provided within `client.distributions.*` namespace.
 client.distributions.publish(campaignName)
 client.distributions.publish(params)
 ```
-
+<hr />
 ### Validations API
 Methods are provided within `client.validations.*` namespace.
 
@@ -190,7 +190,7 @@ Methods are provided within `client.validations.*` namespace.
 client.validations.validateVoucher(code)
 client.validations.validateVoucher(code, params)
 ```
-
+<hr />
 ### Redemptions API
 Methods are provided within `client.redemptions.*` namespace.
 
@@ -224,7 +224,7 @@ client.redemptions.rollback(redemptionId, {object} params)
 client.redemptions.rollback(redemptionId, {string} reason)
 ```
 Check [redemption rollback object](https://docs.voucherify.io/reference#the-redemption-rollback-object).
-
+<hr />
 ### Customers API
 Methods are provided within `client.customers.*` namespace.
 
@@ -250,6 +250,7 @@ client.customers.update(customer)
 ```javascript
 client.customers.delete(customerId)
 ```
+<hr />
 ### Products API
 Methods are provided within `client.products.*` namespace.
 
@@ -307,7 +308,7 @@ client.products.deleteSku(productId, skuId)
 ```javascript
 client.products.listSkus(productId)
 ```
-
+<hr />
 ### Deprecated methods
 
 We strongly encourage you to update your code with new methods.

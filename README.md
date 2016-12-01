@@ -15,7 +15,7 @@
 
 
 <p align="center">
-<b><a href="#migration-from-1.x">Migration from 1.x</a></b>
+<b><a href="#migration-from-1x">Migration from 1.x</a></b>
 |
 <b><a href="#setup">Setup</a></b>
 |
@@ -366,7 +366,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
-- **2016-11-15** - `2.0.0` - Rewritten SDK, added missing API methods, updated README. Backward capability is provided but we strongly recommend to follow the [migration from version 1.x](#migration-from-1.x)
+- **2016-11-15** - `2.0.0` - Rewritten SDK, added missing API methods, updated README. Backward capability is provided but we strongly recommend to follow the [migration from version 1.x](#migration-from-1x)
 - **2016-12-01** - `1.23.2` - Support gift vouchers in utils
 - **2016-11-15** - `1.23.1` - Validate init options
 - **2016-10-26** - `1.23.0` - Error handling improved - passing error object in response to rejected request

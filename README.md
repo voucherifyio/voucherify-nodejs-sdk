@@ -556,7 +556,8 @@ Successful validation result:
     code: "91Ft4U",
     valid: true,
     gift: {
-        amount: 10000
+        amount: 10000,
+        balance: 7500
     }, 
     tracking_id: "john@lemon.com"
 }
@@ -767,9 +768,9 @@ voucherify.redeem({
 
 ##### 5. With order amount
 
-Redeeming a gift voucher requires to pass an amount that you wish to withdraw from the voucher.
-The same applies to vouchers with validation rules on order's total amount.  
-Order amount have to be expressed in cents, as an integer. For example $22.50 should be provided as 2250:    
+Redeeming a gift voucher requires passing order amount. The same applies to vouchers with validation rules on order's total amount.  
+Order amount have to be expressed in cents, as an integer. For example $22.50 should be provided as 2250.
+Gift voucher balance will be used to cover the order amount entirely or partially.
 
 ```javascript
 voucherify.redeem({
@@ -1422,6 +1423,7 @@ Utils don't need callbacks or promises. They return results immediately.
 
 ### Changelog
 
+- **2016-12-01** - `1.23.2` - Support gift vouchers in utils
 - **2016-11-15** - `1.23.1` - Validate init options
 - **2016-10-26** - `1.23.0` - Error handling improved - passing error object in response to rejected request
 - **2016-10-03** - `1.22.0` - Added customer parameter to the rollback method

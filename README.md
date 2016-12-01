@@ -9,7 +9,7 @@
   <a href="https://travis-ci.org/voucherifyio/voucherify-nodejs-sdk)"><img src="https://travis-ci.org/voucherifyio/voucherify-nodejs-sdk.svg?branch=master" alt="Build Status"/></a>
   <a href="https://www.npmjs.com/package/voucherify"><img src="https://img.shields.io/npm/v/voucherify.svg" alt="NPM Version"/></a>
   <a href="https://www.npmjs.com/package/voucherify"><img src="https://img.shields.io/npm/dm/voucherify.svg" alt="NPM Downloads"/></a>
-  <a href="https://www.npmjs.com/package/voucherify"><img src="https://david-dm.org/rspective/voucherify-nodejs-sdk.svg" alt="Dependencies"/></a>
+  <a href="https://www.npmjs.com/package/voucherify"><img src="https://david-dm.org/voucherifyio/voucherify-nodejs-sdk.svg" alt="Dependencies"/></a>
 </p>
 <hr>
 

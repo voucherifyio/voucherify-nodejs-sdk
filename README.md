@@ -314,21 +314,23 @@ We strongly encourage you to update your code with new methods.
 Each deprecated method has corresponding new namespaced one with the same params,
 so migration will go smooth.
 
-- `client.list(filter)` - [client.vouchers.list](#list-vouchers)
-- `client.get(voucher_code)`- [client.vouchers.get](#get-voucher)
+- `client.list(params)` - [client.vouchers.list](#list-vouchers)
+- `client.get(voucherCode) - [client.vouchers.get](#get-voucher)
 - `client.create(voucher)` - [client.vouchers.create](#create-voucher)
 - `client.update(voucher)` - [client.vouchers.update](#update-voucher)
-- `client.delete(voucher_code, [params])` - [client.vouchers.delete](#delete-voucher)
-- `client.disable(voucher_code)` - [client.vouchers.disable](#disable-voucher)
-- `client.enable(voucher_code)`- [client.vouchers.enable](#enable-voucher)
-- `client.campaign.voucher.create(campaignName, payload)` - see [client.campaigns.addVoucher](#add-voucher-to-campaign)
-- `client.redemption(voucher_code)` -
-- `client.publish(campaign_name)`
-- `client.publish(params)`
-- `client.validate(code, context)`
-- `client.redeem(voucher_code, tracking_id|customer_profile*)`
-- `client.redemptions(filter)`
-- `client.rollback(redemption_id, options*)`
+- `client.delete(voucherCode, [params])` - [client.vouchers.delete](#delete-voucher)
+- `client.disable(voucherCode)` - [client.vouchers.disable](#disable-voucher)
+- `client.enable(voucherCode) - [client.vouchers.enable](#enable-voucher)
+- `client.campaign.voucher.create(campaignName)` - [client.campaigns.addVoucher](#add-voucher-to-campaign)
+- `client.redemption(voucherCode)` - [client.redemptions.getForVoucher](#get-voucher's-redemptions)
+- `client.publish(campaign_name|params)` - [client.distributions.publish](#publish-voucher)
+- `client.validate(voucherCode, params)` - [client.validations.validateVoucher](#validate-voucher)
+- `client.redeem(voucherCode, tracking_id|params)` - [client.redemptions.redeem](#redeem-voucher)
+- `client.redemptions(params)` - [client.redemptions.list](#list-redemptions)
+- `client.rollback(redemptionId, params)` - [client.redemptions.rollback](#rollback-redemption)
+- `client.customer.*` - changed namespace to [client.customers.\*](#customers-api)
+- `client.product.*` - changed namespace to [client.products.\*](#products-api)
+- `client.product.sku.*` - changed namespace to [client.products.\*](#products-api)
 
 ### Utils
 

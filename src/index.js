@@ -65,7 +65,7 @@ module.exports = function (options) {
     disable: (code, callback) => vouchers.disable(code, callback),
     publish: (campaignName, callback) => distributions.publish(campaignName, callback),
     // validations
-    validate: (code, context, callback) => validations.validateVoucher(code, context, callback),
+    validate: (code, params, callback) => validations.validateVoucher(code, params, callback),
     // redemptions
     redemption: (code, callback) => redemptions.getForVoucher(code, callback),
     redeem: (code, trackingId, callback) => redemptions.redeem(code, trackingId, callback),

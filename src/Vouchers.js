@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode, isFunction, isString, isObject} = require('./helpers')
+const {encode, isFunction} = require('./helpers')
 
 module.exports = class Vouchers {
   constructor (client) {
@@ -37,16 +37,6 @@ module.exports = class Vouchers {
     }
 
     return this.client.get('/vouchers', params, callback)
-  }
-
-  publish (params, callback) {
-    if (isString(params)) {
-      return this.client.post('/vouchers/publish', {campaign: encode(params)}, callback)
-    }
-
-    if (isObject(params)) {
-      return this.client.post('/vouchers/publish', params, callback)
-    }
   }
 
   enable (code, callback) {

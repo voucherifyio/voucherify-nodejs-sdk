@@ -2,6 +2,7 @@
 
 const ApiClient = require('./ApiClient')
 const Campaigns = require('./Campaigns')
+const Distributions = require('./Distributions')
 const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
@@ -16,6 +17,7 @@ module.exports = function (options) {
   const client = new ApiClient(options)
   const vouchers = new Vouchers(client)
   const campaigns = new Campaigns(client)
+  const distributions = new Distributions(client)
   const validations = new Validations(client)
   const redemptions = new Redemptions(client)
   const customers = new Customers(client)
@@ -45,6 +47,7 @@ module.exports = function (options) {
   return {
     vouchers,
     campaigns,
+    distributions,
     validations,
     redemptions: backwardCompatibleRedemptions,
     customers,
@@ -60,7 +63,7 @@ module.exports = function (options) {
     update: (voucher, callback) => vouchers.update(voucher, callback),
     enable: (code, callback) => vouchers.enable(code, callback),
     disable: (code, callback) => vouchers.disable(code, callback),
-    publish: (campaignName, callback) => vouchers.publish(campaignName, callback),
+    publish: (campaignName, callback) => distributions.publish(campaignName, callback),
     // validations
     validate: (code, context, callback) => validations.validateVoucher(code, context, callback),
     // redemptions

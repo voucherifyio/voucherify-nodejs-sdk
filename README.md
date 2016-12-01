@@ -32,6 +32,8 @@ API:
 |
 <a href="#campaigns-api">Campaigns</a>
 |
+<a href="#distributions-api">Distributions</a>
+|
 <a href="#validations-api">Validations</a>
 |
 <a href="#redemptions-api">Redemptions</a>
@@ -129,8 +131,15 @@ client.vouchers.delete(code, {force: true})
 `client.vouchers.import(vouchers)`
 
 
+### Distributions API
 
+Methods are provided within `client.distributions.*` namespace.
 
+#### [Publish Voucher]
+```
+client.distributions.publish(campaignName)
+client.distributions.publish(params)
+```
 
 ### Deprecated methods
 

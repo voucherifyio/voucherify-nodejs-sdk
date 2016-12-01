@@ -138,39 +138,6 @@ describe('Vouchers API', function () {
     })
   })
 
-  describe('publish voucher', function () {
-    it('should publish by camaign name', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
-        .post('/v1/vouchers/publish')
-        .query({campaign: 'test-campaign'})
-        .reply(200, {})
-
-      client.vouchers.publish('test-campaign')
-      .then(() => {
-        server.done()
-        done()
-      })
-    })
-
-    it('should publish by voucher', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
-        .post('/v1/vouchers/publish', {
-          campaign: 'test-campaign',
-          voucher: 'test-voucher'
-        })
-        .reply(200, {})
-
-      client.vouchers.publish({
-        campaign: 'test-campaign',
-        voucher: 'test-voucher'
-      })
-      .then(() => {
-        server.done()
-        done()
-      })
-    })
-  })
-
   it('should enable voucher', function (done) {
     const server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/test-voucher/enable')

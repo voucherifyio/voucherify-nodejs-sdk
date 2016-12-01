@@ -44,23 +44,38 @@ describe('utils', function () {
     expect(discount).toBe(20.00)
   })
 
-  it('should fail to calculate discount for gift voucher', function () {
-    const basePrice = 50
+  it('should calculate discount for gift voucher when balance is less than base price', function () {
+    const basePrice = 75
     const voucher = {
       gift: {
-        amount: 1000
+        amount: 10000,
+        balance: 5000
       }
     }
 
-    expect(function () {
-      utils.calculateDiscount(basePrice, voucher)
-    }).toThrow(new Error('Unsupported voucher type.'))
+    const discount = utils.calculateDiscount(basePrice, voucher)
+
+    expect(discount).toBe(50.00)
+  })
+
+  it('should calculate discount for gift voucher when balance is greater than base price', function () {
+    const basePrice = 75.00
+    const voucher = {
+      gift: {
+        amount: 10000,
+        balance: 10000
+      }
+    }
+
+    const discount = utils.calculateDiscount(basePrice, voucher)
+
+    expect(discount).toBe(75.00)
   })
 
   // ------ calculatePrice ------ //
 
   it('should calculate new price with amount discount', function () {
-    const basePrice = 50
+    const basePrice = 50.00
     const voucher = {
       discount: {
         type: 'AMOUNT',
@@ -99,16 +114,31 @@ describe('utils', function () {
     expect(discount).toBe(30.00)
   })
 
-  it('should fail to calculate price for gift voucher', function () {
-    const basePrice = 50
+  it('should calculate new price for gift voucher when balance is less than base price', function () {
+    const basePrice = 75.00
     const voucher = {
       gift: {
-        amount: 1000
+        amount: 10000,
+        balance: 5000
       }
     }
 
-    expect(function () {
-      utils.calculatePrice(basePrice, voucher)
-    }).toThrow(new Error('Unsupported voucher type.'))
+    const discount = utils.calculatePrice(basePrice, voucher)
+
+    expect(discount).toBe(25.00)
+  })
+
+  it('should calculate new price for gift voucher when balance is greater than base price', function () {
+    const basePrice = 75.00
+    const voucher = {
+      gift: {
+        amount: 10000,
+        balance: 10000
+      }
+    }
+
+    const discount = utils.calculatePrice(basePrice, voucher)
+
+    expect(discount).toBe(0.00)
   })
 })

@@ -27,6 +27,11 @@ module.exports = {
     const e = 100 // Number of digits after the decimal separator.
     let discount
 
+    if (voucher.gift) {
+      discount = Math.min(voucher.gift.balance / e, basePrice)
+      return roundMoney(basePrice - discount)
+    }
+
     if (!voucher.discount) {
       throw new Error('Unsupported voucher type.')
     }
@@ -57,6 +62,11 @@ module.exports = {
   calculateDiscount: function (basePrice, voucher, unitPrice) {
     const e = 100 // Number of digits after the decimal separator.
     let discount
+
+    if (voucher.gift) {
+      discount = Math.min(voucher.gift.balance / e, basePrice)
+      return roundMoney(discount)
+    }
 
     if (!voucher.discount) {
       throw new Error('Unsupported voucher type.')

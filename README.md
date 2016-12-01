@@ -361,6 +361,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
+- **2016-12-01** - `1.23.2` - Support gift vouchers in utils
 - **2016-11-15** - `1.23.1` - Validate init options
 - **2016-10-26** - `1.23.0` - Error handling improved - passing error object in response to rejected request
 - **2016-10-03** - `1.22.0` - Added customer parameter to the rollback method

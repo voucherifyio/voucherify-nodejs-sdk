@@ -1,6 +1,6 @@
 'use strict'
 
-const voucherifyClient = require('../voucherify')
+const voucherifyClient = require('../src/index')
 
 const voucherify = voucherifyClient({
   applicationId: 'c70a6f00-cf91-4756-9df5-47628850002b',
@@ -21,12 +21,12 @@ const payload = {
 let skuId = null
 
 console.log('==== CREATE ====')
-voucherify.product.create(payload)
+voucherify.products.create(payload)
 .then((product) => {
   console.log('New Product: ', product)
 
   console.log('==== READ ====')
-  return voucherify.product.get(product.id)
+  return voucherify.products.get(product.id)
   .then((result) => {
     console.log('Result: ', result)
     return
@@ -38,12 +38,12 @@ voucherify.product.create(payload)
       sku: 'APPLE_IPHONE_6_BLACK'
     }
 
-    return voucherify.product.sku.create(product.id, sku)
+    return voucherify.products.createSku(product.id, sku)
     .then((sku) => {
       console.log('Result: ', sku)
       console.log('==== GET - SKU ====')
 
-      return voucherify.product.sku.get(product.id, sku.id)
+      return voucherify.products.getSku(product.id, sku.id)
       .then((sku) => {
         console.log('Result: ', sku)
         console.log('==== UPDATE - SKU ====')
@@ -51,7 +51,7 @@ voucherify.product.create(payload)
         sku.sku = 'eur'
         sku.price = 1000
 
-        return voucherify.product.sku.update(product.id, sku)
+        return voucherify.products.updateSku(product.id, sku)
       })
     })
     .then((sku) => {
@@ -69,7 +69,7 @@ voucherify.product.create(payload)
   product.metadata = product.metadata || {}
   product.metadata.type = 'premium'
 
-  return voucherify.product.update(product)
+  return voucherify.products.update(product)
   .then((result) => {
     console.log('Result: ', JSON.stringify(result, null, 2))
     return product
@@ -82,10 +82,10 @@ voucherify.product.create(payload)
 
   console.log('==== DELETE - SKU ====')
 
-  return voucherify.product.sku.delete(product.id, skuId)
+  return voucherify.products.deleteSku(product.id, skuId)
   .then(() => {
     console.log('Checking...')
-    return voucherify.product.sku.get(product.id, skuId)
+    return voucherify.products.getSku(product.id, skuId)
     .catch((err) => {
       console.log('Result:', err)
       return product
@@ -98,10 +98,10 @@ voucherify.product.create(payload)
 })
 .then((product) => {
   console.log('==== DELETE ====')
-  return voucherify.product.delete(product.id)
+  return voucherify.products.delete(product.id)
   .then(() => {
     console.log('Checking...')
-    return voucherify.product.get(product.id)
+    return voucherify.products.get(product.id)
     .catch((err) => {
       console.log('Result:', err)
     })

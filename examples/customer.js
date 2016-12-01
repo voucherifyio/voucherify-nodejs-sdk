@@ -1,6 +1,6 @@
 'use strict'
 
-const voucherifyClient = require('../voucherify')
+const voucherifyClient = require('../src/index')
 
 const voucherify = voucherifyClient({
   applicationId: 'c70a6f00-cf91-4756-9df5-47628850002b',
@@ -17,12 +17,12 @@ const payload = {
 }
 
 console.log('==== CREATE ====')
-voucherify.customer.create(payload)
+voucherify.customers.create(payload)
   .then((customer) => {
     console.log('New Customer: ', customer)
 
     console.log('==== READ ====')
-    return voucherify.customer.get(customer.id)
+    return voucherify.customers.get(customer.id)
       .then((result) => {
         console.log('Result: ', result)
         return customer
@@ -33,7 +33,7 @@ voucherify.customer.create(payload)
 
     customer.metadata.type = 'premium'
 
-    return voucherify.customer.update(customer)
+    return voucherify.customers.update(customer)
       .then((result) => {
         console.log('Result: ', result)
         return customer
@@ -41,10 +41,10 @@ voucherify.customer.create(payload)
   })
   .then((customer) => {
     console.log('==== DELETE ====')
-    return voucherify.customer.delete(customer.id)
+    return voucherify.customers.delete(customer.id)
       .then(() => {
         console.log('Checking...')
-        return voucherify.customer.get(customer.id)
+        return voucherify.customers.get(customer.id)
           .catch((err) => {
             console.log('Result:', err)
           })

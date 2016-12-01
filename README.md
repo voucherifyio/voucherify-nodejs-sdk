@@ -93,47 +93,44 @@ All other examples in the readme use promises but they could be as well written 
 ## API
 
 This SDK is fully consistent with restufl API Voucherify provides.
-Detalied description and example responsesx  you will find at [official docs](https://docs.voucherify.io/reference).
+Detalied description and example responses  you will find at [official docs](https://docs.voucherify.io/reference).
+Method headers point to more detalied params description you can use.
 
 ### Vouchers API
-Methods are provided withing `client.vouchers.*` namespace.
+Methods are provided within `client.vouchers.*` namespace.
 
-#### Create Voucher
+#### [Create Voucher]
 `client.vouchers.create(voucher)`
 
-See [possible voucher fields](https://docs.voucherify.io/docs/vouchers#the-voucher-object) and [example results](https://docs.voucherify.io/reference#create-voucher).
+See [full voucher oject](https://docs.voucherify.io/reference#the-voucher-object).
 
-#### Get Voucher
+#### [Get Voucher]
 `client.vouchers.get(code)`
 
-#### Update Voucher
+#### [Update Voucher]
 `client.vouchers.update(voucher)`
 
-#### Delete Voucher
-`client.vouchers.delete(code, [params])`
+#### [Delete Voucher]
+```
+client.vouchers.delete(code)
+client.vouchers.delete(code, {force: true})
+```
 
-See available optional [delete params](https://docs.voucherify.io/reference#delete-voucher).
+#### [List Vouchers]
+`client.vouchers.list(params)`
 
-#### List Vouchers
-`client.vouchers.list(query)`
+#### [Enable Voucher]
+`client.vouchers.enable(code)`
 
-See available [query params](https://docs.voucherify.io/reference#list-vouchers).
+#### [Disable Voucher]
+`client.vouchers.disable(code)`
 
-#### Publish Voucher
-- by campaign name
-`client.vouchers.publish(campaignName)`
-- by param
-`client.vouchers.publish(bodyParams)`
-See available [params](https://docs.voucherify.io/reference#publish-voucher).
+#### [Import Vouchers]
+`client.vouchers.import(vouchers)`
 
-#### Enable Voucher
-- `client.vouchers.enable(code)`
 
-#### Disable Voucher
-- `client.vouchers.disable(code)`
 
-#### Import Vouchers
-- `client.vouchers.import(vouchersArray)`
+
 
 ### Deprecated methods
 
@@ -251,3 +248,14 @@ Utils don't need callbacks nor promises. They return results immediately.
   - Authentication
   - Voucher informations: *get*, *usage*
   - Voucher operations: *use*
+
+[Create Voucher]: https://docs.voucherify.io/reference#create-voucher
+[Get Voucher]: https://docs.voucherify.io/reference#vouchers-get
+[Update Voucher]: https://docs.voucherify.io/reference#update-voucher
+[Delete Voucher]: https://docs.voucherify.io/reference#delete-voucher
+[List Vouchers]: https://docs.voucherify.io/reference#list-vouchers
+[Enable Voucher]: https://docs.voucherify.io/reference#enable-voucher
+[Disable Voucher]: https://docs.voucherify.io/reference#disable-voucher
+[Import Vouchers]: https://docs.voucherify.io/reference#import-vouchers-1
+
+[Publish Voucher]: https://docs.voucherify.io/reference#publish-voucher

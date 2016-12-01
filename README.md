@@ -19,16 +19,30 @@
 |
 <b><a href="#callback-or-promise">Callback or Promise?</a></b>
 |
-<b><a href="#api">API</a></b>
-|
 <b><a href="#error-handling">Error handling</a></b>
 |
 <b><a href="#contributing">Contributing</a></b>
 |
 <b><a href="#changelog">Changelog</a></b>
-|
-<b><a href="#license">License</a></b>
 </p>
+
+<p align="center">
+API:
+<a href="#vouchers-api">Vouchers</a>
+|
+<a href="#campaigns-api">Campaigns</a>
+|
+<a href="#validations-api">Validations</a>
+|
+<a href="#redemptions-api">Redemptions</a>
+|
+<a href="#customers-api">Customers</a>
+|
+<a href="#products-api">Products</a>
+|
+<a href="#deprecated-api">Deprecated Methods</a>
+</p>
+
 <hr>
 
 ## Setup
@@ -77,14 +91,6 @@ client.vouchers.get('v1GiJYuuS')
 All other examples in the readme use promises but they could be as well written with callbacks.
 
 ## API
-
-- [Vouchers](#vouchers-api)
-- [Campaigns](#campaigns-api)
-- [Validations](#validations-api)
-- [Redemptions](#redemptions-api)
-- [Customers](#customers-api)
-- [Products](#products-api)
-- [Deprecated methods](#deprecated-api)
 
 This SDK is fully consistent with restufl API Voucherify provides.
 Detalied description and example responsesx  you will find at [official docs](https://docs.voucherify.io/reference).

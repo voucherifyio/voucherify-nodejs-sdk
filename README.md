@@ -101,7 +101,9 @@ Method headers point to more detalied params description you can use.
 ### Vouchers API
 Methods are provided within `client.vouchers.*` namespace.
 
-#### [Create Voucher]
+<h4 id="user-content-create-voucher">
+<a target="_blank" href="https://docs.voucherify.io/reference#create-voucher">Create Voucher</a></h4>
+
 `client.vouchers.create(voucher)`
 
 See [full voucher oject](https://docs.voucherify.io/reference#the-voucher-object).

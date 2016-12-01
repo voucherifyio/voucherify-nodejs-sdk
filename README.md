@@ -196,7 +196,7 @@ Methods are provided within `client.redemptions.*` namespace.
 
 - [Redeem Voucher](#redeem-voucher)
 - [List Redemptions](#list-redemptions)
-- [Get Voucher's Redemptions](#get-voucher's-redemptions)
+- [Get Voucher's Redemptions](#get-vouchers-redemptions)
 - [Rollback Redemption](#rollback-redemption)
 
 #### [Redeem Voucher]
@@ -322,7 +322,7 @@ so migration will go smooth.
 - `client.disable(voucherCode)` - [client.vouchers.disable](#disable-voucher)
 - `client.enable(voucherCode) - [client.vouchers.enable](#enable-voucher)
 - `client.campaign.voucher.create(campaignName)` - [client.campaigns.addVoucher](#add-voucher-to-campaign)
-- `client.redemption(voucherCode)` - [client.redemptions.getForVoucher](#get-voucher's-redemptions)
+- `client.redemption(voucherCode)` - [client.redemptions.getForVoucher](#get-vouchers-redemptions)
 - `client.publish(campaign_name|params)` - [client.distributions.publish](#publish-voucher)
 - `client.validate(voucherCode, params)` - [client.validations.validateVoucher](#validate-voucher)
 - `client.redeem(voucherCode, tracking_id|params)` - [client.redemptions.redeem](#redeem-voucher)

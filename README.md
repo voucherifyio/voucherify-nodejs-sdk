@@ -324,7 +324,7 @@ so migration will go smooth.
 - `client.update(voucher)` - [client.vouchers.update](#update-voucher)
 - `client.delete(voucherCode, [params])` - [client.vouchers.delete](#delete-voucher)
 - `client.disable(voucherCode)` - [client.vouchers.disable](#disable-voucher)
-- `client.enable(voucherCode) - [client.vouchers.enable](#enable-voucher)
+- `client.enable(voucherCode)` - [client.vouchers.enable](#enable-voucher)
 - `client.campaign.voucher.create(campaignName)` - [client.campaigns.addVoucher](#add-voucher-to-campaign)
 - `client.redemption(voucherCode)` - [client.redemptions.getForVoucher](#get-vouchers-redemptions)
 - `client.publish(campaign_name|params)` - [client.distributions.publish](#publish-voucher)

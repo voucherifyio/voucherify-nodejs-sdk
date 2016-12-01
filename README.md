@@ -44,6 +44,9 @@ API:
 |
 <a href="#deprecated-methods">Deprecated Methods</a>
 </p>
+|
+<a href="#utils">Utils</a>
+</p>
 
 <hr>
 
@@ -316,7 +319,7 @@ Each deprecated method has corresponding new namespaced one with the same params
 so migration will go smooth.
 
 - `client.list(params)` - [client.vouchers.list](#list-vouchers)
-- `client.get(voucherCode) - [client.vouchers.get](#get-voucher)
+- `client.get(voucherCode)` - [client.vouchers.get](#get-voucher)
 - `client.create(voucher)` - [client.vouchers.create](#create-voucher)
 - `client.update(voucher)` - [client.vouchers.update](#update-voucher)
 - `client.delete(voucherCode, [params])` - [client.vouchers.delete](#delete-voucher)
@@ -333,6 +336,7 @@ so migration will go smooth.
 - `client.product.*` - changed namespace to [client.products.\*](#products-api)
 - `client.product.sku.*` - changed namespace to [client.products.\*](#products-api)
 
+<hr />
 ### Utils
 
 ```
@@ -346,7 +350,16 @@ Utils don't need callbacks nor promises. They return results immediately.
 - `utils.calculatePrice(basePrice, voucher)`
 - `utils.calculateDiscount(basePrice, voucher)`
 
-### Changelog
+## Error handling
+
+Depending what you have choose `error` object of rejected Promise or first argument of provided callback has
+consistent structure, described in details in our [API reference](https://docs.voucherify.io/reference#errors).
+
+## Contributing
+
+Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
+
+## Changelog
 
 - **2016-11-15** - `1.23.1` - Validate init options
 - **2016-10-26** - `1.23.0` - Error handling improved - passing error object in response to rejected request

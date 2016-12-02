@@ -3,16 +3,16 @@
   "version": "2.0.0",
   "homepage": "http://www.voucherify.io",
   "description": "Node.js SDK for Voucherify.",
-  "author": "rspective",
+  "author": "Voucherify",
   "license": "MIT",
   "main": "./lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rspective/voucherify-nodejs-sdk.git"
+    "url": "https://github.com/voucherifyio/voucherify-nodejs-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/rspective/voucherify-nodejs-sdk/issues",
-    "email": "dev@rspective.pl"
+    "url": "https://github.com/voucherifyio/voucherify-nodejs-sdk/issues",
+    "email": "support@voucherify.io"
   },
   "keywords": [
     "voucherify",

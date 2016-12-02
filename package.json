@@ -2,7 +2,7 @@
   "name": "voucherify",
   "version": "2.0.0",
   "homepage": "http://www.voucherify.io",
-  "description": "Node.js SDK for Voucherify.",
+  "description": "Official Voucherify SDK for Node.js",
   "author": "Voucherify",
   "license": "MIT",
   "main": "./lib/index.js",

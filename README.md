@@ -53,7 +53,7 @@ API:
 
 `npm install voucherify --save`
 
-[Log-in](http://app.voucherify.io/#/login) to Voucherify web interface and obtain your Application Keys from [Configuration](https://app.voucherify.io/#/app/configuration):
+[Log-in](http://app.voucherify.io/?utm_source=github&utm_medium=sdk&utm_campaign=acq#/login) to Voucherify web interface and obtain your Application Keys from [Configuration](https://app.voucherify.io/?utm_source=github&utm_medium=sdk&utm_campaign=acq#/app/configuration):
 
 ```javascript
 const voucherifyClient = require('voucherify')
@@ -97,7 +97,7 @@ All other examples in the readme use promises but they could be as well written 
 ## API
 
 This SDK is fully consistent with restufl API Voucherify provides.
-Detalied description and example responses  you will find at [official docs](https://docs.voucherify.io/reference).
+Detalied description and example responses  you will find at [official docs](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq).
 Method headers point to more detalied params description you can use.
 
 ### Vouchers API
@@ -115,7 +115,7 @@ Methods are provided within `client.vouchers.*` namespace.
 ```javascript
 client.vouchers.create(voucher)
 ```
-Check [voucher oject](https://docs.voucherify.io/reference#the-voucher-object).
+Check [voucher oject](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-voucher-object).
 
 #### [Get Voucher]
 ```javascript
@@ -226,7 +226,7 @@ client.redemptions.rollback(redemptionId)
 client.redemptions.rollback(redemptionId, params)
 client.redemptions.rollback(redemptionId, reason)
 ```
-Check [redemption rollback object](https://docs.voucherify.io/reference#the-redemption-rollback-object).
+Check [redemption rollback object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-redemption-rollback-object).
 <hr />
 ### Customers API
 Methods are provided within `client.customers.*` namespace.
@@ -240,7 +240,7 @@ Methods are provided within `client.customers.*` namespace.
 ```javascript
 client.customers.create(customer)
 ```
-Check [customer object](https://docs.voucherify.io/reference#the-customer-object).
+Check [customer object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-customer-object).
 #### [Get Customer]
 ```javascript
 client.customers.get(customerId)
@@ -272,7 +272,7 @@ Methods are provided within `client.products.*` namespace.
 ```javascript
 client.products.create(product)
 ```
-Check [product object](https://docs.voucherify.io/reference#the-product-object).
+Check [product object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-product-object).
 #### [Get Product]
 ```javascript
 client.products.get(productId)
@@ -294,7 +294,7 @@ client.products.list(params)
 ```javascript
 client.products.createSku(productId, sku)
 ```
-Check [SKU object](https://docs.voucherify.io/reference#the-sku-object).
+Check [SKU object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-sku-object).
 #### [Get SKU]
 ```javascript
 client.products.getSku(productId, skuId)
@@ -358,7 +358,7 @@ Utils don't need callbacks nor promises. They return results immediately.
 ## Error handling
 
 Depending what you have choose `error` object of rejected Promise or first argument of provided callback has
-consistent structure, described in details in our [API reference](https://docs.voucherify.io/reference#errors).
+consistent structure, described in details in our [API reference](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#errors).
 
 ## Contributing
 
@@ -433,41 +433,41 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
   - Voucher informations: *get*, *usage*
   - Voucher operations: *use*
 
-[Create Voucher]: https://docs.voucherify.io/reference#create-voucher
-[Get Voucher]: https://docs.voucherify.io/reference#vouchers-get
-[Update Voucher]: https://docs.voucherify.io/reference#update-voucher
-[Delete Voucher]: https://docs.voucherify.io/reference#delete-voucher
-[List Vouchers]: https://docs.voucherify.io/reference#list-vouchers
-[Enable Voucher]: https://docs.voucherify.io/reference#enable-voucher
-[Disable Voucher]: https://docs.voucherify.io/reference#disable-voucher
-[Import Vouchers]: https://docs.voucherify.io/reference#import-vouchers-1
+[Create Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-voucher
+[Get Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#vouchers-get
+[Update Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-voucher
+[Delete Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-voucher
+[List Vouchers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-vouchers
+[Enable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#enable-voucher
+[Disable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#disable-voucher
+[Import Vouchers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers-1
 
-[Create Campaign]: https://docs.voucherify.io/reference#create-campaign
-[Get Campaign]: https://docs.voucherify.io/reference#get-campaign
-[Add Voucher to Campaign]: https://docs.voucherify.io/reference#add-voucher-to-campaign
-[Import Vouchers to Campaign]: https://docs.voucherify.io/reference#import-vouchers
+[Create Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-campaign
+[Get Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-campaign
+[Add Voucher to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-voucher-to-campaign
+[Import Vouchers to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers
 
-[Publish Voucher]: https://docs.voucherify.io/reference#publish-voucher
+[Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
 
-[Validate Voucher]: https://docs.voucherify.io/reference#validate-voucher
+[Validate Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#validate-voucher
 
-[Redeem Voucher]: https://docs.voucherify.io/reference#redeem-voucher
-[List Redemptions]: https://docs.voucherify.io/reference#list-redemptions
-[Get Voucher's Redemptions]: https://docs.voucherify.io/reference#vouchers-redemptions
-[Rollback Redemption]: https://docs.voucherify.io/reference#rollback-redemption
+[Redeem Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#redeem-voucher
+[List Redemptions]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-redemptions
+[Get Voucher's Redemptions]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#vouchers-redemptions
+[Rollback Redemption]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#rollback-redemption
 
-[Create Customer]: https://docs.voucherify.io/reference#create-customer
-[Get Customer]: https://docs.voucherify.io/reference#read-customer
-[Update Customer]: https://docs.voucherify.io/reference#update-customer
-[Delete Customer]: https://docs.voucherify.io/reference#delete-customer
+[Create Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-customer
+[Get Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#read-customer
+[Update Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-customer
+[Delete Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-customer
 
-[Create Product]: https://docs.voucherify.io/reference#create-product
-[Get Product]: https://docs.voucherify.io/reference#get-product
-[Update Product]: https://docs.voucherify.io/reference#update-product
-[Delete Product]: https://docs.voucherify.io/reference#delete-product
-[List Products]: https://docs.voucherify.io/reference#list-products
-[Create SKU]: https://docs.voucherify.io/reference#create-sku
-[Get SKU]: https://docs.voucherify.io/reference#get-sku
-[Update SKU]: https://docs.voucherify.io/reference#update-sku
-[Delete SKU]: https://docs.voucherify.io/reference#delete-sku
-[List all product SKUs]: https://docs.voucherify.io/reference#list-skus
+[Create Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-product
+[Get Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-product
+[Update Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-product
+[Delete Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-product
+[List Products]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-products
+[Create SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-sku
+[Get SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-sku
+[Update SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-sku
+[Delete SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-sku
+[List all product SKUs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-skus

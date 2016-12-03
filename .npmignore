@@ -1,0 +1,7 @@
+node_modules/
+.idea/
+test/
+examples/
+release-sources-header.txt
+*.log
+voucherify-nodejs-sdk

@@ -1,0 +1,5 @@
+This file is result of 'babel' transpiler, so it can work with older ECMAScript engines.
+Downside is it might be slightly unreadable.
+Check `src` directory to see origin soruces.
+
+Voucherify Team (c) 2016

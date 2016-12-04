@@ -11,8 +11,7 @@
   <a href="https://www.npmjs.com/package/voucherify"><img src="https://img.shields.io/npm/dm/voucherify.svg" alt="NPM Downloads"/></a>
   <a href="https://www.npmjs.com/package/voucherify"><img src="https://david-dm.org/voucherifyio/voucherify-nodejs-sdk.svg" alt="Dependencies"/></a>
 </p>
-<hr>
-
+<hr />
 
 <p align="center">
 <b><a href="#migration-from-1x">Migration from 1.x</a></b>
@@ -47,7 +46,7 @@ API:
 <a href="#utils">Utils</a>
 </p>
 
-<hr>
+---
 
 ## Setup
 
@@ -149,7 +148,9 @@ client.vouchers.disable(code)
 ```javascript
 client.vouchers.import(vouchers)
 ```
-<hr />
+
+---
+
 ### Campaigns API
 Methods are provided within `client.campaigns.*` namespace.
 - [Create Campaign](#create-campaign)
@@ -174,7 +175,9 @@ client.campaigns.addVoucher(campaignName, params)
 ```javascript
 client.campaigns.importVouchers(campaignName, vouchers, callback)
 ```
-<hr />
+
+---
+
 ### Distributions API
 Methods are provided within `client.distributions.*` namespace.
 
@@ -183,7 +186,9 @@ Methods are provided within `client.distributions.*` namespace.
 client.distributions.publish(campaignName)
 client.distributions.publish(params)
 ```
-<hr />
+
+---
+
 ### Validations API
 Methods are provided within `client.validations.*` namespace.
 
@@ -192,7 +197,9 @@ Methods are provided within `client.validations.*` namespace.
 client.validations.validateVoucher(code)
 client.validations.validateVoucher(code, params)
 ```
-<hr />
+
+---
+
 ### Redemptions API
 Methods are provided within `client.redemptions.*` namespace.
 
@@ -227,7 +234,9 @@ client.redemptions.rollback(redemptionId, params)
 client.redemptions.rollback(redemptionId, reason)
 ```
 Check [redemption rollback object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-redemption-rollback-object).
-<hr />
+
+---
+
 ### Customers API
 Methods are provided within `client.customers.*` namespace.
 
@@ -253,7 +262,9 @@ client.customers.update(customer)
 ```javascript
 client.customers.delete(customerId)
 ```
-<hr />
+
+---
+
 ### Products API
 Methods are provided within `client.products.*` namespace.
 
@@ -311,7 +322,9 @@ client.products.deleteSku(productId, skuId)
 ```javascript
 client.products.listSkus(productId)
 ```
-<hr />
+
+---
+
 ### Migration from 1.x
 
 Version 2.x of the SDK is fully backward compatible with version 1.x.
@@ -341,7 +354,8 @@ We also recommend to adopt [voucher redemption](#redeem-voucher) method, and don
 - `client.product.*` - changed namespace to [client.products.\*](#products-api)
 - `client.product.sku.*` - changed namespace to [client.products.\*](#products-api)
 
-<hr />
+---
+
 ### Utils
 
 ```javascript

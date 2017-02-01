@@ -48,8 +48,13 @@ module.exports = class Vouchers {
     return this.client.post(`/vouchers/${encode(params)}/enable`, null, callback)
   }
 
-  disable (code, callback) {
-    return this.client.post(`/vouchers/${encode(code)}/disable`, null, callback)
+  disable (params, callback) {
+    if (isObject(params)) {
+      return this.client.post(`/vouchers/disable`, params, callback)
+    }
+
+    // Disable by code
+    return this.client.post(`/vouchers/${encode(params)}/disable`, null, callback)
   }
 
   import (vouchers, callback) {

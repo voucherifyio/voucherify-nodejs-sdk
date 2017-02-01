@@ -166,15 +166,31 @@ describe('Vouchers API', function () {
     })
   })
 
-  it('should disable voucher', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+  describe('disable', function () {
+    it('should disable by voucher code', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/test-voucher/disable')
       .reply(200, {})
 
-    client.vouchers.disable('test-voucher')
-    .then(() => {
-      server.done()
-      done()
+      client.vouchers.disable('test-voucher')
+      .then(() => {
+        server.done()
+        done()
+      })
+    })
+
+    it('should run bulk disable by params', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/vouchers/disable')
+      .reply(200, {})
+
+      client.vouchers.disable({
+        vouchers: ['code1', 'code2']
+      })
+      .then(() => {
+        server.done()
+        done()
+      })
     })
   })
 

@@ -138,15 +138,31 @@ describe('Vouchers API', function () {
     })
   })
 
-  it('should enable voucher', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+  describe('enable', function () {
+    it('should enable by voucher code', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/test-voucher/enable')
       .reply(200, {})
 
-    client.vouchers.enable('test-voucher')
-    .then(() => {
-      server.done()
-      done()
+      client.vouchers.enable('test-voucher')
+      .then(() => {
+        server.done()
+        done()
+      })
+    })
+
+    it('should run bulk enable by params', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/vouchers/enable')
+      .reply(200, {})
+
+      client.vouchers.enable({
+        vouchers: ['code1', 'code2']
+      })
+      .then(() => {
+        server.done()
+        done()
+      })
     })
   })
 

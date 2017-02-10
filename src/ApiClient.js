@@ -41,8 +41,8 @@ const prepare = (callback) => {
 }
 
 module.exports = class ApiClient {
-  constructor ({applicationId, clientSecretKey}) {
-    this.basePath = 'https://api.voucherify.io/v1'
+  constructor ({apiUrl, applicationId, clientSecretKey}) {
+    this.basePath = apiUrl || 'https://api.voucherify.io/v1'
     this.headers = {
       'X-App-Id': applicationId,
       'X-App-Token': clientSecretKey,

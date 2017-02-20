@@ -380,7 +380,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
-- **2017-02-20** - `2.3.0` - Add support for node-v0.12
+- **2017-02-20** - `2.3.0` - Add support for node-v0.10
 - **2017-02-10** - `2.1.1` - Bugfix missing `Object.assign` implementation (touched node-v0.12)
 - **2017-02-01** - `2.1.0` - Added support for bulk enable/disable vouchers
 - **2016-12-02** - `2.0.0` - Rewritten SDK, added missing API methods, updated README. Backward capability is provided but we strongly recommend to follow the [migration from version 1.x](#migration-from-1x)

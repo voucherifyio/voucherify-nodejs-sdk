@@ -1,8 +1,13 @@
 {
   "presets": ["es2015", "es2016"],
   "plugins": [
-    ["transform-object-assign", "add-header-comment", {
-      "header": ["?release-sources-header.txt"]
-    }]
+    [
+        "transform-runtime",
+        "transform-object-assign",
+        "add-header-comment",
+        {
+            "header": ["?release-sources-header.txt"]
+        }
+    ]
   ]
 }

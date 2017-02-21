@@ -1,19 +1,19 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const VoucherifyClient = require('./client-loader')
-const fixtures = require('./fixtures')
-const reqWithoutBody = fixtures.reqWithoutBody
-const reqWithBody = fixtures.reqWithBody
+var nock = require('nock')
+var VoucherifyClient = require('./client-loader')
+var fixtures = require('./fixtures')
+var reqWithoutBody = fixtures.reqWithoutBody
+var reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Products API', function () {
-  const client = new VoucherifyClient({
+  var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'
   })
 
   it('should create product', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/products', {
         name: 'product name'
       })
@@ -29,7 +29,7 @@ describe('Products API', function () {
   })
 
   it('should get product', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/products/prod_test-id')
       .reply(200, {})
 
@@ -41,7 +41,7 @@ describe('Products API', function () {
   })
 
   it('should update product', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/products/prod_test-id', {
         name: 'product name'
       })
@@ -58,7 +58,7 @@ describe('Products API', function () {
   })
 
   it('should delete product', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .delete('/v1/products/prod_test-id')
       .reply(200, {})
 
@@ -71,7 +71,7 @@ describe('Products API', function () {
 
   describe('list products', function () {
     it('should list all', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/products')
       .reply(200, {})
 
@@ -83,7 +83,7 @@ describe('Products API', function () {
     })
 
     it('should list all (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/products')
       .reply(200, [])
 
@@ -95,7 +95,7 @@ describe('Products API', function () {
     })
 
     it('should list by query', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/products')
       .query({limit: 100})
       .reply(200, {})
@@ -110,7 +110,7 @@ describe('Products API', function () {
 
   describe('SKU', function () {
     it('should create SKU', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/products/prod_test-id/skus', {
         sku: 'test sku'
       })
@@ -126,7 +126,7 @@ describe('Products API', function () {
     })
 
     it('should get SKU', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/products/prod_test-id/skus/test-sku')
       .reply(200, {})
 
@@ -138,7 +138,7 @@ describe('Products API', function () {
     })
 
     it('should update SKU', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/products/prod_test-id/skus/test-sku', {
         metadata: {
           isTestSku: true
@@ -159,7 +159,7 @@ describe('Products API', function () {
     })
 
     it('should delete SKU', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .delete('/v1/products/prod_test-id/skus/test-sku')
       .reply(200, {})
 
@@ -171,7 +171,7 @@ describe('Products API', function () {
     })
 
     it('should list SKUs', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/products/prod_test-id/skus')
       .reply(200, {})
 

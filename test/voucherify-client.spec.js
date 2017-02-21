@@ -1,6 +1,6 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const voucherifyClient = require('./client-loader')
+var nock = require('nock')
+var voucherifyClient = require('./client-loader')
 
 describe('VocherifyClient', function () {
   describe('Initialization', function () {
@@ -22,13 +22,13 @@ describe('VocherifyClient', function () {
   })
 
   describe('Error handling', function () {
-    const client = voucherifyClient({
+    var client = voucherifyClient({
       applicationId: 'node-sdk-test-id',
       clientSecretKey: 'node-sdk-test-secret'
     })
 
     it('should return error details', function (done) {
-      const server = nock('https://api.voucherify.io')
+      var server = nock('https://api.voucherify.io')
         .post('/v1/customers', {name: 'customer name'})
         .reply(400, {
           code: 400,
@@ -51,7 +51,7 @@ describe('VocherifyClient', function () {
     })
 
     it('should return error details (callback)', function (done) {
-      const server = nock('https://api.voucherify.io')
+      var server = nock('https://api.voucherify.io')
         .post('/v1/customers', {name: 'customer name'})
         .reply(401, {
           code: 401,

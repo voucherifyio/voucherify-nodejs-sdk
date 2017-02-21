@@ -1,19 +1,19 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const VoucherifyClient = require('./client-loader')
-const fixtures = require('./fixtures')
-const reqWithBody = fixtures.reqWithBody
+var nock = require('nock')
+var VoucherifyClient = require('./client-loader')
+var fixtures = require('./fixtures')
+var reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Validations API', function () {
-  const client = new VoucherifyClient({
+  var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'
   })
 
   describe('validate voucher', function () {
     it('should validate without additional context', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test%20code/validate')
         .reply(200, {})
 
@@ -25,7 +25,7 @@ describe('Validations API', function () {
     })
 
     it('should validate without additional context (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test%20code/validate')
         .reply(200, {})
 
@@ -37,7 +37,7 @@ describe('Validations API', function () {
     })
 
     it('should validate with additional context', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test%20code/validate', {
           tracking_id: 'tracking-id'
         })

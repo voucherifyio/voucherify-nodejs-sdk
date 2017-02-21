@@ -1,20 +1,20 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const VoucherifyClient = require('./client-loader')
-const fixtures = require('./fixtures')
-const reqWithoutBody = fixtures.reqWithoutBody
-const reqWithBody = fixtures.reqWithBody
+var nock = require('nock')
+var VoucherifyClient = require('./client-loader')
+var fixtures = require('./fixtures')
+var reqWithoutBody = fixtures.reqWithoutBody
+var reqWithBody = fixtures.reqWithBody
 
 nock.disableNetConnect()
 
 describe('Campaigns API', function () {
-  const client = new VoucherifyClient({
+  var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'
   })
 
   it('should create campaign', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns', {
         name: 'test campaign'
       })
@@ -30,7 +30,7 @@ describe('Campaigns API', function () {
   })
 
   it('should get camaign', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/campaigns/test%20campaign')
       .reply(200, {})
 
@@ -43,7 +43,7 @@ describe('Campaigns API', function () {
 
   describe('add voucher', function () {
     it('should add voucher with concrete code', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns/test%20campaign/vouchers', {code: 'test voucher'})
       .reply(200, {})
 
@@ -55,7 +55,7 @@ describe('Campaigns API', function () {
     })
 
     it('should add voucher without params', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns/test%20campaign/vouchers', {})
       .reply(200, {})
 
@@ -67,7 +67,7 @@ describe('Campaigns API', function () {
     })
 
     it('should add voucher without params (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns/test%20campaign/vouchers', {})
       .reply(200, {})
 
@@ -80,7 +80,7 @@ describe('Campaigns API', function () {
   })
 
   it('should import vouchers', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/campaigns/test%20campaign/import', [{
         code: 'test voucher'
       }])

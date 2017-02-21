@@ -1,19 +1,19 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const VoucherifyClient = require('./client-loader')
-const fixtures = require('./fixtures')
-const reqWithoutBody = fixtures.reqWithoutBody
-const reqWithBody = fixtures.reqWithBody
+var nock = require('nock')
+var VoucherifyClient = require('./client-loader')
+var fixtures = require('./fixtures')
+var reqWithoutBody = fixtures.reqWithoutBody
+var reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Customers API', function () {
-  const client = new VoucherifyClient({
+  var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'
   })
 
   it('should create customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/customers', {
         name: 'customer name'
       })
@@ -29,7 +29,7 @@ describe('Customers API', function () {
   })
 
   it('should get customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/customers/cust_test-id')
       .reply(200, {})
 
@@ -41,7 +41,7 @@ describe('Customers API', function () {
   })
 
   it('should update customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/customers/cust_test-id', {
         name: 'customer name'
       })
@@ -58,7 +58,7 @@ describe('Customers API', function () {
   })
 
   it('should delete customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .delete('/v1/customers/cust_test-id')
       .reply(200, {})
 

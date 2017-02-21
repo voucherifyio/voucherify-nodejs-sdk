@@ -1,19 +1,19 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const VoucherifyClient = require('./client-loader')
-const fixtures = require('./fixtures')
-const reqWithBody = fixtures.reqWithBody
+var nock = require('nock')
+var VoucherifyClient = require('./client-loader')
+var fixtures = require('./fixtures')
+var reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Distributions API', function () {
-  const client = new VoucherifyClient({
+  var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'
   })
 
   describe('publish voucher', function () {
     it('should publish by camaign name', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/publish')
         .query({campaign: 'test-campaign'})
         .reply(200, {})
@@ -26,7 +26,7 @@ describe('Distributions API', function () {
     })
 
     it('should publish by voucher', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/publish', {
           campaign: 'test-campaign',
           voucher: 'test-voucher'

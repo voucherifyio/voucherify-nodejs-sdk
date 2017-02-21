@@ -1,6 +1,6 @@
 /* eslint-env jasmine */
 const nock = require('nock')
-const voucherifyClient = require('../src/index.js')
+const voucherifyClient = require('./client-loader')
 
 describe('VocherifyClient', function () {
   describe('Initialization', function () {

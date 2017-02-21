@@ -1,6 +1,6 @@
 /* eslint-env jasmine */
 const nock = require('nock')
-const VoucherifyClient = require('../src/index')
+const VoucherifyClient = require('./client-loader')
 const {reqWithBody} = require('./fixtures')
 nock.disableNetConnect()
 

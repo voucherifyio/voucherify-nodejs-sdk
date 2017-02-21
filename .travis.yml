@@ -7,6 +7,6 @@ node_js:
 install:
   - npm install
 script:
-  - npm run release
+  - gulp release
   - npm run test-lib
   - npm run lint

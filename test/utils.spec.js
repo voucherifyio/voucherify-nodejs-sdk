@@ -1,5 +1,5 @@
 /* eslint-env jasmine */
-var utils = require('../src/utils.js')
+var utils = require('./utils-loader')
 
 describe('utils', function () {
   // ------ calculateDiscount ------ //

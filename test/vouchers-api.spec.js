@@ -1,17 +1,19 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const VoucherifyClient = require('../src/index')
-const {reqWithoutBody, reqWithBody} = require('./fixtures')
+var nock = require('nock')
+var VoucherifyClient = require('./client-loader')
+var fixtures = require('./fixtures')
+var reqWithoutBody = fixtures.reqWithoutBody
+var reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Vouchers API', function () {
-  const client = new VoucherifyClient({
+  var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'
   })
 
   it('should create voucher', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/test-code', {
         code: 'test-code',
         type: 'DISCOUNT_VOUCHER'
@@ -22,26 +24,26 @@ describe('Vouchers API', function () {
       code: 'test-code',
       type: 'DISCOUNT_VOUCHER'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
   })
 
   it('should get voucher', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/vouchers/test-code')
       .reply(200, {})
 
     client.vouchers.get('test-code')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
   })
 
   it('should update voucher', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/vouchers/test-code', {
         code: 'test-code',
         type: 'DISCOUNT_VOUCHER'
@@ -52,7 +54,7 @@ describe('Vouchers API', function () {
       code: 'test-code',
       type: 'DISCOUNT_VOUCHER'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -60,25 +62,25 @@ describe('Vouchers API', function () {
 
   describe('delete voucher', function () {
     it('should delete, but not permanently', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/vouchers/test-code')
         .query({force: false})
         .reply(200, {})
 
       client.vouchers.delete('test-code')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
     })
 
     it('should delete, but not permanently (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/vouchers/test-code')
         .query({force: false})
         .reply(200, {})
 
-      client.vouchers.delete('test-code', (err) => {
+      client.vouchers.delete('test-code', function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -86,13 +88,13 @@ describe('Vouchers API', function () {
     })
 
     it('should delete permanently', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/vouchers/test-code')
         .query({force: true})
         .reply(200, {})
 
       client.vouchers.delete('test-code', {force: true})
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -101,23 +103,23 @@ describe('Vouchers API', function () {
 
   describe('list', function () {
     it('should list all vouchers', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/vouchers')
       .reply(200, [])
 
       client.vouchers.list()
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
     })
 
     it('should list all vouchers (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/vouchers')
       .reply(200, [])
 
-      client.vouchers.list((err) => {
+      client.vouchers.list(function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -125,13 +127,13 @@ describe('Vouchers API', function () {
     })
 
     it('should list vouchers by query', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/vouchers')
       .query({campaign: 'test-campaign'})
       .reply(200, [])
 
       client.vouchers.list({campaign: 'test-campaign'})
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -140,26 +142,26 @@ describe('Vouchers API', function () {
 
   describe('enable', function () {
     it('should enable by voucher code', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/test-voucher/enable')
       .reply(200, {})
 
       client.vouchers.enable('test-voucher')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
     })
 
     it('should run bulk enable by params', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/enable')
       .reply(200, {})
 
       client.vouchers.enable({
         vouchers: ['code1', 'code2']
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -168,26 +170,26 @@ describe('Vouchers API', function () {
 
   describe('disable', function () {
     it('should disable by voucher code', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/test-voucher/disable')
       .reply(200, {})
 
       client.vouchers.disable('test-voucher')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
     })
 
     it('should run bulk disable by params', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithBody)
+      var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/disable')
       .reply(200, {})
 
       client.vouchers.disable({
         vouchers: ['code1', 'code2']
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -195,7 +197,7 @@ describe('Vouchers API', function () {
   })
 
   it('should import vouchers', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/import', [
         {code: 'test-voucher1'},
         {code: 'test-voucher2'}
@@ -206,7 +208,7 @@ describe('Vouchers API', function () {
       {code: 'test-voucher1'},
       {code: 'test-voucher2'}
     ])
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })

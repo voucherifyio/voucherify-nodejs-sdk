@@ -1,6 +1,6 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const voucherifyClient = require('../src/index.js')
+var nock = require('nock')
+var voucherifyClient = require('./client-loader')
 
 describe('VocherifyClient', function () {
   describe('Initialization', function () {
@@ -22,13 +22,13 @@ describe('VocherifyClient', function () {
   })
 
   describe('Error handling', function () {
-    const client = voucherifyClient({
+    var client = voucherifyClient({
       applicationId: 'node-sdk-test-id',
       clientSecretKey: 'node-sdk-test-secret'
     })
 
     it('should return error details', function (done) {
-      const server = nock('https://api.voucherify.io')
+      var server = nock('https://api.voucherify.io')
         .post('/v1/customers', {name: 'customer name'})
         .reply(400, {
           code: 400,
@@ -40,7 +40,7 @@ describe('VocherifyClient', function () {
       client.customers.create({
         name: 'customer name'
       })
-      .catch((error) => {
+      .catch(function (error) {
         expect(error.code).toEqual(400)
         expect(error.message).toEqual('Duplicate resource key')
         expect(error.details).toEqual('Campaign with name: test campaign already exists.')
@@ -51,14 +51,14 @@ describe('VocherifyClient', function () {
     })
 
     it('should return error details (callback)', function (done) {
-      const server = nock('https://api.voucherify.io')
+      var server = nock('https://api.voucherify.io')
         .post('/v1/customers', {name: 'customer name'})
         .reply(401, {
           code: 401,
           message: 'No such app.'
         })
 
-      client.customers.create({name: 'customer name'}, (error) => {
+      client.customers.create({name: 'customer name'}, function (error) {
         expect(error.code).toEqual(401)
         expect(error.message).toEqual('No such app.')
         server.done()

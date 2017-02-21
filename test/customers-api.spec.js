@@ -1,17 +1,19 @@
 /* eslint-env jasmine */
-const nock = require('nock')
-const VoucherifyClient = require('../src/index')
-const {reqWithoutBody, reqWithBody} = require('./fixtures')
+var nock = require('nock')
+var VoucherifyClient = require('./client-loader')
+var fixtures = require('./fixtures')
+var reqWithoutBody = fixtures.reqWithoutBody
+var reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Customers API', function () {
-  const client = new VoucherifyClient({
+  var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'
   })
 
   it('should create customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/customers', {
         name: 'customer name'
       })
@@ -20,26 +22,26 @@ describe('Customers API', function () {
     client.customers.create({
       name: 'customer name'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
   })
 
   it('should get customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/customers/cust_test-id')
       .reply(200, {})
 
     client.customers.get('cust_test-id')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
   })
 
   it('should update customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithBody)
+    var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/customers/cust_test-id', {
         name: 'customer name'
       })
@@ -49,19 +51,19 @@ describe('Customers API', function () {
       id: 'cust_test-id',
       name: 'customer name'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
   })
 
   it('should delete customer', function (done) {
-    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
       .delete('/v1/customers/cust_test-id')
       .reply(200, {})
 
     client.customers.delete('cust_test-id')
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })

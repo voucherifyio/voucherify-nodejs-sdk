@@ -17,7 +17,7 @@ describe('Validations API', function () {
         .reply(200, {})
 
       client.validations.validateVoucher('test code')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -28,7 +28,7 @@ describe('Validations API', function () {
         .post('/v1/vouchers/test%20code/validate')
         .reply(200, {})
 
-      client.validations.validateVoucher('test code', (err) => {
+      client.validations.validateVoucher('test code', function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -45,7 +45,7 @@ describe('Validations API', function () {
       client.validations.validateVoucher('test code', {
         tracking_id: 'tracking-id'
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })

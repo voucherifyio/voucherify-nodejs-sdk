@@ -20,7 +20,7 @@ describe('Customers API', function () {
     client.customers.create({
       name: 'customer name'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -32,7 +32,7 @@ describe('Customers API', function () {
       .reply(200, {})
 
     client.customers.get('cust_test-id')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -49,7 +49,7 @@ describe('Customers API', function () {
       id: 'cust_test-id',
       name: 'customer name'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -61,7 +61,7 @@ describe('Customers API', function () {
       .reply(200, {})
 
     client.customers.delete('cust_test-id')
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })

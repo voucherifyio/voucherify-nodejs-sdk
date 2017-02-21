@@ -22,7 +22,7 @@ describe('Vouchers API', function () {
       code: 'test-code',
       type: 'DISCOUNT_VOUCHER'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -34,7 +34,7 @@ describe('Vouchers API', function () {
       .reply(200, {})
 
     client.vouchers.get('test-code')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -52,7 +52,7 @@ describe('Vouchers API', function () {
       code: 'test-code',
       type: 'DISCOUNT_VOUCHER'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -66,7 +66,7 @@ describe('Vouchers API', function () {
         .reply(200, {})
 
       client.vouchers.delete('test-code')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -78,7 +78,7 @@ describe('Vouchers API', function () {
         .query({force: false})
         .reply(200, {})
 
-      client.vouchers.delete('test-code', (err) => {
+      client.vouchers.delete('test-code', function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -92,7 +92,7 @@ describe('Vouchers API', function () {
         .reply(200, {})
 
       client.vouchers.delete('test-code', {force: true})
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -106,7 +106,7 @@ describe('Vouchers API', function () {
       .reply(200, [])
 
       client.vouchers.list()
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -117,7 +117,7 @@ describe('Vouchers API', function () {
       .get('/v1/vouchers')
       .reply(200, [])
 
-      client.vouchers.list((err) => {
+      client.vouchers.list(function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -131,7 +131,7 @@ describe('Vouchers API', function () {
       .reply(200, [])
 
       client.vouchers.list({campaign: 'test-campaign'})
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -145,7 +145,7 @@ describe('Vouchers API', function () {
       .reply(200, {})
 
       client.vouchers.enable('test-voucher')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -159,7 +159,7 @@ describe('Vouchers API', function () {
       client.vouchers.enable({
         vouchers: ['code1', 'code2']
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -173,7 +173,7 @@ describe('Vouchers API', function () {
       .reply(200, {})
 
       client.vouchers.disable('test-voucher')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -187,7 +187,7 @@ describe('Vouchers API', function () {
       client.vouchers.disable({
         vouchers: ['code1', 'code2']
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -206,7 +206,7 @@ describe('Vouchers API', function () {
       {code: 'test-voucher1'},
       {code: 'test-voucher2'}
     ])
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })

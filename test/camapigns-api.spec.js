@@ -20,7 +20,7 @@ describe('Campaigns API', function () {
     client.campaigns.create({
       name: 'test campaign'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -32,7 +32,7 @@ describe('Campaigns API', function () {
       .reply(200, {})
 
     client.campaigns.get('test campaign')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -45,7 +45,7 @@ describe('Campaigns API', function () {
       .reply(200, {})
 
       client.campaigns.addVoucher('test campaign', {code: 'test voucher'})
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -57,7 +57,7 @@ describe('Campaigns API', function () {
       .reply(200, {})
 
       client.campaigns.addVoucher('test campaign')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -68,7 +68,7 @@ describe('Campaigns API', function () {
       .post('/v1/campaigns/test%20campaign/vouchers', {})
       .reply(200, {})
 
-      client.campaigns.addVoucher('test campaign', (err) => {
+      client.campaigns.addVoucher('test campaign', function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -86,7 +86,7 @@ describe('Campaigns API', function () {
     client.campaigns.importVouchers('test campaign', [{
       code: 'test voucher'
     }])
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })

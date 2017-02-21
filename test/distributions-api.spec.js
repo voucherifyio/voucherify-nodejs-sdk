@@ -18,7 +18,7 @@ describe('Distributions API', function () {
         .reply(200, {})
 
       client.distributions.publish('test-campaign')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -36,7 +36,7 @@ describe('Distributions API', function () {
         campaign: 'test-campaign',
         voucher: 'test-voucher'
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })

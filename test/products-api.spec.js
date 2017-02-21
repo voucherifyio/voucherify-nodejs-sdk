@@ -20,7 +20,7 @@ describe('Products API', function () {
     client.products.create({
       name: 'product name'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -32,7 +32,7 @@ describe('Products API', function () {
       .reply(200, {})
 
     client.products.get('prod_test-id')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -49,7 +49,7 @@ describe('Products API', function () {
       id: 'prod_test-id',
       name: 'product name'
     })
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -61,7 +61,7 @@ describe('Products API', function () {
       .reply(200, {})
 
     client.products.delete('prod_test-id')
-    .then(() => {
+    .then(function () {
       server.done()
       done()
     })
@@ -74,7 +74,7 @@ describe('Products API', function () {
       .reply(200, {})
 
       client.products.list()
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -85,7 +85,7 @@ describe('Products API', function () {
       .get('/v1/products')
       .reply(200, [])
 
-      client.products.list((err) => {
+      client.products.list(function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -99,7 +99,7 @@ describe('Products API', function () {
       .reply(200, {})
 
       client.products.list({limit: 100})
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -117,7 +117,7 @@ describe('Products API', function () {
       client.products.createSku('prod_test-id', {
         sku: 'test sku'
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -129,7 +129,7 @@ describe('Products API', function () {
       .reply(200, {})
 
       client.products.getSku('prod_test-id', 'test-sku')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -150,7 +150,7 @@ describe('Products API', function () {
           isTestSku: true
         }
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -162,7 +162,7 @@ describe('Products API', function () {
       .reply(200, {})
 
       client.products.deleteSku('prod_test-id', 'test-sku')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -174,7 +174,7 @@ describe('Products API', function () {
       .reply(200, {})
 
       client.products.listSkus('prod_test-id')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })

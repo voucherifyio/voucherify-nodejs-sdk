@@ -17,7 +17,7 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.redeem('test-code')
-        .then(() => {
+        .then(function () {
           server.done()
           done()
         })
@@ -28,7 +28,7 @@ describe('Redemptions API', function () {
         .post('/v1/vouchers/test-code/redemption')
         .reply(200, {})
 
-      client.redemptions.redeem('test-code', (err) => {
+      client.redemptions.redeem('test-code', function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -50,7 +50,7 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -70,7 +70,7 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -83,7 +83,7 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.redeem('test-code', 'test-tracking-id')
-        .then(() => {
+        .then(function () {
           server.done()
           done()
         })
@@ -100,7 +100,7 @@ describe('Redemptions API', function () {
       client.redemptions.list({
         limit: 100
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -112,7 +112,7 @@ describe('Redemptions API', function () {
       .reply(200, {})
 
       client.redemptions.list()
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -123,7 +123,7 @@ describe('Redemptions API', function () {
         .get('/v1/redemptions')
         .reply(200, {})
 
-      client.redemptions.list((err) => {
+      client.redemptions.list(function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -136,7 +136,7 @@ describe('Redemptions API', function () {
       .get('/v1/vouchers/test-code/redemption')
       .reply(200, {})
 
-    client.redemptions.getForVoucher('test-code', (err) => {
+    client.redemptions.getForVoucher('test-code', function (err) {
       expect(err).toBeNull()
       server.done()
       done()
@@ -150,7 +150,7 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.rollback('test-redemption-id')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -161,7 +161,7 @@ describe('Redemptions API', function () {
         .post('/v1/redemptions/test-redemption-id/rollback')
         .reply(200, {})
 
-      client.redemptions.rollback('test-redemption-id', (err) => {
+      client.redemptions.rollback('test-redemption-id', function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -182,7 +182,7 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -208,7 +208,7 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })
@@ -223,7 +223,7 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.rollback('test-redemption-id', 'test reason')
-      .then(() => {
+      .then(function () {
         server.done()
         done()
       })

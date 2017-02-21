@@ -40,7 +40,7 @@ describe('VocherifyClient', function () {
       client.customers.create({
         name: 'customer name'
       })
-      .catch((error) => {
+      .catch(function (error) {
         expect(error.code).toEqual(400)
         expect(error.message).toEqual('Duplicate resource key')
         expect(error.details).toEqual('Campaign with name: test campaign already exists.')
@@ -58,7 +58,7 @@ describe('VocherifyClient', function () {
           message: 'No such app.'
         })
 
-      client.customers.create({name: 'customer name'}, (error) => {
+      client.customers.create({name: 'customer name'}, function (error) {
         expect(error.code).toEqual(401)
         expect(error.message).toEqual('No such app.')
         server.done()

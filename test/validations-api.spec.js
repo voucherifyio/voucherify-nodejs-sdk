@@ -1,7 +1,8 @@
 /* eslint-env jasmine */
 const nock = require('nock')
 const VoucherifyClient = require('./client-loader')
-const {reqWithBody} = require('./fixtures')
+const fixtures = require('./fixtures')
+const reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Validations API', function () {

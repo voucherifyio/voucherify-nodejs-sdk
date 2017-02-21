@@ -1,7 +1,11 @@
 'use strict'
 
-const gulp = require('gulp')
-const babel = require('gulp-babel')
+/**
+ *  Gulpfile must be compliant with node-v0.10 so tests on CI not fail
+ */
+
+var gulp = require('gulp')
+var babel = require('gulp-babel')
 
 gulp.task('release', function () {
   return gulp.src('src/**/*.js')

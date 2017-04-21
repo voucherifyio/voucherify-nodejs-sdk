@@ -14,8 +14,9 @@ describe('Distributions API', function () {
   describe('publish voucher', function () {
     it('should publish by camaign name', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
-        .post('/v1/vouchers/publish')
-        .query({campaign: 'test-campaign'})
+        .post('/v1/vouchers/publish', {
+          campaign: 'test-campaign'
+        })
         .reply(200, {})
 
       client.distributions.publish('test-campaign')

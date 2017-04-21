@@ -46,7 +46,7 @@ module.exports = class ApiClient {
     this.headers = {
       'X-App-Id': applicationId,
       'X-App-Token': clientSecretKey,
-      'X-Voucherify-Channel': 'Node.js-SDK',
+      'X-Voucherify-Channel': 'Node.js-SDK'
     }
     if (apiVersion) {
       this.headers['X-Voucherify-API-Version'] = apiVersion;

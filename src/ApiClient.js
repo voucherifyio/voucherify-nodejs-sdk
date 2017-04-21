@@ -49,7 +49,7 @@ module.exports = class ApiClient {
       'X-Voucherify-Channel': 'Node.js-SDK'
     }
     if (apiVersion) {
-      this.headers['X-Voucherify-API-Version'] = apiVersion;
+      this.headers['X-Voucherify-API-Version'] = apiVersion
     }
   }
 

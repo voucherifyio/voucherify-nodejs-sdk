@@ -41,12 +41,15 @@ const prepare = (callback) => {
 }
 
 module.exports = class ApiClient {
-  constructor ({apiUrl, applicationId, clientSecretKey}) {
+  constructor ({apiUrl, applicationId, clientSecretKey, apiVersion}) {
     this.basePath = apiUrl || 'https://api.voucherify.io/v1'
     this.headers = {
       'X-App-Id': applicationId,
       'X-App-Token': clientSecretKey,
-      'X-Voucherify-Channel': 'Node.js-SDK'
+      'X-Voucherify-Channel': 'Node.js-SDK',
+    }
+    if (apiVersion) {
+      this.headers['X-Voucherify-API-Version'] = apiVersion;
     }
   }
 

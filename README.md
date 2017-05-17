@@ -65,6 +65,14 @@ const client = voucherifyClient({
 
 Optionally, you can add `apiVersion` to the client options if you want to use a [specific API version](http://docs.voucherify.io/docs/api-version-upgrades?utm_source=github&utm_medium=sdk&utm_campaign=acq).
 
+```javascript
+const clientV20170420 = voucherifyClient({
+    applicationId: 'YOUR-APPLICATION-ID',
+    clientSecretKey: 'YOUR-CLIENT-SECRET-KEY',
+    apiVersion: 'v2017-04-20'
+})
+```
+
 ## Callback or Promise?
 
 All methods in the SDK provide both callback based as well as promise based interactions.
@@ -382,6 +390,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
+- **2017-04-21** - `2.5.0` - Add option to override channel.
 - **2017-04-21** - `2.4.0` - Add option to select specific API version.
 - **2017-02-20** - `2.3.0` - Add support for node-v0.10
 - **2017-02-10** - `2.1.1` - Bugfix missing `Object.assign` implementation (touched node-v0.12)

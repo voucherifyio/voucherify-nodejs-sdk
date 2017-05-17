@@ -382,6 +382,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
+- **2017-04-21** - `2.5.0` - Add option to override channel.
 - **2017-04-21** - `2.4.0` - Add option to select specific API version.
 - **2017-02-20** - `2.3.0` - Add support for node-v0.10
 - **2017-02-10** - `2.1.1` - Bugfix missing `Object.assign` implementation (touched node-v0.12)

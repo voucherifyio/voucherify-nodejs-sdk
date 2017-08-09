@@ -43,6 +43,8 @@ API:
 |
 <a href="#products-api">Products</a>
 |
+<a href="#validation-rules-api">Validation Rules</a>
+|
 <a href="#utils">Utils</a>
 </p>
 
@@ -335,6 +337,35 @@ client.products.listSkus(productId)
 
 ---
 
+
+### Validation Rules API
+Methods are provided within `client.validationRules.*` namespace.
+
+- [Create Rule](#create-validation-rule)
+- [Get Rule](#get-validation-rule)
+- [Update Rule](#update-validation-rule)
+- [Delete Rule](#delete-validation-rule)
+
+#### [Create Validation Rule]
+```javascript
+client.validationRules.create(validationRule)
+```
+Check [validation rule object](https://docs.voucherify.io/v1/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-validation-rule-object).
+#### [Get Validation Rule]
+```javascript
+client.validationRules.get(validationRuleId)
+```
+#### [Update Validation Rule]
+```javascript
+client.validationRules.update(validationRule)
+```
+#### [Delete Validation Rule]
+```javascript
+client.validationRules.delete(validationRuleId)
+```
+
+---
+
 ### Migration from 1.x
 
 Version 2.x of the SDK is fully backward compatible with version 1.x.
@@ -500,3 +531,8 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-sku
 [Delete SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-sku
 [List all product SKUs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-skus
+
+[Create Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-validation-rules
+[Get Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-validation-rules
+[Update Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-validation-rules
+[Delete Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-validation-rules

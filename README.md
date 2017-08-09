@@ -117,6 +117,7 @@ Methods are provided within `client.vouchers.*` namespace.
 - [Get Voucher](#get-voucher)
 - [Update Voucher](#update-voucher)
 - [Delete Voucher](#delete-voucher)
+- [Add Gift Voucher Balance](#add-gift-voucher-balance)
 - [List Vouchers](#list-vouchers)
 - [Enable Voucher](#enable-voucher)
 - [Disable Voucher](#disable-voucher)
@@ -140,6 +141,10 @@ client.vouchers.update(voucher)
 ```javascript
 client.vouchers.delete(code)
 client.vouchers.delete(code, {force: true})
+```
+#### [Add Gift Voucher Balance]
+```javascript
+client.vouchers.balance.create({code, amount})
 ```
 #### [List Vouchers]
 ```javascript
@@ -501,6 +506,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Enable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#enable-voucher
 [Disable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#disable-voucher
 [Import Vouchers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers-1
+[Add Gift Voucher Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-gift-voucher-balance
 
 [Create Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-campaign
 [Get Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-campaign

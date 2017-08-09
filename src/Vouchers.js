@@ -30,6 +30,10 @@ module.exports = class Vouchers {
     })
   }
 
+  balance (voucher, callback) {
+    return this.client.post(`/vouchers/${encode(voucher.code)}/balance`, voucher, callback)
+  }
+
   list (params, callback) {
     if (isFunction(params)) {
       callback = params

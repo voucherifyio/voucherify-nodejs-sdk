@@ -142,10 +142,6 @@ client.vouchers.update(voucher)
 client.vouchers.delete(code)
 client.vouchers.delete(code, {force: true})
 ```
-#### [Add Gift Voucher Balance]
-```javascript
-client.vouchers.balance.create({code, amount})
-```
 #### [List Vouchers]
 ```javascript
 client.vouchers.list()
@@ -165,7 +161,10 @@ client.vouchers.disable(code)
 ```javascript
 client.vouchers.import(vouchers)
 ```
-
+#### [Add Gift Voucher Balance]
+```javascript
+client.vouchers.balance.create({code, amount})
+```
 ---
 
 ### Campaigns API
@@ -426,6 +425,9 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 
+- **2017-08-09** - `2.6.0`
+  - Add Validation Rules namespace with CRUD methods
+  - Add Balance namespace with support of Add Gift Voucher Balance method
 - **2017-04-21** - `2.5.0` - Add option to override channel.
 - **2017-04-21** - `2.4.0` - Add option to select specific API version.
 - **2017-02-20** - `2.3.0` - Add support for node-v0.10

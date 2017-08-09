@@ -108,7 +108,7 @@ describe('Vouchers API', function () {
       })
       .reply(200, {})
 
-    client.vouchers.balance({
+    client.vouchers.balance.create({
       code: 'test-code',
       amount: 2000
     })

@@ -3,8 +3,11 @@
 const {encode, isFunction, isObject} = require('./helpers')
 
 module.exports = class Vouchers {
-  constructor (client) {
+  constructor (client, balance) {
     this.client = client
+
+    // public
+    this.balance = balance
   }
 
   create (voucher, callback) {
@@ -28,10 +31,6 @@ module.exports = class Vouchers {
     return this.client.delete(`/vouchers/${encode(code)}`, callback, {
       qs: {force: !!params.force}
     })
-  }
-
-  balance (voucher, callback) {
-    return this.client.post(`/vouchers/${encode(voucher.code)}/balance`, voucher, callback)
   }
 
   list (params, callback) {

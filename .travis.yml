@@ -4,8 +4,7 @@ node_js:
   - "0.12"
   - "4"
   - "6"
-install:
-  - npm install
+  - "8"
 script:
   - gulp release
   - npm run test-lib

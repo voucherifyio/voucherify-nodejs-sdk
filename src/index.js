@@ -8,6 +8,7 @@ const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
 const Customers = require('./Customers')
 const Products = require('./Products')
+const ValidationRules = require('./ValidationRules')
 const {assertOption, isFunction} = require('./helpers')
 
 module.exports = function (options) {
@@ -22,6 +23,7 @@ module.exports = function (options) {
   const redemptions = new Redemptions(client)
   const customers = new Customers(client)
   const products = new Products(client)
+  const validationRules = new ValidationRules(client)
 
   /**
    * Copy redemptions.list method and extend it so we can run:
@@ -52,6 +54,7 @@ module.exports = function (options) {
     redemptions: backwardCompatibleRedemptions,
     customers,
     products,
+    validationRules,
 
     // leaving for backward compatibility
 

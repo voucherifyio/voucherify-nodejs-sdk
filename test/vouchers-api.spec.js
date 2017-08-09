@@ -104,7 +104,7 @@ describe('Vouchers API', function () {
   it('should add gift voucher balance', function (done) {
     var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/vouchers/test-code/balance', {
-          amount: 2000
+        amount: 2000
       })
       .reply(200, {})
 

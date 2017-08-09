@@ -3,6 +3,7 @@
 const ApiClient = require('./ApiClient')
 const Campaigns = require('./Campaigns')
 const Distributions = require('./Distributions')
+const Balance = require('./Balance')
 const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
@@ -16,7 +17,8 @@ module.exports = function (options) {
   assertOption(options, 'clientSecretKey')
 
   const client = new ApiClient(options)
-  const vouchers = new Vouchers(client)
+  const balance = new Balance(client)
+  const vouchers = new Vouchers(client, balance)
   const campaigns = new Campaigns(client)
   const distributions = new Distributions(client)
   const validations = new Validations(client)

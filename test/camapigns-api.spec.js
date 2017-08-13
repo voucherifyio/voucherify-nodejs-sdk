@@ -94,4 +94,30 @@ describe('Campaigns API', function () {
       done()
     })
   })
+
+  describe('list', function () {
+    it('should list all campaigns', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+          .get('/v1/campaigns')
+          .reply(200, [])
+
+      client.campaigns.list()
+          .then(function () {
+            server.done()
+            done()
+          })
+    })
+
+    it('should list all campaigns (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+          .get('/v1/campaigns')
+          .reply(200, [])
+
+      client.campaigns.list(function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+  })
 })

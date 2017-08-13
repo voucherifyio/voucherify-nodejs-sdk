@@ -31,4 +31,13 @@ module.exports = class Campaigns {
   importVouchers (campaignName, vouchers, callback) {
     return this.client.post(`/campaigns/${encode(campaignName)}/import`, vouchers, callback)
   }
+
+  list (params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get(`/campaigns`, params, callback)
+  }
 }

@@ -16,7 +16,7 @@ module.exports = class Customers {
   }
 
   update (customer, callback) {
-    return this.client.put(`/customers/${encode(customer.id)}`, customer, callback)
+    return this.client.put(`/customers/${encode(customer.id || customer.source_id)}`, customer, callback)
   }
 
   delete (customerId, callback) {

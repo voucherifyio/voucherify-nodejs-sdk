@@ -271,6 +271,8 @@ Check [customer object](https://docs.voucherify.io/reference?utm_source=github&u
 client.customers.get(customerId)
 ```
 #### [Update Customer]
+`customer` object must contain `id` or `source_id`.
+
 ```javascript
 client.customers.update(customer)
 ```

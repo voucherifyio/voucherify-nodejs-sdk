@@ -193,6 +193,8 @@ client.campaigns.addVoucher(campaignName, params)
 client.campaigns.importVouchers(campaignName, vouchers, callback)
 ```
 #### [List Campaigns]
+Since API version: `v2017-04-20`.
+
 ```javascript
 client.campaigns.list()
 client.campaigns.list(params)

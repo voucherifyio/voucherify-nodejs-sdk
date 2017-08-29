@@ -431,6 +431,8 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2017-08-29** - `2.8.0`
+  - Expose Campaigns listing
 - **2017-08-29** - `2.7.0`
   - Allow to update Customer by source ID when ID not provided
 - **2017-08-09** - `2.6.0`

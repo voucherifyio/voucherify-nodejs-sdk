@@ -40,7 +40,7 @@ describe('Customers API', function () {
       })
   })
 
-  it('should update customer', function (done) {
+  it('should update customer by ID', function (done) {
     var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/customers/cust_test-id', {
         name: 'customer name'
@@ -49,6 +49,24 @@ describe('Customers API', function () {
 
     client.customers.update({
       id: 'cust_test-id',
+      source_id: 's_test-id',
+      name: 'customer name'
+    })
+    .then(function () {
+      server.done()
+      done()
+    })
+  })
+
+  it('should update customer by Source ID (when ID not provided)', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithBody)
+      .put('/v1/customers/s_test-id', {
+        name: 'customer name'
+      })
+      .reply(200, {})
+
+    client.customers.update({
+      source_id: 's_test-id',
       name: 'customer name'
     })
     .then(function () {

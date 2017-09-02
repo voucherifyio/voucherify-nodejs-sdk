@@ -7,7 +7,7 @@ module.exports = class Balance {
     this.client = client
   }
 
-  create (voucher, callback) {
-    return this.client.post(`/vouchers/${encode(voucher.code)}/balance`, voucher, callback)
+  create (code, params, callback) {
+    return this.client.post(`/vouchers/${encode(code)}/balance`, params, callback)
   }
 }

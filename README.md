@@ -163,7 +163,7 @@ client.vouchers.import(vouchers)
 ```
 #### [Add Gift Voucher Balance]
 ```javascript
-client.vouchers.balance.create({code, amount})
+client.vouchers.balance.create(code, {amount})
 ```
 ---
 

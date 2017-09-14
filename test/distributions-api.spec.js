@@ -53,7 +53,7 @@ describe('Distributions API', function () {
       .get('/v1/publications')
       .reply(200, [])
 
-      client.distributions.listPublications()
+      client.distributions.publications.list()
       .then(function () {
         server.done()
         done()
@@ -65,7 +65,7 @@ describe('Distributions API', function () {
       .get('/v1/publications')
       .reply(200, [])
 
-      client.distributions.listPublications(function (err) {
+      client.distributions.publications.list(function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -78,7 +78,7 @@ describe('Distributions API', function () {
       .query({campaign: 'test-campaign'})
       .reply(200, [])
 
-      client.distributions.listPublications({campaign: 'test-campaign'})
+      client.distributions.publications.list({campaign: 'test-campaign'})
       .then(function () {
         server.done()
         done()

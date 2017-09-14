@@ -3,9 +3,9 @@
 const {encode, isString, isObject, isFunction} = require('./helpers')
 
 module.exports = class Distributions {
-  constructor (client) {
+  constructor (client, exportsNamespace) {
     this.client = client
-
+    this.exports = exportsNamespace
     this.publications = {
       list (params, callback) {
         if (isFunction(params)) {

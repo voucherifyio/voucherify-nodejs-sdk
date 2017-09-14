@@ -512,6 +512,11 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2017-09-14** - `2.10.0`
+  - Expose Segments API
+  - Expose Orders API
+  - Expose Exports API
+  - Expose Publications list
 - **2017-08-29** - `2.8.0`
   - Expose Campaigns listing
 - **2017-08-29** - `2.7.0`

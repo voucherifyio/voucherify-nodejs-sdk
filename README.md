@@ -45,6 +45,8 @@ API:
 |
 <a href="#products-api">Products</a>
 |
+<a href="#segments-api">Segments</a>
+|
 <a href="#validation-rules-api">Validation Rules</a>
 |
 <a href="#utils">Utils</a>
@@ -381,6 +383,28 @@ client.products.listSkus(productId)
 
 ---
 
+### Segments API
+Methods are provided within `client.segments.*` namespace.
+
+- [Create Segment](#create-segment)
+- [Get Segment](#get-segment)
+- [Delete Segment](#delete-segment)
+
+#### [Create Segment]
+```javascript
+client.segments.create(segment)
+```
+Check [the segment object](https://docs.voucherify.io/v1/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-segment-object).
+#### [Get Segment]
+```javascript
+client.segments.get(segmentId)
+```
+#### [Delete Segment]
+```javascript
+client.segments.delete(segmentId)
+```
+
+---
 
 ### Validation Rules API
 Methods are provided within `client.validationRules.*` namespace.
@@ -593,3 +617,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Get Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-validation-rules
 [Update Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-validation-rules
 [Delete Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-validation-rules
+
+[Create Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-segment
+[Get Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-segment
+[Delete Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-segment

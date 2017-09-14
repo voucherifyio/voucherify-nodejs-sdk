@@ -210,6 +210,12 @@ client.distributions.publish(campaignName)
 client.distributions.publish(params)
 ```
 
+#### [List publications]
+```javascript
+client.distributions.publications.list()
+client.distributions.publications.list(params)
+```
+
 ---
 
 ### Validations API
@@ -529,6 +535,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [List Campaigns]: https://docs.voucherify.io/v2017-04-05/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-campaigns
 
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
+[List publications]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-publications
 
 [Validate Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#validate-voucher
 

@@ -3,6 +3,8 @@ var nock = require('nock')
 var VoucherifyClient = require('./client-loader')
 var fixtures = require('./fixtures')
 var reqWithBody = fixtures.reqWithBody
+var reqWithoutBody = fixtures.reqWithoutBody
+
 nock.disableNetConnect()
 
 describe('Distributions API', function () {
@@ -38,6 +40,45 @@ describe('Distributions API', function () {
         campaign: 'test-campaign',
         voucher: 'test-voucher'
       })
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+  })
+
+  describe('list publications', function () {
+    it('should list all publications', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/publications')
+      .reply(200, [])
+
+      client.distributions.listPublications()
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all publications (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/publications')
+      .reply(200, [])
+
+      client.distributions.listPublications(function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list publications by query', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/publications')
+      .query({campaign: 'test-campaign'})
+      .reply(200, [])
+
+      client.distributions.listPublications({campaign: 'test-campaign'})
       .then(function () {
         server.done()
         done()

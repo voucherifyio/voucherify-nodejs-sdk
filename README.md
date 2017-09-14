@@ -208,12 +208,30 @@ client.campaigns.list(params)
 ### Distributions API
 Methods are provided within `client.distributions.*` namespace.
 
+- [Publish Voucher](#publish-voucher)
+- [Create Export](#create-export)
+- [Get Export](#get-export)
+- [Delete Export](#delete-export)
+- [List publications](#list-publications)
+
 #### [Publish Voucher]
 ```javascript
 client.distributions.publish(campaignName)
 client.distributions.publish(params)
 ```
-
+#### [Create Export]
+```javascript
+client.distributions.exports.create(exportObject)
+```
+Check [the export object](https://docs.voucherify.io/v1/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-export-object).
+#### [Get Export]
+```javascript
+client.distributions.exports.get(exportId)
+```
+#### [Delete Export]
+```javascript
+client.distributions.exports.delete(exportId)
+```
 #### [List publications]
 ```javascript
 client.distributions.publications.list()
@@ -590,6 +608,9 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [List Campaigns]: https://docs.voucherify.io/v2017-04-05/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-campaigns
 
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
+[Create Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-export
+[Get Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-export
+[Delete Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-export
 [List publications]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-publications
 
 [Validate Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#validate-voucher

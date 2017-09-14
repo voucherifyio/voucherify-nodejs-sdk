@@ -8,6 +8,7 @@ const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
 const Customers = require('./Customers')
+const Orders = require('./Orders')
 const Products = require('./Products')
 const ValidationRules = require('./ValidationRules')
 const {assertOption, isFunction} = require('./helpers')
@@ -24,6 +25,7 @@ module.exports = function (options) {
   const validations = new Validations(client)
   const redemptions = new Redemptions(client)
   const customers = new Customers(client)
+  const orders = new Orders(client)
   const products = new Products(client)
   const validationRules = new ValidationRules(client)
 
@@ -55,6 +57,7 @@ module.exports = function (options) {
     validations,
     redemptions: backwardCompatibleRedemptions,
     customers,
+    orders,
     products,
     validationRules,
 

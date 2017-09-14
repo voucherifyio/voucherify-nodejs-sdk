@@ -10,6 +10,7 @@ const Redemptions = require('./Redemptions')
 const Customers = require('./Customers')
 const Products = require('./Products')
 const ValidationRules = require('./ValidationRules')
+const Segments = require('./Segments')
 const {assertOption, isFunction} = require('./helpers')
 
 module.exports = function (options) {
@@ -25,6 +26,7 @@ module.exports = function (options) {
   const redemptions = new Redemptions(client)
   const customers = new Customers(client)
   const products = new Products(client)
+  const segments = new Segments(client)
   const validationRules = new ValidationRules(client)
 
   /**
@@ -56,6 +58,7 @@ module.exports = function (options) {
     redemptions: backwardCompatibleRedemptions,
     customers,
     products,
+    segments,
     validationRules,
 
     // leaving for backward compatibility

@@ -41,6 +41,8 @@ API:
 |
 <a href="#customers-api">Customers</a>
 |
+<a href="#orders-api">Orders</a>
+|
 <a href="#products-api">Products</a>
 |
 <a href="#validation-rules-api">Validation Rules</a>
@@ -286,6 +288,35 @@ client.customers.update(customer)
 #### [Delete Customer]
 ```javascript
 client.customers.delete(customerId)
+```
+
+---
+
+### Orders API
+Methods are provided within `client.orders.*` namespace.
+
+- [Create Order](#create-order)
+- [Get Order](#get-order)
+- [Update Order](#update-order)
+- [List Orders](#list-orders)
+
+#### [Create Order]
+```javascript
+client.orders.create(order)
+```
+Check [the order object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-order-object).
+#### [Get Order]
+```javascript
+client.orders.get(orderId)
+```
+#### [Update Order]
+```javascript
+client.orders.update(order)
+```
+#### [List Orders]
+```javascript
+client.orders.list()
+client.orders.list(params)
 ```
 
 ---
@@ -541,6 +572,11 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Get Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#read-customer
 [Update Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-customer
 [Delete Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-customer
+
+[Create Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-order
+[Get Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-order
+[Update Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-order
+[List Orders]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-orders
 
 [Create Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-product
 [Get Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-product

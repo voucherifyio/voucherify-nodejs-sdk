@@ -458,6 +458,17 @@ client.validationRules.delete(validationRuleId)
 
 ---
 
+### Events API
+Methods are provided within `client.events.*` namespace.
+
+#### [Create event]
+Check [customer object](https://docs.voucherify.io/v1/reference#the-customer-object).
+```javascript
+client.events.track(eventName, eventPayload, customer)
+```
+
+---
+
 ### Migration from 1.x
 
 Version 2.x of the SDK is fully backward compatible with version 1.x.
@@ -512,6 +523,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2017-10-24** - `2.11.0` - Expose Events API
 - **2017-09-14** - `2.10.0`
   - Expose Segments API
   - Expose Orders API

@@ -15,8 +15,8 @@ module.exports = class Events {
 
     return this.client.post(`/events`, {
       event: eventName,
-      customer: customer,
-      metadata: metadata
+      customer,
+      metadata
     }, callback)
   }
 }

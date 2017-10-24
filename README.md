@@ -49,6 +49,8 @@ API:
 |
 <a href="#validation-rules-api">Validation Rules</a>
 |
+<a href="#events-api">Events</a>
+|
 <a href="#utils">Utils</a>
 </p>
 

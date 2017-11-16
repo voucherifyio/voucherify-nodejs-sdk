@@ -90,6 +90,61 @@ describe('Redemptions API', function () {
           done()
         })
     })
+
+    it('should redeem promotion', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/promotions/tiers/promo_test_id/redemption', {
+          'customer': {
+            'id': 'cust_test_id'
+          },
+          'order': {
+            'amount': 25000
+          }
+        })
+        .reply(200, {})
+
+      client.redemptions.redeem({
+        'id': 'promo_test_id'
+      }, {
+        'customer': {
+          'id': 'cust_test_id'
+        },
+        'order': {
+          'amount': 25000
+        }
+      }).then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should redeem promotion (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/promotions/tiers/promo_test_id/redemption', {
+          'customer': {
+            'id': 'cust_test_id'
+          },
+          'order': {
+            'amount': 25000
+          }
+        })
+        .reply(200, {})
+
+      client.redemptions.redeem({
+        'id': 'promo_test_id'
+      }, {
+        'customer': {
+          'id': 'cust_test_id'
+        },
+        'order': {
+          'amount': 25000
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
   })
 
   describe('list', function () {

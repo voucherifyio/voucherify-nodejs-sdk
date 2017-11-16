@@ -18,10 +18,10 @@ describe('Validations API', function () {
         .reply(200, {})
 
       client.validations.validateVoucher('test code')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should validate without additional context (callback)', function (done) {
@@ -46,7 +46,68 @@ describe('Validations API', function () {
       client.validations.validateVoucher('test code', {
         tracking_id: 'tracking-id'
       })
-      .then(function () {
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should validate using alias', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/vouchers/test%20code/validate')
+        .reply(200, {})
+
+      client.validations.validate('test code', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should validate using alias (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/vouchers/test%20code/validate')
+        .reply(200, {})
+
+      client.validations.validate('test code')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+  })
+
+  describe('validate promotion', function () {
+    it('should validate tier', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/promotions/validation', {
+          'order': {
+            'amount': 25000
+          }
+        })
+        .reply(200, {})
+
+      client.validations.validate({
+        'order': {
+          'amount': 25000
+        }
+      }).then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should validate tier (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/promotions/validation')
+        .reply(200, {})
+
+      client.validations.validate({
+        'order': {
+          'amount': 25000
+        }
+      }, function (err) {
+        expect(err).toBeNull()
         server.done()
         done()
       })

@@ -243,10 +243,22 @@ client.distributions.publications.list(params)
 ### Validations API
 Methods are provided within `client.validations.*` namespace.
 
+- [Validate Voucher](#validate-voucher)
+- [Validate Promotion Campaign](#validate-promotion-campaign)
+
 #### [Validate Voucher]
 ```javascript
 client.validations.validateVoucher(code)
 client.validations.validateVoucher(code, params)
+
+// or
+
+client.validations.validate(code)
+client.validations.validate(code, params)
+```
+#### [Validate Promotion Campaign](#validate-promotion-campaign)
+```javascript
+client.validations.validate(promotion_validation_context)
 ```
 
 ---
@@ -255,6 +267,7 @@ client.validations.validateVoucher(code, params)
 Methods are provided within `client.redemptions.*` namespace.
 
 - [Redeem Voucher](#redeem-voucher)
+- [Redeem Promotion's Tier](#redeem-promotions-tier)
 - [List Redemptions](#list-redemptions)
 - [Get Voucher's Redemptions](#get-vouchers-redemptions)
 - [Rollback Redemption](#rollback-redemption)
@@ -268,6 +281,10 @@ client.redemptions.redeem(code, params)
 client.redemptions.redeem({code, ...params})
 client.redemptions.redeem({code, ...params}, tracking_id)
 client.redemptions.redeem(code, tracking_id) // use: client.redemptions.redeem(code, {customer: {source_id}})
+```
+#### [Redeem Promotion's Tier]
+```javascript
+client.redemptions.redeem(promotionsTier)
 ```
 #### [List Redemptions]
 ```javascript

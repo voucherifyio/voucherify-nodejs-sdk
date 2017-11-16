@@ -4,6 +4,7 @@ const ApiClient = require('./ApiClient')
 const Campaigns = require('./Campaigns')
 const Distributions = require('./Distributions')
 const Exports = require('./Exports')
+const Events = require('./Events')
 const Balance = require('./Balance')
 const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
@@ -26,6 +27,7 @@ module.exports = function (options) {
   const vouchers = new Vouchers(client, balance)
   const campaigns = new Campaigns(client)
   const exportsNamespace = new Exports(client)
+  const events = new Events(client)
   const distributions = new Distributions(client, exportsNamespace)
   const promotionTiers = new PromotionTiers(client)
   const promotions = new Promotions(client, campaigns, promotionTiers)
@@ -70,6 +72,7 @@ module.exports = function (options) {
     products,
     segments,
     validationRules,
+    events,
 
     // leaving for backward compatibility
 

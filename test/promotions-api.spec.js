@@ -80,7 +80,7 @@ describe('Promotions API', function () {
 
     it('should update promotion tier', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
-        .put(`/v1/promotions/tiers/promo_test_id`, {
+        .put('/v1/promotions/tiers/promo_test_id', {
           'id': 'promo_test_id',
           'name': 'BMCF 2017 - $20 off for orders above $200',
           'banner': 'Congratulations, you get $20 off!',
@@ -135,7 +135,7 @@ describe('Promotions API', function () {
 
     it('should delete promotion tier', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-        .delete(`/v1/promotions/tiers/promo_test_id`)
+        .delete('/v1/promotions/tiers/promo_test_id')
         .reply(200, {})
 
       client.promotions.tiers.delete('promo_test_id')

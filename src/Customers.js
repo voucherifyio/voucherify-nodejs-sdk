@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode} = require('./helpers')
+const {encode, isFunction} = require('./helpers')
 
 module.exports = class Customers {
   constructor (client) {
@@ -13,6 +13,15 @@ module.exports = class Customers {
 
   get (customerId, callback) {
     return this.client.get(`/customers/${encode(customerId)}`, null, callback)
+  }
+
+  list (params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get('/customers', params, callback)
   }
 
   update (customer, callback) {

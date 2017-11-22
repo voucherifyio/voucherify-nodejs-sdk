@@ -40,6 +40,45 @@ describe('Customers API', function () {
       })
   })
 
+  describe('list', function () {
+    it('should list all customers', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/customers')
+      .reply(200, [])
+
+      client.customers.list()
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all customers (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/customers')
+      .reply(200, [])
+
+      client.customers.list(function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list customers by query', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/customers')
+      .query({city: 'chicago'})
+      .reply(200, [])
+
+      client.customers.list({city: 'chicago'})
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+  })
+
   it('should update customer by ID', function (done) {
     var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/customers/cust_test-id', {

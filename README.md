@@ -463,7 +463,9 @@ client.validationRules.delete(validationRuleId)
 ### Events API
 Methods are provided within `client.events.*` namespace.
 
-#### [Create Events]
+- [Create Events](#create-custom-event)
+
+#### [Create event]
 Check [customer object](https://docs.voucherify.io/v1/reference#the-customer-object).
 ```javascript
 client.events.track(eventName, metadata, customer)

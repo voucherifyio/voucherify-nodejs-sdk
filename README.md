@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a>
-  <a href="https://travis-ci.org/voucherifyio/voucherify-nodejs-sdk)"><img src="https://travis-ci.org/voucherifyio/voucherify-nodejs-sdk.svg?branch=master" alt="Build Status"/></a>
+  <a href="https://travis-ci.org/voucherifyio/voucherify-nodejs-sdk"><img src="https://travis-ci.org/voucherifyio/voucherify-nodejs-sdk.svg?branch=master" alt="Build Status"/></a>
   <a href="https://www.npmjs.com/package/voucherify"><img src="https://img.shields.io/npm/v/voucherify.svg" alt="NPM Version"/></a>
   <a href="https://www.npmjs.com/package/voucherify"><img src="https://img.shields.io/npm/dm/voucherify.svg" alt="NPM Downloads"/></a>
   <a href="https://www.npmjs.com/package/voucherify"><img src="https://david-dm.org/voucherifyio/voucherify-nodejs-sdk.svg" alt="Dependencies"/></a>
@@ -463,7 +463,7 @@ client.validationRules.delete(validationRuleId)
 ### Events API
 Methods are provided within `client.events.*` namespace.
 
-- [Create event](#create-custom-event)
+- [Create Events](#create-custom-event)
 
 #### [Create event]
 Check [customer object](https://docs.voucherify.io/v1/reference#the-customer-object).
@@ -670,3 +670,5 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Create Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-segment
 [Get Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-segment
 [Delete Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-segment
+
+[Create Events]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-custom-event-object

@@ -9,6 +9,8 @@ const Balance = require('./Balance')
 const Vouchers = require('./Vouchers')
 const Validations = require('./Validations')
 const Redemptions = require('./Redemptions')
+const PromotionTiers = require('./PromotionTiers')
+const Promotions = require('./Promotions')
 const Customers = require('./Customers')
 const Orders = require('./Orders')
 const Products = require('./Products')
@@ -27,8 +29,10 @@ module.exports = function (options) {
   const exportsNamespace = new Exports(client)
   const events = new Events(client)
   const distributions = new Distributions(client, exportsNamespace)
-  const validations = new Validations(client)
-  const redemptions = new Redemptions(client)
+  const promotionTiers = new PromotionTiers(client)
+  const promotions = new Promotions(client, campaigns, promotionTiers)
+  const validations = new Validations(client, promotions)
+  const redemptions = new Redemptions(client, promotions)
   const customers = new Customers(client)
   const orders = new Orders(client)
   const products = new Products(client)
@@ -62,6 +66,7 @@ module.exports = function (options) {
     distributions,
     validations,
     redemptions: backwardCompatibleRedemptions,
+    promotions,
     customers,
     orders,
     products,

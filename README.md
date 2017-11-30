@@ -49,6 +49,8 @@ API:
 |
 <a href="#validation-rules-api">Validation Rules</a>
 |
+<a href="#promotions-api">Promotions</a>
+|
 <a href="#events-api">Events</a>
 |
 <a href="#utils">Utils</a>
@@ -245,10 +247,22 @@ client.distributions.publications.list(params)
 ### Validations API
 Methods are provided within `client.validations.*` namespace.
 
+- [Validate Voucher](#validate-voucher)
+- [Validate Promotion Campaign](#validate-promotion-campaign)
+
 #### [Validate Voucher]
 ```javascript
 client.validations.validateVoucher(code)
 client.validations.validateVoucher(code, params)
+
+// or
+
+client.validations.validate(code)
+client.validations.validate(code, params)
+```
+#### [Validate Promotion Campaign](#validate-promotion-campaign)
+```javascript
+client.validations.validate(promotion_validation_context)
 ```
 
 ---
@@ -257,6 +271,7 @@ client.validations.validateVoucher(code, params)
 Methods are provided within `client.redemptions.*` namespace.
 
 - [Redeem Voucher](#redeem-voucher)
+- [Redeem Promotion's Tier](#redeem-promotions-tier)
 - [List Redemptions](#list-redemptions)
 - [Get Voucher's Redemptions](#get-vouchers-redemptions)
 - [Rollback Redemption](#rollback-redemption)
@@ -270,6 +285,10 @@ client.redemptions.redeem(code, params)
 client.redemptions.redeem({code, ...params})
 client.redemptions.redeem({code, ...params}, tracking_id)
 client.redemptions.redeem(code, tracking_id) // use: client.redemptions.redeem(code, {customer: {source_id}})
+```
+#### [Redeem Promotion's Tier]
+```javascript
+client.redemptions.redeem(promotionsTier)
 ```
 #### [List Redemptions]
 ```javascript
@@ -287,6 +306,50 @@ client.redemptions.rollback(redemptionId, params)
 client.redemptions.rollback(redemptionId, reason)
 ```
 Check [redemption rollback object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-redemption-rollback-object).
+
+---
+
+### Promotions API
+Methods are provided within `client.promotions.*` namespace.
+
+- [Create Promotion Campaign](#create-promotion-campaign)
+- [Validate Promotion Campaign](#validate-promotion-campaign)
+- [List Promotion's Tiers](#list-promotions-tiers)
+- [Create Promotion's Tier](#create-promotions-tier)
+- [Redeem Promotion's Tier](#redeem-promotions-tier)
+- [Update Promotion's Tier](#update-promotions-tier)
+- [Delete Promotion's Tier](#delete-promotions-tier)
+
+Check [promotion campaign object](http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-promotion-campaign).
+#### [Create Promotion Campaign]
+```javascript
+client.promotions.create(promotionCampaign)
+```
+#### [Validate Promotion Campaign]
+```javascript
+client.promotions.validate(validationContext)
+```
+#### [List Promotion's Tiers]
+```javascript
+client.promotions.tiers.list(promotionCampaignId)
+```
+Check [promotion's tier object](http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-promotion-object)
+#### [Create Promotion's Tier]
+```javascript
+client.promotions.tiers.create(promotionId, promotionsTier)
+```
+#### [Redeem Promotion's Tier]
+```javascript
+client.promotions.tiers.redeem(promotionsTierId, redemptionContext)
+```
+#### [Update Promotion's Tier]
+```javascript
+client.promotions.tiers.update(promotionsTier)
+```
+#### [Delete Promotion's Tier]
+```javascript
+client.promotions.tiers.delete(promotionsTierId)
+```
 
 ---
 
@@ -527,6 +590,9 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2017-11-16** - `2.12.0` 
+  - Expose Promotions API 
+  - Update Redemptions and Validations namespace
 - **2017-10-24** - `2.11.0` - Expose Events API - track events done by the customers
 - **2017-09-14** - `2.10.0`
   - Expose Segments API
@@ -640,6 +706,14 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [List Redemptions]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-redemptions
 [Get Voucher's Redemptions]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#vouchers-redemptions
 [Rollback Redemption]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#rollback-redemption
+
+[Create Promotion Campaign]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-promotion-campaign
+[Validate Promotion Campaign]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#validate-promotions-1
+[List Promotion's Tiers]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-promotions
+[Create Promotion's Tier]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-promotion-tier-to-campaign
+[Redeem Promotion's Tier]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#redeem-promotion
+[Update Promotion's Tier]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-promotion
+[Delete Promotion's Tier]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-promotion
 
 [Create Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-customer
 [Get Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#read-customer

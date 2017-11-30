@@ -3,19 +3,25 @@
 const {encode, isFunction, isObject, isString} = require('./helpers')
 
 module.exports = class Redemptions {
-  constructor (client) {
+  constructor (client, promotionsNamespace) {
     this.client = client
+    this.promotions = promotionsNamespace
   }
 
   redeem (code, params, callback) {
     let context = {}
     let qs = {}
     let isDeprecated = false
+
+    if (isObject(code) && isObject(params)) {
+      return this.promotions.tiers.redeem(code['id'], params, callback)
+    }
+
     if (isObject(code)) {
       isDeprecated = true
       console.warn('This redeem method invocation is deprecated. First argument should be always a code, check docs for more details.')
       if (isObject(params)) {
-        console.warn('This redeem method invocation is deprecated. Params being an object will be ingored.')
+        console.warn('This redeem method invocation is deprecated. Params being an object will be ignored.')
       }
 
       context = code

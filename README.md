@@ -262,7 +262,7 @@ client.validations.validate(code, params)
 ```
 #### [Validate Promotion Campaign](#validate-promotion-campaign)
 ```javascript
-client.validations.validate(promotion_validation_context)
+client.validations.validate(params)
 ```
 
 ---
@@ -288,7 +288,7 @@ client.redemptions.redeem(code, tracking_id) // use: client.redemptions.redeem(c
 ```
 #### [Redeem Promotion's Tier]
 ```javascript
-client.redemptions.redeem(promotionsTier)
+client.redemptions.redeem(promotionsTier, params)
 ```
 #### [List Redemptions]
 ```javascript

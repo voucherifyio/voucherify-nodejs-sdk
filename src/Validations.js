@@ -18,14 +18,13 @@ module.exports = class Validations {
   }
 
   validate (code, context = {}, callback = null) {
-    if (isString(code)) {
-      return this.validateVoucher(code, context, callback)
-    } else if (isObject(code)) {
+    if (isObject(code)) {
       if (isFunction(context)) {
         callback = context
       }
-
       return this.promotions.validate(code, callback)
     }
+
+    return this.validateVoucher(code, context, callback)
   }
 }

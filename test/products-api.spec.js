@@ -69,6 +69,19 @@ describe('Products API', function () {
     })
   })
 
+  it('should delete product permanently', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .delete('/v1/products/prod_test-id')
+      .query({force: true})
+      .reply(200, {})
+
+    client.products.delete('prod_test-id', {force: true})
+    .then(function () {
+      server.done()
+      done()
+    })
+  })
+
   describe('list products', function () {
     it('should list all', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
@@ -164,6 +177,19 @@ describe('Products API', function () {
       .reply(200, {})
 
       client.products.deleteSku('prod_test-id', 'test-sku')
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should delete SKU permanently', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/products/prod_test-id/skus/test-sku')
+        .query({force: true})
+        .reply(200, {})
+
+      client.products.deleteSku('prod_test-id', 'test-sku', {force: true})
       .then(function () {
         server.done()
         done()

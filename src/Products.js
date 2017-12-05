@@ -1,6 +1,7 @@
 'use strict'
 
 const {encode, isFunction} = require('./helpers')
+const omit = require('lodash.omit')
 
 module.exports = class Products {
   constructor (client) {
@@ -16,11 +17,16 @@ module.exports = class Products {
   }
 
   update (product, callback) {
-    return this.client.put(`/products/${encode(product.id)}`, product, callback)
+    return this.client.put(`/products/${encode(product.id)}`, omit(product, ['id']), callback)
   }
 
-  delete (productId, callback) {
-    return this.client.delete(`/products/${encode(productId)}`, callback)
+  delete (productId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.delete(`/products/${encode(productId)}`, callback, {qs: params})
   }
 
   list (params, callback) {
@@ -45,14 +51,20 @@ module.exports = class Products {
   updateSku (productId, sku, callback) {
     return this.client.put(
       `/products/${encode(productId)}/skus/${encode(sku.id)}`,
-      sku, callback
+      omit(sku, ['id']), callback
     )
   }
 
-  deleteSku (productId, skuId, callback) {
+  deleteSku (productId, skuId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
     return this.client.delete(
       `/products/${encode(productId)}/skus/${encode(skuId)}`,
-      callback
+      callback,
+      {qs: params}
     )
   }
 

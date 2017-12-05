@@ -2,6 +2,7 @@
 
 const request = require('request')
 const when = require('when')
+const packageJson = require('../package')
 
 const errorMessage = (statusCode, body) => {
   body = body || {}
@@ -46,7 +47,7 @@ module.exports = class ApiClient {
     this.headers = {
       'X-App-Id': applicationId,
       'X-App-Token': clientSecretKey,
-      'X-Voucherify-Channel': channel || 'Node.js-SDK'
+      'X-Voucherify-Channel': channel ||`Node.js-${process.version}-SDK-v${packageJson.version}`
     }
     if (apiVersion) {
       this.headers['X-Voucherify-API-Version'] = apiVersion

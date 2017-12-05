@@ -1,6 +1,7 @@
 'use strict'
 
 const {encode, isFunction} = require('./helpers')
+const omit = require('lodash.omit')
 
 module.exports = class Orders {
   constructor (client) {
@@ -16,7 +17,7 @@ module.exports = class Orders {
   }
 
   update (order, callback) {
-    return this.client.put(`/orders/${encode(order.id)}`, order, callback)
+    return this.client.put(`/orders/${encode(order.id)}`, omit(order, ['id']), callback)
   }
 
   list (params, callback) {

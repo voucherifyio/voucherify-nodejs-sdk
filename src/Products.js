@@ -20,8 +20,13 @@ module.exports = class Products {
     return this.client.put(`/products/${encode(product.id)}`, omit(product, ['id']), callback)
   }
 
-  delete (productId, callback) {
-    return this.client.delete(`/products/${encode(productId)}`, callback)
+  delete (productId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.delete(`/products/${encode(productId)}`, callback, {qs: params})
   }
 
   list (params, callback) {
@@ -50,10 +55,16 @@ module.exports = class Products {
     )
   }
 
-  deleteSku (productId, skuId, callback) {
+  deleteSku (productId, skuId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
     return this.client.delete(
       `/products/${encode(productId)}/skus/${encode(skuId)}`,
-      callback
+      callback,
+      {qs: params}
     )
   }
 

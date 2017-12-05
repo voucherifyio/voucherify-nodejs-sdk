@@ -442,6 +442,7 @@ client.products.update(product)
 #### [Delete Product]
 ```javascript
 client.products.delete(productId)
+client.products.delete(productId, {force: true})
 ```
 #### [List Products]
 ```javascript
@@ -464,6 +465,7 @@ client.products.updateSku(productId, sku)
 #### [Delete SKU]
 ```javascript
 client.products.deleteSku(productId, skuId)
+client.products.deleteSku(productId, skuId, {force: true})
 ```
 #### [List all product SKUs]
 ```javascript
@@ -590,8 +592,8 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
-- **2017-11-16** - `2.12.0` 
-  - Expose Promotions API 
+- **2017-11-16** - `2.12.0`
+  - Expose Promotions API
   - Update Redemptions and Validations namespace
 - **2017-10-24** - `2.11.0` - Expose Events API - track events done by the customers
 - **2017-09-14** - `2.10.0`

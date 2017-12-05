@@ -6,7 +6,7 @@ var reqWithoutBody = fixtures.reqWithoutBody
 var reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
-describe('Products API', function () {
+describe('Orders API', function () {
   var client = new VoucherifyClient({
     applicationId: 'node-sdk-test-id',
     clientSecretKey: 'node-sdk-test-secret'

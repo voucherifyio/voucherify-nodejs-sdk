@@ -1,6 +1,7 @@
 'use strict'
 
 const {encode} = require('./helpers')
+const omit = require('lodash.omit')
 
 module.exports = class ValidationRules {
   constructor (client) {
@@ -16,7 +17,7 @@ module.exports = class ValidationRules {
   }
 
   update (validationRule, callback) {
-    return this.client.put(`/validation-rules/${encode(validationRule.id)}`, validationRule, callback)
+    return this.client.put(`/validation-rules/${encode(validationRule.id)}`, omit(validationRule, ['id']), callback)
   }
 
   delete (validationRuleId, callback) {

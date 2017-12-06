@@ -360,6 +360,7 @@ Methods are provided within `client.customers.*` namespace.
 - [Get Customer](#get-customer)
 - [Update Customer](#update-customer)
 - [Delete Customer](#delete-customer)
+- [List Customers](#list-customers)
 
 #### [Create Customer]
 ```javascript
@@ -379,6 +380,11 @@ client.customers.update(customer)
 #### [Delete Customer]
 ```javascript
 client.customers.delete(customerId)
+```
+#### [List Customers]
+```javascript
+client.customers.list()
+client.customers.list(params)
 ```
 
 ---
@@ -721,6 +727,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Get Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#read-customer
 [Update Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-customer
 [Delete Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-customer
+[List Customers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-customers
 
 [Create Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-order
 [Get Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-order

@@ -598,6 +598,10 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2017-12-06** - `2.13.0`
+  - Fix voucher validation vulnerability
+  - Allow to force delete Products and SKUs
+  - Add Clients listing
 - **2017-11-16** - `2.12.0`
   - Expose Promotions API
   - Update Redemptions and Validations namespace

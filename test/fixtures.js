@@ -2,7 +2,7 @@
 
 // FIXME leaving var to satisfy tests for node v0.10 and v0.12
 var packageJson = require('../package')
-var channelHeader = `Node.js-${process.version}-SDK-v${packageJson.version}`
+var channelHeader = 'Node.js-' + process.version + '-SDK-v' + packageJson.version
 
 module.exports = {
   reqWithBody: {

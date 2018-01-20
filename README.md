@@ -115,9 +115,9 @@ All other examples in the readme use promises but they could be as well written 
 
 ## API
 
-This SDK is fully consistent with restufl API Voucherify provides.
-Detalied description and example responses  you will find at [official docs](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq).
-Method headers point to more detalied params description you can use.
+This SDK is fully consistent with restful API Voucherify provides.
+You will find detailed description and example responses at [official docs](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq).
+Method headers point to more detailed descriptions of params you can use.
 
 ### Vouchers API
 Methods are provided within `client.vouchers.*` namespace.
@@ -135,7 +135,7 @@ Methods are provided within `client.vouchers.*` namespace.
 ```javascript
 client.vouchers.create(voucher)
 ```
-Check [voucher oject](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-voucher-object).
+Check [voucher object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-voucher-object).
 
 #### [Get Voucher]
 ```javascript
@@ -597,7 +597,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
-- **2018-01-20** - `2.13.1` Remove outdated `client.distributions.publish(campaignName)` method interface
+- **2018-01-21** - `2.13.1` - Remove outdated `client.distributions.publish(campaignName)` method interface
 - **2017-12-06** - `2.13.0`
   - Fix voucher validation vulnerability
   - Allow to force delete Products and SKUs

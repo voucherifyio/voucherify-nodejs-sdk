@@ -220,7 +220,6 @@ Methods are provided within `client.distributions.*` namespace.
 
 #### [Publish Voucher]
 ```javascript
-client.distributions.publish(campaignName)
 client.distributions.publish(params)
 ```
 #### [Create Export]
@@ -598,6 +597,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2018-01-20** - `2.13.1` Remove outdated `client.distributions.publish(campaignName)` method interface
 - **2017-12-06** - `2.13.0`
   - Fix voucher validation vulnerability
   - Allow to force delete Products and SKUs

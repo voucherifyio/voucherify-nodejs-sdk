@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode, isFunction} = require('./helpers')
+const {isFunction} = require('./helpers')
 
 module.exports = class Distributions {
   constructor (client, exportsNamespace) {

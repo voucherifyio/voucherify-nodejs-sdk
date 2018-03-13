@@ -1,5 +1,8 @@
 'use strict'
 
+const crypto = require('crypto')
+const {isString} = require('./helpers')
+
 function roundMoney (value) {
   return Math.round(value * (100 + 0.001)) / 100
 }
@@ -91,6 +94,14 @@ module.exports = {
       return roundMoney(priceDiscount > basePrice ? basePrice : priceDiscount)
     } else {
       throw new Error('Unsupported discount type.')
+    }
+  },
+
+  webhooks: {
+    verifySignature: function (signature, message, secretKey) {
+      return crypto.createHmac('sha256', secretKey)
+        .update(isString(message) && message || JSON.stringify(message))
+        .digest('hex') === signature
     }
   }
 }

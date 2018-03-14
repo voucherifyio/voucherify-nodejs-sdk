@@ -543,6 +543,7 @@ client.events.track(eventName, metadata, customer)
 
 ---
 
+
 ### Migration from 1.x
 
 Version 2.x of the SDK is fully backward compatible with version 1.x.
@@ -586,6 +587,7 @@ Utils don't need callbacks nor promises. They return results immediately.
 
 - `utils.calculatePrice(basePrice, voucher)`
 - `utils.calculateDiscount(basePrice, voucher)`
+- `utils.webhooks.verifySignature(signature, message, secretKey)`
 
 ## Error handling
 

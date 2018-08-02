@@ -599,6 +599,8 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2018-08-01** - `2.16.0` - Fix reported vulnerabilities (#77)
+- **2018-06-14** - `2.15.0` - Fixed the way string errors are handled
 - **2018-03-14** - `2.14.0` - Added util method to Verify Webhooks signature
 - **2018-01-21** - `2.13.1` - Remove outdated `client.distributions.publish(campaignName)` method interface
 - **2017-12-06** - `2.13.0`

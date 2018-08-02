@@ -6,8 +6,8 @@ const packageJson = require('../package')
 
 const errorMessage = (statusCode, body) => {
   body = body || {}
-  if (typeof body === "string") {
-    return 'Unexpected status code: ' + statusCode + ' - Details: ' + body;
+  if (typeof body === 'string') {
+    return 'Unexpected status code: ' + statusCode + ' - Details: ' + body
   }
   body.toString = function () {
     return `Unexpected status code: ${statusCode} - Details: ${JSON.stringify(body)}`

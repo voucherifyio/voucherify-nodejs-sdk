@@ -181,7 +181,7 @@ Methods are provided within `client.campaigns.*` namespace.
 - [Get Campaign](#get-campaign)
 - [Add Voucher to Campaign](#add-voucher-to-campaign)
 - [Import Vouchers to Campaign](#import-vouchers-to-campaign)
-- [List Campaigns](#import-vouchers-to-campaign)
+- [List Campaigns](#list-campaigns)
 
 #### [Create Campaign]
 ```javascript

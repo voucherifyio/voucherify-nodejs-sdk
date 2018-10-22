@@ -181,7 +181,7 @@ Methods are provided within `client.campaigns.*` namespace.
 - [Get Campaign](#get-campaign)
 - [Add Voucher to Campaign](#add-voucher-to-campaign)
 - [Import Vouchers to Campaign](#import-vouchers-to-campaign)
-- [List Campaigns](#import-vouchers-to-campaign)
+- [List Campaigns](#list-campaigns)
 
 #### [Create Campaign]
 ```javascript
@@ -599,6 +599,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2018-10-18** - `2.17.0` - Add example of using the `filters` parameter in the method for listing campaigns
 - **2018-08-01** - `2.16.0` - Fix reported vulnerabilities (#77)
 - **2018-06-14** - `2.15.0` - Fixed the way string errors are handled
 - **2018-03-14** - `2.14.0` - Added util method to Verify Webhooks signature
@@ -709,7 +710,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Get Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-campaign
 [Add Voucher to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-voucher-to-campaign
 [Import Vouchers to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers
-[List Campaigns]: https://docs.voucherify.io/v2017-04-05/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-campaigns
+[List Campaigns]: https://docs.voucherify.io/v2017-04-20/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-campaigns
 
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
 [Create Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-export

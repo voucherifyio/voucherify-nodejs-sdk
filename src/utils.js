@@ -4,7 +4,8 @@ const crypto = require('crypto')
 const {isString, exists} = require('./helpers')
 
 function roundMoney (value) {
-  return Math.round(value * (100 + 0.001)) / 100
+  const places = 2
+  return +(Math.round(value + 'e+' + places) + 'e-' + places)
 }
 
 function validatePercentDiscount (discount) {

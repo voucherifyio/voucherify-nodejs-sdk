@@ -16,13 +16,13 @@ function validatePercentDiscount (discount) {
 
 function validateAmountDiscount (discount) {
   if (!exists(discount) || discount < 0) {
-    throw new Error('Invalid voucher, amount discount must be higher than zero.')
+    throw new Error('Invalid voucher, amount discount must be equal or higher than zero.')
   }
 }
 
 function validateUnitDiscount (discount) {
   if (!exists(discount) || discount < 0) {
-    throw new Error('Invalid voucher, unit discount must be higher than zero.')
+    throw new Error('Invalid voucher, unit discount must be equal or higher than zero.')
   }
 }
 

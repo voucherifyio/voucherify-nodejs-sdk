@@ -1,27 +1,28 @@
 'use strict'
 
 const crypto = require('crypto')
-const {isString} = require('./helpers')
+const {isString, exists} = require('./helpers')
 
 function roundMoney (value) {
-  return Math.round(value * (100 + 0.001)) / 100
+  const places = 2
+  return +(Math.round(value + 'e+' + places) + 'e-' + places)
 }
 
 function validatePercentDiscount (discount) {
-  if (!discount || discount < 0 || discount > 100) {
+  if (!exists(discount) || discount < 0 || discount > 100) {
     throw new Error('Invalid voucher, percent discount should be between 0-100.')
   }
 }
 
 function validateAmountDiscount (discount) {
-  if (!discount || discount < 0) {
-    throw new Error('Invalid voucher, amount discount must be higher than zero.')
+  if (!exists(discount) || discount < 0) {
+    throw new Error('Invalid voucher, amount discount must be equal or higher than zero.')
   }
 }
 
 function validateUnitDiscount (discount) {
-  if (!discount || discount < 0) {
-    throw new Error('Invalid voucher, unit discount must be higher than zero.')
+  if (!exists(discount) || discount < 0) {
+    throw new Error('Invalid voucher, unit discount must be equal or higher than zero.')
   }
 }
 
@@ -46,9 +47,9 @@ module.exports = {
 
       return roundMoney(basePrice - priceDiscount)
     } else if (voucher.discount.type === 'AMOUNT') {
-      discount = voucher.discount.amount_off / e
+      discount = voucher.discount.amount_off
       validateAmountDiscount(discount)
-      const newPrice = basePrice - discount
+      const newPrice = basePrice - (discount / e)
 
       return roundMoney(newPrice > 0 ? newPrice : 0)
     } else if (voucher.discount.type === 'UNIT') {

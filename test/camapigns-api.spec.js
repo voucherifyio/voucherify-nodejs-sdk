@@ -29,6 +29,22 @@ describe('Campaigns API', function () {
     })
   })
 
+  it('should update campaign', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithBody)
+      .put('/v1/campaigns/cust_ABCD', {
+        description: 'test campaign'
+      })
+      .reply(200, {})
+
+    client.campaigns.update('cust_ABCD', {
+      description: 'test campaign'
+    })
+    .then(function () {
+      server.done()
+      done()
+    })
+  })
+
   it('should get camaign', function (done) {
     var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/campaigns/test%20campaign')

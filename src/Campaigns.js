@@ -11,6 +11,10 @@ module.exports = class Campaigns {
     return this.client.post('/campaigns', campaign, callback)
   }
 
+  update (nameOrId, campaign, callback) {
+    return this.client.put(`/campaigns/${encode(nameOrId)}`, campaign, callback)
+  }
+
   get (name, callback) {
     return this.client.get(`/campaigns/${encode(name)}`, null, callback)
   }

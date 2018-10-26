@@ -178,6 +178,7 @@ client.vouchers.balance.create(code, {amount})
 ### Campaigns API
 Methods are provided within `client.campaigns.*` namespace.
 - [Create Campaign](#create-campaign)
+- [Update Campaign](#update-campaign)
 - [Get Campaign](#get-campaign)
 - [Add Voucher to Campaign](#add-voucher-to-campaign)
 - [Import Vouchers to Campaign](#import-vouchers-to-campaign)
@@ -186,6 +187,12 @@ Methods are provided within `client.campaigns.*` namespace.
 #### [Create Campaign]
 ```javascript
 client.campaigns.create(campaign)
+```
+#### [Update Campaign]
+Method will update only fields passed to `campaign` argument.
+```javascript
+client.campaigns.update(campaignId, campaign)
+client.campaigns.update(campaignName, campaign)
 ```
 #### [Get Campaign]
 ```javascript
@@ -599,6 +606,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2018-10-26** - `2.18.0` - Add Update Campaign method `client.campaigns.update(campaignId, campaign)`
 - **2018-10-22** - `2.17.0`
   - Add example of using the `filters` parameter in the method for listing campaigns
   - Allow zero discount in calc utils
@@ -709,6 +717,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Add Gift Voucher Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-gift-voucher-balance
 
 [Create Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-campaign
+[Update Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-campaign
 [Get Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-campaign
 [Add Voucher to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-voucher-to-campaign
 [Import Vouchers to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers

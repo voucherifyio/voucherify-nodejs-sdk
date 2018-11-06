@@ -17,7 +17,7 @@ module.exports = class Orders {
   }
 
   update (order, callback) {
-    return this.client.put(`/orders/${encode(order.id)}`, omit(order, ['id']), callback)
+    return this.client.put(`/orders/${encode(order.id || order.source_id)}`, omit(order, ['id']), callback)
   }
 
   list (params, callback) {

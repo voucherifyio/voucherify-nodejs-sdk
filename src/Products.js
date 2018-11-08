@@ -17,7 +17,7 @@ module.exports = class Products {
   }
 
   update (product, callback) {
-    return this.client.put(`/products/${encode(product.id)}`, omit(product, ['id']), callback)
+    return this.client.put(`/products/${encode(product.id || product.source_id)}`, omit(product, ['id']), callback)
   }
 
   delete (productId, params, callback) {
@@ -50,7 +50,7 @@ module.exports = class Products {
 
   updateSku (productId, sku, callback) {
     return this.client.put(
-      `/products/${encode(productId)}/skus/${encode(sku.id)}`,
+      `/products/${encode(productId)}/skus/${encode(sku.id || sku.source_id)}`,
       omit(sku, ['id']), callback
     )
   }

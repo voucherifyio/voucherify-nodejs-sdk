@@ -606,6 +606,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2018-11-19** - `2.20.0` - Allow updating products and SKUs with given source id
 - **2018-11-07** - `2.19.0` - Allow to update order with source id `client.orders.update({source_id, ...rest})`
 - **2018-10-26** - `2.18.0` - Add Update Campaign method `client.campaigns.update(campaignId, campaign)`
 - **2018-10-22** - `2.17.0`

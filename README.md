@@ -562,7 +562,7 @@ client.validationRules.listAssignments(validationRuleId, params)
 ### Events API
 Methods are provided within `client.events.*` namespace.
 
-- [Create Events](#create-custom-event)
+- [Create Event](#create-custom-event)
 
 #### [Create event]
 Check [customer object](https://docs.voucherify.io/v1/reference#the-customer-object).
@@ -808,4 +808,4 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Get Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-segment
 [Delete Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-segment
 
-[Create Events]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-custom-event-object
+[Create Event]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-custom-event-object

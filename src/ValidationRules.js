@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode} = require('./helpers')
+const {encode, isFunction} = require('./helpers')
 const omit = require('lodash.omit')
 
 module.exports = class ValidationRules {
@@ -22,5 +22,31 @@ module.exports = class ValidationRules {
 
   delete (validationRuleId, callback) {
     return this.client.delete(`/validation-rules/${encode(validationRuleId)}`, callback)
+  }
+
+  createAssignment (validationRuleId, assignment, callback) {
+    return this.client.post(`/validation-rules/${encode(validationRuleId)}/assignments`, assignment, callback)
+  }
+
+  deleteAssignment (validationRuleId, assignmentId, callback) {
+    return this.client.delete(`/validation-rules/${encode(validationRuleId)}/assignments/${encode(assignmentId)}`, callback)
+  }
+
+  list (params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get('/validation-rules', params, callback)
+  }
+
+  listAssignments (validationRuleId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get(`/validation-rules/${encode(validationRuleId)}/assignments`, params, callback)
   }
 }

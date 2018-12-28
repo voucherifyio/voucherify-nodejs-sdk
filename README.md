@@ -516,6 +516,10 @@ Methods are provided within `client.validationRules.*` namespace.
 - [Get Rule](#get-validation-rule)
 - [Update Rule](#update-validation-rule)
 - [Delete Rule](#delete-validation-rule)
+- [Create Rule Assignment](#create-validation-rule-assignment)
+- [Delete Rule Assignment](#delete-validation-rule-assignment)
+- [List Rules](#list-validation-rules)
+- [List Rule Assignments](#list-validation-rule-assignments)
 
 #### [Create Validation Rule]
 ```javascript
@@ -533,6 +537,24 @@ client.validationRules.update(validationRule)
 #### [Delete Validation Rule]
 ```javascript
 client.validationRules.delete(validationRuleId)
+```
+#### [Create Rule Assignment]
+```javascript
+client.validationRules.createAssignment(validationRuleId, assignment)
+```
+#### [Delete Rule Assignment]
+```javascript
+client.validationRules.delete(validationRuleId, assignmentId)
+```
+#### [List Rules]
+```javascript
+client.validationRules.list()
+client.validationRules.list(params)
+```
+#### [List Rule Assignments]
+```javascript
+client.validationRules.listAssignments(validationRuleId)
+client.validationRules.listAssignments(validationRuleId, params)
 ```
 
 ---

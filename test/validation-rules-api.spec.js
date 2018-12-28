@@ -70,6 +70,18 @@ describe('Validation Rules API', function () {
             })
   })
 
+  it('should list validation rules', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
+            .get('/v1/validation-rules?limit=10&page=2')
+            .reply(200, {})
+
+    client.validationRules.list({limit: 10, page: 2})
+            .then(function () {
+              server.done()
+              done()
+            })
+  })
+
   it('should update validation rule', function (done) {
     var server = nock('https://api.voucherify.io', reqWithBody)
             .put('/v1/validation-rules/val_QvHPi3B7hyey', {

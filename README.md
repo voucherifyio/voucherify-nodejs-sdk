@@ -516,10 +516,10 @@ Methods are provided within `client.validationRules.*` namespace.
 - [Get Rule](#get-validation-rule)
 - [Update Rule](#update-validation-rule)
 - [Delete Rule](#delete-validation-rule)
-- [Create Rule Assignment](#create-validation-rule-assignment)
-- [Delete Rule Assignment](#delete-validation-rule-assignment)
-- [List Rules](#list-validation-rules)
-- [List Rule Assignments](#list-validation-rule-assignments)
+- [Create Rule Assignment](#create-rule-assignment)
+- [Delete Rule Assignment](#delete-rule-assignment)
+- [List Rules](#list-rules)
+- [List Rule Assignments](#list-rule-assignments)
 
 #### [Create Validation Rule]
 ```javascript
@@ -628,7 +628,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
-- **2018-12-28** - `2.21.0` 
+- **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
     - Validation Rule Object - structure reorganized to handle advanced rules
     - Validation Rule Assignment Object - added object describing a relation between rules and linked promotions

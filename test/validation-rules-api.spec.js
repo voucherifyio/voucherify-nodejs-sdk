@@ -140,4 +140,50 @@ describe('Validation Rules API', function () {
               done()
             })
   })
+
+  describe('validation rule assignment', function () {
+    it('should create an assignment', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+              .post('/v1/validation-rules/val_QvHPi3B7hyey/assignments', {
+                voucher: 'ABC',
+                promotion_tier: 'promo_oh640UsBGnAMrbyzwr4XoPV7',
+                campaign: 'camp_XedI6JcOvFOYACJ28nRYTZLc'
+              })
+              .reply(200, {})
+
+      client.validationRules.createAssignment('val_QvHPi3B7hyey', {
+        voucher: 'ABC',
+        promotion_tier: 'promo_oh640UsBGnAMrbyzwr4XoPV7',
+        campaign: 'camp_XedI6JcOvFOYACJ28nRYTZLc'
+      })
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should delete an assignment', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+              .delete('/v1/validation-rules/val_QvHPi3B7hyey/assignments/asgm_rvyJPpsiZzbKYgRC')
+              .reply(200, {})
+
+      client.validationRules.deleteAssignment('val_QvHPi3B7hyey', 'asgm_rvyJPpsiZzbKYgRC')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list assignments', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+              .get('/v1/validation-rules/val_QvHPi3B7hyey/assignments?limit=5&page=3')
+              .reply(200, {})
+
+      client.validationRules.listAssignments('val_QvHPi3B7hyey', {limit: 5, page: 3})
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+  })
 })

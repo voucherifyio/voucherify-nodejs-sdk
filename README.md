@@ -544,7 +544,7 @@ client.validationRules.createAssignment(validationRuleId, assignment)
 ```
 #### [Delete Rule Assignment]
 ```javascript
-client.validationRules.delete(validationRuleId, assignmentId)
+client.validationRules.deleteAssignment(validationRuleId, assignmentId)
 ```
 #### [List Rules]
 ```javascript

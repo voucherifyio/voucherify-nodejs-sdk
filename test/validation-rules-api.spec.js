@@ -189,7 +189,7 @@ describe('Validation Rules API', function () {
 
   it('should get validation rule validation result', function (done) {
     var server = nock('https://api.voucherify.io', reqWithoutBody)
-            .post('/v1/validation-rules/val_QvHPi3B7hyey/validation')
+            .post('/v1/validation-rules/val_QvHPi3B7hyey/validation', {})
             .reply(200, {})
 
     client.validationRules.validate('val_QvHPi3B7hyey', {})

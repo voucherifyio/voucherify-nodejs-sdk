@@ -520,6 +520,7 @@ Methods are provided within `client.validationRules.*` namespace.
 - [Delete Rule Assignment](#delete-rule-assignment)
 - [List Rules](#list-rules)
 - [List Rule Assignments](#list-rule-assignments)
+- [Validate Validation Rule](#validate-validation-rule)
 
 #### [Create Validation Rule]
 ```javascript
@@ -556,7 +557,11 @@ client.validationRules.list(params)
 client.validationRules.listAssignments(validationRuleId)
 client.validationRules.listAssignments(validationRuleId, params)
 ```
-
+#### [Validate Validation Rule]
+```javascript
+client.validationRules.validate(validationRuleId)
+client.validationRules.validate(validationRuleId, params)
+```
 ---
 
 ### Events API
@@ -628,6 +633,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
     - Validation Rule Object - structure reorganized to handle advanced rules

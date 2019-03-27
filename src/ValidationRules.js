@@ -32,6 +32,15 @@ module.exports = class ValidationRules {
     return this.client.delete(`/validation-rules/${encode(validationRuleId)}/assignments/${encode(assignmentId)}`, callback)
   }
 
+  validate (validationRuleId, params = {}, callback = null) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.post(`/validation-rules/${encode(validationRuleId)}/validation`, params, callback)
+  }
+
   list (params, callback) {
     if (isFunction(params)) {
       callback = params

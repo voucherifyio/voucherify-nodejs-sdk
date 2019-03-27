@@ -32,7 +32,7 @@ module.exports = class ValidationRules {
     return this.client.delete(`/validation-rules/${encode(validationRuleId)}/assignments/${encode(assignmentId)}`, callback)
   }
 
-  validate(validationRuleId, params = {}, callback = null) {
+  validate (validationRuleId, params = {}, callback = null) {
     if (isFunction(params)) {
       callback = params
       params = {}

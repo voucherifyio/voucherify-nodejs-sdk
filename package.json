@@ -1,6 +1,6 @@
 {
   "name": "voucherify",
-  "version": "2.21.0",
+  "version": "2.22.0",
   "homepage": "http://www.voucherify.io",
   "description": "Official Voucherify SDK for Node.js",
   "author": "Voucherify",

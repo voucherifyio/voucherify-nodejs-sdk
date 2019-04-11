@@ -45,6 +45,47 @@ describe('Campaigns API', function () {
     })
   })
 
+  describe('delete campaign', function () {
+    it('should delete, but not permanently', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/campaigns/test-campaign')
+        .query({force: false})
+        .reply(200, {})
+
+      client.campaigns.delete('test-campaign')
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should delete, but not permanently (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/campaigns/test-campaign')
+        .query({force: false})
+        .reply(200, {})
+
+      client.campaigns.delete('test-campaign', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should delete permanently', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/campaigns/test-campaign')
+        .query({force: true})
+        .reply(200, {})
+
+      client.campaigns.delete('test-campaign', {force: true})
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+  })
+
   it('should get camaign', function (done) {
     var server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/campaigns/test%20campaign')

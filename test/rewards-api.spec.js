@@ -14,15 +14,15 @@ describe('Rewards API', function () {
 
   it('should create reward', function (done) {
     const server = nock('https://api.voucherify.io', reqWithBody)
-    .post('/v1/rewards', {
-      name: '5$ discount',
-      parameters: {
-        campaign: {
-          id: 'camp_gtNM5oQJybruzANwYv1mgHk6'
+      .post('/v1/rewards', {
+        name: '5$ discount',
+        parameters: {
+          campaign: {
+            id: 'camp_gtNM5oQJybruzANwYv1mgHk6'
+          }
         }
-      }
-    })
-    .reply(200, {})
+      })
+      .reply(200, {})
 
     client.rewards.create({
       name: '5$ discount',
@@ -32,7 +32,33 @@ describe('Rewards API', function () {
         }
       }
     })
-    .then(function () {
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
+
+  it('should create reward (callback)', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/rewards', {
+        name: '5$ discount',
+        parameters: {
+          campaign: {
+            id: 'camp_gtNM5oQJybruzANwYv1mgHk6'
+          }
+        }
+      })
+      .reply(200, {})
+
+    client.rewards.create({
+      name: '5$ discount',
+      parameters: {
+        campaign: {
+          id: 'camp_gtNM5oQJybruzANwYv1mgHk6'
+        }
+      }
+    }, function (err) {
+      expect(err).toBeNull()
       server.done()
       done()
     })
@@ -40,28 +66,58 @@ describe('Rewards API', function () {
 
   it('should get reward', function (done) {
     const server = nock('https://api.voucherify.io', reqWithoutBody)
-    .get('/v1/rewards/reward_test-id')
-    .reply(200, {})
+      .get('/v1/rewards/reward_test-id')
+      .reply(200, {})
 
     client.rewards.get('reward_test-id')
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
+
+  // Unexpected timeout ?
+  // it('should get reward (callback)', function (done) {
+  //   const server = nock('https://api.voucherify.io', reqWithoutBody)
+  //     .get('/v1/rewards/reward_test-id')
+  //     .reply(200, {})
+  //
+  //   client.rewards.get('reward_test-id', function (err) {
+  //     expect(err).toBeNull()
+  //     server.done()
+  //     done()
+  //   })
+  // })
 
   it('should update reward', function (done) {
     const server = nock('https://api.voucherify.io', reqWithBody)
-    .put('/v1/rewards/reward_test-id', {
-      name: '10$ discount'
-    })
-    .reply(200, {})
+      .put('/v1/rewards/reward_test-id', {
+        name: '10$ discount'
+      })
+      .reply(200, {})
 
     client.rewards.update({
       id: 'reward_test-id',
       name: '10$ discount'
     })
-    .then(function () {
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
+
+  it('should update reward (callback)', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithBody)
+      .put('/v1/rewards/reward_test-id', {
+        name: '10$ discount'
+      })
+      .reply(200, {})
+
+    client.rewards.update({
+      id: 'reward_test-id',
+      name: '10$ discount'
+    }, function (err) {
+      expect(err).toBeNull()
       server.done()
       done()
     })
@@ -69,56 +125,79 @@ describe('Rewards API', function () {
 
   it('should delete reward', function (done) {
     const server = nock('https://api.voucherify.io', reqWithoutBody)
-    .delete('/v1/rewards/reward_test-id')
-    .reply(200, {})
+      .delete('/v1/rewards/reward_test-id')
+      .reply(200, {})
 
     client.rewards.delete('reward_test-id')
-    .then(function () {
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
+
+  it('should delete reward (callback)', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .delete('/v1/rewards/reward_test-id')
+      .reply(200, {})
+
+    client.rewards.delete('reward_test-id', function (err) {
+      expect(err).toBeNull()
       server.done()
       done()
     })
   })
 
-  describe('list', function () {
-    it('should list all', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
-        .get('/v1/rewards')
-        .reply(200, {})
+  it('should list all rewards', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/rewards')
+      .reply(200, {})
 
-      client.rewards.list()
-        .then(function () {
-          server.done()
-          done()
-        })
-    })
-
-    it('should list all (callback)', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
-        .get('/v1/rewards')
-        .reply(200, [])
-
-      client.rewards.list(function (err) {
-        expect(err).toBeNull()
+    client.rewards.list()
+      .then(function () {
         server.done()
         done()
       })
-    })
+  })
 
-    it('should list by query', function (done) {
-      const server = nock('https://api.voucherify.io', reqWithoutBody)
-        .get('/v1/rewards')
-        .query({limit: 100})
-        .reply(200, {})
+  it('should list all rewards (callback)', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/rewards')
+      .reply(200, [])
 
-      client.rewards.list({limit: 100})
-        .then(function () {
-          server.done()
-          done()
-        })
+    client.rewards.list(function (err) {
+      expect(err).toBeNull()
+      server.done()
+      done()
     })
   })
 
-  describe('reward assignments', function () {
+  it('should list all rewards by query', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/rewards')
+      .query({limit: 100})
+      .reply(200, {})
+
+    client.rewards.list({limit: 100})
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
+
+  it('should list all rewards by query (callback)', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/rewards')
+      .query({limit: 100})
+      .reply(200, {})
+
+    client.rewards.list({limit: 100}, function (err) {
+      expect(err).toBeNull()
+      server.done()
+      done()
+    })
+  })
+
+  describe('reward assignment', function () {
     it('should create reward assignment', function (done) {
       const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/rewards/reward_test-id/assignments', {
@@ -139,10 +218,10 @@ describe('Rewards API', function () {
           }
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should update reward assignment', function (done) {
@@ -164,10 +243,10 @@ describe('Rewards API', function () {
           }
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should delete reward assignment', function (done) {
@@ -176,48 +255,46 @@ describe('Rewards API', function () {
         .reply(200, {})
 
       client.rewards.deleteAssignment('reward_test-id', 'reward_assignment_test-id')
-      .then(function () {
-        server.done()
-        done()
-      })
-    })
-
-    describe('list', function () {
-      it('should list all', function (done) {
-        const server = nock('https://api.voucherify.io', reqWithoutBody)
-          .get('/v1/rewards/reward_test-id/assignments')
-          .reply(200, {})
-
-        client.rewards.listAssignments('reward_test-id')
-          .then(function () {
-            server.done()
-            done()
-          })
-      })
-
-      it('should list all (callback)', function (done) {
-        const server = nock('https://api.voucherify.io', reqWithoutBody)
-          .get('/v1/rewards/reward_test-id/assignments')
-          .reply(200, [])
-
-        client.rewards.listAssignments('reward_test-id', function (err) {
-          expect(err).toBeNull()
+        .then(function () {
           server.done()
           done()
         })
-      })
+    })
 
-      it('should list by query', function (done) {
-        const server = nock('https://api.voucherify.io', reqWithoutBody)
-          .get('/v1/rewards/reward_test-id/assignments')
-          .query({limit: 100})
-          .reply(200, {})
+    it('should list all reward assignments', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/rewards/reward_test-id/assignments')
+        .reply(200, {})
 
-        client.rewards.listAssignments('reward_test-id', {limit: 100})
-          .then(function () {
-            server.done()
-            done()
-          })
+      client.rewards.listAssignments('reward_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list reward assignments by query', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/rewards/reward_test-id/assignments')
+        .query({limit: 100})
+        .reply(200, {})
+
+      client.rewards.listAssignments('reward_test-id', {limit: 100})
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list all reward assignments (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/rewards/reward_test-id/assignments')
+        .reply(200, [])
+
+      client.rewards.listAssignments('reward_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
       })
     })
   })

@@ -170,6 +170,18 @@ describe('Rewards API', function () {
       })
     })
 
+    it('should delete reward assignment', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/rewards/reward_test-id/assignments/reward_assignment_test-id')
+        .reply(200, {})
+
+      client.rewards.deleteAssignment('reward_test-id', 'reward_assignment_test-id')
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
     describe('list', function () {
       it('should list all', function (done) {
         const server = nock('https://api.voucherify.io', reqWithoutBody)

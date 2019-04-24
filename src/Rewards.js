@@ -49,4 +49,8 @@ module.exports = class Rewards {
   updateAssignment (rewardId, assignment, callback) {
     return this.client.put(`/rewards/${encode(rewardId)}/assignments/${encode(assignment.id)}`, omit(assignment, ['id']), callback)
   }
+
+  deleteAssignment (rewardId, assignmentId, callback) {
+    return this.client.delete(`/rewards/${encode(rewardId)}/assignments/${encode(assignmentId)}`, callback)
+  }
 }

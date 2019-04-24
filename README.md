@@ -498,6 +498,7 @@ Methods are provided within `client.rewards.*` namespace.
 - [List Rewards](#list-rewards)
 - [Create Reward Assignment](#create-reward-assignment)
 - [Update Reward Assignment](#update-reward-assignment)
+- [Delete Reward Assignment](#delete-reward-assignment)
 - [List Reward Assignments](#list-reward-assignments)
 
 #### [Create Reward]
@@ -526,11 +527,15 @@ client.rewards.list(params)
 ```javascript
 client.rewards.createAssignment(rewardId, assignment)
 ```
+Check [reward assignment object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-reward-assignment-object).
 #### [Update Reward Assignment]
 ```javascript
 client.rewards.updateAssignment(rewardId, assignment)
 ```
-Check [reward assignment object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-reward-assignment-object).
+#### [Delete Reward Assignment]
+```javascript
+client.rewards.deleteAssignment(rewardId, assignmentId)
+```
 #### [List Reward Assignments]
 ```javascript
 client.rewards.listAssignments(rewardId)
@@ -697,6 +702,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
     - List
     - Create
     - Update
+    - Delete
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:

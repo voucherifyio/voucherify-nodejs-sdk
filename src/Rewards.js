@@ -1,6 +1,7 @@
 'use strict'
 
 const {encode, isFunction} = require('./helpers')
+const omit = require('lodash.omit')
 
 module.exports = class Rewards {
   constructor (client) {
@@ -22,5 +23,9 @@ module.exports = class Rewards {
 
   get (rewardId, callback) {
     return this.client.get(`/rewards/${encode(rewardId)}`, callback)
+  }
+
+  update (reward, callback) {
+    return this.client.put(`/rewards/${encode(reward.id)}`, omit(reward, ['id']), callback)
   }
 }

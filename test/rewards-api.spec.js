@@ -50,6 +50,23 @@ describe('Rewards API', function () {
     })
   })
 
+  it('should update reward', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithBody)
+    .put('/v1/rewards/reward_test-id', {
+      name: '10$ discount'
+    })
+    .reply(200, {})
+
+    client.rewards.update({
+      id: 'reward_test-id',
+      name: '10$ discount'
+    })
+    .then(function () {
+      server.done()
+      done()
+    })
+  })
+
   describe('list', function () {
     it('should list all', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)

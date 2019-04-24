@@ -501,6 +501,10 @@ Check [reward object](https://docs.voucherify.io/reference?utm_source=github&utm
 ```javascript
 client.rewards.get(rewardId)
 ```
+#### [Update Reward]
+```javascript
+client.rewards.update(reward)
+```
 #### [List Rewards]
 ```javascript
 client.rewards.list()
@@ -657,6 +661,11 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 ## Changelog
 - **2019-04-24** - `2.23.0` - Added support for the methods related to the Loyalty Programs
+  - Rewards
+    - List
+    - Create
+    - Get
+    - Update
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:

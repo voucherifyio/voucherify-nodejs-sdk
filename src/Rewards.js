@@ -45,4 +45,8 @@ module.exports = class Rewards {
   createAssignment (rewardId, assignment, callback) {
     return this.client.post(`/rewards/${encode(rewardId)}/assignments`, assignment, callback)
   }
+
+  updateAssignment (rewardId, assignment, callback) {
+    return this.client.put(`/rewards/${encode(rewardId)}/assignments/${encode(assignment.id)}`, omit(assignment, ['id']), callback)
+  }
 }

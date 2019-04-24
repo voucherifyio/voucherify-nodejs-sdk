@@ -145,6 +145,31 @@ describe('Rewards API', function () {
       })
     })
 
+    it('should update reward assignment', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .put('/v1/rewards/reward_test-id/assignments/reward_assignment_test-id', {
+          parameters: {
+            loyalty: {
+              points: 100
+            }
+          }
+        })
+        .reply(200, {})
+
+      client.rewards.updateAssignment('reward_test-id', {
+        id: 'reward_assignment_test-id',
+        parameters: {
+          loyalty: {
+            points: 100
+          }
+        }
+      })
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
     describe('list', function () {
       it('should list all', function (done) {
         const server = nock('https://api.voucherify.io', reqWithoutBody)
@@ -176,7 +201,7 @@ describe('Rewards API', function () {
           .query({limit: 100})
           .reply(200, {})
 
-        client.rewards.listAssignments('reward_test-id',{limit: 100})
+        client.rewards.listAssignments('reward_test-id', {limit: 100})
           .then(function () {
             server.done()
             done()

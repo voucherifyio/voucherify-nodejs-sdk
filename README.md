@@ -492,7 +492,13 @@ client.products.listSkus(productId)
 Methods are provided within `client.rewards.*` namespace.
 
 - [Create Reward](#create-reward)
+- [Get Reward](#get-reward)
+- [Update Reward](#update-reward)
+- [Delete Reward](#delete-reward)
 - [List Rewards](#list-rewards)
+- [Create Reward Assignment](#create-reward-assignment)
+- [Update Reward Assignment](#update-reward-assignment)
+- [List Reward Assignments](#list-reward-assignments)
 
 #### [Create Reward]
 ```javascript
@@ -519,6 +525,10 @@ client.rewards.list(params)
 #### [Create Reward Assignment]
 ```javascript
 client.rewards.createAssignment(rewardId, assignment)
+```
+#### [Update Reward Assignment]
+```javascript
+client.rewards.updateAssignment(rewardId, assignment)
 ```
 Check [reward assignment object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-reward-assignment-object).
 #### [List Reward Assignments]
@@ -686,6 +696,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
    - Reward Assignments
     - List
     - Create
+    - Update
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
@@ -856,11 +867,12 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 
 [Create Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward
 [Get Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-reward
-[Update Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-rewards
+[Update Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-reward
 [Delete Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-reward
 [List Rewards]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-rewards
-[List Reward Assignments]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-reward-assignments
 [Create Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward-assignment
+[Update Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-reward-assignment
+[List Reward Assignments]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-reward-assignments
 
 [Create Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-validation-rules
 [Get Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-validation-rules

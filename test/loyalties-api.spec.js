@@ -239,4 +239,81 @@ describe('Loyalties API', function () {
       done()
     })
   })
+
+  describe('reward assignments', function () {
+    it('should create loyalty reward assignment', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/rewards', [{
+          reward: 'rew_2yGflHThU2yJwFECEFKrXBI2',
+          parameters: {
+            loyalty: {
+              points: 15
+            }
+          }
+        }])
+        .reply(200, {})
+
+      client.loyalties.createRewardAssignments('campaign_test-id', [{
+        reward: 'rew_2yGflHThU2yJwFECEFKrXBI2',
+        parameters: {
+          loyalty: {
+            points: 15
+          }
+        }
+      }])
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should update loyalty reward assignment', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .put('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id', {
+          parameters: {
+            loyalty: {
+              points: 3
+            }
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.updateRewardAssignments('campaign_test-id', {
+        id: 'reward_assignment_test-id',
+        parameters: {
+          loyalty: {
+            points: 3
+          }
+        }
+      })
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should delete loyalty reward assignment', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id')
+        .reply(200, {})
+
+      client.loyalties.deleteRewardAssignments('campaign_test-id', 'reward_assignment_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list all loyalty reward assignments', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/rewards')
+        .reply(200, {})
+
+      client.loyalties.listRewardAssignments('campaign_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+  })
 })

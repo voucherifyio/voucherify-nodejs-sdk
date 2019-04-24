@@ -32,4 +32,25 @@ module.exports = class Loyalties {
   delete (campaignId, callback) {
     return this.client.delete(`/loyalties/${encode(campaignId)}`, callback)
   }
+
+  listRewardAssignments (campaignId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get(`/loyalties/${encode(campaignId)}/rewards`, params, callback)
+  }
+
+  createRewardAssignments (campaignId, assignment, callback) {
+    return this.client.post(`/loyalties/${encode(campaignId)}/rewards`, assignment, callback)
+  }
+
+  updateRewardAssignments (campaignId, assignment, callback) {
+    return this.client.put(`/loyalties/${encode(campaignId)}/rewards/${assignment.id}`, omit(assignment, ['id']), callback)
+  }
+
+  deleteRewardAssignments (campaignId, assignmentId, callback) {
+    return this.client.delete(`/loyalties/${encode(campaignId)}/rewards/${assignmentId}`, callback)
+  }
 }

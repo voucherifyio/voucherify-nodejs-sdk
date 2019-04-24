@@ -554,6 +554,10 @@ Methods are provided within `client.loyalties.*` namespace.
 - [Update Loyalty](#update-loyalty-program)
 - [Delete Loyalty](#delete-loyalty-program)
 - [List Loyalties](#list-loyalty-programs)
+- [Create Loyalty Reward Assignment](#create-loyalty-reward-assignment)
+- [Update Loyalty Reward Assignment](#create-loyalty-reward-assignment)
+- [Delete Loyalty Reward Assignment](#create-loyalty-reward-assignment)
+- [List Loyalty Reward Assignments](#list-loyalty-reward-assignments)
 
 #### [Create Loyalty]
 ```javascript
@@ -575,6 +579,23 @@ client.loyalties.delete(campaignId)
 ```javascript
 client.loyalties.list()
 client.loyalties.list(params)
+```
+#### [Create Loyalty Reward Assignment]
+```javascript
+client.loyalties.createRewardAssignments(campaignId, assignment)
+```
+#### [Update Loyalty Reward Assignment]
+```javascript
+client.loyalties.updateRewardAssignments(campaignId, assignment)
+```
+#### [Delete Loyalty Reward Assignment]
+```javascript
+client.loyalties.deleteRewardAssignments(campaignId, assignmentId)
+```
+#### [List Loyalty Reward Assignments]
+```javascript
+client.loyalties.listRewardAssignments(campaignId)
+client.loyalties.listRewardAssignments(campaignId, params)
 ```
 
 ---
@@ -744,7 +765,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
     - Get
     - Update
     - Delete
-    - Rewards Assignments
+    - Reward Assignments
      - List
      - Create
      - Update
@@ -890,6 +911,10 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-loyalty-program
 [Delete Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-loyalty-program
 [List Loyalty Programs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-loyalty-programs
+[Create Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward-assignment-1
+[Update Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-reward-assignment-1
+[Delete Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-reward-assignment-1
+[List Loyalty Reward Assignments]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-reward-assignments-1
 
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
 [Create Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-export

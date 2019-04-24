@@ -224,6 +224,32 @@ describe('Rewards API', function () {
         })
     })
 
+    it('should create reward assignment (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/rewards/reward_test-id/assignments', {
+          campaign: 'camp_yGEDLqgb9Es1ldwqU3K9PYv0',
+          parameters: {
+            loyalty: {
+              points: 200
+            }
+          }
+        })
+        .reply(200, {})
+
+      client.rewards.createAssignment('reward_test-id', {
+        campaign: 'camp_yGEDLqgb9Es1ldwqU3K9PYv0',
+        parameters: {
+          loyalty: {
+            points: 200
+          }
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
     it('should update reward assignment', function (done) {
       const server = nock('https://api.voucherify.io', reqWithBody)
         .put('/v1/rewards/reward_test-id/assignments/reward_assignment_test-id', {
@@ -249,6 +275,31 @@ describe('Rewards API', function () {
         })
     })
 
+    it('should update reward assignment (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .put('/v1/rewards/reward_test-id/assignments/reward_assignment_test-id', {
+          parameters: {
+            loyalty: {
+              points: 100
+            }
+          }
+        })
+        .reply(200, {})
+
+      client.rewards.updateAssignment('reward_test-id', {
+        id: 'reward_assignment_test-id',
+        parameters: {
+          loyalty: {
+            points: 100
+          }
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
     it('should delete reward assignment', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/rewards/reward_test-id/assignments/reward_assignment_test-id')
@@ -259,6 +310,18 @@ describe('Rewards API', function () {
           server.done()
           done()
         })
+    })
+
+    it('should delete reward assignment (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/rewards/reward_test-id/assignments/reward_assignment_test-id')
+        .reply(200, {})
+
+      client.rewards.deleteAssignment('reward_test-id', 'reward_assignment_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
     })
 
     it('should list all reward assignments', function (done) {
@@ -273,7 +336,19 @@ describe('Rewards API', function () {
         })
     })
 
-    it('should list reward assignments by query', function (done) {
+    it('should list all reward assignments (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/rewards/reward_test-id/assignments')
+        .reply(200, {})
+
+      client.rewards.listAssignments('reward_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all reward assignments by query', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/rewards/reward_test-id/assignments')
         .query({limit: 100})

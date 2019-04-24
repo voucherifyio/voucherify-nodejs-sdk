@@ -595,4 +595,228 @@ describe('Loyalties API', function () {
       })
     })
   })
+
+  describe('members', function () {
+    it('should create loyalty member', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/members', {
+          customer: {
+            source_id: 'test-user@voucherify.io',
+            email: 'test-user@voucherify.io',
+            name: 'Test User'
+          },
+          metadata: {
+            test: true,
+            provider: 'Shop Admin'
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.createMember('campaign_test-id', {
+        customer: {
+          source_id: 'test-user@voucherify.io',
+          email: 'test-user@voucherify.io',
+          name: 'Test User'
+        },
+        metadata: {
+          test: true,
+          provider: 'Shop Admin'
+        }
+      })
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should create loyalty member (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/members', {
+          customer: {
+            source_id: 'test-user@voucherify.io',
+            email: 'test-user@voucherify.io',
+            name: 'Test User'
+          },
+          metadata: {
+            test: true,
+            provider: 'Shop Admin'
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.createMember('campaign_test-id', {
+        customer: {
+          source_id: 'test-user@voucherify.io',
+          email: 'test-user@voucherify.io',
+          name: 'Test User'
+        },
+        metadata: {
+          test: true,
+          provider: 'Shop Admin'
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should get loyalty member', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members/member_test-id')
+        .reply(200, {})
+
+      client.loyalties.getMember('campaign_test-id', 'member_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should get loyalty member (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members/member_test-id')
+        .reply(200, {})
+
+      client.loyalties.getMember('campaign_test-id', 'member_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all loyalty members', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members')
+        .reply(200, {})
+
+      client.loyalties.listMembers('campaign_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list all loyalty members (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members')
+        .reply(200, {})
+
+      client.loyalties.listMembers('campaign_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all loyalty members by query', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members')
+        .query({limit: 100})
+        .reply(200, {})
+
+      client.loyalties.listMembers('campaign_test-id', {limit: 100})
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list all loyalty members by query (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members')
+        .query({limit: 100})
+        .reply(200, {})
+
+      client.loyalties.listMembers('campaign_test-id', {limit: 100}, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should add loyalty points', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/members/member_test-id/balance', {
+          points: 2000
+        })
+        .reply(200, {})
+
+      client.loyalties.addPoints('campaign_test-id', 'member_test-id', {
+        points: 2000
+      })
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should add loyalty points (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/members/member_test-id/balance', {
+          points: 2000
+        })
+        .reply(200, {})
+
+      client.loyalties.addPoints('campaign_test-id', 'member_test-id', {
+        points: 2000
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should redeem reward', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/members/member_test-id/redemption', {
+          reward: {
+            id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+          },
+          metadata: {
+            locale: 'en-GB'
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.redeemReward('campaign_test-id', 'member_test-id', {
+        reward: {
+          id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+        },
+        metadata: {
+          locale: 'en-GB'
+        }
+      })
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should redeem reward (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/members/member_test-id/redemption', {
+          reward: {
+            id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+          },
+          metadata: {
+            locale: 'en-GB'
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.redeemReward('campaign_test-id', 'member_test-id', {
+        reward: {
+          id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+        },
+        metadata: {
+          locale: 'en-GB'
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+  })
 })

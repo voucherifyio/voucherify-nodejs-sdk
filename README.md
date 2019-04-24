@@ -562,6 +562,11 @@ Methods are provided within `client.loyalties.*` namespace.
 - [Update Loyalty Earning Rules](#update-loyalty-earning-rules)
 - [Delete Loyalty Earning Rules](#delete-loyalty-earning-rules)
 - [List Loyalty Earning Rules](#list-loyalty-earning-rules)
+- [Create Loyalty Member](#create-loyalty-member)
+- [Get Loyalty Member](#get-loyalty-member)
+- [List Loyalty Members](#list-loyalty-members)
+- [Add Points](#add-loyalty-card-balance)
+- [Redeem reward](#redeem-loyalty-card)
 
 #### [Create Loyalty]
 ```javascript
@@ -617,6 +622,27 @@ client.loyalties.deleteEarningRules(campaignId, earningRuleId)
 ```javascript
 client.loyalties.listEarningRules(campaignId)
 client.loyalties.listEarningRules(campaignId, params)
+```
+#### [Create Loyalty Member]
+```javascript
+client.loyalties.createMember(campaignId, member)
+```
+#### [Get Loyalty Member]
+```javascript
+client.loyalties.getMember(campaignId, memberId)
+```
+#### [List Loyalty Members]
+```javascript
+client.loyalties.listMembers(campaignId)
+client.loyalties.listMembers(campaignId, params)
+```
+#### [Add Loyalty Card Balance]
+```javascript
+client.loyalties.addPoints(campaignId, memberId, balance)
+```
+#### [Redeem Loyalty Card]
+```javascript
+client.loyalties.redeemReward(campaignId, memberId, reward)
 ```
 
 ---
@@ -798,7 +824,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
      - Delete
     - Members
      - List
-     - Add
+     - Create
      - Get
      - Add points
      - Redeem reward
@@ -940,6 +966,11 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-earning-rule
 [Delete Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-earning-rule
 [List Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-earning-rules
+[Create Loyalty Member]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-member
+[Get Loyalty Member]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-member
+[List Loyalty Members]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-members
+[Add Loyalty Card Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-loyalty-card-balance
+[Redeem Loyalty Card]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#redeem-loyalty-card
 
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
 [Create Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-export

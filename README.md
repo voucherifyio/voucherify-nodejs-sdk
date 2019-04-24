@@ -486,6 +486,19 @@ client.products.listSkus(productId)
 
 ---
 
+### Rewards API
+Methods are provided within `client.rewards.*` namespace.
+
+- [List Rewards](#list-rewards)
+
+#### [List Rewards]
+```javascript
+client.rewards.list()
+client.rewards.list(params)
+```
+
+---
+
 ### Segments API
 Methods are provided within `client.segments.*` namespace.
 
@@ -633,6 +646,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2019-04-24** - `2.23.0` - Added support for the methods related to the Loyalty Programs
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
@@ -800,6 +814,8 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-sku
 [Delete SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-sku
 [List all product SKUs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-skus
+
+[List Rewards]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-rewards
 
 [Create Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-validation-rules
 [Get Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-validation-rules

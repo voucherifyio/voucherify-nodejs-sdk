@@ -28,4 +28,8 @@ module.exports = class Rewards {
   update (reward, callback) {
     return this.client.put(`/rewards/${encode(reward.id)}`, omit(reward, ['id']), callback)
   }
+
+  delete (rewardId, callback) {
+    return this.client.delete(`/rewards/${encode(rewardId)}`, callback)
+  }
 }

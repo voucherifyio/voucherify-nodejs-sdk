@@ -118,7 +118,33 @@ describe('Rewards API', function () {
     })
   })
 
-  describe('Assignments', function () {
+  describe('reward assignments', function () {
+    it('should create reward assignment', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/rewards/reward_test-id/assignments', {
+          campaign: 'camp_yGEDLqgb9Es1ldwqU3K9PYv0',
+          parameters: {
+            loyalty: {
+              points: 200
+            }
+          }
+        })
+        .reply(200, {})
+
+      client.rewards.createAssignment('reward_test-id', {
+        campaign: 'camp_yGEDLqgb9Es1ldwqU3K9PYv0',
+        parameters: {
+          loyalty: {
+            points: 200
+          }
+        }
+      })
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+
     describe('list', function () {
       it('should list all', function (done) {
         const server = nock('https://api.voucherify.io', reqWithoutBody)

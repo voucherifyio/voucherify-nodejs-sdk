@@ -53,4 +53,25 @@ module.exports = class Loyalties {
   deleteRewardAssignments (campaignId, assignmentId, callback) {
     return this.client.delete(`/loyalties/${encode(campaignId)}/rewards/${assignmentId}`, callback)
   }
+
+  listEarningRules (campaignId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get(`/loyalties/${encode(campaignId)}/earning-rules`, params, callback)
+  }
+
+  createEarningRules (campaignId, earningRules, callback) {
+    return this.client.post(`/loyalties/${encode(campaignId)}/earning-rules`, earningRules, callback)
+  }
+
+  updateEarningRules (campaignId, earningRule, callback) {
+    return this.client.put(`/loyalties/${encode(campaignId)}/earning-rules/${earningRule.id}`, omit(earningRule, ['id']), callback)
+  }
+
+  deleteEarningRules (campaignId, earningRuleId, callback) {
+    return this.client.delete(`/loyalties/${encode(campaignId)}/earning-rules/${earningRuleId}`, callback)
+  }
 }

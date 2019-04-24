@@ -417,4 +417,182 @@ describe('Loyalties API', function () {
       })
     })
   })
+
+  describe('earning rules', function () {
+    it('should create loyalty earning rules', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/earning-rules', [{
+          event: 'order.paid',
+          validation_rule_id: null,
+          loyalty: {
+            points: 3
+          },
+          source: {
+            banner: 'You will get 3 points'
+          }
+        }])
+        .reply(200, {})
+
+      client.loyalties.createEarningRules('campaign_test-id', [{
+        event: 'order.paid',
+        validation_rule_id: null,
+        loyalty: {
+          points: 3
+        },
+        source: {
+          banner: 'You will get 3 points'
+        }
+      }])
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should create loyalty earning rules (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/earning-rules', [{
+          event: 'order.paid',
+          validation_rule_id: null,
+          loyalty: {
+            points: 3
+          },
+          source: {
+            banner: 'You will get 3 points'
+          }
+        }])
+        .reply(200, {})
+
+      client.loyalties.createEarningRules('campaign_test-id', [{
+        event: 'order.paid',
+        validation_rule_id: null,
+        loyalty: {
+          points: 3
+        },
+        source: {
+          banner: 'You will get 3 points'
+        }
+      }], function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should update loyalty earning rules', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .put('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id', {
+          loyalty: {
+            points: 21
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.updateEarningRules('campaign_test-id', {
+        id: 'earning_rules_test-id',
+        loyalty: {
+          points: 21
+        }
+      })
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should update loyalty earning rules (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .put('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id', {
+          loyalty: {
+            points: 21
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.updateEarningRules('campaign_test-id', {
+        id: 'earning_rules_test-id',
+        loyalty: {
+          points: 21
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should delete loyalty earning rules', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id')
+        .reply(200, {})
+
+      client.loyalties.deleteEarningRules('campaign_test-id', 'earning_rules_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should delete loyalty earning rules (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id')
+        .reply(200, {})
+
+      client.loyalties.deleteEarningRules('campaign_test-id', 'earning_rules_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all loyalty earning rules', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/earning-rules')
+        .reply(200, {})
+
+      client.loyalties.listEarningRules('campaign_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list all loyalty earning rules (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/earning-rules')
+        .reply(200, {})
+
+      client.loyalties.listEarningRules('campaign_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all loyalty earning rules by query', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/earning-rules')
+        .query({limit: 100})
+        .reply(200, {})
+
+      client.loyalties.listEarningRules('campaign_test-id', {limit: 100})
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list all loyalty earning rules by query (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/earning-rules')
+        .query({limit: 100})
+        .reply(200, {})
+
+      client.loyalties.listEarningRules('campaign_test-id', {limit: 100}, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+  })
 })

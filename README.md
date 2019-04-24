@@ -555,9 +555,13 @@ Methods are provided within `client.loyalties.*` namespace.
 - [Delete Loyalty](#delete-loyalty-program)
 - [List Loyalties](#list-loyalty-programs)
 - [Create Loyalty Reward Assignment](#create-loyalty-reward-assignment)
-- [Update Loyalty Reward Assignment](#create-loyalty-reward-assignment)
-- [Delete Loyalty Reward Assignment](#create-loyalty-reward-assignment)
+- [Update Loyalty Reward Assignment](#update-loyalty-reward-assignment)
+- [Delete Loyalty Reward Assignment](#delete-loyalty-reward-assignment)
 - [List Loyalty Reward Assignments](#list-loyalty-reward-assignments)
+- [Create Loyalty Earning Rules](#create-loyalty-earning-rules)
+- [Update Loyalty Earning Rules](#update-loyalty-earning-rules)
+- [Delete Loyalty Earning Rules](#delete-loyalty-earning-rules)
+- [List Loyalty Earning Rules](#list-loyalty-earning-rules)
 
 #### [Create Loyalty]
 ```javascript
@@ -596,6 +600,23 @@ client.loyalties.deleteRewardAssignments(campaignId, assignmentId)
 ```javascript
 client.loyalties.listRewardAssignments(campaignId)
 client.loyalties.listRewardAssignments(campaignId, params)
+```
+#### [Create Loyalty Earning Rules]
+```javascript
+client.loyalties.createEarningRules(campaignId, earningRules)
+```
+#### [Update Loyalty Earning Rules]
+```javascript
+client.loyalties.updateEarningRules(campaignId, earningRule)
+```
+#### [Delete Loyalty Earning Rules]
+```javascript
+client.loyalties.deleteEarningRules(campaignId, earningRuleId)
+```
+#### [List Loyalty Earning Rules]
+```javascript
+client.loyalties.listEarningRules(campaignId)
+client.loyalties.listEarningRules(campaignId, params)
 ```
 
 ---
@@ -915,6 +936,10 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-reward-assignment-1
 [Delete Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-reward-assignment-1
 [List Loyalty Reward Assignments]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-reward-assignments-1
+[Create Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-earning-rule
+[Update Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-earning-rule
+[Delete Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-earning-rule
+[List Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-earning-rules
 
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
 [Create Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-export

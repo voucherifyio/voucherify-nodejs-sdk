@@ -32,4 +32,14 @@ module.exports = class Rewards {
   delete (rewardId, callback) {
     return this.client.delete(`/rewards/${encode(rewardId)}`, callback)
   }
+
+  listAssignments (rewardId, params, callback) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.get(`/rewards/${encode(rewardId)}/assignments`, params, callback)
+  }
+
 }

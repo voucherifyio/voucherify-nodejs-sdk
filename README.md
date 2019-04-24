@@ -514,6 +514,11 @@ client.rewards.delete(rewardId)
 client.rewards.list()
 client.rewards.list(params)
 ```
+#### [List Reward Assignments]
+```javascript
+client.rewards.listAssignments(rewardId)
+client.rewards.listAssignments(rewardId, params)
+```
 
 ---
 
@@ -671,6 +676,8 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
     - Get
     - Update
     - Delete
+   - Reward Assignments
+    - List
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
@@ -844,6 +851,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-rewards
 [Delete Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-reward
 [List Rewards]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-rewards
+[List Reward Assignments]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-reward-assignments
 
 [Create Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-validation-rules
 [Get Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-validation-rules

@@ -22,7 +22,7 @@ module.exports = class Rewards {
   }
 
   get (rewardId, callback) {
-    return this.client.get(`/rewards/${encode(rewardId)}`, callback)
+    return this.client.get(`/rewards/${encode(rewardId)}`, null, callback)
   }
 
   update (reward, callback) {

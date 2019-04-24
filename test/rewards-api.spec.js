@@ -76,18 +76,17 @@ describe('Rewards API', function () {
       })
   })
 
-  // Unexpected timeout ?
-  // it('should get reward (callback)', function (done) {
-  //   const server = nock('https://api.voucherify.io', reqWithoutBody)
-  //     .get('/v1/rewards/reward_test-id')
-  //     .reply(200, {})
-  //
-  //   client.rewards.get('reward_test-id', function (err) {
-  //     expect(err).toBeNull()
-  //     server.done()
-  //     done()
-  //   })
-  // })
+  it('should get reward (callback)', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
+      .get('/v1/rewards/reward_test-id')
+      .reply(200, {})
+
+    client.rewards.get('reward_test-id', function (err) {
+      expect(err).toBeNull()
+      server.done()
+      done()
+    })
+  })
 
   it('should update reward', function (done) {
     const server = nock('https://api.voucherify.io', reqWithBody)

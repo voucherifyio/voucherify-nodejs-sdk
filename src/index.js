@@ -15,6 +15,7 @@ const Customers = require('./Customers')
 const Orders = require('./Orders')
 const Products = require('./Products')
 const Rewards = require('./Rewards')
+const Loyalties = require('./Loyalties')
 const ValidationRules = require('./ValidationRules')
 const Segments = require('./Segments')
 const {assertOption, isFunction} = require('./helpers')
@@ -38,6 +39,7 @@ module.exports = function (options) {
   const orders = new Orders(client)
   const products = new Products(client)
   const rewards = new Rewards(client)
+  const loyalties = new Loyalties(client)
   const segments = new Segments(client)
   const validationRules = new ValidationRules(client)
 
@@ -73,6 +75,7 @@ module.exports = function (options) {
     orders,
     products,
     rewards,
+    loyalties,
     segments,
     validationRules,
     events,

@@ -47,6 +47,8 @@ API:
 |
 <a href="#rewards-api">Rewards</a>
 |
+<a href="#loyalties-api">Loyalties</a>
+|
 <a href="#segments-api">Segments</a>
 |
 <a href="#validation-rules-api">Validation Rules</a>
@@ -544,6 +546,39 @@ client.rewards.listAssignments(rewardId, params)
 
 ---
 
+### Loyalties API
+Methods are provided within `client.loyalties.*` namespace.
+
+- [Create Loyalty](#create-loyalty-program)
+- [Get Loyalty](#get-loyalty-program)
+- [Update Loyalty](#update-loyalty-program)
+- [Delete Loyalty](#delete-loyalty-program)
+- [List Loyalties](#list-loyalty-programs)
+
+#### [Create Loyalty]
+```javascript
+client.loyalties.create(campaign)
+```
+#### [Get Loyalty]
+```javascript
+client.loyalties.get(campaignId)
+```
+#### [Update Loyalty]
+```javascript
+client.loyalties.update(campaign)
+```
+#### [Delete Loyalty]
+```javascript
+client.loyalties.delete(campaignId)
+```
+#### [List Loyalties]
+```javascript
+client.loyalties.list()
+client.loyalties.list(params)
+```
+
+---
+
 ### Segments API
 Methods are provided within `client.segments.*` namespace.
 
@@ -698,11 +733,33 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
     - Get
     - Update
     - Delete
-   - Reward Assignments
+    - Assignments
+     - List
+     - Create
+     - Update
+     - Delete
+   - Loyalties
     - List
     - Create
+    - Get
     - Update
     - Delete
+    - Rewards Assignments
+     - List
+     - Create
+     - Update
+     - Delete
+    - Earning Rules
+     - List
+     - Create
+     - Update
+     - Delete
+    - Members
+     - List
+     - Add
+     - Get
+     - Add points
+     - Redeem reward
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
@@ -827,6 +884,12 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Add Voucher to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-voucher-to-campaign
 [Import Vouchers to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers
 [List Campaigns]: https://docs.voucherify.io/v2017-04-20/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-campaigns
+
+[Create Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-loyalty-program
+[Get Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-loyalty-program
+[Update Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-loyalty-program
+[Delete Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-loyalty-program
+[List Loyalty Programs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-loyalty-programs
 
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
 [Create Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-export

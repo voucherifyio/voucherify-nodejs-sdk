@@ -496,6 +496,11 @@ Methods are provided within `client.rewards.*` namespace.
 ```javascript
 client.rewards.create(reward)
 ```
+Check [reward object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-reward-object).
+#### [Get Reward]
+```javascript
+client.rewards.get(rewardId)
+```
 #### [List Rewards]
 ```javascript
 client.rewards.list()
@@ -821,6 +826,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [List all product SKUs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-skus
 
 [Create Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward
+[Get Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-reward
 [List Rewards]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-rewards
 
 [Create Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-validation-rules

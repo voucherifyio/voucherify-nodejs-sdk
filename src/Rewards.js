@@ -1,6 +1,6 @@
 'use strict'
 
-const {isFunction} = require('./helpers')
+const {encode, isFunction} = require('./helpers')
 
 module.exports = class Rewards {
   constructor (client) {
@@ -18,5 +18,9 @@ module.exports = class Rewards {
 
   create (reward, callback) {
     return this.client.post('/rewards', reward, callback)
+  }
+
+  get (rewardId, callback) {
+    return this.client.get(`/rewards/${encode(rewardId)}`, callback)
   }
 }

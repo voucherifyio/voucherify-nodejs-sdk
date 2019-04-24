@@ -38,6 +38,18 @@ describe('Rewards API', function () {
     })
   })
 
+  it('should get reward', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithoutBody)
+    .get('/v1/rewards/reward_test-id')
+    .reply(200, {})
+
+    client.rewards.get('reward_test-id')
+    .then(function () {
+      server.done()
+      done()
+    })
+  })
+
   describe('list', function () {
     it('should list all', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)

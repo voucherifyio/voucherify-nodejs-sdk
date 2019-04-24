@@ -3,6 +3,7 @@ const nock = require('nock')
 const VoucherifyClient = require('./client-loader')
 const fixtures = require('./fixtures')
 const reqWithoutBody = fixtures.reqWithoutBody
+const reqWithBody = fixtures.reqWithBody
 nock.disableNetConnect()
 
 describe('Rewards API', function () {
@@ -11,7 +12,33 @@ describe('Rewards API', function () {
     clientSecretKey: 'node-sdk-test-secret'
   })
 
-  describe('list rewards', function () {
+  it('should create reward', function (done) {
+    const server = nock('https://api.voucherify.io', reqWithBody)
+    .post('/v1/rewards', {
+      name: '5$ discount',
+      parameters: {
+        campaign: {
+          id: 'camp_gtNM5oQJybruzANwYv1mgHk6'
+        }
+      }
+    })
+    .reply(200, {})
+
+    client.rewards.create({
+      name: '5$ discount',
+      parameters: {
+        campaign: {
+          id: 'camp_gtNM5oQJybruzANwYv1mgHk6'
+        }
+      }
+    })
+    .then(function () {
+      server.done()
+      done()
+    })
+  })
+
+  describe('list', function () {
     it('should list all', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/rewards')

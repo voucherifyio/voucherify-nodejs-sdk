@@ -15,4 +15,8 @@ module.exports = class Rewards {
 
     return this.client.get('/rewards', params, callback)
   }
+
+  create (reward, callback) {
+    return this.client.post('/rewards', reward, callback)
+  }
 }

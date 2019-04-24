@@ -489,8 +489,13 @@ client.products.listSkus(productId)
 ### Rewards API
 Methods are provided within `client.rewards.*` namespace.
 
+- [Create Reward](#create-reward)
 - [List Rewards](#list-rewards)
 
+#### [Create Reward]
+```javascript
+client.rewards.create(reward)
+```
 #### [List Rewards]
 ```javascript
 client.rewards.list()
@@ -815,6 +820,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Delete SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-sku
 [List all product SKUs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-skus
 
+[Create Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward
 [List Rewards]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-rewards
 
 [Create Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-validation-rules

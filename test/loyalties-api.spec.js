@@ -267,6 +267,32 @@ describe('Loyalties API', function () {
         })
     })
 
+    it('should create loyalty reward assignment (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/loyalties/campaign_test-id/rewards', [{
+          reward: 'rew_2yGflHThU2yJwFECEFKrXBI2',
+          parameters: {
+            loyalty: {
+              points: 15
+            }
+          }
+        }])
+        .reply(200, {})
+
+      client.loyalties.createRewardAssignments('campaign_test-id', [{
+        reward: 'rew_2yGflHThU2yJwFECEFKrXBI2',
+        parameters: {
+          loyalty: {
+            points: 15
+          }
+        }
+      }], function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
     it('should update loyalty reward assignment', function (done) {
       const server = nock('https://api.voucherify.io', reqWithBody)
         .put('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id', {
@@ -292,6 +318,31 @@ describe('Loyalties API', function () {
         })
     })
 
+    it('should update loyalty reward assignment (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithBody)
+        .put('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id', {
+          parameters: {
+            loyalty: {
+              points: 3
+            }
+          }
+        })
+        .reply(200, {})
+
+      client.loyalties.updateRewardAssignments('campaign_test-id', {
+        id: 'reward_assignment_test-id',
+        parameters: {
+          loyalty: {
+            points: 3
+          }
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
     it('should delete loyalty reward assignment', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id')
@@ -304,6 +355,18 @@ describe('Loyalties API', function () {
         })
     })
 
+    it('should delete loyalty reward assignment (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id')
+        .reply(200, {})
+
+      client.loyalties.deleteRewardAssignments('campaign_test-id', 'reward_assignment_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
     it('should list all loyalty reward assignments', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/loyalties/campaign_test-id/rewards')
@@ -314,6 +377,44 @@ describe('Loyalties API', function () {
           server.done()
           done()
         })
+    })
+
+    it('should list all loyalty reward assignments (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/rewards')
+        .reply(200, {})
+
+      client.loyalties.listRewardAssignments('campaign_test-id', function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
+
+    it('should list all loyalty reward assignments by query', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/rewards')
+        .query({limit: 100})
+        .reply(200, {})
+
+      client.loyalties.listRewardAssignments('campaign_test-id', {limit: 100})
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should list all loyalty reward assignments by query (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/rewards')
+        .query({limit: 100})
+        .reply(200, {})
+
+      client.loyalties.listRewardAssignments('campaign_test-id', {limit: 100}, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
     })
   })
 })

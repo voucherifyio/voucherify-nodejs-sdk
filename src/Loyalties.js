@@ -50,7 +50,7 @@ module.exports = class Loyalties {
     return this.client.put(`/loyalties/${encode(campaignId)}/rewards/${assignment.id}`, omit(assignment, ['id']), callback)
   }
 
-  deleteRewardAssignments (campaignId, assignmentId, callback) {
+  deleteRewardAssignment (campaignId, assignmentId, callback) {
     return this.client.delete(`/loyalties/${encode(campaignId)}/rewards/${assignmentId}`, callback)
   }
 

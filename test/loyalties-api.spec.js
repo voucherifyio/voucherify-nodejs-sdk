@@ -348,7 +348,7 @@ describe('Loyalties API', function () {
         .delete('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id')
         .reply(200, {})
 
-      client.loyalties.deleteRewardAssignments('campaign_test-id', 'reward_assignment_test-id')
+      client.loyalties.deleteRewardAssignment('campaign_test-id', 'reward_assignment_test-id')
         .then(function () {
           server.done()
           done()
@@ -360,7 +360,7 @@ describe('Loyalties API', function () {
         .delete('/v1/loyalties/campaign_test-id/rewards/reward_assignment_test-id')
         .reply(200, {})
 
-      client.loyalties.deleteRewardAssignments('campaign_test-id', 'reward_assignment_test-id', function (err) {
+      client.loyalties.deleteRewardAssignment('campaign_test-id', 'reward_assignment_test-id', function (err) {
         expect(err).toBeNull()
         server.done()
         done()

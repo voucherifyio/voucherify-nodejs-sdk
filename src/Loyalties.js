@@ -46,7 +46,7 @@ module.exports = class Loyalties {
     return this.client.post(`/loyalties/${encode(campaignId)}/rewards`, assignment, callback)
   }
 
-  updateRewardAssignments (campaignId, assignment, callback) {
+  updateRewardAssignment (campaignId, assignment, callback) {
     return this.client.put(`/loyalties/${encode(campaignId)}/rewards/${assignment.id}`, omit(assignment, ['id']), callback)
   }
 

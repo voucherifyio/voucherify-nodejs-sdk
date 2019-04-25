@@ -304,7 +304,7 @@ describe('Loyalties API', function () {
         })
         .reply(200, {})
 
-      client.loyalties.updateRewardAssignments('campaign_test-id', {
+      client.loyalties.updateRewardAssignment('campaign_test-id', {
         id: 'reward_assignment_test-id',
         parameters: {
           loyalty: {
@@ -329,7 +329,7 @@ describe('Loyalties API', function () {
         })
         .reply(200, {})
 
-      client.loyalties.updateRewardAssignments('campaign_test-id', {
+      client.loyalties.updateRewardAssignment('campaign_test-id', {
         id: 'reward_assignment_test-id',
         parameters: {
           loyalty: {

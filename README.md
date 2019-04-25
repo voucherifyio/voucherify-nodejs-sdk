@@ -595,7 +595,7 @@ client.loyalties.createRewardAssignments(campaignId, assignment)
 ```
 #### [Update Loyalty Reward Assignment]
 ```javascript
-client.loyalties.updateRewardAssignments(campaignId, assignment)
+client.loyalties.updateRewardAssignment(campaignId, assignment)
 ```
 #### [Delete Loyalty Reward Assignment]
 ```javascript

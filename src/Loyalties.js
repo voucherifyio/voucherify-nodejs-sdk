@@ -67,7 +67,7 @@ module.exports = class Loyalties {
     return this.client.post(`/loyalties/${encode(campaignId)}/earning-rules`, earningRules, callback)
   }
 
-  updateEarningRules (campaignId, earningRule, callback) {
+  updateEarningRule (campaignId, earningRule, callback) {
     return this.client.put(`/loyalties/${encode(campaignId)}/earning-rules/${earningRule.id}`, omit(earningRule, ['id']), callback)
   }
 

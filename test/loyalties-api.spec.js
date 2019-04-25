@@ -488,7 +488,7 @@ describe('Loyalties API', function () {
         })
         .reply(200, {})
 
-      client.loyalties.updateEarningRules('campaign_test-id', {
+      client.loyalties.updateEarningRule('campaign_test-id', {
         id: 'earning_rules_test-id',
         loyalty: {
           points: 21
@@ -509,7 +509,7 @@ describe('Loyalties API', function () {
         })
         .reply(200, {})
 
-      client.loyalties.updateEarningRules('campaign_test-id', {
+      client.loyalties.updateEarningRule('campaign_test-id', {
         id: 'earning_rules_test-id',
         loyalty: {
           points: 21

@@ -612,7 +612,7 @@ client.loyalties.createEarningRule(campaignId, earningRules)
 ```
 #### [Update Loyalty Earning Rules]
 ```javascript
-client.loyalties.updateEarningRules(campaignId, earningRule)
+client.loyalties.updateEarningRule(campaignId, earningRule)
 ```
 #### [Delete Loyalty Earning Rules]
 ```javascript

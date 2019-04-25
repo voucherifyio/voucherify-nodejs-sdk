@@ -145,6 +145,57 @@ describe('Redemptions API', function () {
         done()
       })
     })
+
+    it('should redeem loyalty card', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/vouchers/loyalty_card_test-id/redemption', {
+          reward: {
+            id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+          },
+          metadata: {
+            locale: 'en-GB'
+          }
+        })
+        .reply(200, {})
+
+      client.redemptions.redeem('loyalty_card_test-id', {
+        reward: {
+          id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+        },
+        metadata: {
+          locale: 'en-GB'
+        }
+      }).then(function () {
+        server.done()
+        done()
+      })
+    })
+
+    it('should redeem loyalty card (callback)', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/vouchers/loyalty_card_test-id/redemption', {
+          reward: {
+            id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+          },
+          metadata: {
+            locale: 'en-GB'
+          }
+        })
+        .reply(200, {})
+
+      client.redemptions.redeem('loyalty_card_test-id', {
+        reward: {
+          id: 'rew_2yGflHThU2yJwFECEFKrXBI2'
+        },
+        metadata: {
+          locale: 'en-GB'
+        }
+      }, function (err) {
+        expect(err).toBeNull()
+        server.done()
+        done()
+      })
+    })
   })
 
   describe('list', function () {

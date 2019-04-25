@@ -287,6 +287,7 @@ Methods are provided within `client.redemptions.*` namespace.
 
 - [Redeem Voucher](#redeem-voucher)
 - [Redeem Promotion's Tier](#redeem-promotions-tier)
+- [Redeem Loyalty Card](#redeem-loyalty-card)
 - [List Redemptions](#list-redemptions)
 - [Get Voucher's Redemptions](#get-vouchers-redemptions)
 - [Rollback Redemption](#rollback-redemption)
@@ -304,6 +305,10 @@ client.redemptions.redeem(code, tracking_id) // use: client.redemptions.redeem(c
 #### [Redeem Promotion's Tier]
 ```javascript
 client.redemptions.redeem(promotionsTier, params)
+```
+#### [Redeem Loyalty Card]
+```javascript
+client.redemptions.redeem(loyaltyCardId, params)
 ```
 #### [List Redemptions]
 ```javascript
@@ -841,6 +846,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
       - Add points
       - Redeem reward
   - Events.create method in Events namespace
+  - Update documentation for the Redemptions.redeem method
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:

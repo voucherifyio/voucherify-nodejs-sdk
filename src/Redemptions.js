@@ -19,9 +19,9 @@ module.exports = class Redemptions {
 
     if (isObject(code)) {
       isDeprecated = true
-      console.warn('This redeem method invocation is deprecated. First argument should be always a code, check docs for more details.')
+      console.warn('This redeem method invocation is deprecated. First argument should be always a code, check docs for more details. In next major update this method invocation will not be available.')
       if (isObject(params)) {
-        console.warn('This redeem method invocation is deprecated. Params being an object will be ignored.')
+        console.warn('This redeem method invocation is deprecated. Params being an object will be ignored. In next major update this method invocation will not be available.')
       }
 
       context = code

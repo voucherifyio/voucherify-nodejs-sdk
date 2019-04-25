@@ -11,7 +11,7 @@ describe('Events API', function () {
     clientSecretKey: 'node-sdk-test-secret'
   })
 
-  it('should send event', function (done) {
+  it('should send event (deprecated)', function (done) {
     var server = nock('https://api.voucherify.io', reqWithBody)
       .post('/v1/events', {
         event: 'custom event name',
@@ -35,9 +35,9 @@ describe('Events API', function () {
       source_id: 's_test-id',
       name: 'customer name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 })

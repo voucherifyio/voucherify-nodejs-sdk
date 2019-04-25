@@ -433,7 +433,7 @@ describe('Loyalties API', function () {
         }])
         .reply(200, {})
 
-      client.loyalties.createEarningRules('campaign_test-id', [{
+      client.loyalties.createEarningRule('campaign_test-id', [{
         event: 'order.paid',
         validation_rule_id: null,
         loyalty: {
@@ -463,7 +463,7 @@ describe('Loyalties API', function () {
         }])
         .reply(200, {})
 
-      client.loyalties.createEarningRules('campaign_test-id', [{
+      client.loyalties.createEarningRule('campaign_test-id', [{
         event: 'order.paid',
         validation_rule_id: null,
         loyalty: {

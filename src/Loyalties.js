@@ -63,7 +63,7 @@ module.exports = class Loyalties {
     return this.client.get(`/loyalties/${encode(campaignId)}/earning-rules`, params, callback)
   }
 
-  createEarningRules (campaignId, earningRules, callback) {
+  createEarningRule (campaignId, earningRules, callback) {
     return this.client.post(`/loyalties/${encode(campaignId)}/earning-rules`, earningRules, callback)
   }
 

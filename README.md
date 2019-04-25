@@ -608,7 +608,7 @@ client.loyalties.listRewardAssignments(campaignId, params)
 ```
 #### [Create Loyalty Earning Rules]
 ```javascript
-client.loyalties.createEarningRules(campaignId, earningRules)
+client.loyalties.createEarningRule(campaignId, earningRules)
 ```
 #### [Update Loyalty Earning Rules]
 ```javascript

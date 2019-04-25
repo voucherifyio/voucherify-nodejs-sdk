@@ -45,6 +45,10 @@ API:
 |
 <a href="#products-api">Products</a>
 |
+<a href="#rewards-api">Rewards</a>
+|
+<a href="#loyalties-api">Loyalties</a>
+|
 <a href="#segments-api">Segments</a>
 |
 <a href="#validation-rules-api">Validation Rules</a>
@@ -491,6 +495,163 @@ client.products.listSkus(productId)
 
 ---
 
+### Rewards API
+Methods are provided within `client.rewards.*` namespace.
+
+- [Create Reward](#create-reward)
+- [Get Reward](#get-reward)
+- [Update Reward](#update-reward)
+- [Delete Reward](#delete-reward)
+- [List Rewards](#list-rewards)
+- [Create Reward Assignment](#create-reward-assignment)
+- [Update Reward Assignment](#update-reward-assignment)
+- [Delete Reward Assignment](#delete-reward-assignment)
+- [List Reward Assignments](#list-reward-assignments)
+
+#### [Create Reward]
+```javascript
+client.rewards.create(reward)
+```
+Check [reward object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-reward-object).
+#### [Get Reward]
+```javascript
+client.rewards.get(rewardId)
+```
+#### [Update Reward]
+```javascript
+client.rewards.update(reward)
+```
+#### [Delete Reward]
+```javascript
+client.rewards.delete(rewardId)
+```
+#### [List Rewards]
+```javascript
+client.rewards.list()
+client.rewards.list(params)
+```
+#### [Create Reward Assignment]
+```javascript
+client.rewards.createAssignment(rewardId, assignment)
+```
+Check [reward assignment object](https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-reward-assignment-object).
+#### [Update Reward Assignment]
+```javascript
+client.rewards.updateAssignment(rewardId, assignment)
+```
+#### [Delete Reward Assignment]
+```javascript
+client.rewards.deleteAssignment(rewardId, assignmentId)
+```
+#### [List Reward Assignments]
+```javascript
+client.rewards.listAssignments(rewardId)
+client.rewards.listAssignments(rewardId, params)
+```
+
+---
+
+### Loyalties API
+Methods are provided within `client.loyalties.*` namespace.
+
+- [Create Loyalty](#create-loyalty-program)
+- [Get Loyalty](#get-loyalty-program)
+- [Update Loyalty](#update-loyalty-program)
+- [Delete Loyalty](#delete-loyalty-program)
+- [List Loyalties](#list-loyalty-programs)
+- [Create Loyalty Reward Assignment](#create-loyalty-reward-assignment)
+- [Update Loyalty Reward Assignment](#update-loyalty-reward-assignment)
+- [Delete Loyalty Reward Assignment](#delete-loyalty-reward-assignment)
+- [List Loyalty Reward Assignments](#list-loyalty-reward-assignments)
+- [Create Loyalty Earning Rules](#create-loyalty-earning-rules)
+- [Update Loyalty Earning Rule](#update-loyalty-earning-rule)
+- [Delete Loyalty Earning Rule](#delete-loyalty-earning-rule)
+- [List Loyalty Earning Rules](#list-loyalty-earning-rules)
+- [Create Loyalty Member](#create-loyalty-member)
+- [Get Loyalty Member](#get-loyalty-member)
+- [List Loyalty Members](#list-loyalty-members)
+- [Add Points](#add-loyalty-card-balance)
+- [Redeem reward](#redeem-loyalty-card)
+
+#### [Create Loyalty]
+```javascript
+client.loyalties.create(campaign)
+```
+#### [Get Loyalty]
+```javascript
+client.loyalties.get(campaignId)
+```
+#### [Update Loyalty]
+```javascript
+client.loyalties.update(campaign)
+```
+#### [Delete Loyalty]
+```javascript
+client.loyalties.delete(campaignId)
+```
+#### [List Loyalties]
+```javascript
+client.loyalties.list()
+client.loyalties.list(params)
+```
+#### [Create Loyalty Reward Assignment]
+```javascript
+client.loyalties.createRewardAssignments(campaignId, assignment)
+```
+#### [Update Loyalty Reward Assignment]
+```javascript
+client.loyalties.updateRewardAssignment(campaignId, assignment)
+```
+#### [Delete Loyalty Reward Assignment]
+```javascript
+client.loyalties.deleteRewardAssignment(campaignId, assignmentId)
+```
+#### [List Loyalty Reward Assignments]
+```javascript
+client.loyalties.listRewardAssignments(campaignId)
+client.loyalties.listRewardAssignments(campaignId, params)
+```
+#### [Create Loyalty Earning Rules]
+```javascript
+client.loyalties.createEarningRule(campaignId, earningRules)
+```
+#### [Update Loyalty Earning Rule]
+```javascript
+client.loyalties.updateEarningRule(campaignId, earningRule)
+```
+#### [Delete Loyalty Earning Rule]
+```javascript
+client.loyalties.deleteEarningRule(campaignId, earningRuleId)
+```
+#### [List Loyalty Earning Rules]
+```javascript
+client.loyalties.listEarningRules(campaignId)
+client.loyalties.listEarningRules(campaignId, params)
+```
+#### [Create Loyalty Member]
+```javascript
+client.loyalties.createMember(campaignId, member)
+```
+#### [Get Loyalty Member]
+```javascript
+client.loyalties.getMember(campaignId, memberId)
+```
+#### [List Loyalty Members]
+```javascript
+client.loyalties.listMembers(campaignId)
+client.loyalties.listMembers(campaignId, params)
+```
+#### [Add Loyalty Card Balance]
+```javascript
+client.loyalties.addPoints(campaignId, memberId, balance)
+```
+#### [Redeem Loyalty Card]
+```javascript
+client.loyalties.redeemReward(campaignId, memberId, reward)
+```
+
+---
+
 ### Segments API
 Methods are provided within `client.segments.*` namespace.
 
@@ -638,6 +799,40 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2019-04-24** - `2.23.0` - Added support for the methods related to the Loyalty Programs
+  - Rewards
+    - List
+    - Create
+    - Get
+    - Update
+    - Delete
+    - Assignments
+     - List
+     - Create
+     - Update
+     - Delete
+   - Loyalties
+    - List
+    - Create
+    - Get
+    - Update
+    - Delete
+    - Reward Assignments
+     - List
+     - Create
+     - Update
+     - Delete
+    - Earning Rules
+     - List
+     - Create
+     - Update
+     - Delete
+    - Members
+     - List
+     - Create
+     - Get
+     - Add points
+     - Redeem reward
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
@@ -763,6 +958,25 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Import Vouchers to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers
 [List Campaigns]: https://docs.voucherify.io/v2017-04-20/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-campaigns
 
+[Create Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-loyalty-program
+[Get Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-loyalty-program
+[Update Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-loyalty-program
+[Delete Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-loyalty-program
+[List Loyalty Programs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-loyalty-programs
+[Create Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward-assignment-1
+[Update Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-reward-assignment-1
+[Delete Loyalty Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-reward-assignment-1
+[List Loyalty Reward Assignments]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-reward-assignments-1
+[Create Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-earning-rule
+[Update Loyalty Earning Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-earning-rule
+[Delete Loyalty Earning Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-earning-rule
+[List Loyalty Earning Rules]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-earning-rules
+[Create Loyalty Member]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-member
+[Get Loyalty Member]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-member
+[List Loyalty Members]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-members
+[Add Loyalty Card Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-loyalty-card-balance
+[Redeem Loyalty Card]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#redeem-loyalty-card
+
 [Publish Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#publish-voucher
 [Create Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-export
 [Get Export]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-export
@@ -805,6 +1019,15 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-sku
 [Delete SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-sku
 [List all product SKUs]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-skus
+
+[Create Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward
+[Get Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-reward
+[Update Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-reward
+[Delete Reward]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-reward
+[List Rewards]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-rewards
+[Create Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-reward-assignment
+[Update Reward Assignment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-reward-assignment
+[List Reward Assignments]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-reward-assignments
 
 [Create Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-validation-rules
 [Get Validation Rule]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-validation-rules

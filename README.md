@@ -194,6 +194,11 @@ Method will update only fields passed to `campaign` argument.
 client.campaigns.update(campaignId, campaign)
 client.campaigns.update(campaignName, campaign)
 ```
+#### [Delete Campaign]
+```javascript
+client.campaigns.delete(campaignName)
+client.campaigns.delete(campaignName, {force: true})
+```
 #### [Get Campaign]
 ```javascript
 client.campaigns.get(name)

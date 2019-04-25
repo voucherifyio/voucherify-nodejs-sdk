@@ -19,6 +19,17 @@ module.exports = class Campaigns {
     return this.client.get(`/campaigns/${encode(name)}`, null, callback)
   }
 
+  delete (name, params = {}, callback = null) {
+    if (isFunction(params)) {
+      callback = params
+      params = {}
+    }
+
+    return this.client.delete(`/campaigns/${encode(name)}`, callback, {
+      qs: {force: !!params.force}
+    })
+  }
+
   addVoucher (campaignName, params, callback) {
     if (isFunction(params)) {
       callback = params

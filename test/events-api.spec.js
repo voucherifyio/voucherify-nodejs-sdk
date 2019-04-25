@@ -184,4 +184,82 @@ describe('Events API', function () {
       done()
     })
   })
+
+  it('should create event for referral', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/events', {
+        event: 'custom event name',
+        customer: {
+          id: 'cust_test-id',
+          source_id: 's_test-id',
+          name: 'customer name'
+        },
+        referral: {
+          code: 'referral_code_test-id'
+        },
+        metadata: {
+          lang: 'en',
+          test: true
+        }
+      })
+      .reply(200, true)
+
+    client.events.create('custom event name', {
+      customer: {
+        id: 'cust_test-id',
+        source_id: 's_test-id',
+        name: 'customer name'
+      },
+      referral: {
+        code: 'referral_code_test-id'
+      },
+      metadata: {
+        lang: 'en',
+        test: true
+      }
+    })
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
+
+  it('should create event for referral (callback)', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/events', {
+        event: 'custom event name',
+        customer: {
+          id: 'cust_test-id',
+          source_id: 's_test-id',
+          name: 'customer name'
+        },
+        referral: {
+          code: 'referral_code_test-id'
+        },
+        metadata: {
+          lang: 'en',
+          test: true
+        }
+      })
+      .reply(200, true)
+
+    client.events.create('custom event name', {
+      customer: {
+        id: 'cust_test-id',
+        source_id: 's_test-id',
+        name: 'customer name'
+      },
+      referral: {
+        code: 'referral_code_test-id'
+      },
+      metadata: {
+        lang: 'en',
+        test: true
+      }
+    }, function (err) {
+      expect(err).toBeNull()
+      server.done()
+      done()
+    })
+  })
 })

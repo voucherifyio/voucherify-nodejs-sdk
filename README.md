@@ -738,7 +738,14 @@ Methods are provided within `client.events.*` namespace.
 #### [Create event]
 Check [customer object](https://docs.voucherify.io/v1/reference#the-customer-object).
 ```javascript
-client.events.track(eventName, metadata, customer)
+client.events.create(eventName, { customer })
+client.events.create(eventName, { customer, metadata })
+client.events.create(eventName, { customer, referral, metadata })
+client.events.create(eventName, { customer, referral, loyalty, metadata })
+```
+
+```javascript
+client.events.track(eventName, metadata, customer) // WARNING! This method is deprecated and will be removed in next major release
 ```
 
 ---
@@ -807,32 +814,33 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
     - Update
     - Delete
     - Assignments
-     - List
-     - Create
-     - Update
-     - Delete
-   - Loyalties
+      - List
+      - Create
+      - Update
+      - Delete
+  - Loyalties
     - List
     - Create
     - Get
     - Update
     - Delete
     - Reward Assignments
-     - List
-     - Create
-     - Update
-     - Delete
+      - List
+      - Create
+      - Update
+      - Delete
     - Earning Rules
-     - List
-     - Create
-     - Update
-     - Delete
+      - List
+      - Create
+      - Update
+      - Delete
     - Members
-     - List
-     - Create
-     - Get
-     - Add points
-     - Redeem reward
+      - List
+      - Create
+      - Get
+      - Add points
+      - Redeem reward
+  - Events.create method in Events namespace
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:
@@ -1042,4 +1050,4 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Get Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-segment
 [Delete Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-segment
 
-[Create Event]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-custom-event-object
+[Create Custom Event]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-custom-event-object

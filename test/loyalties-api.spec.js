@@ -526,7 +526,7 @@ describe('Loyalties API', function () {
         .delete('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id')
         .reply(200, {})
 
-      client.loyalties.deleteEarningRules('campaign_test-id', 'earning_rules_test-id')
+      client.loyalties.deleteEarningRule('campaign_test-id', 'earning_rules_test-id')
         .then(function () {
           server.done()
           done()
@@ -538,7 +538,7 @@ describe('Loyalties API', function () {
         .delete('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id')
         .reply(200, {})
 
-      client.loyalties.deleteEarningRules('campaign_test-id', 'earning_rules_test-id', function (err) {
+      client.loyalties.deleteEarningRule('campaign_test-id', 'earning_rules_test-id', function (err) {
         expect(err).toBeNull()
         server.done()
         done()

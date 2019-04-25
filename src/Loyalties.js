@@ -71,7 +71,7 @@ module.exports = class Loyalties {
     return this.client.put(`/loyalties/${encode(campaignId)}/earning-rules/${earningRule.id}`, omit(earningRule, ['id']), callback)
   }
 
-  deleteEarningRules (campaignId, earningRuleId, callback) {
+  deleteEarningRule (campaignId, earningRuleId, callback) {
     return this.client.delete(`/loyalties/${encode(campaignId)}/earning-rules/${earningRuleId}`, callback)
   }
 

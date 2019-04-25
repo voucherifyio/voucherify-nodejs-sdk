@@ -479,7 +479,7 @@ describe('Loyalties API', function () {
       })
     })
 
-    it('should update loyalty earning rules', function (done) {
+    it('should update loyalty earning rule', function (done) {
       const server = nock('https://api.voucherify.io', reqWithBody)
         .put('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id', {
           loyalty: {
@@ -500,7 +500,7 @@ describe('Loyalties API', function () {
         })
     })
 
-    it('should update loyalty earning rules (callback)', function (done) {
+    it('should update loyalty earning rule (callback)', function (done) {
       const server = nock('https://api.voucherify.io', reqWithBody)
         .put('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id', {
           loyalty: {
@@ -521,7 +521,7 @@ describe('Loyalties API', function () {
       })
     })
 
-    it('should delete loyalty earning rules', function (done) {
+    it('should delete loyalty earning rule', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id')
         .reply(200, {})
@@ -533,7 +533,7 @@ describe('Loyalties API', function () {
         })
     })
 
-    it('should delete loyalty earning rules (callback)', function (done) {
+    it('should delete loyalty earning rule (callback)', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/loyalties/campaign_test-id/earning-rules/earning_rules_test-id')
         .reply(200, {})

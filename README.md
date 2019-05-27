@@ -811,7 +811,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
-- **2019-04-24** - `2.23.0` - Added support for the methods related to the Loyalty Programs
+- **2019-05-27** - `2.23.0` - Added support for the methods related to the Loyalty Programs
   - Rewards
     - List
     - Create
@@ -846,7 +846,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
       - Add points
       - Redeem reward
   - Events.create method in Events namespace
-  - Update documentation for the Redemptions.redeem method
+  - Add methods to delete campaign
 - **2019-03-27** - `2.22.0` - Added Validation Rules validate method `client.validationRules.validate(ruleId, params)`
 - **2018-12-28** - `2.21.0`
   - Switch Validation Rules to new model: Business Validation Rules:

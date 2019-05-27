@@ -1,6 +1,6 @@
 'use strict'
 
-const {isFunction} = require('./helpers')
+const {isFunction, isObject} = require('./helpers')
 
 module.exports = class Events {
   constructor (client) {
@@ -8,6 +8,7 @@ module.exports = class Events {
   }
 
   track (eventName, metadata, customer, callback) {
+    console.warn('This track method invocation is deprecated. Please use `events.create()` instead. Method will be removed in ver. 3.0')
     if (isFunction(customer)) {
       callback = customer
       customer = {}
@@ -18,5 +19,13 @@ module.exports = class Events {
       customer,
       metadata
     }, callback)
+  }
+
+  create (eventName, params, callback) {
+    if (!isObject(params)) {
+      params = {}
+    }
+    params['event'] = eventName
+    return this.client.post(`/events`, params, callback)
   }
 }

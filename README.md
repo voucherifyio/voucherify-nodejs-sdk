@@ -80,10 +80,22 @@ const client = voucherifyClient({
 Optionally, you can add `apiVersion` to the client options if you want to use a [specific API version](http://docs.voucherify.io/docs/api-version-upgrades?utm_source=github&utm_medium=sdk&utm_campaign=acq).
 
 ```javascript
-const clientV20170420 = voucherifyClient({
+const client = voucherifyClient({
     applicationId: 'YOUR-APPLICATION-ID',
     clientSecretKey: 'YOUR-CLIENT-SECRET-KEY',
     apiVersion: 'v2017-04-20'
+})
+```
+
+### API Endpoint
+
+Optionally, you can add `apiUrl` to the client options if you want to use region-specific Voucherify cluster.
+
+```javascript
+const client = voucherifyClient({
+    applicationId: 'YOUR-APPLICATION-ID',
+    clientSecretKey: 'YOUR-CLIENT-SECRET-KEY',
+    apiUrl: 'https://<clusterId>.api.voucherify.io/v1'
 })
 ```
 

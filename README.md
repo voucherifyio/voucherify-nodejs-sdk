@@ -80,10 +80,22 @@ const client = voucherifyClient({
 Optionally, you can add `apiVersion` to the client options if you want to use a [specific API version](http://docs.voucherify.io/docs/api-version-upgrades?utm_source=github&utm_medium=sdk&utm_campaign=acq).
 
 ```javascript
-const clientV20170420 = voucherifyClient({
+const client = voucherifyClient({
     applicationId: 'YOUR-APPLICATION-ID',
     clientSecretKey: 'YOUR-CLIENT-SECRET-KEY',
     apiVersion: 'v2017-04-20'
+})
+```
+
+### API Endpoint
+
+Optionally, you can add `apiUrl` to the client options if you want to use Voucherify running in a specific region.
+
+```javascript
+const client = voucherifyClient({
+    applicationId: 'YOUR-APPLICATION-ID',
+    clientSecretKey: 'YOUR-CLIENT-SECRET-KEY',
+    apiUrl: 'https://<region>.api.voucherify.io'
 })
 ```
 
@@ -811,6 +823,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2019-06-19** - `3.0.0` - Added support for custom API endpoint, that allows to connect to projects created in specific Voucherify region.
 - **2019-05-27** - `2.23.0` - Added support for the methods related to the Loyalty Programs
   - Rewards
     - List

@@ -14,6 +14,9 @@ module.exports = class Distributions {
         }
 
         return client.get('/publications', params, callback)
+      },
+      create (params, callback) {
+        return client.post('/publications', params, callback)
       }
     }
   }

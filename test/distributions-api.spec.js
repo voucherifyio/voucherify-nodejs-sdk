@@ -35,6 +35,40 @@ describe('Distributions API', function () {
     })
   })
 
+  describe('create publication', function () {
+    it('should create publication', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/publications', {
+          campaign: {
+            name: 'test-campaign',
+            count: '5'
+          },
+          customer: {
+              source_id: 'test-source-id',
+              email: 'test@custom.er',
+              name: 'Test customer name'
+          }
+        })
+        .reply(200, {})
+
+      client.distributions.publications.create({
+        campaign: {
+          name: 'test-campaign',
+          count: '5'
+        },
+        customer: {
+            source_id: 'test-source-id',
+            email: 'test@custom.er',
+            name: 'Test customer name'
+        }
+      })
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+  })
+
   describe('list publications', function () {
     it('should list all publications', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)

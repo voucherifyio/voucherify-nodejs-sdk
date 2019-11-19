@@ -44,9 +44,9 @@ describe('Distributions API', function () {
             count: '5'
           },
           customer: {
-              source_id: 'test-source-id',
-              email: 'test@custom.er',
-              name: 'Test customer name'
+            source_id: 'test-source-id',
+            email: 'test@custom.er',
+            name: 'Test customer name'
           }
         })
         .reply(200, {})
@@ -57,9 +57,9 @@ describe('Distributions API', function () {
           count: '5'
         },
         customer: {
-            source_id: 'test-source-id',
-            email: 'test@custom.er',
-            name: 'Test customer name'
+          source_id: 'test-source-id',
+          email: 'test@custom.er',
+          name: 'Test customer name'
         }
       })
       .then(function () {

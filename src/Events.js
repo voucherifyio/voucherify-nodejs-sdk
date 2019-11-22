@@ -1,6 +1,6 @@
 'use strict'
 
-const {isFunction, isObject} = require('./helpers')
+const { isFunction, isObject } = require('./helpers')
 
 module.exports = class Events {
   constructor (client) {
@@ -14,7 +14,7 @@ module.exports = class Events {
       customer = {}
     }
 
-    return this.client.post(`/events`, {
+    return this.client.post('/events', {
       event: eventName,
       customer,
       metadata
@@ -25,7 +25,7 @@ module.exports = class Events {
     if (!isObject(params)) {
       params = {}
     }
-    params['event'] = eventName
-    return this.client.post(`/events`, params, callback)
+    params.event = eventName
+    return this.client.post('/events', params, callback)
   }
 }

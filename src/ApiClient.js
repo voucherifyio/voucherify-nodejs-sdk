@@ -45,7 +45,7 @@ const prepare = (callback) => {
 }
 
 module.exports = class ApiClient {
-  constructor ({apiUrl, applicationId, clientSecretKey, apiVersion, channel}) {
+  constructor ({ apiUrl, applicationId, clientSecretKey, apiVersion, channel }) {
     this.basePath = apiUrl || 'https://api.voucherify.io'
     this.headers = {
       'X-App-Id': applicationId,
@@ -67,19 +67,19 @@ module.exports = class ApiClient {
 
   get (path, qs, callback) {
     const handler = prepare(callback)
-    request.get(this.prepareOptions(path, {qs}), handler.callback)
+    request.get(this.prepareOptions(path, { qs }), handler.callback)
     return handler.promise
   }
 
   post (path, body, callback, options = {}) {
     const handler = prepare(callback)
-    request.post(this.prepareOptions(path, Object.assign({}, {body}, options)), handler.callback)
+    request.post(this.prepareOptions(path, Object.assign({}, { body }, options)), handler.callback)
     return handler.promise
   }
 
   put (path, body, callback, options = {}) {
     const handler = prepare(callback)
-    request.put(this.prepareOptions(path, Object.assign({}, {body}, options)), handler.callback)
+    request.put(this.prepareOptions(path, Object.assign({}, { body }, options)), handler.callback)
     return handler.promise
   }
 

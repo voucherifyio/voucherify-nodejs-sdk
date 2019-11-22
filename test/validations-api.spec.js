@@ -81,15 +81,15 @@ describe('Validations API', function () {
     it('should validate tier', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/promotions/validation', {
-          'order': {
-            'amount': 25000
+          order: {
+            amount: 25000
           }
         })
         .reply(200, {})
 
       client.validations.validate({
-        'order': {
-          'amount': 25000
+        order: {
+          amount: 25000
         }
       }).then(function () {
         server.done()
@@ -103,8 +103,8 @@ describe('Validations API', function () {
         .reply(200, {})
 
       client.validations.validate({
-        'order': {
-          'amount': 25000
+        order: {
+          amount: 25000
         }
       }, function (err) {
         expect(err).toBeNull()

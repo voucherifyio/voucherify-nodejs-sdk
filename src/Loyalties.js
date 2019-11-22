@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode, isFunction} = require('./helpers')
+const { encode, isFunction } = require('./helpers')
 const omit = require('lodash/omit')
 
 module.exports = class Loyalties {

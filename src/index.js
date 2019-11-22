@@ -18,7 +18,7 @@ const Rewards = require('./Rewards')
 const Loyalties = require('./Loyalties')
 const ValidationRules = require('./ValidationRules')
 const Segments = require('./Segments')
-const {assertOption, isFunction} = require('./helpers')
+const { assertOption, isFunction } = require('./helpers')
 
 module.exports = function (options) {
   assertOption(options, 'applicationId')

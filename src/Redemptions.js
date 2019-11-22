@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode, isFunction, isObject, isString} = require('./helpers')
+const { encode, isFunction, isObject, isString } = require('./helpers')
 
 module.exports = class Redemptions {
   constructor (client, promotionsNamespace) {
@@ -10,11 +10,11 @@ module.exports = class Redemptions {
 
   redeem (code, params, callback) {
     let context = {}
-    let qs = {}
+    const qs = {}
     let isDeprecated = false
 
     if (isObject(code) && isObject(params)) {
-      return this.promotions.tiers.redeem(code['id'], params, callback)
+      return this.promotions.tiers.redeem(code.id, params, callback)
     }
 
     if (isObject(code)) {
@@ -39,7 +39,7 @@ module.exports = class Redemptions {
       qs.tracking_id = encode(params)
     }
 
-    return this.client.post(`/vouchers/${encode(code)}/redemption`, context, callback, {qs})
+    return this.client.post(`/vouchers/${encode(code)}/redemption`, context, callback, { qs })
   }
 
   list (params, callback) {
@@ -67,18 +67,18 @@ module.exports = class Redemptions {
     if (isString(params)) {
       qs.reason = encode(params)
     } else if (isObject(params)) {
-      const {reason, tracking_id, customer} = params
+      const { reason, tracking_id: trackingId, customer } = params
 
       qs = {
         reason: reason ? encode(reason) : undefined,
-        tracking_id: tracking_id ? encode(tracking_id) : undefined // eslint-disable-line camelcase
+        tracking_id: trackingId ? encode(trackingId) : undefined // eslint-disable-line camelcase
       }
-      payload = {customer}
+      payload = { customer }
     }
 
     return this.client.post(
       `/redemptions/${encode(redemptionId)}/rollback`,
-      payload, callback, {qs}
+      payload, callback, { qs }
     )
   }
 }

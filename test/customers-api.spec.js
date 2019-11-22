@@ -22,10 +22,10 @@ describe('Customers API', function () {
     client.customers.create({
       name: 'customer name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should get customer', function (done) {
@@ -43,20 +43,20 @@ describe('Customers API', function () {
   describe('list', function () {
     it('should list all customers', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/customers')
-      .reply(200, [])
+        .get('/v1/customers')
+        .reply(200, [])
 
       client.customers.list()
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should list all customers (callback)', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/customers')
-      .reply(200, [])
+        .get('/v1/customers')
+        .reply(200, [])
 
       client.customers.list(function (err) {
         expect(err).toBeNull()
@@ -67,15 +67,15 @@ describe('Customers API', function () {
 
     it('should list customers by query', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/customers')
-      .query({city: 'chicago'})
-      .reply(200, [])
+        .get('/v1/customers')
+        .query({ city: 'chicago' })
+        .reply(200, [])
 
-      client.customers.list({city: 'chicago'})
-      .then(function () {
-        server.done()
-        done()
-      })
+      client.customers.list({ city: 'chicago' })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 
@@ -92,10 +92,10 @@ describe('Customers API', function () {
       source_id: 's_test-id',
       name: 'customer name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should update customer by Source ID (when ID not provided)', function (done) {
@@ -110,10 +110,10 @@ describe('Customers API', function () {
       source_id: 's_test-id',
       name: 'customer name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should delete customer', function (done) {
@@ -122,9 +122,9 @@ describe('Customers API', function () {
       .reply(200, {})
 
     client.customers.delete('cust_test-id')
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 })

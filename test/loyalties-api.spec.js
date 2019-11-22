@@ -217,10 +217,10 @@ describe('Loyalties API', function () {
   it('should list all loyalty programs by query', function (done) {
     const server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/loyalties')
-      .query({limit: 100})
+      .query({ limit: 100 })
       .reply(200, {})
 
-    client.loyalties.list({limit: 100})
+    client.loyalties.list({ limit: 100 })
       .then(function () {
         server.done()
         done()
@@ -230,10 +230,10 @@ describe('Loyalties API', function () {
   it('should list all loyalty programs by query (callback)', function (done) {
     const server = nock('https://api.voucherify.io', reqWithoutBody)
       .get('/v1/loyalties')
-      .query({limit: 100})
+      .query({ limit: 100 })
       .reply(200, {})
 
-    client.loyalties.list({limit: 100}, function (err) {
+    client.loyalties.list({ limit: 100 }, function (err) {
       expect(err).toBeNull()
       server.done()
       done()
@@ -394,10 +394,10 @@ describe('Loyalties API', function () {
     it('should list all loyalty reward assignments by query', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/loyalties/campaign_test-id/rewards')
-        .query({limit: 100})
+        .query({ limit: 100 })
         .reply(200, {})
 
-      client.loyalties.listRewardAssignments('campaign_test-id', {limit: 100})
+      client.loyalties.listRewardAssignments('campaign_test-id', { limit: 100 })
         .then(function () {
           server.done()
           done()
@@ -407,10 +407,10 @@ describe('Loyalties API', function () {
     it('should list all loyalty reward assignments by query (callback)', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/loyalties/campaign_test-id/rewards')
-        .query({limit: 100})
+        .query({ limit: 100 })
         .reply(200, {})
 
-      client.loyalties.listRewardAssignments('campaign_test-id', {limit: 100}, function (err) {
+      client.loyalties.listRewardAssignments('campaign_test-id', { limit: 100 }, function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -572,10 +572,10 @@ describe('Loyalties API', function () {
     it('should list all loyalty earning rules by query', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/loyalties/campaign_test-id/earning-rules')
-        .query({limit: 100})
+        .query({ limit: 100 })
         .reply(200, {})
 
-      client.loyalties.listEarningRules('campaign_test-id', {limit: 100})
+      client.loyalties.listEarningRules('campaign_test-id', { limit: 100 })
         .then(function () {
           server.done()
           done()
@@ -585,10 +585,10 @@ describe('Loyalties API', function () {
     it('should list all loyalty earning rules by query (callback)', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/loyalties/campaign_test-id/earning-rules')
-        .query({limit: 100})
+        .query({ limit: 100 })
         .reply(200, {})
 
-      client.loyalties.listEarningRules('campaign_test-id', {limit: 100}, function (err) {
+      client.loyalties.listEarningRules('campaign_test-id', { limit: 100 }, function (err) {
         expect(err).toBeNull()
         server.done()
         done()
@@ -712,10 +712,10 @@ describe('Loyalties API', function () {
     it('should list all loyalty members by query', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/loyalties/campaign_test-id/members')
-        .query({limit: 100})
+        .query({ limit: 100 })
         .reply(200, {})
 
-      client.loyalties.listMembers('campaign_test-id', {limit: 100})
+      client.loyalties.listMembers('campaign_test-id', { limit: 100 })
         .then(function () {
           server.done()
           done()
@@ -725,10 +725,10 @@ describe('Loyalties API', function () {
     it('should list all loyalty members by query (callback)', function (done) {
       const server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/loyalties/campaign_test-id/members')
-        .query({limit: 100})
+        .query({ limit: 100 })
         .reply(200, {})
 
-      client.loyalties.listMembers('campaign_test-id', {limit: 100}, function (err) {
+      client.loyalties.listMembers('campaign_test-id', { limit: 100 }, function (err) {
         expect(err).toBeNull()
         server.done()
         done()

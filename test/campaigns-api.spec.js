@@ -23,10 +23,10 @@ describe('Campaigns API', function () {
     client.campaigns.create({
       name: 'test campaign'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should update campaign', function (done) {
@@ -39,30 +39,30 @@ describe('Campaigns API', function () {
     client.campaigns.update('cust_ABCD', {
       description: 'test campaign'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   describe('delete campaign', function () {
     it('should delete, but not permanently', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/campaigns/test-campaign')
-        .query({force: false})
+        .query({ force: false })
         .reply(200, {})
 
       client.campaigns.delete('test-campaign')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should delete, but not permanently (callback)', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/campaigns/test-campaign')
-        .query({force: false})
+        .query({ force: false })
         .reply(200, {})
 
       client.campaigns.delete('test-campaign', function (err) {
@@ -75,14 +75,14 @@ describe('Campaigns API', function () {
     it('should delete permanently', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/campaigns/test-campaign')
-        .query({force: true})
+        .query({ force: true })
         .reply(200, {})
 
-      client.campaigns.delete('test-campaign', {force: true})
-      .then(function () {
-        server.done()
-        done()
-      })
+      client.campaigns.delete('test-campaign', { force: true })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 
@@ -101,32 +101,32 @@ describe('Campaigns API', function () {
   describe('add voucher', function () {
     it('should add voucher with concrete code', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
-      .post('/v1/campaigns/test%20campaign/vouchers', {code: 'test voucher'})
-      .reply(200, {})
+        .post('/v1/campaigns/test%20campaign/vouchers', { code: 'test voucher' })
+        .reply(200, {})
 
-      client.campaigns.addVoucher('test campaign', {code: 'test voucher'})
-      .then(function () {
-        server.done()
-        done()
-      })
+      client.campaigns.addVoucher('test campaign', { code: 'test voucher' })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should add voucher without params', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
-      .post('/v1/campaigns/test%20campaign/vouchers', {})
-      .reply(200, {})
+        .post('/v1/campaigns/test%20campaign/vouchers', {})
+        .reply(200, {})
 
       client.campaigns.addVoucher('test campaign')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should add voucher without params (callback)', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
-      .post('/v1/campaigns/test%20campaign/vouchers', {})
-      .reply(200, {})
+        .post('/v1/campaigns/test%20campaign/vouchers', {})
+        .reply(200, {})
 
       client.campaigns.addVoucher('test campaign', function (err) {
         expect(err).toBeNull()
@@ -146,29 +146,29 @@ describe('Campaigns API', function () {
     client.campaigns.importVouchers('test campaign', [{
       code: 'test voucher'
     }])
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   describe('list', function () {
     it('should list all campaigns', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-          .get('/v1/campaigns')
-          .reply(200, [])
+        .get('/v1/campaigns')
+        .reply(200, [])
 
       client.campaigns.list()
-          .then(function () {
-            server.done()
-            done()
-          })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should list all campaigns (callback)', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-          .get('/v1/campaigns')
-          .reply(200, [])
+        .get('/v1/campaigns')
+        .reply(200, [])
 
       client.campaigns.list(function (err) {
         expect(err).toBeNull()

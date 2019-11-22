@@ -52,10 +52,10 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should redeem by voucher', function (done) {
@@ -72,16 +72,16 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should redeem with tracking ID', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/test-code/redemption')
-        .query({tracking_id: 'test-tracking-id'})
+        .query({ tracking_id: 'test-tracking-id' })
         .reply(200, {})
 
       client.redemptions.redeem('test-code', 'test-tracking-id')
@@ -94,23 +94,23 @@ describe('Redemptions API', function () {
     it('should redeem promotion', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/promotions/tiers/promo_test_id/redemption', {
-          'customer': {
-            'id': 'cust_test_id'
+          customer: {
+            id: 'cust_test_id'
           },
-          'order': {
-            'amount': 25000
+          order: {
+            amount: 25000
           }
         })
         .reply(200, {})
 
       client.redemptions.redeem({
-        'id': 'promo_test_id'
+        id: 'promo_test_id'
       }, {
-        'customer': {
-          'id': 'cust_test_id'
+        customer: {
+          id: 'cust_test_id'
         },
-        'order': {
-          'amount': 25000
+        order: {
+          amount: 25000
         }
       }).then(function () {
         server.done()
@@ -121,23 +121,23 @@ describe('Redemptions API', function () {
     it('should redeem promotion (callback)', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/promotions/tiers/promo_test_id/redemption', {
-          'customer': {
-            'id': 'cust_test_id'
+          customer: {
+            id: 'cust_test_id'
           },
-          'order': {
-            'amount': 25000
+          order: {
+            amount: 25000
           }
         })
         .reply(200, {})
 
       client.redemptions.redeem({
-        'id': 'promo_test_id'
+        id: 'promo_test_id'
       }, {
-        'customer': {
-          'id': 'cust_test_id'
+        customer: {
+          id: 'cust_test_id'
         },
-        'order': {
-          'amount': 25000
+        order: {
+          amount: 25000
         }
       }, function (err) {
         expect(err).toBeNull()
@@ -202,28 +202,28 @@ describe('Redemptions API', function () {
     it('should list by query', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/redemptions')
-        .query({limit: 100})
+        .query({ limit: 100 })
         .reply(200, {})
 
       client.redemptions.list({
         limit: 100
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should list all', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/redemptions')
-      .reply(200, {})
+        .get('/v1/redemptions')
+        .reply(200, {})
 
       client.redemptions.list()
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should list all (callback)', function (done) {
@@ -258,10 +258,10 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.rollback('test-redemption-id')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should rollback without customer details (callback)', function (done) {
@@ -290,10 +290,10 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should rollback with customer details, reason and tracking_id', function (done) {
@@ -316,10 +316,10 @@ describe('Redemptions API', function () {
           id: 'test-customer-id'
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should rollback with a reason', function (done) {
@@ -331,10 +331,10 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.rollback('test-redemption-id', 'test reason')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 })

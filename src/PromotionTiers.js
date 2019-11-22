@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode} = require('./helpers')
+const { encode } = require('./helpers')
 
 module.exports = class PromotionTiers {
   constructor (client) {
@@ -20,7 +20,7 @@ module.exports = class PromotionTiers {
   }
 
   update (params = {}, callback = {}) {
-    return this.client.put(`/promotions/tiers/${encode(params['id'])}`, params, callback)
+    return this.client.put(`/promotions/tiers/${encode(params.id)}`, params, callback)
   }
 
   delete (promotionsTierId, callback) {

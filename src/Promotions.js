@@ -5,7 +5,7 @@ module.exports = class Promotions {
     this.client = client
     this.campaignsNamespace = campaignsNamespace
 
-      // public
+    // public
     this.tiers = promotionTiersNamespace
   }
 
@@ -14,6 +14,6 @@ module.exports = class Promotions {
   }
 
   validate (params, callback) {
-    return this.client.post(`/promotions/validation`, params, callback)
+    return this.client.post('/promotions/validation', params, callback)
   }
 }

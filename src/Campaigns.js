@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode, isFunction} = require('./helpers')
+const { encode, isFunction } = require('./helpers')
 
 module.exports = class Campaigns {
   constructor (client) {
@@ -26,7 +26,7 @@ module.exports = class Campaigns {
     }
 
     return this.client.delete(`/campaigns/${encode(name)}`, callback, {
-      qs: {force: !!params.force}
+      qs: { force: !!params.force }
     })
   }
 
@@ -53,6 +53,6 @@ module.exports = class Campaigns {
       params = {}
     }
 
-    return this.client.get(`/campaigns`, params, callback)
+    return this.client.get('/campaigns', params, callback)
   }
 }

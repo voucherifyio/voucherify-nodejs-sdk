@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode} = require('./helpers')
+const { encode } = require('./helpers')
 
 module.exports = class Exports {
   constructor (client) {

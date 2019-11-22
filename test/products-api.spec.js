@@ -22,10 +22,10 @@ describe('Products API', function () {
     client.products.create({
       name: 'product name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should get product', function (done) {
@@ -51,10 +51,10 @@ describe('Products API', function () {
       id: 'prod_test-id',
       name: 'product name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should delete product', function (done) {
@@ -63,42 +63,42 @@ describe('Products API', function () {
       .reply(200, {})
 
     client.products.delete('prod_test-id')
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should delete product permanently', function (done) {
     var server = nock('https://api.voucherify.io', reqWithoutBody)
       .delete('/v1/products/prod_test-id')
-      .query({force: true})
+      .query({ force: true })
       .reply(200, {})
 
-    client.products.delete('prod_test-id', {force: true})
-    .then(function () {
-      server.done()
-      done()
-    })
+    client.products.delete('prod_test-id', { force: true })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   describe('list products', function () {
     it('should list all', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/products')
-      .reply(200, {})
+        .get('/v1/products')
+        .reply(200, {})
 
       client.products.list()
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should list all (callback)', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/products')
-      .reply(200, [])
+        .get('/v1/products')
+        .reply(200, [])
 
       client.products.list(function (err) {
         expect(err).toBeNull()
@@ -109,55 +109,55 @@ describe('Products API', function () {
 
     it('should list by query', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/products')
-      .query({limit: 100})
-      .reply(200, {})
+        .get('/v1/products')
+        .query({ limit: 100 })
+        .reply(200, {})
 
-      client.products.list({limit: 100})
-      .then(function () {
-        server.done()
-        done()
-      })
+      client.products.list({ limit: 100 })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 
   describe('SKU', function () {
     it('should create SKU', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
-      .post('/v1/products/prod_test-id/skus', {
-        sku: 'test sku'
-      })
-      .reply(200, {})
+        .post('/v1/products/prod_test-id/skus', {
+          sku: 'test sku'
+        })
+        .reply(200, {})
 
       client.products.createSku('prod_test-id', {
         sku: 'test sku'
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should get SKU', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/products/prod_test-id/skus/test-sku')
-      .reply(200, {})
+        .get('/v1/products/prod_test-id/skus/test-sku')
+        .reply(200, {})
 
       client.products.getSku('prod_test-id', 'test-sku')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should update SKU', function (done) {
       var server = nock('https://api.voucherify.io', reqWithBody)
-      .put('/v1/products/prod_test-id/skus/test-sku', {
-        metadata: {
-          isTestSku: true
-        }
-      })
-      .reply(200, {})
+        .put('/v1/products/prod_test-id/skus/test-sku', {
+          metadata: {
+            isTestSku: true
+          }
+        })
+        .reply(200, {})
 
       client.products.updateSku('prod_test-id', {
         id: 'test-sku',
@@ -165,47 +165,47 @@ describe('Products API', function () {
           isTestSku: true
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should delete SKU', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .delete('/v1/products/prod_test-id/skus/test-sku')
-      .reply(200, {})
+        .delete('/v1/products/prod_test-id/skus/test-sku')
+        .reply(200, {})
 
       client.products.deleteSku('prod_test-id', 'test-sku')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should delete SKU permanently', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .delete('/v1/products/prod_test-id/skus/test-sku')
-        .query({force: true})
+        .query({ force: true })
         .reply(200, {})
 
-      client.products.deleteSku('prod_test-id', 'test-sku', {force: true})
-      .then(function () {
-        server.done()
-        done()
-      })
+      client.products.deleteSku('prod_test-id', 'test-sku', { force: true })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should list SKUs', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/products/prod_test-id/skus')
-      .reply(200, {})
+        .get('/v1/products/prod_test-id/skus')
+        .reply(200, {})
 
       client.products.listSkus('prod_test-id')
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 })

@@ -1,7 +1,7 @@
 'use strict'
 
 const crypto = require('crypto')
-const {isString, exists} = require('./helpers')
+const { isString, exists } = require('./helpers')
 
 function roundMoney (value) {
   const places = 2
@@ -101,7 +101,7 @@ module.exports = {
   webhooks: {
     verifySignature: function (signature, message, secretKey) {
       return crypto.createHmac('sha256', secretKey)
-        .update(isString(message) && message || JSON.stringify(message))
+        .update(isString(message) ? message : JSON.stringify(message))
         .digest('hex') === signature
     }
   }

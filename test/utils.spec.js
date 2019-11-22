@@ -145,7 +145,7 @@ describe('utils', function () {
   describe('webhooks', function () {
     it('should accept valid signature', function () {
       var signature = '5547d4d07430a2d1b77649564c68d80afe591f7cc61ca110bccb442e3205eeec'
-      var message = {test: 'test1'}
+      var message = { test: 'test1' }
       var secretKey = 'secret-signature-key'
 
       var isVerified = utils.webhooks.verifySignature(signature, message, secretKey)
@@ -155,7 +155,7 @@ describe('utils', function () {
 
     it('should reject invalid signature', function () {
       var signature = '8ebb38af093d81c3ac7ae4bc035f16080d23dd9c204511d287de611d3a0948be'
-      var message = {test: 'test1'}
+      var message = { test: 'test1' }
       var secretKey = 'secret-signature-key'
 
       var isVerified = utils.webhooks.verifySignature(signature, message, secretKey)

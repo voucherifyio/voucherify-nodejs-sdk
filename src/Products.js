@@ -1,7 +1,7 @@
 'use strict'
 
-const {encode, isFunction} = require('./helpers')
-const omit = require('lodash.omit')
+const { encode, isFunction } = require('./helpers')
+const omit = require('lodash/omit')
 
 module.exports = class Products {
   constructor (client) {
@@ -26,7 +26,7 @@ module.exports = class Products {
       params = {}
     }
 
-    return this.client.delete(`/products/${encode(productId)}`, callback, {qs: params})
+    return this.client.delete(`/products/${encode(productId)}`, callback, { qs: params })
   }
 
   list (params, callback) {
@@ -64,7 +64,7 @@ module.exports = class Products {
     return this.client.delete(
       `/products/${encode(productId)}/skus/${encode(skuId)}`,
       callback,
-      {qs: params}
+      { qs: params }
     )
   }
 

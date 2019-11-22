@@ -22,10 +22,10 @@ describe('Orders API', function () {
     client.orders.create({
       name: 'order name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   it('should get order', function (done) {
@@ -51,29 +51,29 @@ describe('Orders API', function () {
       id: 'ord_test-id',
       name: 'order name'
     })
-    .then(function () {
-      server.done()
-      done()
-    })
+      .then(function () {
+        server.done()
+        done()
+      })
   })
 
   describe('list orders', function () {
     it('should list all', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/orders')
-      .reply(200, {})
+        .get('/v1/orders')
+        .reply(200, {})
 
       client.orders.list()
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
 
     it('should list all (callback)', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/orders')
-      .reply(200, [])
+        .get('/v1/orders')
+        .reply(200, [])
 
       client.orders.list(function (err) {
         expect(err).toBeNull()
@@ -84,15 +84,15 @@ describe('Orders API', function () {
 
     it('should list by query', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
-      .get('/v1/orders')
-      .query({limit: 100})
-      .reply(200, {})
+        .get('/v1/orders')
+        .query({ limit: 100 })
+        .reply(200, {})
 
-      client.orders.list({limit: 100})
-      .then(function () {
-        server.done()
-        done()
-      })
+      client.orders.list({ limit: 100 })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 })

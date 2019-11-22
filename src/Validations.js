@@ -1,6 +1,6 @@
 'use strict'
 
-const {encode, isFunction, isObject} = require('./helpers')
+const { encode, isFunction, isObject } = require('./helpers')
 
 module.exports = class Validations {
   constructor (client, promotionsNamespace) {

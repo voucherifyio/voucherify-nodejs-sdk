@@ -8,11 +8,11 @@ const voucherify = voucherifyClient({
 })
 
 const payload = {
-  'name': 'John Doe',
-  'email': 'email@example.com',
-  'description': 'Premium user, ACME Inc.',
-  'metadata': {
-    'lang': 'en'
+  name: 'John Doe',
+  email: 'email@example.com',
+  description: 'Premium user, ACME Inc.',
+  metadata: {
+    lang: 'en'
   }
 }
 

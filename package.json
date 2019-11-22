@@ -25,7 +25,6 @@
   ],
   "dependencies": {
     "babel-runtime": "~6.23.0",
-    "crypto": "~1.0.1",
     "lodash": "^4.17.15",
     "request": "2.87.0",
     "when": "~3.7.7"

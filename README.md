@@ -766,14 +766,9 @@ client.events.create(eventName, { customer, referral, metadata })
 client.events.create(eventName, { customer, referral, loyalty, metadata })
 ```
 
-```javascript
-client.events.track(eventName, metadata, customer) // WARNING! This method is deprecated and will be removed in next major release
-```
-
 ---
 
-
-### Migration from 1.x
+### Migration to 2.x
 
 Version 2.x of the SDK is fully backward compatible with version 1.x.
 Changes made in version 2.x mostly relate to grouping methods within namespaces.
@@ -782,25 +777,33 @@ with their namespaced equivalent.
 
 We also recommend to adopt [voucher redemption](#redeem-voucher) method, and don't use deprecated invocation.
 
-#### Deprecated methods
+### Migration to version 4.x
 
-- `client.list(params)` - [client.vouchers.list](#list-vouchers)
-- `client.get(voucherCode)` - [client.vouchers.get](#get-voucher)
-- `client.create(voucher)` - [client.vouchers.create](#create-voucher)
-- `client.update(voucher)` - [client.vouchers.update](#update-voucher)
-- `client.delete(voucherCode, [params])` - [client.vouchers.delete](#delete-voucher)
-- `client.disable(voucherCode)` - [client.vouchers.disable](#disable-voucher)
-- `client.enable(voucherCode)` - [client.vouchers.enable](#enable-voucher)
-- `client.campaign.voucher.create(campaignName)` - [client.campaigns.addVoucher](#add-voucher-to-campaign)
-- `client.redemption(voucherCode)` - [client.redemptions.getForVoucher](#get-vouchers-redemptions)
-- `client.publish(campaign_name|params)` - [client.distributions.publish](#publish-voucher)
-- `client.validate(voucherCode, params)` - [client.validations.validateVoucher](#validate-voucher)
-- `client.redeem(voucherCode, tracking_id|params)` - [client.redemptions.redeem](#redeem-voucher)
-- `client.redemptions(params)` - [client.redemptions.list](#list-redemptions)
-- `client.rollback(redemptionId, params)` - [client.redemptions.rollback](#rollback-redemption)
-- `client.customer.*` - changed namespace to [client.customers.\*](#customers-api)
-- `client.product.*` - changed namespace to [client.products.\*](#products-api)
-- `client.product.sku.*` - changed namespace to [client.products.\*](#products-api)
+This version introduces few major changes:
+- drops support for node.js v4 and v6
+- drops methods previously marked as deprecated, to make transition easier please check table below.
+All those methods were already available in v3.x.
+
+|                      Previously                      |                          Currently                         |
+|:----------------------------------------------------:|:----------------------------------------------------------:|
+| `client.events.track(eventName, metadata, customer)` | `client.events.create(eventName, { customer, metadata })`  |
+| `client.list(params)`                                | `client.vouchers.list(query)`                              |
+| `client.get(voucherCode)`                            | `client.vouchers.get(code)`                                |
+| `client.create(voucher)`                             | `client.vouchers.create(voucher)`                          |
+| `client.update(voucher)`                             | `client.vouchers.update(voucher)`                          |
+| `client.delete(voucherCode, [params])`               | `client.vouchers.delete(code, params)`                     |
+| `client.disable(voucherCode)`                        | `client.vouchers.disable(code)`                            |
+| `client.enable(voucherCode)`                         | `client.vouchers.enable(code)`                             |
+| `client.campaign.voucher.create(campaignName)`       | `client.campaigns.addVoucher(campaignName, voucher)`       |
+| `client.publish(campaign_name|params)`               | `client.distributions.publish(campaignName)`               |
+| `client.validate(voucherCode, params)`               | `client.validations.validateVoucher(code, params)`         |
+| `client.redemption(voucherCode)`                     | `client.redemptions.getForVoucher(code)`                   |
+| `client.redeem(voucherCode, tracking_id|params)`     | `client.redemptions.redeem(code, trackingId)`              |
+| `client.redemptions(query)`                          | `client.redemptions.list(query)`                           |
+| `client.rollback(redemptionId, params)`              | `client.redemptions.rollback(redemptionId, data)`          |
+| `client.customer.*`                                  | changed namespace to [client.customers.\*](#customers-api) |
+| `client.product.*`                                   | changed namespace to [client.products.\*](#products-api)   |
+| `client.product.sku.*`                               | changed namespace to [client.products.\*](#products-api)   |
 
 ---
 

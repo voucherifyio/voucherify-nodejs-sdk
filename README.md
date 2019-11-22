@@ -14,7 +14,8 @@
 <hr />
 
 <p align="center">
-<b><a href="#migration-from-1x">Migration from 1.x</a></b>
+<b><a href="#migration-to-2x">Migration to 2.x</a></b>
+<b><a href="#migration-to-4x">Migration to 4.x</a></b>
 |
 <b><a href="#setup">Setup</a></b>
 |
@@ -777,7 +778,7 @@ with their namespaced equivalent.
 
 We also recommend to adopt [voucher redemption](#redeem-voucher) method, and don't use deprecated invocation.
 
-### Migration to version 4.x
+### Migration to 4.x
 
 This version introduces few major changes:
 - drops support for node.js v4 and v6
@@ -831,10 +832,12 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
-- **2019-11-14** - `3.1.0` - Added support for new method
-    - Distributions
-        - Publications
-            - Create
+- **2019-11-22** - `4.0.0`
+  - Added support for new method
+      - Distributions
+          - Publications
+              - Create
+  - [breaking change] - dropped support for node.js v4 and v6
 - **2019-06-19** - `3.0.0` - Added support for custom API endpoint, that allows to connect to projects created in specific Voucherify region.
 - **2019-05-27** - `2.23.0` - Added support for the methods related to the Loyalty Programs
   - Rewards

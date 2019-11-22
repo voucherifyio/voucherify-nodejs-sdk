@@ -1,7 +1,7 @@
 'use strict'
 
 const {encode, isFunction} = require('./helpers')
-const omit = require('lodash.omit')
+const omit = require('lodash/omit')
 
 module.exports = class Customers {
   constructor (client) {

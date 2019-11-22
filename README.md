@@ -245,6 +245,7 @@ Methods are provided within `client.distributions.*` namespace.
 - [Get Export](#get-export)
 - [Delete Export](#delete-export)
 - [List publications](#list-publications)
+- [Create publication](#create-publication)
 
 #### [Publish Voucher]
 ```javascript
@@ -267,6 +268,10 @@ client.distributions.exports.delete(exportId)
 ```javascript
 client.distributions.publications.list()
 client.distributions.publications.list(params)
+```
+#### [Create publication]
+```javascript
+client.distributions.publications.create(params)
 ```
 
 ---
@@ -823,6 +828,10 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2019-11-14** - `3.1.0` - Added support for new method
+    - Distributions
+        - Publications
+            - Create
 - **2019-06-19** - `3.0.0` - Added support for custom API endpoint, that allows to connect to projects created in specific Voucherify region.
 - **2019-05-27** - `2.23.0` - Added support for the methods related to the Loyalty Programs
   - Rewards

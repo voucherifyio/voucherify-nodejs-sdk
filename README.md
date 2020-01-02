@@ -147,6 +147,7 @@ Methods are provided within `client.vouchers.*` namespace.
 - [Enable Voucher](#enable-voucher)
 - [Disable Voucher](#disable-voucher)
 - [Import Vouchers](#import-vouchers)
+- [Create Qualification Request](#create-qualification-request)
 
 #### [Create Voucher]
 ```javascript
@@ -189,6 +190,10 @@ client.vouchers.import(vouchers)
 #### [Add Gift Voucher Balance]
 ```javascript
 client.vouchers.balance.create(code, {amount})
+```
+#### [Create Qualification Request]
+```javascript
+client.vouchers.qualificationRequest(params)
 ```
 ---
 
@@ -991,6 +996,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Enable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#enable-voucher
 [Disable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#disable-voucher
 [Import Vouchers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers-1
+[Create Qualification Request]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-qualification-request
 [Add Gift Voucher Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-gift-voucher-balance
 
 [Create Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-campaign

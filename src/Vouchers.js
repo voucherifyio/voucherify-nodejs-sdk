@@ -64,7 +64,11 @@ module.exports = class Vouchers {
     return this.client.post('/vouchers/import', vouchers, callback)
   }
 
-  qualificationRequest (params, callback) {
-    return this.client.post('/vouchers/qualification', params, callback)
+  getQualified (params, qs, callback) {
+    if (isFunction(qs)) {
+      callback = qs
+      qs = {}
+    }
+    return this.client.post('/vouchers/qualification', params, callback, { qs })
   }
 }

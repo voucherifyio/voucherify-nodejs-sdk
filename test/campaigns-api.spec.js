@@ -186,7 +186,7 @@ describe('Campaigns API', function () {
         })
         .reply(200, {})
 
-      client.campaigns.getQualified({metadata: {test: true}}, {audienceRulesOnly: true})
+      client.campaigns.qualifications.examine({metadata: {test: true}}, {audienceRulesOnly: true})
         .then(function () {
           server.done()
           done()
@@ -202,7 +202,7 @@ describe('Campaigns API', function () {
         })
         .reply(200, {})
 
-      client.campaigns.getQualified({
+      client.campaigns.qualifications.examine({
         order: {
           items: [{ sku_id: "12345", amount: 1 }],
         }

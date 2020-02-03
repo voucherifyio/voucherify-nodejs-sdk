@@ -238,7 +238,7 @@ describe('Vouchers API', function () {
         })
         .reply(200, {})
 
-      client.vouchers.getQualified({metadata: {test: true}}, {audienceRulesOnly: true})
+      client.vouchers.qualifications.examine({metadata: {test: true}}, {audienceRulesOnly: true})
         .then(function () {
           server.done()
           done()
@@ -254,7 +254,7 @@ describe('Vouchers API', function () {
         })
         .reply(200, {})
 
-      client.vouchers.getQualified({
+      client.vouchers.qualifications.examine({
         customer: {
           metadata: { is_special: true },
         }

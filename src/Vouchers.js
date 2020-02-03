@@ -8,6 +8,15 @@ module.exports = class Vouchers {
 
     // public
     this.balance = balance
+    this.qualifications = {
+      examine: (params, qs, callback) => {
+        if (isFunction(qs)) {
+          callback = qs
+          qs = {}
+        }
+        return this.client.post('/vouchers/qualification', params, callback, { qs })
+      }
+    }
   }
 
   create (voucher, callback) {
@@ -62,13 +71,5 @@ module.exports = class Vouchers {
 
   import (vouchers, callback) {
     return this.client.post('/vouchers/import', vouchers, callback)
-  }
-
-  getQualified (params, qs, callback) {
-    if (isFunction(qs)) {
-      callback = qs
-      qs = {}
-    }
-    return this.client.post('/vouchers/qualification', params, callback, { qs })
   }
 }

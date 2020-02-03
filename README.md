@@ -147,7 +147,7 @@ Methods are provided within `client.vouchers.*` namespace.
 - [Enable Voucher](#enable-voucher)
 - [Disable Voucher](#disable-voucher)
 - [Import Vouchers](#import-vouchers)
-- [Create Qualification Request](#create-qualification-request)
+- [Examine Vouchers Qualification](#examine-vouchers-qualification)
 
 #### [Create Voucher]
 ```javascript
@@ -191,9 +191,12 @@ client.vouchers.import(vouchers)
 ```javascript
 client.vouchers.balance.create(code, {amount})
 ```
-#### [Create Qualification Request]
+#### [Examine Vouchers Qualification]
 ```javascript
-client.vouchers.qualificationRequest(params)
+client.vouchers.qualifications.examine(bodyParams)
+client.vouchers.qualifications.examine(bodyParams, queryParams)
+// Example
+client.vouchers.qualifications.examine({}, {audienceRulesOnly: true, limit: 10})
 ```
 ---
 
@@ -205,6 +208,7 @@ Methods are provided within `client.campaigns.*` namespace.
 - [Add Voucher to Campaign](#add-voucher-to-campaign)
 - [Import Vouchers to Campaign](#import-vouchers-to-campaign)
 - [List Campaigns](#list-campaigns)
+- [Examine Campaigns Qualification](#examine-campaigns-qualification)
 
 #### [Create Campaign]
 ```javascript
@@ -240,6 +244,13 @@ Since API version: `v2017-04-20`.
 ```javascript
 client.campaigns.list()
 client.campaigns.list(params)
+```
+#### [Examine Campaigns Qualification]
+```javascript
+client.campaigns.qualifications.examine(bodyParams)
+client.campaigns.qualifications.examine(bodyParams, queryParams)
+// Example
+client.campaigns.qualifications.examine({}, {audienceRulesOnly: true, limit: 10})
 ```
 ---
 
@@ -996,7 +1007,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Enable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#enable-voucher
 [Disable Voucher]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#disable-voucher
 [Import Vouchers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers-1
-[Create Qualification Request]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-qualification-request
+[Examine Vouchers Qualification]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#push-qualification-request
 [Add Gift Voucher Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-gift-voucher-balance
 
 [Create Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-campaign
@@ -1005,6 +1016,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Add Voucher to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-voucher-to-campaign
 [Import Vouchers to Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers
 [List Campaigns]: https://docs.voucherify.io/v2017-04-20/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-campaigns
+[Examine Campaigns Qualification]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-qualification-request
 
 [Create Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-loyalty-program
 [Get Loyalty Program]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-loyalty-program

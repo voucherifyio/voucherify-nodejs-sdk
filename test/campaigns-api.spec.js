@@ -177,4 +177,40 @@ describe('Campaigns API', function () {
       })
     })
   })
+
+  describe('qualified campaigns', function () {
+    it('should get audience rules only', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/campaigns/qualification?audienceRulesOnly=true', {
+          metadata: { test: true }
+        })
+        .reply(200, {})
+
+      client.campaigns.qualifications.examine({ metadata: { test: true } }, { audienceRulesOnly: true })
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should get matched campaigns', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/campaigns/qualification', {
+          order: {
+            items: [{ sku_id: '12345', amount: 1 }]
+          }
+        })
+        .reply(200, {})
+
+      client.campaigns.qualifications.examine({
+        order: {
+          items: [{ sku_id: '12345', amount: 1 }]
+        }
+      })
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+  })
 })

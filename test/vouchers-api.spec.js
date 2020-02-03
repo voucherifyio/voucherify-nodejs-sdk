@@ -238,7 +238,7 @@ describe('Vouchers API', function () {
         })
         .reply(200, {})
 
-      client.vouchers.qualifications.examine({metadata: {test: true}}, {audienceRulesOnly: true})
+      client.vouchers.qualifications.examine({ metadata: { test: true } }, { audienceRulesOnly: true })
         .then(function () {
           server.done()
           done()
@@ -249,20 +249,20 @@ describe('Vouchers API', function () {
       var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/vouchers/qualification', {
           customer: {
-            metadata: { is_special: true },
+            metadata: { is_special: true }
           }
         })
         .reply(200, {})
 
       client.vouchers.qualifications.examine({
         customer: {
-          metadata: { is_special: true },
+          metadata: { is_special: true }
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 })

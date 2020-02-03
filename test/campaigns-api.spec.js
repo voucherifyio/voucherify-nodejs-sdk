@@ -186,7 +186,7 @@ describe('Campaigns API', function () {
         })
         .reply(200, {})
 
-      client.campaigns.qualifications.examine({metadata: {test: true}}, {audienceRulesOnly: true})
+      client.campaigns.qualifications.examine({ metadata: { test: true } }, { audienceRulesOnly: true })
         .then(function () {
           server.done()
           done()
@@ -197,20 +197,20 @@ describe('Campaigns API', function () {
       var server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/campaigns/qualification', {
           order: {
-            items: [{ sku_id: "12345", amount: 1 }],
+            items: [{ sku_id: '12345', amount: 1 }]
           }
         })
         .reply(200, {})
 
       client.campaigns.qualifications.examine({
         order: {
-          items: [{ sku_id: "12345", amount: 1 }],
+          items: [{ sku_id: '12345', amount: 1 }]
         }
       })
-      .then(function () {
-        server.done()
-        done()
-      })
+        .then(function () {
+          server.done()
+          done()
+        })
     })
   })
 })

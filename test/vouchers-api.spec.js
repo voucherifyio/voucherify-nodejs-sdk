@@ -229,4 +229,40 @@ describe('Vouchers API', function () {
         done()
       })
   })
+
+  describe('qualified vouchers', function () {
+    it('should get audience rules only', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/vouchers/qualification?audienceRulesOnly=true', {
+          metadata: { test: true }
+        })
+        .reply(200, {})
+
+      client.vouchers.getQualified({metadata: {test: true}}, {audienceRulesOnly: true})
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should get matched vouchers', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithBody)
+        .post('/v1/vouchers/qualification', {
+          customer: {
+            metadata: { is_special: true },
+          }
+        })
+        .reply(200, {})
+
+      client.vouchers.getQualified({
+        customer: {
+          metadata: { is_special: true },
+        }
+      })
+      .then(function () {
+        server.done()
+        done()
+      })
+    })
+  })
 })

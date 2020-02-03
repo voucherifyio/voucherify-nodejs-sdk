@@ -55,4 +55,13 @@ module.exports = class Campaigns {
 
     return this.client.get('/campaigns', params, callback)
   }
+
+
+  getQualified (params, qs, callback) {
+    if (isFunction(qs)) {
+      callback = qs
+      qs = {}
+    }
+    return this.client.post('/campaigns/qualification', params, callback, { qs })
+  }
 }

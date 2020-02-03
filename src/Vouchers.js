@@ -63,4 +63,8 @@ module.exports = class Vouchers {
   import (vouchers, callback) {
     return this.client.post('/vouchers/import', vouchers, callback)
   }
+
+  qualificationRequest (params, callback) {
+    return this.client.post('/vouchers/qualification', params, callback)
+  }
 }

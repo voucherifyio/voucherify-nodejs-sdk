@@ -853,6 +853,7 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2020-04-06** - `4.2.0` - Add support for Updating Customer's consents
 - **2020-02-03** - `4.1.0` - expose campaigns and vouchers Qualification API methods
 - **2019-11-22** - `4.0.0`
   - Added support for new method

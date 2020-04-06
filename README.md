@@ -415,6 +415,7 @@ Methods are provided within `client.customers.*` namespace.
 - [Update Customer](#update-customer)
 - [Delete Customer](#delete-customer)
 - [List Customers](#list-customers)
+- [Update Customer's Consents](#update-customers-consents)
 
 #### [Create Customer]
 ```javascript
@@ -439,6 +440,10 @@ client.customers.delete(customerId)
 ```javascript
 client.customers.list()
 client.customers.list(params)
+```
+#### [Update Customer's Consents]
+```javascript
+client.customers.updateConsents(customer, consents)
 ```
 
 ---
@@ -1064,6 +1069,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Update Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-customer
 [Delete Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-customer
 [List Customers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-customers
+[Update Customer's Consents]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-customers-consents
 
 [Create Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-order
 [Get Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-order

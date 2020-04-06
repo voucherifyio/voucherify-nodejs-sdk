@@ -127,4 +127,36 @@ describe('Customers API', function () {
         done()
       })
   })
+
+  it('should update customer consents', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .put('/v1/customers/cust_test-id/consents')
+      .reply(200, {})
+
+    client.customers.updateConsents({
+      id: 'cust_test-id'
+    }, {
+      const_id: true
+    })
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
+
+  it('should update customer consents by Source ID (when ID not provided)', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithoutBody)
+      .put('/v1/customers/s_test-id/consents')
+      .reply(200, {})
+
+    client.customers.updateConsents({
+      source_id: 's_test-id'
+    }, {
+      const_id: true
+    })
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
 })

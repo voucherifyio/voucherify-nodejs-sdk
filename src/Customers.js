@@ -32,4 +32,8 @@ module.exports = class Customers {
   delete (customerId, callback) {
     return this.client.delete(`/customers/${encode(customerId)}`, callback)
   }
+
+  updateConsents (customer, consents, callback) {
+    return this.client.put(`/customers/${encode(customer.id || customer.source_id)}/consents`, consents, callback)
+  }
 }

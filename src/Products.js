@@ -20,6 +20,10 @@ module.exports = class Products {
     return this.client.put(`/products/${encode(product.id || product.source_id)}`, omit(product, ['id']), callback)
   }
 
+  bulkUpdate (products, callback) {
+    return this.client.post('/products/bulk', products, callback)
+  }
+
   delete (productId, params, callback) {
     if (isFunction(params)) {
       callback = params

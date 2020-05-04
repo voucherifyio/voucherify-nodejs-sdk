@@ -483,6 +483,7 @@ Methods are provided within `client.products.*` namespace.
 - [Create Product](#create-product)
 - [Get Product](#get-product)
 - [Update Product](#update-product)
+- [Bulk Update Products](#bulk-update-products)
 - [Delete Product](#delete-product)
 - [List Products](#list-products)
 - [Create SKU](#create-sku)
@@ -503,6 +504,10 @@ client.products.get(productId)
 #### [Update Product]
 ```javascript
 client.products.update(product)
+```
+#### [Bulk Update Products]
+```javascript
+client.products.bulkUpdate(products)
 ```
 #### [Delete Product]
 ```javascript
@@ -1080,6 +1085,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Create Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-product
 [Get Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-product
 [Update Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-product
+[Bulk Update Products]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-products-in-bulk
 [Delete Product]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-product
 [List Products]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-products
 [Create SKU]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-sku

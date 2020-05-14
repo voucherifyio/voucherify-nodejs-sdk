@@ -441,6 +441,20 @@ client.customers.delete(customerId)
 client.customers.list()
 client.customers.list(params)
 ```
+#### [Scroll through customers]
+Standard list customers API has limitation of available pages to be shown equal to 100.
+To cover cases when you would like to fetch more, you must use scroll capabilities.
+
+```javascript
+async function () {
+  for await (const customer of client.customers.scroll(params)) {
+    console.log('Customer', customer)
+  }
+}
+```
+`params` argument is consistent with `list` method.
+Keep in mind `scroll` doesn't support callback version.
+
 #### [Update Customer's Consents]
 ```javascript
 client.customers.updateConsents(customer, consents)

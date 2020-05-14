@@ -82,6 +82,54 @@ describe('Customers API', function () {
     })
   })
 
+
+  describe('scroll', async function () {
+    it('should scroll customers descending', async function () {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/customers')
+        .query({ scroll: true, filters: 'value' })
+        .reply(200, {has_more: true, customers: [{created_at: '2020-01-01T00:00:00Z'}, {created_at: '2020-01-02T00:00:00Z'}]})
+
+        .get('/v1/customers')
+        .query({ scroll: true, filters: 'value', created_after: '2020-01-02T00:00:00Z' })
+        .reply(200, {has_more: false, customers: [{created_at: '2020-01-03T00:00:00Z'}]})
+
+
+      let callCount = 0
+      for await (const customer of client.customers.scroll({ filters: 'value' })) {
+        ++callCount
+      }
+
+      expect(callCount).to.equal(3)
+      await server.done()
+    })
+
+
+    it('should scroll customers ascending', async function () {
+      let now = new Date().toISOString()
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/customers')
+        .query({ scroll: true, created_before: now, filters: 'value' })
+        .reply(200, {has_more: true, customers: [
+          {created_at: '2020-01-04T00:00:00Z'},
+          {created_at: '2020-01-03T00:00:00Z'},
+          {created_at: '2020-01-02T00:00:00Z'}
+        ]})
+        .get('/v1/customers')
+        .query({ scroll: true, filters: 'value', created_before: '2020-01-02T00:00:00Z' })
+        .reply(200, {has_more: false, customers: [{created_at: '2020-01-01T00:00:00Z'}]})
+
+
+      let callCount = 0
+      for await (const customer of client.customers.scroll({ filters: 'value', created_before: now })) {
+        ++callCount
+      }
+
+      expect(callCount).to.equal(4)
+      await server.done()
+    })
+  })
+
   it('should update customer by ID', function (done) {
     var server = nock('https://api.voucherify.io', reqWithBody)
       .put('/v1/customers/cust_test-id', {

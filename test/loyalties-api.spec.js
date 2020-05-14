@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 const nock = require('nock')
+var { expect } = require('chai')
 const VoucherifyClient = require('./client-loader')
 const fixtures = require('./fixtures')
 const reqWithoutBody = fixtures.reqWithoutBody
@@ -102,7 +103,7 @@ describe('Loyalties API', function () {
       },
       type: 'AUTO-UPDATE'
     }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -126,7 +127,7 @@ describe('Loyalties API', function () {
       .reply(200, {})
 
     client.loyalties.get('campaign_test-id', function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -160,7 +161,7 @@ describe('Loyalties API', function () {
       id: 'campaign_test-id',
       description: 'Test program'
     }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -184,7 +185,7 @@ describe('Loyalties API', function () {
       .reply(200, {})
 
     client.loyalties.delete('campaign_test-id', function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -208,7 +209,7 @@ describe('Loyalties API', function () {
       .reply(200, [])
 
     client.loyalties.list(function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -234,7 +235,7 @@ describe('Loyalties API', function () {
       .reply(200, {})
 
     client.loyalties.list({ limit: 100 }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -287,7 +288,7 @@ describe('Loyalties API', function () {
           }
         }
       }], function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -337,7 +338,7 @@ describe('Loyalties API', function () {
           }
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -361,7 +362,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.deleteRewardAssignment('campaign_test-id', 'reward_assignment_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -385,7 +386,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.listRewardAssignments('campaign_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -411,7 +412,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.listRewardAssignments('campaign_test-id', { limit: 100 }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -473,7 +474,7 @@ describe('Loyalties API', function () {
           banner: 'You will get 3 points'
         }
       }], function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -515,7 +516,7 @@ describe('Loyalties API', function () {
           points: 21
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -539,7 +540,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.deleteEarningRule('campaign_test-id', 'earning_rules_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -563,7 +564,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.listEarningRules('campaign_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -589,7 +590,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.listEarningRules('campaign_test-id', { limit: 100 }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -655,7 +656,7 @@ describe('Loyalties API', function () {
           provider: 'Shop Admin'
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -679,7 +680,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.getMember('campaign_test-id', 'member_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -703,7 +704,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.listMembers('campaign_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -729,7 +730,7 @@ describe('Loyalties API', function () {
         .reply(200, {})
 
       client.loyalties.listMembers('campaign_test-id', { limit: 100 }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -761,7 +762,7 @@ describe('Loyalties API', function () {
       client.loyalties.addPoints('campaign_test-id', 'member_test-id', {
         points: 2000
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -813,7 +814,7 @@ describe('Loyalties API', function () {
           locale: 'en-GB'
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })

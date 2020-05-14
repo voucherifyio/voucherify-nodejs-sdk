@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 const nock = require('nock')
+const { expect } = require('chai')
 const VoucherifyClient = require('./client-loader')
 const fixtures = require('./fixtures')
 const reqWithoutBody = fixtures.reqWithoutBody
@@ -58,7 +59,7 @@ describe('Rewards API', function () {
         }
       }
     }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -82,7 +83,7 @@ describe('Rewards API', function () {
       .reply(200, {})
 
     client.rewards.get('reward_test-id', function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -116,7 +117,7 @@ describe('Rewards API', function () {
       id: 'reward_test-id',
       name: '10$ discount'
     }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -140,7 +141,7 @@ describe('Rewards API', function () {
       .reply(200, {})
 
     client.rewards.delete('reward_test-id', function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -164,7 +165,7 @@ describe('Rewards API', function () {
       .reply(200, [])
 
     client.rewards.list(function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -190,7 +191,7 @@ describe('Rewards API', function () {
       .reply(200, {})
 
     client.rewards.list({ limit: 100 }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -243,7 +244,7 @@ describe('Rewards API', function () {
           }
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -293,7 +294,7 @@ describe('Rewards API', function () {
           }
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -317,7 +318,7 @@ describe('Rewards API', function () {
         .reply(200, {})
 
       client.rewards.deleteAssignment('reward_test-id', 'reward_assignment_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -341,7 +342,7 @@ describe('Rewards API', function () {
         .reply(200, {})
 
       client.rewards.listAssignments('reward_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -366,7 +367,7 @@ describe('Rewards API', function () {
         .reply(200, [])
 
       client.rewards.listAssignments('reward_test-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })

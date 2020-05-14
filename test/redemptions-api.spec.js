@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 var nock = require('nock')
+var { expect } = require('chai')
 var VoucherifyClient = require('./client-loader')
 var fixtures = require('./fixtures')
 var reqWithoutBody = fixtures.reqWithoutBody
@@ -31,7 +32,7 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.redeem('test-code', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -140,7 +141,7 @@ describe('Redemptions API', function () {
           amount: 25000
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -191,7 +192,7 @@ describe('Redemptions API', function () {
           locale: 'en-GB'
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -232,7 +233,7 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.list(function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -245,7 +246,7 @@ describe('Redemptions API', function () {
       .reply(200, {})
 
     client.redemptions.getForVoucher('test-code', function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -270,7 +271,7 @@ describe('Redemptions API', function () {
         .reply(200, {})
 
       client.redemptions.rollback('test-redemption-id', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })

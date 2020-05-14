@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 var nock = require('nock')
+var { expect } = require('chai')
 var voucherifyClient = require('./client-loader')
 
 describe('VocherifyClient', function () {
@@ -9,7 +10,7 @@ describe('VocherifyClient', function () {
         voucherifyClient({
           clientSecretKey: 'CLIENT-SECRET-KEY'
         })
-      }).toThrow(new Error("Missing required option 'applicationId'"))
+      }).to.throw("Missing required option 'applicationId'")
     })
 
     it('should detect missing clientSecretKey', function () {
@@ -17,7 +18,7 @@ describe('VocherifyClient', function () {
         voucherifyClient({
           applicationId: 'APPLICATION-ID'
         })
-      }).toThrow(new Error("Missing required option 'clientSecretKey'"))
+      }).to.throw("Missing required option 'clientSecretKey'")
     })
   })
 
@@ -41,10 +42,10 @@ describe('VocherifyClient', function () {
         name: 'customer name'
       })
         .catch(function (error) {
-          expect(error.code).toEqual(400)
-          expect(error.message).toEqual('Duplicate resource key')
-          expect(error.details).toEqual('Campaign with name: test campaign already exists.')
-          expect(error.key).toEqual('duplicate_resource_key')
+          expect(error.code).to.equal(400)
+          expect(error.message).to.equal('Duplicate resource key')
+          expect(error.details).to.equal('Campaign with name: test campaign already exists.')
+          expect(error.key).to.equal('duplicate_resource_key')
           server.done()
           done()
         })
@@ -59,8 +60,8 @@ describe('VocherifyClient', function () {
         })
 
       client.customers.create({ name: 'customer name' }, function (error) {
-        expect(error.code).toEqual(401)
-        expect(error.message).toEqual('No such app.')
+        expect(error.code).to.equal(401)
+        expect(error.message).to.equal('No such app.')
         server.done()
         done()
       })

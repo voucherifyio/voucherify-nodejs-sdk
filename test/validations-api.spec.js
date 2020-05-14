@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 var nock = require('nock')
+var { expect } = require('chai')
 var VoucherifyClient = require('./client-loader')
 var fixtures = require('./fixtures')
 var reqWithBody = fixtures.reqWithBody
@@ -30,7 +31,7 @@ describe('Validations API', function () {
         .reply(200, {})
 
       client.validations.validateVoucher('test code', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -58,7 +59,7 @@ describe('Validations API', function () {
         .reply(200, {})
 
       client.validations.validate('test code', function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })
@@ -107,7 +108,7 @@ describe('Validations API', function () {
           amount: 25000
         }
       }, function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })

@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 var nock = require('nock')
+var { expect } = require('chai')
 var VoucherifyClient = require('./client-loader')
 var fixtures = require('./fixtures')
 var reqWithBody = fixtures.reqWithBody
@@ -71,7 +72,7 @@ describe('Events API', function () {
         test: true
       }
     }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -149,7 +150,7 @@ describe('Events API', function () {
         test: true
       }
     }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })
@@ -227,7 +228,7 @@ describe('Events API', function () {
         test: true
       }
     }, function (err) {
-      expect(err).toBeNull()
+      expect(err).to.be.null
       server.done()
       done()
     })

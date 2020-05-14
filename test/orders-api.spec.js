@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 var nock = require('nock')
+var { expect } = require('chai')
 var VoucherifyClient = require('./client-loader')
 var fixtures = require('./fixtures')
 var reqWithoutBody = fixtures.reqWithoutBody
@@ -76,7 +77,7 @@ describe('Orders API', function () {
         .reply(200, [])
 
       client.orders.list(function (err) {
-        expect(err).toBeNull()
+        expect(err).to.be.null
         server.done()
         done()
       })

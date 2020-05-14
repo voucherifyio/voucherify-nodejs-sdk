@@ -1,5 +1,6 @@
 /* eslint-env jasmine */
 var utils = require('./utils-loader')
+var { expect } = require('chai')
 
 describe('utils', function () {
   // ------ calculateDiscount ------ //
@@ -14,7 +15,7 @@ describe('utils', function () {
     }
     var discount = utils.calculateDiscount(basePrice, voucher)
 
-    expect(discount).toBe(10.00)
+    expect(discount).to.equal(10.00)
   })
 
   it('should calculate percent discount', function () {
@@ -27,7 +28,7 @@ describe('utils', function () {
     }
     var discount = utils.calculateDiscount(basePrice, voucher)
 
-    expect(discount).toBe(5.00)
+    expect(discount).to.equal(5.00)
   })
 
   it('should calculate unit discount', function () {
@@ -41,7 +42,7 @@ describe('utils', function () {
     }
     var discount = utils.calculateDiscount(basePrice, voucher, unitPrice)
 
-    expect(discount).toBe(20.00)
+    expect(discount).to.equal(20.00)
   })
 
   it('should calculate discount for gift voucher when balance is less than base price', function () {
@@ -55,7 +56,7 @@ describe('utils', function () {
 
     var discount = utils.calculateDiscount(basePrice, voucher)
 
-    expect(discount).toBe(50.00)
+    expect(discount).to.equal(50.00)
   })
 
   it('should calculate discount for gift voucher when balance is greater than base price', function () {
@@ -69,7 +70,7 @@ describe('utils', function () {
 
     var discount = utils.calculateDiscount(basePrice, voucher)
 
-    expect(discount).toBe(75.00)
+    expect(discount).to.equal(75.00)
   })
 
   // ------ calculatePrice ------ //
@@ -84,7 +85,7 @@ describe('utils', function () {
     }
     var discount = utils.calculatePrice(basePrice, voucher)
 
-    expect(discount).toBe(40.00)
+    expect(discount).to.equal(40.00)
   })
 
   it('should calculate new price with percent discount', function () {
@@ -97,7 +98,7 @@ describe('utils', function () {
     }
     var discount = utils.calculatePrice(basePrice, voucher)
 
-    expect(discount).toBe(45.00)
+    expect(discount).to.equal(45.00)
   })
 
   it('should calculate new price with unit discount', function () {
@@ -111,7 +112,7 @@ describe('utils', function () {
     }
     var discount = utils.calculatePrice(basePrice, voucher, unitPrice)
 
-    expect(discount).toBe(30.00)
+    expect(discount).to.equal(30.00)
   })
 
   it('should calculate new price for gift voucher when balance is less than base price', function () {
@@ -125,7 +126,7 @@ describe('utils', function () {
 
     var discount = utils.calculatePrice(basePrice, voucher)
 
-    expect(discount).toBe(25.00)
+    expect(discount).to.equal(25.00)
   })
 
   it('should calculate new price for gift voucher when balance is greater than base price', function () {
@@ -139,7 +140,7 @@ describe('utils', function () {
 
     var discount = utils.calculatePrice(basePrice, voucher)
 
-    expect(discount).toBe(0.00)
+    expect(discount).to.equal(0.00)
   })
 
   describe('webhooks', function () {
@@ -150,7 +151,7 @@ describe('utils', function () {
 
       var isVerified = utils.webhooks.verifySignature(signature, message, secretKey)
 
-      expect(isVerified).toBeTruthy()
+      expect(isVerified).to.be.true
     })
 
     it('should reject invalid signature', function () {
@@ -160,7 +161,7 @@ describe('utils', function () {
 
       var isVerified = utils.webhooks.verifySignature(signature, message, secretKey)
 
-      expect(isVerified).toBeFalsy()
+      expect(isVerified).to.be.false
     })
   })
 })

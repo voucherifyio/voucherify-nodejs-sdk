@@ -58,6 +58,34 @@ describe('Products API', function () {
       })
   })
 
+  it('should update products in bulk', function (done) {
+    var server = nock('https://api.voucherify.io', reqWithBody)
+      .post('/v1/products/bulk', [{
+        source_id: 'product_1'
+      }, {
+        source_id: 'product_2'
+      }])
+      .reply(200, [{
+        source_id: 'product_1',
+        found: true,
+        updated: true
+      }, {
+        source_id: 'product_2',
+        found: false,
+        updated: true
+      }])
+
+    client.products.bulkUpdate([{
+      source_id: 'product_1'
+    }, {
+      source_id: 'product_2'
+    }])
+      .then(function () {
+        server.done()
+        done()
+      })
+  })
+
   it('should delete product', function (done) {
     var server = nock('https://api.voucherify.io', reqWithoutBody)
       .delete('/v1/products/prod_test-id')

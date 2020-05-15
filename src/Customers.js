@@ -27,9 +27,9 @@ module.exports = class Customers {
 
   async * scroll (params = {}) {
     let response = await this.client.get('/customers', Object.assign({}, params, {scroll: true}))
-    let createdAfter = params.created_after
-    let createdBefore = params.created_before
-    let direction = (createdAfter || !createdBefore) ? 'desc' : 'asc'
+    let startingAfter = params.starting_after
+    let endingBefore = params.ending_before
+    let direction = (startingAfter || !endingBefore) ? 'desc' : 'asc'
 
     while (true) {
       if (response.customers.length === 0) {
@@ -38,9 +38,9 @@ module.exports = class Customers {
       for (const customer of response.customers) {
         // comparing ISOs
         if (direction === 'asc') {
-          createdBefore = createdBefore < customer.created_at ? createdBefore : customer.created_at
+          endingBefore = endingBefore < customer.created_at ? endingBefore : customer.created_at
         } else {
-          createdAfter = createdAfter > customer.created_at ? createdAfter : customer.created_at
+          startingAfter = startingAfter > customer.created_at ? startingAfter : customer.created_at
         }
         yield customer
       }
@@ -52,8 +52,8 @@ module.exports = class Customers {
         '/customers',
         Object.assign({}, params, {
           scroll: true,
-          created_before: createdBefore,
-          created_after: createdAfter
+          ending_before: endingBefore,
+          starting_after: startingAfter
         })
       )
     }

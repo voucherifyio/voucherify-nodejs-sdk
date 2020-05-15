@@ -91,7 +91,7 @@ describe('Customers API', function () {
         .reply(200, {has_more: true, customers: [{created_at: '2020-01-01T00:00:00Z'}, {created_at: '2020-01-02T00:00:00Z'}]})
 
         .get('/v1/customers')
-        .query({ scroll: true, filters: 'value', created_after: '2020-01-02T00:00:00Z' })
+        .query({ scroll: true, filters: 'value', starting_after: '2020-01-02T00:00:00Z' })
         .reply(200, {has_more: false, customers: [{created_at: '2020-01-03T00:00:00Z'}]})
 
 
@@ -109,19 +109,19 @@ describe('Customers API', function () {
       let now = new Date().toISOString()
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/customers')
-        .query({ scroll: true, created_before: now, filters: 'value' })
+        .query({ scroll: true, ending_before: now, filters: 'value' })
         .reply(200, {has_more: true, customers: [
           {created_at: '2020-01-04T00:00:00Z'},
           {created_at: '2020-01-03T00:00:00Z'},
           {created_at: '2020-01-02T00:00:00Z'}
         ]})
         .get('/v1/customers')
-        .query({ scroll: true, filters: 'value', created_before: '2020-01-02T00:00:00Z' })
+        .query({ scroll: true, filters: 'value', ending_before: '2020-01-02T00:00:00Z' })
         .reply(200, {has_more: false, customers: [{created_at: '2020-01-01T00:00:00Z'}]})
 
 
       let callCount = 0
-      for await (const customer of client.customers.scroll({ filters: 'value', created_before: now })) {
+      for await (const customer of client.customers.scroll({ filters: 'value', ending_before: now })) {
         ++callCount
       }
 

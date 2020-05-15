@@ -104,6 +104,45 @@ describe('Customers API', function () {
       await server.done()
     })
 
+    it('should scroll customers descending and defined initial starting_after', async function () {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/customers')
+        .query({ filters: 'value', starting_after: '2019-12-31T23:59:00Z' })
+        .reply(200, {has_more: true, customers: [{created_at: '2020-01-01T00:00:00Z'}, {created_at: '2020-01-02T00:00:00Z'}]})
+
+        .get('/v1/customers')
+        .query({ filters: 'value', starting_after: '2020-01-02T00:00:00Z' })
+        .reply(200, {has_more: false, customers: [{created_at: '2020-01-03T00:00:00Z'}]})
+
+      let callCount = 0
+      for await (const customer of client.customers.scroll({ starting_after: '2019-12-31T23:59:00Z', filters: 'value' })) {
+        ++callCount
+      }
+      expect(callCount).to.equal(3)
+      await server.done()
+    })
+
+    it('should scroll customers descending and defined initial starting_after and ending_before', async function () {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/customers')
+        .query({ filters: 'value', starting_after: '2019-12-31T23:59:00Z', ending_before: '2020-12-31T23:59:00Z' })
+        .reply(200, {has_more: true, customers: [{created_at: '2020-01-01T00:00:00Z'}, {created_at: '2020-01-02T00:00:00Z'}]})
+
+        .get('/v1/customers')
+        .query({ filters: 'value', starting_after: '2020-01-02T00:00:00Z', ending_before : '2020-12-31T23:59:00Z' })
+        .reply(200, {has_more: false, customers: [{created_at: '2020-01-03T00:00:00Z'}]})
+
+      let callCount = 0
+      for await (const customer of client.customers.scroll({
+        starting_after: '2019-12-31T23:59:00Z',
+        ending_before : '2020-12-31T23:59:00Z',
+        filters: 'value'
+      })) {
+        ++callCount
+      }
+      expect(callCount).to.equal(3)
+      await server.done()
+    })
 
     it('should scroll customers ascending', async function () {
       let now = new Date().toISOString()

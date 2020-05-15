@@ -87,11 +87,11 @@ describe('Customers API', function () {
     it('should scroll customers descending', async function () {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/customers')
-        .query({ scroll: true, filters: 'value' })
+        .query({ filters: 'value', starting_after: '1970-01-01T00:00:00Z' })
         .reply(200, {has_more: true, customers: [{created_at: '2020-01-01T00:00:00Z'}, {created_at: '2020-01-02T00:00:00Z'}]})
 
         .get('/v1/customers')
-        .query({ scroll: true, filters: 'value', starting_after: '2020-01-02T00:00:00Z' })
+        .query({ filters: 'value', starting_after: '2020-01-02T00:00:00Z' })
         .reply(200, {has_more: false, customers: [{created_at: '2020-01-03T00:00:00Z'}]})
 
 
@@ -109,14 +109,14 @@ describe('Customers API', function () {
       let now = new Date().toISOString()
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/customers')
-        .query({ scroll: true, ending_before: now, filters: 'value' })
+        .query({ ending_before: now, filters: 'value' })
         .reply(200, {has_more: true, customers: [
           {created_at: '2020-01-04T00:00:00Z'},
           {created_at: '2020-01-03T00:00:00Z'},
           {created_at: '2020-01-02T00:00:00Z'}
         ]})
         .get('/v1/customers')
-        .query({ scroll: true, filters: 'value', ending_before: '2020-01-02T00:00:00Z' })
+        .query({ filters: 'value', ending_before: '2020-01-02T00:00:00Z' })
         .reply(200, {has_more: false, customers: [{created_at: '2020-01-01T00:00:00Z'}]})
 
 

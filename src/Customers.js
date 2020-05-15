@@ -26,10 +26,16 @@ module.exports = class Customers {
   }
 
   async * scroll (params = {}) {
-    let response = await this.client.get('/customers', Object.assign({}, params, {scroll: true}))
     let startingAfter = params.starting_after
     let endingBefore = params.ending_before
     let direction = (startingAfter || !endingBefore) ? 'desc' : 'asc'
+
+    let response = await this.client.get('/customers', Object.assign(
+      {}, params, {
+        starting_after: (startingAfter || endingBefore) ? startingAfter : '1970-01-01T00:00:00Z',
+        ending_before: endingBefore
+      }
+    ))
 
     while (true) {
       if (response.customers.length === 0) {
@@ -51,7 +57,6 @@ module.exports = class Customers {
       response = await this.client.get(
         '/customers',
         Object.assign({}, params, {
-          scroll: true,
           ending_before: endingBefore,
           starting_after: startingAfter
         })

@@ -83,7 +83,7 @@ describe('Customers API', function () {
   })
 
   describe('scroll', async function () {
-    it('should scroll customers descending', async function () {
+    it('should scroll customers', async function () {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/customers')
         .query({ filters: 'value', starting_after: '1970-01-01T00:00:00Z' })
@@ -105,7 +105,7 @@ describe('Customers API', function () {
       await server.done()
     })
 
-    it('should scroll customers descending and defined initial starting_after', async function () {
+    it('should scroll customers created after specific date', async function () {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/customers')
         .query({ filters: 'value', starting_after: '2019-12-31T23:59:00Z' })
@@ -126,7 +126,7 @@ describe('Customers API', function () {
       await server.done()
     })
 
-    it('should scroll customers descending and defined initial starting_after and ending_before', async function () {
+    it('should scroll customers created between time range', async function () {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/customers')
         .query({ filters: 'value', starting_after: '2019-12-31T23:59:00Z', ending_before: '2020-12-31T23:59:00Z' })
@@ -151,7 +151,7 @@ describe('Customers API', function () {
       await server.done()
     })
 
-    it('should scroll customers ascending', async function () {
+    it('should scroll customers created before specific date', async function () {
       const now = new Date().toISOString()
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/customers')

@@ -1,4 +1,6 @@
-/* eslint-env jasmine */
+/* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
+
 var utils = require('./utils-loader')
 var { expect } = require('chai')
 

@@ -1,4 +1,6 @@
-/* eslint-env jasmine */
+/* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
+
 var nock = require('nock')
 var { expect } = require('chai')
 var voucherifyClient = require('./client-loader')

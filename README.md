@@ -455,6 +455,20 @@ async function () {
 `params` argument is consistent with `list` method.
 Keep in mind `scroll` doesn't support callback version.
 
+If you want to limit results by customer creation date.
+
+```javascript
+async function () {
+  for await (const customer of client.customers.scroll({
+    starting_after: "2020-01-01", // optional
+    ending_before: "2020-02-01", // optional
+    ...params})
+  ) {
+    console.log('Customer', customer)
+  }
+}
+```
+
 #### [Update Customer's Consents]
 ```javascript
 client.customers.updateConsents(customer, consents)

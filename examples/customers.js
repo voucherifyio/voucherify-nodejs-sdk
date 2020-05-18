@@ -7,9 +7,9 @@ const voucherify = voucherifyClient({
   clientSecretKey: '3266b9f8-e246-4f79-bdf0-833929b1380c'
 })
 
-async function scrollCustomers() {
-  for await (const customer of voucherify.customers.scroll({limit: 5})) {
-    console.log("Customer", customer)
+async function scrollCustomers () {
+  for await (const customer of voucherify.customers.scroll({ limit: 5 })) {
+    console.log('Customer', customer)
   }
 }
 

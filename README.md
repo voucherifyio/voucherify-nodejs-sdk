@@ -455,8 +455,7 @@ async function () {
 `params` argument is consistent with `list` method.
 Keep in mind `scroll` doesn't support callback version.
 
-If you want to limit results by customer creation date.
-
+If you want to limit results by customer creation date you can use: `starting_after` and `ending_before`.
 ```javascript
 async function () {
   for await (const customer of client.customers.scroll({
@@ -886,6 +885,10 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2020-05-25** - `5.0.0` -
+  - [breaking change] Drop support for Node v8
+  - Add a way to [scroll over customers](#scroll-through-customers)
+  - Add support for bulk update of products
 - **2020-04-06** - `4.2.0` - Add support for Updating Customer's consents
 - **2020-02-03** - `4.1.0` - expose campaigns and vouchers Qualification API methods
 - **2019-11-22** - `4.0.0`

@@ -455,18 +455,24 @@ async function () {
 `params` argument is consistent with `list` method.
 Keep in mind `scroll` doesn't support callback version.
 
-If you want to limit results by customer creation date you can use: `starting_after` and `ending_before`.
+You can optionally define scrolling cursor based on customer creation date using property `starting_after`.
+By default returned customers are in descending order, if you want to change it to ascending define `order` equal to `create_at`.
+
 ```javascript
 async function () {
   for await (const customer of client.customers.scroll({
     starting_after: "2020-01-01", // optional
-    ending_before: "2020-02-01", // optional
+    order: "create_at" // optional (by default order is "-create_at" which corresponds to descending).
     ...params})
   ) {
     console.log('Customer', customer)
   }
 }
 ```
+
+Keep in mind this operation may drain your API call limits fairly quickly.
+In the hood it fetches customers in max possible batches of 100.
+So in example if you have 100'000 customers scroll over all of them, you will use 1000 API calls.
 
 #### [Update Customer's Consents]
 ```javascript
@@ -885,7 +891,9 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
-- **2020-05-25** - `5.0.0` -
+- **2020-05-28** - `5.1.0`
+  - adopted API changes in customer scrolling, dropping support for `ending_before` property. This is technically breaking change but we didn't officially released this feature in API so exceptionally we will increase minor version to not confuse SDK users.
+- **2020-05-25** - `5.0.0`
   - [breaking change] Drop support for Node v8
   - Add a way to [scroll over customers](#scroll-through-customers)
   - Add support for bulk update of products

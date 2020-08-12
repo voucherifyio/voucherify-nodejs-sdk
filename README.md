@@ -320,6 +320,7 @@ client.validations.validate(params)
 Methods are provided within `client.redemptions.*` namespace.
 
 - [Redeem Voucher](#redeem-voucher)
+- [Redeem Promotion's Tier](#redeem-promotions-tier)
 - [Redeem Loyalty Card](#redeem-loyalty-card)
 - [List Redemptions](#list-redemptions)
 - [Get Voucher's Redemptions](#get-vouchers-redemptions)

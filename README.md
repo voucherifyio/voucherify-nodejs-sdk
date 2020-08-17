@@ -336,10 +336,6 @@ client.redemptions.redeem({code, ...params})
 client.redemptions.redeem({code, ...params}, tracking_id)
 client.redemptions.redeem(code, tracking_id) // use: client.redemptions.redeem(code, {customer: {source_id}})
 ```
-#### [Redeem Promotion's Tier]
-```javascript
-client.redemptions.redeem(promotionsTier, params)
-```
 #### [Redeem Loyalty Card]
 ```javascript
 client.redemptions.redeem(loyaltyCardId, params)

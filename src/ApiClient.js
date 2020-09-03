@@ -3,16 +3,10 @@
 const request = require('request')
 const when = require('when')
 const packageJson = require('../package')
+const VoucherifyError = require('./VoucherifyError')
 
-const errorMessage = (statusCode, body) => {
-  body = body || {}
-  if (typeof body === 'string') {
-    return 'Unexpected status code: ' + statusCode + ' - Details: ' + body
-  }
-  body.toString = function () {
-    return `Unexpected status code: ${statusCode} - Details: ${JSON.stringify(body)}`
-  }
-  return body
+const generateError = (statusCode, body) => {
+  return new VoucherifyError(statusCode, body)
 }
 
 const prepare = (callback) => {
@@ -22,7 +16,7 @@ const prepare = (callback) => {
     return {
       callback: function (error, res, body) {
         if (error || res.statusCode >= 400) {
-          callback(error || errorMessage(res.statusCode, body))
+          callback(error || generateError(res.statusCode, body))
           return
         }
 
@@ -34,7 +28,7 @@ const prepare = (callback) => {
       promise: deferred.promise,
       callback: function (error, res, body) {
         if (error || res.statusCode >= 400) {
-          deferred.reject(error || errorMessage(res.statusCode, body))
+          deferred.reject(error || generateError(res.statusCode, body))
           return
         }
 

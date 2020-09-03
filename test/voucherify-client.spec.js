@@ -44,10 +44,12 @@ describe('VocherifyClient', function () {
         name: 'customer name'
       })
         .catch(function (error) {
+          expect(error).to.be.instanceOf(Error)
           expect(error.code).to.equal(400)
           expect(error.message).to.equal('Duplicate resource key')
           expect(error.details).to.equal('Campaign with name: test campaign already exists.')
           expect(error.key).to.equal('duplicate_resource_key')
+          expect(error.stack).to.be.ok
           server.done()
           done()
         })
@@ -62,8 +64,10 @@ describe('VocherifyClient', function () {
         })
 
       client.customers.create({ name: 'customer name' }, function (error) {
+        expect(error).to.be.instanceOf(Error)
         expect(error.code).to.equal(401)
         expect(error.message).to.equal('No such app.')
+        expect(error.stack).to.be.ok
         server.done()
         done()
       })

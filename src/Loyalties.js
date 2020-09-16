@@ -92,6 +92,10 @@ module.exports = class Loyalties {
     return this.client.get(`/loyalties/${encode(campaignId)}/members/${memberId}`, null, callback)
   }
 
+  getMemberActivities (campaignId, memberId, callback) {
+    return this.client.get(`/loyalties/${encode(campaignId)}/members/${memberId}/activities`, null, callback)
+  }
+
   addPoints (campaignId, memberId, balance, callback) {
     return this.client.post(`/loyalties/${encode(campaignId)}/members/${memberId}/balance`, balance, callback)
   }

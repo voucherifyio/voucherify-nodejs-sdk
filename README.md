@@ -648,6 +648,7 @@ Methods are provided within `client.loyalties.*` namespace.
 - [Create Loyalty Member](#create-loyalty-member)
 - [Get Loyalty Member](#get-loyalty-member)
 - [List Loyalty Members](#list-loyalty-members)
+- [Get Member Activites](#get-member-activities)
 - [Add Points](#add-loyalty-card-balance)
 - [Redeem reward](#redeem-loyalty-card)
 
@@ -718,6 +719,10 @@ client.loyalties.getMember(campaignId, memberId)
 ```javascript
 client.loyalties.listMembers(campaignId)
 client.loyalties.listMembers(campaignId, params)
+```
+#### [Get Member Activities]
+```javascript
+client.loyalties.getMemberActivities(campaignId, memberId)
 ```
 #### [Add Loyalty Card Balance]
 ```javascript
@@ -1081,6 +1086,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Create Loyalty Member]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-member
 [Get Loyalty Member]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-member
 [List Loyalty Members]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-members
+[Get Member Activities]: https://docs.voucherify.io/reference#get-member-activities
 [Add Loyalty Card Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-loyalty-card-balance
 [Redeem Loyalty Card]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#redeem-loyalty-card
 

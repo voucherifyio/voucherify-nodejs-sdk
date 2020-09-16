@@ -738,6 +738,30 @@ describe('Loyalties API', function () {
       })
     })
 
+    it('should get member activities', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members/member_test-id/activities')
+        .reply(200, {})
+
+      client.loyalties.getMemberActivities('campaign_test-id', 'member_test-id')
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+
+    it('should get member activities (callback)', function (done) {
+      const server = nock('https://api.voucherify.io', reqWithoutBody)
+        .get('/v1/loyalties/campaign_test-id/members/member_test-id/activities')
+        .reply(200, {})
+
+      client.loyalties.getMemberActivities('campaign_test-id', 'member_test-id', function (err) {
+        expect(err).to.be.null
+        server.done()
+        done()
+      })
+    })
+
     it('should add loyalty points', function (done) {
       const server = nock('https://api.voucherify.io', reqWithBody)
         .post('/v1/loyalties/campaign_test-id/members/member_test-id/balance', {

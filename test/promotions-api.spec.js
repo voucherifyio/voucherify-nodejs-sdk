@@ -52,6 +52,31 @@ describe('Promotions API', function () {
   })
 
   describe('promotion tiers', function () {
+    describe('all tiers', function () {
+      it('should list all promotion tiers in specific page', function (done) {
+        var server = nock('https://api.voucherify.io', reqWithoutBody)
+          .get('/v1/promotions/tiers?limit=10&page=2')
+          .reply(200, {})
+
+        client.promotions.tiers.listAll({ limit: 10, page: 2 })
+          .then(function () {
+            server.done()
+            done()
+          })
+      })
+      it('should list all available promotion tiers', function (done) {
+        var server = nock('https://api.voucherify.io', reqWithoutBody)
+          .get('/v1/promotions/tiers?is_available=true')
+          .reply(200, {})
+
+        client.promotions.tiers.listAll({ is_available: true })
+          .then(function () {
+            server.done()
+            done()
+          })
+      })
+    })
+
     it('should list promotion tiers', function (done) {
       var server = nock('https://api.voucherify.io', reqWithoutBody)
         .get('/v1/promotions/promo_test_id/tiers')

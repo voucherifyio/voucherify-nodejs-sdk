@@ -6,6 +6,6 @@ module.exports = class Consents {
   }
 
   list (callback) {
-    return this.client.get(`/consents`, null, callback)
+    return this.client.get('/consents', null, callback)
   }
 }

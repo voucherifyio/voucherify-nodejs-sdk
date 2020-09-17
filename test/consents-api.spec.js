@@ -1,12 +1,11 @@
 /* eslint-env mocha */
 /* eslint-disable no-unused-expressions */
 
-var nock = require('nock')
-var { expect } = require('chai')
-var VoucherifyClient = require('./client-loader')
-var fixtures = require('./fixtures')
-var reqWithoutBody = fixtures.reqWithoutBody
-var reqWithBody = fixtures.reqWithBody
+const nock = require('nock')
+const { expect } = require('chai')
+const VoucherifyClient = require('./client-loader')
+const fixtures = require('./fixtures')
+const reqWithoutBody = fixtures.reqWithoutBody
 
 nock.disableNetConnect()
 

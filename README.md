@@ -367,6 +367,7 @@ Methods are provided within `client.promotions.*` namespace.
 - [Create Promotion Campaign](#create-promotion-campaign)
 - [Validate Promotion Campaign](#validate-promotion-campaign)
 - [List Promotion's Tiers](#list-promotions-tiers)
+- [List All Promotion Tiers](#doc-list-all-promotion-tiers)
 - [Create Promotion's Tier](#create-promotions-tier)
 - [Redeem Promotion's Tier](#redeem-promotions-tier)
 - [Update Promotion's Tier](#update-promotions-tier)
@@ -386,6 +387,14 @@ client.promotions.validate(validationContext)
 client.promotions.tiers.list(promotionCampaignId)
 ```
 Check [promotion's tier object](http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-promotion-object)
+#### [List All Promotion Tiers]
+```javascript
+client.promotions.tiers.listAll()
+client.promotions.tiers.listAll({ is_available: true })
+client.promotions.tiers.listAll({ page: 2, limit: 10 })
+```
+You can list all currently available promotions by specifying `is_available` flag.
+
 #### [Create Promotion's Tier]
 ```javascript
 client.promotions.tiers.create(promotionId, promotionsTier)
@@ -1122,6 +1131,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Create Promotion Campaign]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-promotion-campaign
 [Validate Promotion Campaign]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#validate-promotions-1
 [List Promotion's Tiers]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-promotions
+[Doc List All Promotion Tiers]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-promotion-tiers
 [Create Promotion's Tier]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-promotion-tier-to-campaign
 [Redeem Promotion's Tier]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#redeem-promotion
 [Update Promotion's Tier]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-promotion

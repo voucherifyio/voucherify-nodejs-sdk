@@ -7,6 +7,10 @@ module.exports = class PromotionTiers {
     this.client = client
   }
 
+  listAll (params = {}, callback) {
+    return this.client.get('/promotions/tiers', params, callback)
+  }
+
   list (promotionId, callback) {
     return this.client.get(`/promotions/${encode(promotionId)}/tiers`, null, callback)
   }

@@ -917,6 +917,12 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2020-09-17** - `5.2.0`
+  - Add support Get Member Activities in Loyality API
+  - enhancement: throw error objects instead of object literals (@AbdelrahmanHafez)
+  - dependency update
+  - Add support for listing all promotion tiers
+  - Add support for listing consents
 - **2020-05-28** - `5.1.0`
   - adopted API changes in customer scrolling, dropping support for `ending_before` property. This is technically breaking change but we didn't officially released this feature in API so exceptionally we will increase minor version to not confuse SDK users.
 - **2020-05-25** - `5.0.0`

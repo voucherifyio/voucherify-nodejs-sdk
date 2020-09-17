@@ -12,6 +12,7 @@ const Redemptions = require('./Redemptions')
 const PromotionTiers = require('./PromotionTiers')
 const Promotions = require('./Promotions')
 const Customers = require('./Customers')
+const Consents = require('./Consents')
 const Orders = require('./Orders')
 const Products = require('./Products')
 const Rewards = require('./Rewards')
@@ -36,6 +37,7 @@ module.exports = function (options) {
   const validations = new Validations(client, promotions)
   const redemptions = new Redemptions(client, promotions)
   const customers = new Customers(client)
+  const consents = new Consents(client)
   const orders = new Orders(client)
   const products = new Products(client)
   const rewards = new Rewards(client)
@@ -51,6 +53,7 @@ module.exports = function (options) {
     redemptions,
     promotions,
     customers,
+    consents,
     orders,
     products,
     rewards,

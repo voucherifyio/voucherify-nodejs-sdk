@@ -42,6 +42,8 @@ API:
 |
 <a href="#customers-api">Customers</a>
 |
+<a href="#consents-api">Consents</a>
+|
 <a href="#orders-api">Orders</a>
 |
 <a href="#products-api">Products</a>
@@ -473,6 +475,20 @@ So in example if you have 100'000 customers scroll over all of them, you will us
 #### [Update Customer's Consents]
 ```javascript
 client.customers.updateConsents(customer, consents)
+```
+
+---
+
+### Consents API
+Methods are provided within `client.consents.*` namespace.
+
+- [List Customers](#list-customers)
+
+You can [update Customer's consents](#update-customers-consents) in Customer namespace.
+
+#### [List Consents]
+```javascript
+client.consents.list()
 ```
 
 ---
@@ -1117,6 +1133,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Delete Customer]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-customer
 [List Customers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-customers
 [Update Customer's Consents]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-customers-consents
+[List Consents]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-consents
 
 [Create Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-order
 [Get Order]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-order

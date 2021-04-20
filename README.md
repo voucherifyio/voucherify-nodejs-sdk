@@ -1,8 +1,14 @@
+## ⚠️ Deprecation notice ⚠️
+
+Please note that this SDK is now deprecated. Instead, please use [voucherify-js-sdk](https://github.com/voucherifyio/voucherify-js-sdk) - which is a brand new library that combines both client-side JavaScript and server-side node.js SDK features, and adds TypeScript support.
+
+------------------
+
 <p align="center" >
   <img src="./voucherify-nodejs-sdk.png" />
 </p>
 
-<h3 align="center">Official <a href="http://voucherify.io?utm_source=github&utm_medium=sdk&utm_campaign=acq">Voucherify</a> SDK for Node.js</h3>
+<h3 align="center">[Deprecated] Official <a href="http://voucherify.io?utm_source=github&utm_medium=sdk&utm_campaign=acq">Voucherify</a> SDK for Node.js</h3>
 
 <p align="center">
   <a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a>
@@ -917,6 +923,8 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2021-04-20** - `(no new release)`
+  - Add deprecation notice
 - **2020-09-17** - `5.2.0`
   - Add support Get Member Activities in Loyality API
   - enhancement: throw error objects instead of object literals (@AbdelrahmanHafez)

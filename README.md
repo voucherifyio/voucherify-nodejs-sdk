@@ -60,6 +60,8 @@ API:
 |
 <a href="#events-api">Events</a>
 |
+<a href="#async-actions-api">Async Actions</a>
+|
 <a href="#utils">Utils</a>
 </p>
 
@@ -841,10 +843,10 @@ client.validationRules.validate(validationRuleId, params)
 ### Events API
 Methods are provided within `client.events.*` namespace.
 
-- [Create Event](#create-custom-event)
+- [Create Event](#create-event)
 
-#### [Create event]
-Check [customer object](https://docs.voucherify.io/v1/reference#the-customer-object).
+#### [Create Event]
+Check [customer object](https://docs.voucherify.io/v1/reference#the-customer-object) and [custom event object](https://docs.voucherify.io/reference#the-custom-event-object).
 ```javascript
 client.events.create(eventName, { customer })
 client.events.create(eventName, { customer, metadata })
@@ -854,6 +856,23 @@ client.events.create(eventName, { customer, referral, loyalty, metadata })
 
 ---
 
+### Async Actions API
+Methods are provided within `client.asyncActions.*` namespace.
+
+- [Get Async Action](#get-async-action)
+- [List Async Actions](#list-async-actions)
+
+#### [Get Async Action]
+```javascript
+client.asyncActions.get(asyncActionId)
+```
+
+#### [List Async Actions]
+```javascript
+client.asyncActions.list()
+```
+
+---
 ### Migration to 2.x
 
 Version 2.x of the SDK is fully backward compatible with version 1.x.
@@ -917,6 +936,8 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2021-07-15** - `5.3.0`
+  - Add support for Async Actions API
 - **2020-09-17** - `5.2.0`
   - Add support Get Member Activities in Loyality API
   - enhancement: throw error objects instead of object literals (@AbdelrahmanHafez)
@@ -1190,4 +1211,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Get Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-segment
 [Delete Segment]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#delete-segment
 
-[Create Custom Event]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#the-custom-event-object
+[Create Event]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-custom-event
+
+[Get Async Action]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#get-async-actions-1
+[List Async Actions]: http://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#list-async-actions

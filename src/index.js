@@ -1,24 +1,25 @@
 'use strict'
 
 const ApiClient = require('./ApiClient')
-const Campaigns = require('./Campaigns')
-const Distributions = require('./Distributions')
-const Exports = require('./Exports')
-const Events = require('./Events')
+const AsyncActions = require('./AsyncActions');
 const Balance = require('./Balance')
-const Vouchers = require('./Vouchers')
-const Validations = require('./Validations')
-const Redemptions = require('./Redemptions')
-const PromotionTiers = require('./PromotionTiers')
-const Promotions = require('./Promotions')
-const Customers = require('./Customers')
+const Campaigns = require('./Campaigns')
 const Consents = require('./Consents')
+const Customers = require('./Customers')
+const Distributions = require('./Distributions')
+const Events = require('./Events')
+const Exports = require('./Exports')
+const Loyalties = require('./Loyalties')
 const Orders = require('./Orders')
 const Products = require('./Products')
+const Promotions = require('./Promotions')
+const PromotionTiers = require('./PromotionTiers')
+const Redemptions = require('./Redemptions')
 const Rewards = require('./Rewards')
-const Loyalties = require('./Loyalties')
-const ValidationRules = require('./ValidationRules')
 const Segments = require('./Segments')
+const ValidationRules = require('./ValidationRules')
+const Validations = require('./Validations')
+const Vouchers = require('./Vouchers')
 const { assertOption } = require('./helpers')
 
 module.exports = function (options) {
@@ -44,6 +45,7 @@ module.exports = function (options) {
   const loyalties = new Loyalties(client)
   const segments = new Segments(client)
   const validationRules = new ValidationRules(client)
+  const asyncActions = new AsyncActions(client)
 
   return {
     vouchers,
@@ -60,6 +62,7 @@ module.exports = function (options) {
     loyalties,
     segments,
     validationRules,
-    events
+    events,
+    asyncActions
   }
 }

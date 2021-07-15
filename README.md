@@ -870,6 +870,8 @@ client.asyncActions.get(asyncActionId)
 #### [List Async Actions]
 ```javascript
 client.asyncActions.list()
+client.asyncActions.list({ limit: 5 })
+client.asyncActions.list({ limit: 5, end_date: '2021-07-01T00:00:00.000Z' })
 ```
 
 ---

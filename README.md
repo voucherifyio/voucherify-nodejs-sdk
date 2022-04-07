@@ -1,3 +1,6 @@
+# This repository is no longer actively maintained, we have a new SDK for node.js at [voucherifyio/voucherify-js-sdk](https://github.com/voucherifyio/voucherify-js-sdk). Check [migration guide](https://github.com/voucherifyio/voucherify-js-sdk/blob/main/packages/sdk/MIGRATION.md#migration-from-voucherify-nodejs-sdk).
+
+
 <p align="center" >
   <img src="./voucherify-nodejs-sdk.png" />
 </p>

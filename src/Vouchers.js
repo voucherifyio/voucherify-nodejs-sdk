@@ -17,6 +17,12 @@ module.exports = class Vouchers {
         return this.client.post('/vouchers/qualification', params, callback, { qs })
       }
     }
+
+    this.sessions = {
+      release: (code, sessionKey, callback) => {
+        return this.client.delete(`/vouchers/${encode(code)}/sessions/${encode(sessionKey)}`, callback)
+      }
+    }
   }
 
   create (voucher, callback) {

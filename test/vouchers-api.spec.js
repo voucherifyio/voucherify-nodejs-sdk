@@ -268,4 +268,19 @@ describe('Vouchers API', function () {
         })
     })
   })
+
+  describe('sessions', function () {
+
+    it('should release voucher session', function (done) {
+      var server = nock('https://api.voucherify.io', reqWithoutBody)
+        .delete('/v1/vouchers/test-code/sessions/test-session')
+        .reply(200, {})
+  
+      client.vouchers.sessions.release("test-code", "test-session")
+        .then(function () {
+          server.done()
+          done()
+        })
+    })
+  })
 })

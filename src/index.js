@@ -19,6 +19,7 @@ const Rewards = require('./Rewards')
 const Loyalties = require('./Loyalties')
 const ValidationRules = require('./ValidationRules')
 const Segments = require('./Segments')
+const Skus = require('./Skus')
 const { assertOption } = require('./helpers')
 
 module.exports = function (options) {
@@ -44,6 +45,7 @@ module.exports = function (options) {
   const loyalties = new Loyalties(client)
   const segments = new Segments(client)
   const validationRules = new ValidationRules(client)
+  const skus = new Skus(client)
 
   return {
     vouchers,
@@ -60,6 +62,7 @@ module.exports = function (options) {
     loyalties,
     segments,
     validationRules,
-    events
+    events,
+    skus
   }
 }

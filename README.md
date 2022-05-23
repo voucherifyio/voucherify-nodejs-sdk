@@ -153,6 +153,7 @@ Methods are provided within `client.vouchers.*` namespace.
 - [Disable Voucher](#disable-voucher)
 - [Import Vouchers](#import-vouchers)
 - [Examine Vouchers Qualification](#examine-vouchers-qualification)
+- [Release Validation Session](#release-validation-session)
 
 #### [Create Voucher]
 ```javascript
@@ -202,6 +203,10 @@ client.vouchers.qualifications.examine(bodyParams)
 client.vouchers.qualifications.examine(bodyParams, queryParams)
 // Example
 client.vouchers.qualifications.examine({}, {audienceRulesOnly: true, limit: 10})
+```
+#### [Release Validation Session]
+```javascript
+client.vouchers.sessions.release(code, sessionKey)
 ```
 ---
 
@@ -920,6 +925,9 @@ consistent structure, described in details in our [API reference](https://docs.v
 Bug reports and pull requests are welcome through [GitHub Issues](https://github.com/voucherifyio/voucherify-nodejs-sdk/issues).
 
 ## Changelog
+- **2021-07-20** - `5.3.0`
+  - Add support for getting SKU by id/source_id.
+  - Add support for releasing voucher validation session.
 - **2020-09-17** - `5.2.0`
   - Add support Get Member Activities in Loyality API
   - enhancement: throw error objects instead of object literals (@AbdelrahmanHafez)
@@ -1095,6 +1103,7 @@ Bug reports and pull requests are welcome through [GitHub Issues](https://github
 [Import Vouchers]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#import-vouchers-1
 [Examine Vouchers Qualification]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#push-qualification-request
 [Add Gift Voucher Balance]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#add-gift-voucher-balance
+[Release Validation Session]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#release-validation-session
 
 [Create Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#create-campaign
 [Update Campaign]: https://docs.voucherify.io/reference?utm_source=github&utm_medium=sdk&utm_campaign=acq#update-campaign
